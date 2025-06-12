@@ -35,9 +35,10 @@ namespace _02.Scripts.Player
 
 		public float life = 10f; 
 		public bool invincible = false; 
-		private bool canMove = true; 
+		public bool canMove = true; 
 
 		private PlayerAttack playerAttack;
+		private SpriteRenderer mainSprite;
 		private Animator animator;
 		public ParticleSystem particleJumpUp; //점프시 따라오는 효과
 		public ParticleSystem particleJumpDown; //착지 시 나오는 효과
@@ -49,6 +50,11 @@ namespace _02.Scripts.Player
 		[Header("Events")]
 		public UnityEvent OnFallEvent;
 		public UnityEvent OnLandEvent;
+		
+		//애니메이션 ID
+		private int animIDSpeed;
+		private int animIDIsJumping;
+		private int animIDIsWallSliding;
 
 		[System.Serializable]
 		public class BoolEvent : UnityEvent<bool> { }
@@ -58,25 +64,28 @@ namespace _02.Scripts.Player
 			rb = GetComponent<Rigidbody2D>();
 			animator = GetComponentInChildren<Animator>();
 			playerAttack = GetComponent<PlayerAttack>();
+			mainSprite = GetComponentInChildren<SpriteRenderer>();
 
 			if (OnFallEvent == null)
 				OnFallEvent = new UnityEvent();
 
 			if (OnLandEvent == null)
 				OnLandEvent = new UnityEvent();
+
+			AssignAnimationIDs();
 		}
 
+	
 
 		private void FixedUpdate()
 		{
 			bool wasGrounded = isGrounded;
 			isGrounded = false;
 			
-			Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, GroundRadius, groundLayer);
-			for (int i = 0; i < colliders.Length; i++)
+			//땅 체크
+			if (Physics2D.OverlapCircle(groundCheck.position, GroundRadius, groundLayer))
 			{
-				if (colliders[i].gameObject != gameObject)
-					isGrounded = true;
+				isGrounded = true;
 				if (!wasGrounded )
 				{
 					OnLandEvent.Invoke();
@@ -87,20 +96,17 @@ namespace _02.Scripts.Player
 						limitVelOnWallJump = false;
 				}
 			}
-
 			isWall = false;
 
 			if (!isGrounded)
 			{
 				OnFallEvent.Invoke();
-				Collider2D[] collidersWall = Physics2D.OverlapCircleAll(wallCheck.position, 0.2f, wallLayer);
-				for (int i = 0; i < collidersWall.Length; i++)
+				//벽 체크
+				if (Physics2D.OverlapCircle(wallCheck.position, GroundRadius, groundLayer))
 				{
-					if (collidersWall[i].gameObject != null)
-					{
-						isDashing = false;
-						isFacingRight = true;
-					}
+					isDashing = false;
+					isWall = true;
+					//isFacingRight = true;
 				}
 				prevVelocityX = rb.velocity.x;
 			}
@@ -136,14 +142,15 @@ namespace _02.Scripts.Player
 		public void Move(float move, bool jump, bool dash)
 		{
 			if (canMove) {
+				animator.SetFloat(animIDSpeed, Mathf.Abs(move));
 				if (dash && canDash && !isWallSliding)
 				{
-					rb.AddForce(new Vector2(transform.localScale.x * m_DashForce, 0f));
+					rb.AddForce(new Vector2(m_DashForce, 0f));
 					StartCoroutine(DashCooldown());
 				}
 				if (isDashing)
 				{
-					rb.velocity = new Vector2(transform.localScale.x * m_DashForce, 0);
+					rb.velocity = new Vector2(m_DashForce, 0);
 				}
 				//플레이어가 땅에 붙어있거나 공중 제어 가능 상태일때만 움직일 수 있게
 				else if (isGrounded || canAirControl)
@@ -165,7 +172,7 @@ namespace _02.Scripts.Player
 				// 플레이어 점프
 				if (isGrounded && jump)
 				{
-					animator.SetBool("IsJumping", true);
+					animator.SetBool(animIDIsJumping, true);
 					animator.SetBool("JumpUp", true);
 					isGrounded = false;
 					rb.AddForce(new Vector2(0f, jumpForce));
@@ -190,7 +197,7 @@ namespace _02.Scripts.Player
 						Flip();
 						StartCoroutine(WaitToCheck(0.1f));
 						canDoubleJump = true;
-						animator.SetBool("IsWallSliding", true);
+						animator.SetBool(animIDIsWallSliding, true);
 					}
 					isDashing = false;
 
@@ -209,7 +216,7 @@ namespace _02.Scripts.Player
 
 					if (jump && isWallSliding)
 					{
-						animator.SetBool("IsJumping", true);
+						animator.SetBool(animIDIsJumping, true);
 						animator.SetBool("JumpUp", true); 
 						rb.velocity = new Vector2(0f, 0f);
 						rb.AddForce(new Vector2(transform.localScale.x * jumpForce *1.2f, jumpForce));
@@ -247,7 +254,6 @@ namespace _02.Scripts.Player
 		private void Flip()
 		{
 			isFacingRight = !isFacingRight;
-
 			Vector3 theScale = transform.localScale;
 			theScale.x *= -1;
 			transform.localScale = theScale;
@@ -272,6 +278,13 @@ namespace _02.Scripts.Player
 					StartCoroutine(MakeInvincible(1f));
 				}
 			}
+		}
+		
+		private void AssignAnimationIDs()
+		{
+			animIDSpeed = Animator.StringToHash("Speed");
+			animIDIsJumping = Animator.StringToHash("IsJumping");
+			animIDIsWallSliding = Animator.StringToHash("IsWallSliding");
 		}
 
 		IEnumerator DashCooldown()
@@ -316,7 +329,7 @@ namespace _02.Scripts.Player
 			yield return new WaitForSeconds(0.1f);
 			canDoubleJump = true;
 			isWallSliding = false;
-			animator.SetBool("IsWallSliding", false);
+			animator.SetBool(animIDIsWallSliding, false);
 			oldWallSlidding = false;
 			wallCheck.localPosition = new Vector3(Mathf.Abs(wallCheck.localPosition.x), wallCheck.localPosition.y, 0);
 		}
