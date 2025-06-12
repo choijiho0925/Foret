@@ -4,7 +4,9 @@ using UnityEngine;
 public class DialogueNPC : MonoBehaviour
 {
     protected Queue<string> dialogueLines = new Queue<string>();
-    [SerializeField] protected DialogueData dialogueData;//스크립터블 오브젝트
+    [SerializeField] protected DialogueData[] dialogueData;//스크립터블 오브젝트
+
+    protected int indexnum;
     //ui참조
 
     //ui연결 필드 생성
@@ -12,7 +14,7 @@ public class DialogueNPC : MonoBehaviour
     protected virtual void Start()
     {
         //ui연결 find추가
-        dialogueData.indexnum = 0;//나중에 저장 만들 때 indexnum,npc위치, 상태 저장
+        indexnum = 0;//나중에 저장 만들 때 indexnum,npc위치, 상태 저장 =>각 상속받는 스크립트에서
     }
 
     protected virtual void OnTriggerStay2D(Collider2D other)
@@ -29,10 +31,10 @@ public class DialogueNPC : MonoBehaviour
 
     public virtual void StartDialogue()
     {
-        if(dialogueData.indexnum >= dialogueLines.Count) return;
+        if(indexnum >= dialogueLines.Count) return;
         
         dialogueQueue.Clear();
-        foreach (string dialogue in dialogueData.dialogues[dialogueData.indexnum])
+        foreach (string dialogue in dialogueData[indexnum].dialogues)
         {
             dialogueQueue.Enqueue(dialogue);
         }

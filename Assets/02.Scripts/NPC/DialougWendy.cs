@@ -16,4 +16,9 @@ public class DialougWendy : DialogueNPC
     {
         base.StartDialogue();
     }
+
+    public override void ShowNextLine()
+    {
+        base.ShowNextLine();
+    }
 }
