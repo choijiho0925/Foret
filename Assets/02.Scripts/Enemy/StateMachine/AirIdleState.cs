@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class AirIdleState : IState
 {
@@ -11,17 +11,17 @@ public class AirIdleState : IState
 
     public void Enter()
     {
-        // Idle »óÅÂ ÁøÀÔ
+        // Idle ìƒíƒœ ì§„ì…
     }
 
     public void Exit()
     {
-        // Idle »óÅÂ ÇØÁ¦
+        // Idle ìƒíƒœ í•´ì œ
     }
 
     public void Update()
     {
-        // ÇÃ·¹ÀÌ¾î Å½Áö ½Ã »óÅÂ ÀüÈ¯
+        // í”Œë ˆì´ì–´ íƒì§€ ì‹œ ìƒíƒœ ì „í™˜
         float distance = Vector3.Distance(monster.transform.position, monster.Player.transform.position);
         if (distance < monster.DetectionRange)
         {

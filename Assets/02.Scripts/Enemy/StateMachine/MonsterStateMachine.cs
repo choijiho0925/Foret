@@ -1,4 +1,4 @@
-public class MonsterStateMachine : StateMachine
+﻿public class MonsterStateMachine : StateMachine
 {
     public MonsterBase Monster { get; }
 
