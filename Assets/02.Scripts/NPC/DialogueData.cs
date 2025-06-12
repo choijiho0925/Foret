@@ -6,4 +6,5 @@ public class DialogueData : ScriptableObject
 {
     public string npcName;
     public List<string> dialogues;
+    public bool isScene;
 }

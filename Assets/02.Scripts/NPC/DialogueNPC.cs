@@ -101,7 +101,7 @@ public class DialogueNPC : MonoBehaviour
     //         isTyping = false;
     //     }
     
-    //     public void DisplayLine(string npcName, string line)
+    //     public void DisplayLine(string npcName, string line, )
     //     {
     //         fullCurrentLine = line;
     //         npcNameText = npcName;
