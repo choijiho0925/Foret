@@ -9,28 +9,32 @@ namespace _02.Scripts.Player
     {
 
         private PlayerMovement playerMovement;
+        private PlayerAttack playerAttack;
         private Animator animator;
 
         public float runSpeed = 40f;
 
-        float horizontalMove = 0f;
+        private Vector2 moveInput;
         bool jump = false;
         bool dash = false;
 
         private void Awake()
         {
             playerMovement = GetComponent<PlayerMovement>();
+            playerAttack = GetComponent<PlayerAttack>();
             animator = GetComponentInChildren<Animator>();
         }
 
         private void OnEnable()
         {
             playerMovement.OnLandEvent.AddListener(OnLanding);
+            playerMovement.OnFallEvent.AddListener(OnFall);
         }
 
         private void OnDisable()
         {
             playerMovement.OnLandEvent.RemoveListener(OnLanding);
+            playerMovement.OnFallEvent.RemoveListener(OnFall);
         }
 
         //bool dashAxis = false;
@@ -39,18 +43,7 @@ namespace _02.Scripts.Player
         {
 
             //horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-            // 데드존 설정 
-            if (Mathf.Abs(horizontalMove) < 0.01f)
-            {
-                horizontalMove = 0f;
-            }
 
-            animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
-
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-                jump = true;
-            }
 
             if (Input.GetKeyDown(KeyCode.C))
             {
@@ -87,11 +80,11 @@ namespace _02.Scripts.Player
         {
             if (context.phase == InputActionPhase.Performed)
             {
-                horizontalMove  = context.ReadValue<Vector2>().x;
+                moveInput = context.ReadValue<Vector2>();
             }
             else if (context.phase == InputActionPhase.Canceled)
             {
-                horizontalMove = 0;
+               moveInput = Vector2.zero;
             }
         }
 
@@ -110,10 +103,20 @@ namespace _02.Scripts.Player
                 dash = true;
             }
         }
+        
+        public void OnAttack(InputAction.CallbackContext context)
+        {
+            // 공격 키가 눌렸을 때
+            if (context.phase == InputActionPhase.Started)
+            {
+                // PlayerAttack 스크립트에 현재 이동 방향(moveInput)을 전달하며 공격 요청
+                playerAttack.PerformAttack(moveInput);
+            }
+        }
 
         private void FixedUpdate ()
         {
-            playerMovement.Move(horizontalMove * runSpeed * Time.fixedDeltaTime, jump, dash);
+            playerMovement.Move(moveInput.x * runSpeed * Time.fixedDeltaTime, jump, dash);
             jump = false;
             dash = false;
         }
