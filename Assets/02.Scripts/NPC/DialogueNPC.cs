@@ -31,6 +31,8 @@ public class DialogueNPC : MonoBehaviour
 
     public virtual void StartDialogue()
     {
+        //대화키를 계속 누를 때 Start와 shownextline을 구분할 수 있는 변수 필요
+        //전투 중에 대화 못하게 하기
         if(indexnum >= dialogueLines.Count) return;
         
         dialogueQueue.Clear();
@@ -61,7 +63,7 @@ public class DialogueNPC : MonoBehaviour
         //dialogueUI.DisplayLine(line);//디알로그 출력
     }
 
-    protected virtual void EndDialogue()
+    protected virtual void EndDialogue()//나중에 ESC키 같은 걸로 중간에 대사를 끊을 수 있을지도?
     {
         //dialogueUI.HideDialoguePanel();
     }
@@ -85,6 +87,7 @@ public class DialogueNPC : MonoBehaviour
     //     public void HideDialoguePanel()
     //     {
     //         dialogueText.text = "";
+    //         isTyping = false;
     //         dialoguePanel.SetActive(false);
     //     }
     

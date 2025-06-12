@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DialougWendy : DialogueNPC
+public class DialougueWendy : DialogueNPC
 {
     protected override void Start()
     {
@@ -20,5 +20,10 @@ public class DialougWendy : DialogueNPC
     public override void ShowNextLine()
     {
         base.ShowNextLine();
+    }
+
+    protected override void EndDialogue()
+    {
+        base.EndDialogue();
     }
 }

@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64ca8693bdd847e684f9331144a9ecd8, type: 3}
-  m_Name: Player
+  m_Name: Wendy4
   m_EditorClassIdentifier: 
-  indexnum: 0
-  npcName: 
+  npcName: "\uC6EC\uB514"
+  dialogues:
+  - "(\uC18C\uB140\uAC00 \uB2E4\uCCD0 \uC4F0\uB7EC\uC838 \uC788\uB2E4)\\n(\uC57D\uCD08\uB97C
+    \uCC3E\uC544\uC11C \uB3CC\uC544\uC624\uC790)"
