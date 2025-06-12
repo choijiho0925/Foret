@@ -288,6 +288,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf5017d3c4931041981f78a73280364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueData:
+  - {fileID: 11400000, guid: 21bc2fae8303ad043a320abfddc42e4c, type: 2}
+  - {fileID: 11400000, guid: 0afca954d840ccb43a01798f7ffd7f23, type: 2}
+  - {fileID: 11400000, guid: 4358cc2dff79e7942b61c543042c2c35, type: 2}
+  - {fileID: 11400000, guid: 6ca20d976355c744f91b8fa28aa8d71e, type: 2}
+  - {fileID: 11400000, guid: add3626821d22f949819f7502c1e0128, type: 2}
 --- !u!1 &1340018478
 GameObject:
   m_ObjectHideFlags: 0
