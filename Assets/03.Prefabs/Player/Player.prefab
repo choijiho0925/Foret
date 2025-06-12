@@ -123,10 +123,10 @@ MonoBehaviour:
   canAirControl: 1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 128
   wallLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 256
   groundCheck: {fileID: 4636075413137717740}
   wallCheck: {fileID: 5641323020010889433}
   isGrounded: 0
