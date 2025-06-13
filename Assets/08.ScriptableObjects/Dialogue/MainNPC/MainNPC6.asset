@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64ca8693bdd847e684f9331144a9ecd8, type: 3}
   m_Name: MainNPC6
   m_EditorClassIdentifier: 
-  npcName: "\uC6EC\uB514"
+  npcName: "\uBC25"
   dialogues:
   - "\uC65C\uC9C0?\\n\uC5B4\uB5BB\uAC8C \uADF8\uB807\uAC8C \uAC15\uD574\uC84C\uC9C0?"
   - "\uC774\uB807\uBA74 \uC601\uD63C\uC774 \uD558\uB098\uAC00 \uBD80\uC871\uD558\uC794\uC544\\n\uC8FC\uC778\uB2D8\uC758

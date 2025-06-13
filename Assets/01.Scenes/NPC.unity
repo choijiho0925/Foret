@@ -288,12 +288,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf5017d3c4931041981f78a73280364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueController: {fileID: 0}
   dialogueData:
   - {fileID: 11400000, guid: 21bc2fae8303ad043a320abfddc42e4c, type: 2}
   - {fileID: 11400000, guid: 0afca954d840ccb43a01798f7ffd7f23, type: 2}
   - {fileID: 11400000, guid: 4358cc2dff79e7942b61c543042c2c35, type: 2}
   - {fileID: 11400000, guid: 6ca20d976355c744f91b8fa28aa8d71e, type: 2}
   - {fileID: 11400000, guid: add3626821d22f949819f7502c1e0128, type: 2}
+  indexnum: 0
+  isDialogueStart: 0
 --- !u!1 &1340018478
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,6 +446,7 @@ GameObject:
   - component: {fileID: 1434272155}
   - component: {fileID: 1434272154}
   - component: {fileID: 1434272157}
+  - component: {fileID: 1434272158}
   m_Layer: 0
   m_Name: MainNPC
   m_TagString: Untagged
@@ -583,6 +587,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.59719586, y: 0.43353042}
   m_EdgeRadius: 0
+--- !u!114 &1434272158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434272153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d594071ff50454eaff716dacfe11b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueController: {fileID: 0}
+  dialogueData:
+  - {fileID: 11400000, guid: 21bc2fae8303ad043a320abfddc42e4c, type: 2}
+  - {fileID: 11400000, guid: 0afca954d840ccb43a01798f7ffd7f23, type: 2}
+  - {fileID: 11400000, guid: 4358cc2dff79e7942b61c543042c2c35, type: 2}
+  - {fileID: 11400000, guid: 6ca20d976355c744f91b8fa28aa8d71e, type: 2}
+  - {fileID: 11400000, guid: add3626821d22f949819f7502c1e0128, type: 2}
+  - {fileID: 11400000, guid: 886f7d073d624ec49aa6e1fae5638637, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

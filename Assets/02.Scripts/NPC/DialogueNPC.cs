@@ -1,57 +1,54 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueNPC : MonoBehaviour
+public class DialogueNPC : MonoBehaviour, IInteractable
 {
-    protected Queue<string> dialogueLines = new Queue<string>();
-    [SerializeField] protected DialogueData[] dialogueData;//스크립터블 오브젝트
-
-    protected int indexnum;
-    //ui참조
-
-    //ui연결 필드 생성
+    [SerializeField] private DialogueData[] dialogueData;//스크립터블 오브젝트
     
-    protected virtual void Start()
+    private int indexnum;
+    private Queue<string> dialogueQueue = new Queue<string>();//이거 프로텍티드 다른 사람한테 조금 물어보자
+    private bool isDialogueStart;
+    
+    private void Start()
     {
-        //ui연결 find추가
         indexnum = 0;//나중에 저장 만들 때 indexnum,npc위치, 상태 저장 =>각 상속받는 스크립트에서
     }
 
-    protected virtual void OnTriggerStay2D(Collider2D other)
+    public virtual void ShowInteractUI()
     {
-        if (other.CompareTag("Player"))
-        {
-            //UI에 상호작용 키 뜨는 함수
-        }
+        //ui매니저에서 상호작용 연결
+        isDialogueStart = true;
+        UIManager.Instance.dialogueController.SetTarget(this, dialogueData[indexnum].npcName);
     }
 
-
-
-    private Queue<string> dialogueQueue = new Queue<string>();
-
-    public virtual void StartDialogue()
+    public virtual void InteractAction()
     {
-        //대화키를 계속 누를 때 Start와 shownextline을 구분할 수 있는 변수 필요
-        //전투 중에 대화 못하게 하기
-        if(indexnum >= dialogueLines.Count) return;
+        if (isDialogueStart)
+        {
+            StartDialogue();
+            isDialogueStart = false;
+        }
+        ShowNextLine();
+    }
+
+    private void StartDialogue()
+    {
+        if(indexnum >= dialogueData.Length) return;
         
         dialogueQueue.Clear();
         foreach (string dialogue in dialogueData[indexnum].dialogues)
         {
             dialogueQueue.Enqueue(dialogue);
         }
-
-        //dialogueUI.ShowDialoguePanel();
-        ShowNextLine();
     }
 
-    public virtual void ShowNextLine()
+    private void ShowNextLine()
     {
-        // if (dialogueUI.isTyping)
-        // {
-        //     dialogueUI.CompleteCurrentLineInstantly();// 글자 다 안 나왔으면 바로 표시
-        //     return;
-        // }
+        if (UIManager.Instance.dialogueController.IsTyping)
+        {
+            UIManager.Instance.dialogueController.CompleteCurrentLineInstantly();// 글자 다 안 나왔으면 바로 표시
+            return;
+        }
 
         if (dialogueQueue.Count == 0)
         {
@@ -60,70 +57,13 @@ public class DialogueNPC : MonoBehaviour
         }
 
         string line = dialogueQueue.Dequeue();
-        //dialogueUI.DisplayLine(line);//디알로그 출력
+        UIManager.Instance.dialogueController.DisplayLine(line);//디알로그 출력
     }
 
-    protected virtual void EndDialogue()//나중에 ESC키 같은 걸로 중간에 대사를 끊을 수 있을지도?
+    private void EndDialogue()//나중에 ESC키 같은 걸로 중간에 대사를 끊을 수 있을지도?
     {
-        //dialogueUI.HideDialoguePanel();
+        UIManager.Instance.dialogueController.HideDialoguePanel();
+        UIManager.Instance.dialogueController.ClearTarget(this);
+        indexnum++;//test용 indexnum를 높여주는 것은 퀘스트나 보스를 깼을 때 거기에 넣어주기
     }
-    //장훈님 밑에꺼 참고해서 만들면 될듯? 저거에 맞춰서 할게요
-    
-    // public class DialogueUI : MonoBehaviour
-    // {
-    //     public TextMeshProUIUG npcNameText;
-    //     public TextMeshProUIUG dialogueText;
-    //     public GameObject dialoguePanel;
-    //     public bool isTyping{get;private set;}
-
-    //     private string fullCurrentLine;
-    //     private Coroutine typingCoroutine;
-   
-    //     public void ShowDialoguePanel()
-    //     {
-    //         dialoguePanel.SetActive(true);
-    //     }
-    //
-    //     public void HideDialoguePanel()
-    //     {
-    //         dialogueText.text = "";
-    //         isTyping = false;
-    //         dialoguePanel.SetActive(false);
-    //     }
-    
-    //     public void CompleteCurrentLineInstantly()
-    //     {
-    //         if (typingCoroutine != null)
-    //         {
-    //             StopCoroutine(typingCoroutine);
-    //         }
-    //         dialogueText.text = fullCurrentLine;
-    //         isTyping = false;
-    //     }
-    
-    //     public void DisplayLine(string npcName, string line, )
-    //     {
-    //         fullCurrentLine = line;
-    //         npcNameText = npcName;
-    
-    //         if (typingCoroutine != null)
-    //             StopCoroutine(typingCoroutine);
-    //
-    //         typingCoroutine = StartCoroutine(TypeLine(line));
-    //     }
-    
-    //     private IEnumerator TypeLine(string line)
-    //     {
-    //         isTyping = true;
-    //         dialogueText.text = "";
-    //
-    //         foreach (char c in line)
-    //         {
-    //             dialogueText.text += c;//==>요거 스트링빌더로 바꾸기!!
-    //             yield return new WaitForSeconds(0.05f);
-    //         }
-    //
-    //         isTyping = false;
-    //     }
-    // }
 }
