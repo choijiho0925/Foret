@@ -25,7 +25,7 @@ public class AirIdleState : IState
         float distance = Vector3.Distance(monster.transform.position, monster.Player.transform.position);
         if (distance < monster.DetectionRange)
         {
-            
+            monster.StateMachine.ChangeState(new AirChaseState(monster));
         }
     }
 }

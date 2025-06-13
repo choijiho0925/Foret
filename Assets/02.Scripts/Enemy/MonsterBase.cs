@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 public abstract class MonsterBase : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public abstract class MonsterBase : MonoBehaviour
 
     private GameObject player;                      // 플레이어
     private MonsterStateMachine stateMachine;       // 상태머신
+    private NavMeshAgent navMeshAgent;              // NavMeshAgent 참조 추가
 
     // 프로퍼티
     public float MoveSpeed => moveSpeed;
@@ -19,6 +21,7 @@ public abstract class MonsterBase : MonoBehaviour
     public bool IsGround => isGround;
     public GameObject Player => player;
     public MonsterStateMachine StateMachine => stateMachine;
+    public NavMeshAgent NavMeshAgent => navMeshAgent;
 
     protected virtual void Awake()
     {
