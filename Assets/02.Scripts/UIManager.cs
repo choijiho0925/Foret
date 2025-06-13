@@ -3,18 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIMananger : Singleton<UIMananger>
+public class UIManager : Singleton<UIManager>
 {
     public HeartController heartController;
-    
-    void Start()
-    {
-        
-    }
+    public SettingController settingController;
+    public DialogueController dialogueController;
 
     // Update is called once per frame
     void Update()
     {
+        // 테스트용 키 입력
         if (Input.GetKeyDown(KeyCode.R))
         {
             TakeDamage();

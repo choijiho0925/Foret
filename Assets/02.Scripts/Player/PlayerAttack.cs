@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
@@ -18,7 +19,7 @@ namespace _02.Scripts.Player
 
         public GameObject cam;
         
-        [Header("공격 관련 설정")]
+        [Header("일반 공격 설정")]
         public LayerMask enemyLayer;
         public float attackRadius = 0.9f;
         public Transform attackPivotForward;
@@ -28,27 +29,19 @@ namespace _02.Scripts.Player
         public GameObject attackEffectUp;
         public GameObject attackEffectDown;
 
+        [Header("원거리 공격 설정")] 
+        public float throwPositionOffsetX = 0.5f;
+        public float throwPositionOffsetY = 0.7f;
+
+        private static readonly int animIDAttackForward = Animator.StringToHash("IsAttack");
+        private static readonly int animIDAttackUp = Animator.StringToHash("IsAttackUp");
+        private static readonly int animIDAttackDown = Animator.StringToHash("IsAttackDown");
+        
+
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
             animator = GetComponentInChildren<Animator>();
-        }
-        private void Update()
-        {
-            // if (Input.GetKeyDown(KeyCode.X) && canAttack)
-            // {
-            //     canAttack = false;
-            //     animator.SetBool("IsAttack", true);
-            //     StartCoroutine(AttackCooldown());
-            // }
-
-            if (Input.GetKeyDown(KeyCode.V))
-            {
-                GameObject projectile = Instantiate(ProjectilePrefab, transform.position + new Vector3(transform.localScale.x * 0.5f,-0.2f), Quaternion.identity) as GameObject; 
-                Vector2 direction = new Vector2(transform.localScale.x, 0);
-                projectile.GetComponent<Projectile>().direction = direction;    //추후 오브젝트 풀링으로 수정 예정
-                projectile.name = "ThrowableWeapon";
-            }
         }
 
         public void PerformAttack(Vector2 direction)
@@ -61,7 +54,7 @@ namespace _02.Scripts.Player
             if (direction.y > 0.7f) 
             {
                 Debug.Log("위쪽 공격!");
-                animator.SetTrigger("IsAttackUp");
+                animator.SetTrigger(animIDAttackUp);
                 // 위쪽 공격 로직 구현 
                 DoDamage(attackPivotUp.position);
                 StartCoroutine(ShowAttackEffect(attackEffectUp));
@@ -71,7 +64,7 @@ namespace _02.Scripts.Player
             else if (direction.y < -0.7f) 
             {
                 Debug.Log("아래쪽 공격!");
-                animator.SetTrigger("IsAttackDown");
+                animator.SetTrigger(animIDAttackDown);
                 // 아래쪽 공격 로직 구현 
                 StartCoroutine(ShowAttackEffect(attackEffectDown));
             }
@@ -79,11 +72,21 @@ namespace _02.Scripts.Player
             else
             {
                 Debug.Log("앞쪽 공격!");
-                animator.SetTrigger("IsAttack"); // 기본 공격 애니메이션
+                animator.SetTrigger(animIDAttackForward); // 기본 공격 애니메이션
                 // 여기에 앞쪽 공격 로직 구현 
                 StartCoroutine(ShowAttackEffect(attackEffectForward));
             }
             StartCoroutine(AttackCooldown());
+        }
+
+        public void ThrowAttack()
+        {
+            Vector3 throwPositionOffset = new Vector3(throwPositionOffsetX * transform.localScale.x, throwPositionOffsetY * transform.localScale.y, 0);
+            GameObject projectile = Instantiate(ProjectilePrefab, 
+                transform.position + throwPositionOffset, Quaternion.identity) as GameObject; 
+            Vector2 direction = new Vector2(transform.localScale.x, 0);
+            projectile.GetComponent<Projectile>().direction = direction;    //추후 오브젝트 풀링으로 수정 예정
+            projectile.name = "ThrowableWeapon";
         }
         // public void OnAttack(InputAction.CallbackContext context)
         // {
