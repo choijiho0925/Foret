@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class DialogueNPC : MonoBehaviour, IInteractable
@@ -27,6 +24,7 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 
     public virtual void InteractAction()
     {
+        Debug.Log("StartInteract");
         if (isDialogueStart)
         {
             StartDialogue();
@@ -37,8 +35,9 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 
     private void StartDialogue()
     {
+        Debug.Log("StartDialogue");
         if(indexnum >= dialogueData.Length) return;
-        
+        Debug.Log("StartDialogue");
         dialogueQueue.Clear();
         foreach (string dialogue in dialogueData[indexnum].dialogues)
         {
