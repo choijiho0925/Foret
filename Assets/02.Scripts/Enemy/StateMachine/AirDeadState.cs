@@ -1,26 +1,27 @@
 using UnityEngine;
 
-public class AirAttackState : IState
+public class AirDeadState : IState
 {
     private MonsterBase monster;
 
-    public AirAttackState(MonsterBase monster)
+    public AirDeadState(MonsterBase monster)
     {
         this.monster = monster;
     }
 
     public void Enter()
     {
-        // Attack 상태 진입
+        // Dead 상태 진입
+
     }
 
     public void Exit()
     {
-        // Attack 상태 해제
+        
     }
 
     public void Update()
     {
-        
+
     }
 }

@@ -1,0 +1,37 @@
+using UnityEngine;
+
+public class MonsterAnimationHandler : MonoBehaviour
+{
+    private static readonly int isMove = Animator.StringToHash("IsMove");
+    private static readonly int isAttack = Animator.StringToHash("IsAttack");
+    private static readonly int isDamage = Animator.StringToHash("IsDamage");
+    private static readonly int isDead = Animator.StringToHash("IsDead");
+
+    private Animator animator;
+
+    protected virtual void Awake()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
+
+    public void Move(bool isMoving)
+    {
+        animator.SetBool(isMove, isMoving);
+    }
+
+    public void Attack()
+    {
+        animator.SetTrigger(isAttack);
+    }
+
+    public void Damage(bool isDamaging)
+    {
+        animator.SetBool(isDamage, isDamaging);
+    }
+
+    public void Dead()
+    {
+        animator.SetTrigger(isDead);
+    }
+
+}
