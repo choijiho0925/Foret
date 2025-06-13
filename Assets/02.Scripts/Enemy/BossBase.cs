@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 public class BossBase : MonsterBase
@@ -51,20 +51,33 @@ public class BossBase : MonsterBase
     private void StartNextPattern()
     {
         isPatterning = true;
-        currentPattern = StartCoroutine(GoPattern());
+        currentPattern = StartCoroutine(PatternLoop());
     }
 
-    // 보스 패턴 실행 코루틴
-    protected virtual IEnumerator GoPattern()
+    // 보스 패턴 반복 루프
+    protected virtual IEnumerator PatternLoop()
+    {
+        isPatterning = true;
+
+        while (playerInRange)
+        {
+            float distance = Vector3.Distance(transform.position, Player.transform.position);
+
+            if (distance <= DetectionRange)
+            {
+                yield return ExecutePattern();
+            }
+
+            yield return new WaitForSeconds(patternDelay);
+        }
+
+        isPatterning = false;
+    }
+
+    // 패턴 실행 (자식 클래스에서 오버라이드)
+    protected virtual IEnumerator ExecutePattern()
     {
         yield return null;
-        isPatterning = false;
-    }
-
-    // 보스 패턴 종료
-    protected void EndPattern()
-    {
-        isPatterning = false;
     }
 
     public override void Move()

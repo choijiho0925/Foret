@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 public class ForestGuardian : BossBase
@@ -12,7 +12,7 @@ public class ForestGuardian : BossBase
         base.Awake();
     }
 
-    protected override IEnumerator GoPattern()
+    protected override IEnumerator ExecutePattern()
     {
         // 범위 내에 있다면 공격, 없다면 순간이동
         float distance = Vector3.Distance(transform.position, Player.transform.position);
@@ -28,9 +28,6 @@ public class ForestGuardian : BossBase
         {
             yield return Teleport();
         }
-
-        yield return new WaitForSeconds(patternDelay);
-        // EndPattern();
     }
 
     private IEnumerator MeleeAttack()
