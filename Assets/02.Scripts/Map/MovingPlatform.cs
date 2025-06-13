@@ -105,21 +105,21 @@ public class MovingPlatform : MonoBehaviour
 
     private void EnablePlatform()
     {
-        platform1.GetComponentInChildren<Renderer>().enabled = false; // 플랫폼 렌더러 비활성화
+        platform1.GetComponentInChildren<SpriteRenderer>().enabled = false; // 플랫폼 렌더러 비활성화
         platform1.GetComponentInChildren<Collider2D>().enabled = false; // 플랫폼 충돌체 비활성화
-        platform2.GetComponentInChildren<Renderer>().enabled = false; // 플랫폼 렌더러 비활성화
+        platform2.GetComponentInChildren<SpriteRenderer>().enabled = false; // 플랫폼 렌더러 비활성화
         platform2.GetComponentInChildren<Collider2D>().enabled = false; // 플랫폼 충돌체 비활성화
-        platform3.GetComponentInChildren<Renderer>().enabled = false; // 플랫폼 렌더러 비활성화
+        platform3.GetComponentInChildren<SpriteRenderer>().enabled = false; // 플랫폼 렌더러 비활성화
         platform3.GetComponentInChildren<Collider2D>().enabled = false; // 플랫폼 충돌체 비활성화
     }
 
     private void OnablePlatform()
     {
-        platform1.GetComponentInChildren<Renderer>().enabled = true; // 플랫폼 렌더러 비활성화
+        platform1.GetComponentInChildren<SpriteRenderer>().enabled = true; // 플랫폼 렌더러 비활성화
         platform1.GetComponentInChildren<Collider2D>().enabled = true; // 플랫폼 충돌체 비활성화
-        platform2.GetComponentInChildren<Renderer>().enabled = true; // 플랫폼 렌더러 비활성화
+        platform2.GetComponentInChildren<SpriteRenderer>().enabled = true; // 플랫폼 렌더러 비활성화
         platform2.GetComponentInChildren<Collider2D>().enabled = true; // 플랫폼 충돌체 비활성화
-        platform3.GetComponentInChildren<Renderer>().enabled = true; // 플랫폼 렌더러 비활성화
+        platform3.GetComponentInChildren<SpriteRenderer>().enabled = true; // 플랫폼 렌더러 비활성화
         platform3.GetComponentInChildren<Collider2D>().enabled = true; // 플랫폼 충돌체 비활성화
     }
 }
