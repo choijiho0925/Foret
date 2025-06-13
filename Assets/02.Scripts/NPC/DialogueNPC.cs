@@ -20,11 +20,12 @@ public class DialogueNPC : MonoBehaviour, IInteractable
         //ui매니저에서 상호작용 연결
         isDialogueStart = true;
         UIManager.Instance.dialogueController.SetTarget(this, dialogueData[indexnum].npcName);
+        UIManager.Instance.interactableController.ShowInteractable(this.gameObject.layer);
     }
 
     public virtual void InteractAction()
     {
-        Debug.Log("StartInteract");
+        UIManager.Instance.interactableController.HideInteractable();
         if (isDialogueStart)
         {
             StartDialogue();
@@ -35,9 +36,7 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 
     private void StartDialogue()
     {
-        Debug.Log("StartDialogue");
         if(indexnum >= dialogueData.Length) return;
-        Debug.Log("StartDialogue");
         dialogueQueue.Clear();
         foreach (string dialogue in dialogueData[indexnum].dialogues)
         {
