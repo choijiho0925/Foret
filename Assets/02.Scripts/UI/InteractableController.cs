@@ -8,10 +8,10 @@ public class InteractableController : MonoBehaviour
     public GameObject toInteractObject;
     public TextMeshProUGUI interactText;
 
-    public void ShowInteractable(LayerMask layerName)
+    public void ShowInteractable(int layer)
     {
         toInteractObject.SetActive(true);
-        if (layerName == LayerMask.NameToLayer("SavePoint"))
+        if (layer == LayerMask.NameToLayer("SavePoint"))
         {
             interactText.text = "위치 기억하기";
             
