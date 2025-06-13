@@ -17,15 +17,21 @@ public class ForestGuardian : BossBase
         InitialPosition = transform.position;
 
         // 초기 상태는 복귀
-       
+        StateMachine.ChangeState(new FGReturnState(this));
     }
 
-    /// <summary>
-    /// 가까우면 공격
-    /// 중간 거리면 추격
-    /// 멀면 텔레포트
-    /// </summary>
-    /// <returns></returns>
+    private void Update()
+    {
+        // FSM 업데이트
+        StateMachine.Update();
+    }
+
+    // 플레이어와의 거리 정보
+    public float GetPlayerDistance()
+    {
+        return Vector3.Distance(transform.position, Player.transform.position);
+    }
+
     protected override IEnumerator ExecutePattern()
     {
         // 플레이어와의 거리
