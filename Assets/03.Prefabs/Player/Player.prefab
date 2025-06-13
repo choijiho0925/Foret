@@ -221,6 +221,7 @@ Transform:
   - {fileID: 4636075413137717740}
   - {fileID: 5641323020010889433}
   - {fileID: 3569096767476168984}
+  - {fileID: 6375560041258948041}
   - {fileID: 2793590769642369105}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -256,7 +257,7 @@ MonoBehaviour:
   invincible: 0
   canMove: 1
   afterimagePrefab: {fileID: 7514879471910159825, guid: 57287e30212cb214dad38c7f87c55acf, type: 3}
-  afterimageSpawnRate: 0.02
+  afterimageSpawnRate: 0.01
   dashEffect: {fileID: 978755421324517172}
   wallJumpControlLockTime: 0.1
 --- !u!114 &9053692394685853244
@@ -1099,5 +1100,36 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6280455972843537732}
+  m_Father: {fileID: 8229210840587374986}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8599329737691382617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6375560041258948041}
+  m_Layer: 6
+  m_Name: DashPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6375560041258948041
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8599329737691382617}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 8229210840587374986}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
