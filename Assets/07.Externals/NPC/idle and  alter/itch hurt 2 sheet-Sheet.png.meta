@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c7186d4772450454698a79260aa9d2f4
+guid: 1fea2f82bd4e45d489abfd7aaa2fb91f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -81,46 +81,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -149,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HURT_0
+      name: itch hurt 2 sheet-Sheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 96
-        height: 96
+        x: 20
+        y: 21
+        width: 16
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7519cbb4ef24e8418b2289209ec3c7a
-      internalID: -886747754
+      spriteID: 3cee362190b9c90418a0cb10de7f3292
+      internalID: -1745856186
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HURT_1
+      name: itch hurt 2 sheet-Sheet_1
       rect:
         serializedVersion: 2
-        x: 96
-        y: 0
-        width: 96
-        height: 96
+        x: 99
+        y: 21
+        width: 26
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4d2412206dc5e44091401f51a65f6a3
-      internalID: 509296663
+      spriteID: 5895080a8821fc2478828f68d9467b8a
+      internalID: 1030450455
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HURT_2
+      name: itch hurt 2 sheet-Sheet_2
       rect:
         serializedVersion: 2
-        x: 192
-        y: 0
-        width: 96
-        height: 96
+        x: 179
+        y: 21
+        width: 26
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 191ce90d116db9f45bb9ba96ab5d1d7e
-      internalID: 2065505519
+      spriteID: dc970be0eed4aba429d914dafb7549d9
+      internalID: -2006649206
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HURT_3
+      name: itch hurt 2 sheet-Sheet_3
       rect:
         serializedVersion: 2
-        x: 288
-        y: 0
-        width: 96
-        height: 96
+        x: 259
+        y: 21
+        width: 26
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,8 +187,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7302a865ffa33bc43b57a81a2071c46d
-      internalID: 1645097
+      spriteID: b3410db5ebae0744ba1f679811c38723
+      internalID: 1264652735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itch hurt 2 sheet-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 21
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13495e85e41eb584cbf83f89f6f34996
+      internalID: -1480595008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itch hurt 2 sheet-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 21
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6987173ca21a794fa14357123bbedd9
+      internalID: -2103378559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itch hurt 2 sheet-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 21
+        width: 16
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dcdfe1be17deac4fa6f8af701fd5dbb
+      internalID: 1502942985
       vertices: []
       indices: 
       edges: []
@@ -243,10 +267,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      HURT_0: -886747754
-      HURT_1: 509296663
-      HURT_2: 2065505519
-      HURT_3: 1645097
+      itch hurt 2 sheet-Sheet_0: -1745856186
+      itch hurt 2 sheet-Sheet_1: 1030450455
+      itch hurt 2 sheet-Sheet_2: -2006649206
+      itch hurt 2 sheet-Sheet_3: 1264652735
+      itch hurt 2 sheet-Sheet_4: -1480595008
+      itch hurt 2 sheet-Sheet_5: -2103378559
+      itch hurt 2 sheet-Sheet_6: 1502942985
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
