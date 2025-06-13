@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class DialogueNPC : MonoBehaviour, IInteractable
@@ -23,10 +20,12 @@ public class DialogueNPC : MonoBehaviour, IInteractable
         //ui매니저에서 상호작용 연결
         isDialogueStart = true;
         UIManager.Instance.dialogueController.SetTarget(this, dialogueData[indexnum].npcName);
+        UIManager.Instance.interactableController.ShowInteractable(this.gameObject.layer);
     }
 
     public virtual void InteractAction()
     {
+        UIManager.Instance.interactableController.HideInteractable();
         if (isDialogueStart)
         {
             StartDialogue();
@@ -38,7 +37,6 @@ public class DialogueNPC : MonoBehaviour, IInteractable
     private void StartDialogue()
     {
         if(indexnum >= dialogueData.Length) return;
-        
         dialogueQueue.Clear();
         foreach (string dialogue in dialogueData[indexnum].dialogues)
         {
