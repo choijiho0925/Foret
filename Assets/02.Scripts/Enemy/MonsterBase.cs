@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public abstract class MonsterBase : MonoBehaviour
 {
+    [SerializeField] private float health;          // 몬스터 체력
     [SerializeField] private float moveSpeed;       // 이동 속도
     [SerializeField] private float detectionRange;  // 감지 범위
     [SerializeField] private float attackPower;     // 공격력
@@ -10,8 +11,11 @@ public abstract class MonsterBase : MonoBehaviour
 
     private GameObject player;                      // 플레이어
     private MonsterStateMachine stateMachine;       // 상태머신
+    private MonsterAnimationHandler animationHandler;   // 몬스터 애니메이션
+    private SpriteRenderer spriteRenderer;              // 몬스터 이미지
 
-    // 프로퍼티
+    #region 프로퍼티
+    public float Health { get => health; set => health = value; }
     public float MoveSpeed => moveSpeed;
     public float DetectionRange => detectionRange;
     public float AttackPower => attackPower;
@@ -19,11 +23,16 @@ public abstract class MonsterBase : MonoBehaviour
     public bool IsGround => isGround;
     public GameObject Player => player;
     public MonsterStateMachine StateMachine => stateMachine;
+    public MonsterAnimationHandler AnimationHandler => animationHandler;
+    public SpriteRenderer SpriteRenderer => spriteRenderer;
+    #endregion
 
     protected virtual void Awake()
     {
         player = GameObject.FindWithTag("Player");
         stateMachine = new MonsterStateMachine(this);
+        animationHandler = GetComponent<MonsterAnimationHandler>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     protected virtual void Start()

@@ -17,6 +17,7 @@ TagManager:
   - Top
   - Enemy
   - DeadZone
+  - Interactable
   - 
   - 
   - 
@@ -34,9 +35,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - NoJump
+  - SavePoint
   m_SortingLayers:
   - name: Default
     uniqueID: 0

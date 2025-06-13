@@ -7,75 +7,24 @@ namespace _02.Scripts.Player
 {
     public class PlayerCtrl : MonoBehaviour 
     {
-
         private PlayerMovement playerMovement;
         private PlayerAttack playerAttack;
-        private Animator animator;
+        private PlayerInteract playerInteract;
 
         public float runSpeed = 40f;
-
+        public bool canControl = true;      //플레이어 이동 가능 여부
+        
         private Vector2 moveInput;
-        bool jump = false;
-        bool dash = false;
-
+        private bool jump = false;
+        private bool dash = false;
+        
         private void Awake()
         {
             playerMovement = GetComponent<PlayerMovement>();
             playerAttack = GetComponent<PlayerAttack>();
-            animator = GetComponentInChildren<Animator>();
+            playerInteract = GetComponent<PlayerInteract>();
         }
-
-        private void OnEnable()
-        {
-            playerMovement.OnLandEvent.AddListener(OnLanding);
-            playerMovement.OnFallEvent.AddListener(OnFall);
-        }
-
-        private void OnDisable()
-        {
-            playerMovement.OnLandEvent.RemoveListener(OnLanding);
-            playerMovement.OnFallEvent.RemoveListener(OnFall);
-        }
-
-        //bool dashAxis = false;
-	
-        void Update ()
-        {
-
-            //horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-
-
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                dash = true;
-            }
-
-            /*if (Input.GetAxisRaw("Dash") == 1 || Input.GetAxisRaw("Dash") == -1) //RT in Unity 2017 = -1, RT in Unity 2019 = 1
-        {
-            if (dashAxis == false)
-            {
-                dashAxis = true;
-                dash = true;
-            }
-        }
-        else
-        {
-            dashAxis = false;
-        }
-        */
-
-        }
-
-        public void OnFall()
-        {
-            animator.SetBool("IsJumping", true);
-        }
-
-        private void OnLanding()
-        {
-            animator.SetBool("IsJumping", false);
-        }
-
+        
         public void OnMove(InputAction.CallbackContext context)
         {
             if (context.phase == InputActionPhase.Performed)
@@ -106,16 +55,42 @@ namespace _02.Scripts.Player
         
         public void OnAttack(InputAction.CallbackContext context)
         {
-            // 공격 키가 눌렸을 때
+            // 일반 공격
             if (context.phase == InputActionPhase.Started)
             {
                 // PlayerAttack 스크립트에 현재 이동 방향(moveInput)을 전달하며 공격 요청
                 playerAttack.PerformAttack(moveInput);
             }
+        }   
+        public void OnThrow(InputAction.CallbackContext context)
+        {
+            // 원거리 공격
+            if (context.phase == InputActionPhase.Started)
+            {
+                // PlayerAttack 스크립트에 현재 이동 방향(moveInput)을 전달하며 공격 요청
+                playerAttack.ThrowAttack();
+            }
+        }
+        
+        //'상호작용' 상태일 때는 모든 움직임 제한
+        public void EnterInteraction()
+        {
+            canControl = false;
+        }
+        public void ExitInteraction()
+        {
+            canControl = true;
         }
 
-        private void FixedUpdate ()
+        private void FixedUpdate()
         {
+            if (!canControl)
+            {
+                jump = false;
+                dash = false;
+                return;
+            }
+            
             playerMovement.Move(moveInput.x * runSpeed * Time.fixedDeltaTime, jump, dash);
             jump = false;
             dash = false;

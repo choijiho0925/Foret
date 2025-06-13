@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
+using System.Collections;
 using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
@@ -9,11 +7,11 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] GameObject platform1; // 플랫폼 1 오브젝트
     [SerializeField] GameObject platform2; // 플랫폼 2 오브젝트
     [SerializeField] GameObject platform3; // 플랫폼 3 오브젝트
+    [SerializeField] float respawnTime; // 플랫폼 재생성 시간
 
     private float moveDistance = 3f; // 플랫폼 이동거리
     private float moveSpeed = 2f; // 플랫폼 이동속도
     private float disappearTime = 1f; // 플랫폼 사라지는 시간
-    private float respawnTime = 2f; // 플랫폼 재생성 시간
     private bool movingToTarget = true; // 플랫폼이 목표 위치로 이동 중인지 여부
     private Vector3 startPosition; // 플랫폼 시작 위치
     private Vector3 targetPosition; // 플랫폼 목표 위치
@@ -66,7 +64,7 @@ public class MovingPlatform : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player")) // 플레이어 레이어 확인
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") && collision.transform.position.y > this.gameObject.transform.position.y) // 플레이어 레이어 확인
         {
             player = collision.transform; // 플레이어 트랜스폼 저장
             StartCoroutine(SetPlayerAsChildNextFrame());
