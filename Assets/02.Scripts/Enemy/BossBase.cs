@@ -12,7 +12,12 @@ public class BossBase : MonsterBase
     protected bool isPatterning = false;    // 현재 패턴 실행 중인지
     protected Coroutine currentPattern;     // 실행 중인 패턴 코루틴 참조
 
-    private void Start()
+    protected override void Awake()
+    {
+        base.Awake();   
+    }
+
+    protected override void Start()
     {
         base.Start();
     }
