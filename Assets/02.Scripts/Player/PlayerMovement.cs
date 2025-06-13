@@ -42,23 +42,22 @@ namespace _02.Scripts.Player
 		private PlayerAttack playerAttack;
 		private SpriteRenderer mainSprite;
 		private Animator animator;
-		public ParticleSystem particleJumpUp; //점프시 따라오는 효과
-		public ParticleSystem particleJumpDown; //착지 시 나오는 효과
 		
 		[Header("Dash Effect")]
 		[SerializeField] private GameObject afterimagePrefab; // 1단계에서 만든 잔상 프리팹
 		[SerializeField] private float afterimageSpawnRate = 0.05f; // 잔상 생성 간격 (초)
+		[SerializeField] private GameObject dashEffect;
 		
 		[Header("Wall Jump Control")]
 		[SerializeField] private float wallJumpControlLockTime = 0.5f; // 벽 점프 후 조작이 잠기는 시간
 		
 		//애니메이션 ID
-		private static int animIDGrounded = Animator.StringToHash("IsGrounded");
-		private static int animIDSpeed = Animator.StringToHash("Speed");
-		private static int animIDJumping = Animator.StringToHash("IsJumping");
-		private static int animIDDoubleJumping = Animator.StringToHash("IsDoubleJumping");
-		private static int animIDDashing = Animator.StringToHash("IsDashing");
-		private static int animIDWallSliding = Animator.StringToHash("IsWallSliding");
+		private static readonly int animIDGrounded = Animator.StringToHash("IsGrounded");
+		private static readonly int animIDSpeed = Animator.StringToHash("Speed");
+		private static readonly int animIDJumping = Animator.StringToHash("IsJumping");
+		private static readonly int animIDDoubleJumping = Animator.StringToHash("IsDoubleJumping");
+		private static readonly int animIDDashing = Animator.StringToHash("IsDashing");
+		private static readonly int animIDWallSliding = Animator.StringToHash("IsWallSliding");
 
 		[System.Serializable]
 		public class BoolEvent : UnityEvent<bool> { }
@@ -86,7 +85,7 @@ namespace _02.Scripts.Player
 				animator.SetBool(animIDJumping, false); // 착지 시 점프 상태 해제
 				animator.SetBool(animIDDoubleJumping, false);
 				if (!isWall && !isDashing) 
-					particleJumpDown.Play();
+					//particleJumpDown.Play();
 				canDoubleJump = true;
 			}
 			// 땅에서 떨어진 순간에만 처리
@@ -152,8 +151,8 @@ namespace _02.Scripts.Player
 					isGrounded = false;
 					rb.AddForce(new Vector2(0f, jumpForce));
 					canDoubleJump = true;
-					particleJumpDown.Play();
-					particleJumpUp.Play();
+					//particleJumpDown.Play();
+					//particleJumpUp.Play();
 				}
 				else if (!isGrounded && jump && canDoubleJump && !isWallSliding)
 				{
@@ -337,10 +336,12 @@ namespace _02.Scripts.Player
 			isDashing = true;
 			canDash = false;
 			
-			// 잔상 생성 코루틴 시작
-			StartCoroutine(SpawnAfterimages());
+			// 이팩트 생성 코루틴 시작
+			//dashEffect.SetActive(true);				//일반 대쉬 효과
+			StartCoroutine(SpawnAfterimages());	//잔상 효과
 			
 			yield return new WaitForSeconds(0.1f);	//실제 대쉬가 지속되는 시간
+			dashEffect.SetActive(false);
 			isDashing = false;
 			animator.SetBool(animIDDashing, false);
 			yield return new WaitForSeconds(0.5f);
