@@ -30,7 +30,7 @@ public class ForestGuardian : BossBase
         }
 
         yield return new WaitForSeconds(patternDelay);
-        EndPattern();
+        // EndPattern();
     }
 
     private IEnumerator MeleeAttack()
