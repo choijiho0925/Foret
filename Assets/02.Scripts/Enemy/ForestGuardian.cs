@@ -1,11 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 
 public class ForestGuardian : BossBase
 {
-    [Header("½£ÀÇ ÁÖÀÎ ¼³Á¤")]
-    [SerializeField] private float meleeRange = 2f;
-    [SerializeField] private float teleportDistance = 2f;
+    [Header("ìˆ²ì˜ ì£¼ì¸ ì„¤ì •")]
+    [SerializeField] private float meleeRange = 2f;         
+    [SerializeField] private float teleportDistance = 2f;   
 
     protected override void Awake()
     {
@@ -14,16 +14,16 @@ public class ForestGuardian : BossBase
 
     protected override IEnumerator GoPattern()
     {
-        // ¹üÀ§ ³»¿¡ ÀÖ´Ù¸é °ø°İ, ¾ø´Ù¸é ¼ø°£ÀÌµ¿
+        // ë²”ìœ„ ë‚´ì— ìˆë‹¤ë©´ ê³µê²©, ì—†ë‹¤ë©´ ìˆœê°„ì´ë™
         float distance = Vector3.Distance(transform.position, Player.transform.position);
 
-        // °¡±î¿ì¸é °ø°İ
+        // ê°€ê¹Œìš°ë©´ ê³µê²©
         if(distance <= meleeRange)
         {
             yield return MeleeAttack();
         }
 
-        // ¸Ö¸é ÅÚ·¹Æ÷Æ®
+        // ë©€ë©´ í…”ë ˆí¬íŠ¸
         else
         {
             yield return Teleport();
@@ -35,7 +35,7 @@ public class ForestGuardian : BossBase
 
     private IEnumerator MeleeAttack()
     {
-        Debug.Log("±ÙÁ¢ °ø°İ ½Ãµµ");
+        Debug.Log("ê·¼ì ‘ ê³µê²© ì‹œë„");
 
         Attack();
         yield return new WaitForSeconds(1f);
@@ -43,13 +43,13 @@ public class ForestGuardian : BossBase
 
     private IEnumerator Teleport()
     {
-        Debug.Log("¼ø°£ÀÌµ¿");
+        Debug.Log("ìˆœê°„ì´ë™");
 
-        // ÇÃ·¹ÀÌ¾î µÚÂÊ ¹æÇâ °è»ê
+        // í”Œë ˆì´ì–´ ë’¤ìª½ ë°©í–¥ ê³„ì‚°
         Vector3 toPlayer = (transform.position - Player.transform.position).normalized;
         Vector3 behindPosition = Player.transform.position + toPlayer * teleportDistance;
 
-        // ¼ø°£ÀÌµ¿
+        // ìˆœê°„ì´ë™
         transform.position = behindPosition;
 
         yield return new WaitForSeconds(1f);
