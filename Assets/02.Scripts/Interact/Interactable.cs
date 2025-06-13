@@ -5,6 +5,5 @@ using UnityEngine;
 public interface IInteractable
 {
     void ShowInteractUI();
-
     void InteractAction();
 }
