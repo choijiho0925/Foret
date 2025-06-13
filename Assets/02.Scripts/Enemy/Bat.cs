@@ -14,10 +14,9 @@ public class Bat : MonsterBase
 
     public override void Move()
     {
-        if (Player != null)
-        {
-            agent.SetDestination(Player.transform.position);
-        }
+        agent.speed = MoveSpeed;
+        agent.stoppingDistance = AttackRange * 0.9f;
+        agent.SetDestination(Player.transform.position);
     }
 
     public override void Attack()
