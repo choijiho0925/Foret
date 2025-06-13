@@ -35,7 +35,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - NoJump
   - SavePoint
   m_SortingLayers:
   - name: Default
