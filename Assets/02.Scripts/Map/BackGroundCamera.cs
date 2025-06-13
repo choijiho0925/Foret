@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,12 +12,12 @@ public class BackGroundCamera : MonoBehaviour
     {
         if(player.position.x < 0)
         {
-            transform.position = new Vector3(0, player.position.y + 4f, -10); // ÇÃ·¹ÀÌ¾î°¡ ¿ÞÂÊ¿¡ ÀÖÀ» ¶§ Ä«¸Þ¶ó À§Ä¡ Á¶Á¤ 
+            transform.position = new Vector3(0, player.position.y + 4f, -10); // í”Œë ˆì´ì–´ê°€ ì™¼ìª½ì— ìžˆì„ ë•Œ ì¹´ë©”ë¼ ìœ„ì¹˜ ì¡°ì • 
         }
         else
         {
-            transform.position = player.position + new Vector3(0, 4f, -10); // Ä«¸Þ¶ó´Â ÇÃ·¹ÀÌ¾î À§Ä¡¿¡ µû¶ó ÀÌµ¿
+            transform.position = player.position + new Vector3(0, 4f, -10); // ì¹´ë©”ë¼ëŠ” í”Œë ˆì´ì–´ ìœ„ì¹˜ì— ë”°ë¼ ì´ë™
         }
-        backGround.position = transform.position + new Vector3(0, 1f, 9f); // ¹è°æÀº ÇÃ·¹ÀÌ¾î À§Ä¡¿¡ µû¶ó ÀÌµ¿
+        backGround.position = transform.position + new Vector3(0, 1f, 9f); // ë°°ê²½ì€ í”Œë ˆì´ì–´ ìœ„ì¹˜ì— ë”°ë¼ ì´ë™
     }
 }

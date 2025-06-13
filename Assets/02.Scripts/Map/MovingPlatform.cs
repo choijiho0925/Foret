@@ -1,20 +1,23 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
-    [SerializeField] GameObject platform; // ÇÃ·§Æû ¿ÀºêÁ§Æ®
+    [SerializeField] GameObject platform; // í”Œë«í¼ ì˜¤ë¸Œì íŠ¸
+    [SerializeField] GameObject platform1; // í”Œë«í¼ 1 ì˜¤ë¸Œì íŠ¸
+    [SerializeField] GameObject platform2; // í”Œë«í¼ 2 ì˜¤ë¸Œì íŠ¸
+    [SerializeField] GameObject platform3; // í”Œë«í¼ 3 ì˜¤ë¸Œì íŠ¸
 
-    private float moveDistance = 3f; // ÇÃ·§Æû ÀÌµ¿°Å¸®
-    private float moveSpeed = 2f; // ÇÃ·§Æû ÀÌµ¿¼Óµµ
-    private float disappearTime = 1f; // ÇÃ·§Æû »ç¶óÁö´Â ½Ã°£
-    private float respawnTime = 1.5f; // ÇÃ·§Æû Àç»ı¼º ½Ã°£
-    private bool movingToTarget = true; // ÇÃ·§ÆûÀÌ ¸ñÇ¥ À§Ä¡·Î ÀÌµ¿ ÁßÀÎÁö ¿©ºÎ
-    private Vector3 startPosition; // ÇÃ·§Æû ½ÃÀÛ À§Ä¡
-    private Vector3 targetPosition; // ÇÃ·§Æû ¸ñÇ¥ À§Ä¡
-    private Transform player; // ÇÃ·¹ÀÌ¾î Æ®·£½ºÆû
+    private float moveDistance = 3f; // í”Œë«í¼ ì´ë™ê±°ë¦¬
+    private float moveSpeed = 2f; // í”Œë«í¼ ì´ë™ì†ë„
+    private float disappearTime = 1f; // í”Œë«í¼ ì‚¬ë¼ì§€ëŠ” ì‹œê°„
+    private float respawnTime = 2f; // í”Œë«í¼ ì¬ìƒì„± ì‹œê°„
+    private bool movingToTarget = true; // í”Œë«í¼ì´ ëª©í‘œ ìœ„ì¹˜ë¡œ ì´ë™ ì¤‘ì¸ì§€ ì—¬ë¶€
+    private Vector3 startPosition; // í”Œë«í¼ ì‹œì‘ ìœ„ì¹˜
+    private Vector3 targetPosition; // í”Œë«í¼ ëª©í‘œ ìœ„ì¹˜
+    private Transform player; // í”Œë ˆì´ì–´ íŠ¸ëœìŠ¤í¼
 
 
     private void Start()
@@ -27,78 +30,96 @@ public class MovingPlatform : MonoBehaviour
         MovePlatform(); 
     }
 
-    private void CheckDirection() // ÇÃ·§Æû ÀÌµ¿ ¹æÇâÀ» °áÁ¤ÇÏ´Â ¸Ş¼­µå
+    private void CheckDirection() // í”Œë«í¼ ì´ë™ ë°©í–¥ì„ ê²°ì •í•˜ëŠ” ë©”ì„œë“œ
     {
-        startPosition = platform.transform.position; // ÇÃ·§ÆûÀÇ ½ÃÀÛ À§Ä¡ ÀúÀå
+        startPosition = platform.transform.position; // í”Œë«í¼ì˜ ì‹œì‘ ìœ„ì¹˜ ì €ì¥
 
-        bool isMoveDirection = Random.Range(0, 2) > 0; // ÀÌµ¿ ¹æÇâ °áÁ¤ (0 ¶Ç´Â 1)
-        float direction = isMoveDirection ? 1f : -1f; // 1ÀÌ¸é ¿À¸¥ÂÊ, -1ÀÌ¸é ¿ŞÂÊÀ¸·Î ÀÌµ¿
-        targetPosition = startPosition + new Vector3(moveDistance * direction, 0, 0); // ¸ñÇ¥ À§Ä¡ ¼³Á¤
+        bool isMoveDirection = Random.Range(0, 2) > 0; // ì´ë™ ë°©í–¥ ê²°ì • (0 ë˜ëŠ” 1)
+        float direction = isMoveDirection ? 1f : -1f; // 1ì´ë©´ ì˜¤ë¥¸ìª½, -1ì´ë©´ ì™¼ìª½ìœ¼ë¡œ ì´ë™
+        targetPosition = startPosition + new Vector3(moveDistance * direction, 0, 0); // ëª©í‘œ ìœ„ì¹˜ ì„¤ì •
     }
 
-    private void MovePlatform() // ÇÃ·§Æû ÀÌµ¿ ¸Ş¼­µå È£Ãâ
+    private void MovePlatform() // í”Œë«í¼ ì´ë™ ë©”ì„œë“œ í˜¸ì¶œ
     {
-        Vector3 arrivalPoint = movingToTarget ? targetPosition : startPosition; // ÇöÀç ¸ñÇ¥ À§Ä¡ °áÁ¤
+        Vector3 arrivalPoint = movingToTarget ? targetPosition : startPosition; // í˜„ì¬ ëª©í‘œ ìœ„ì¹˜ ê²°ì •
 
-        float fixedY = startPosition.y; // ÇÃ·§ÆûÀÇ Y ÁÂÇ¥¸¦ °íÁ¤ÇÏ±â À§ÇÑ º¯¼ö
-        Vector3 currentPosition = platform.transform.position; // ÇöÀç ÇÃ·§Æû À§Ä¡
-        Vector3 targetFixedY = new Vector3(arrivalPoint.x, fixedY, arrivalPoint.z); // ¸ñÇ¥ À§Ä¡ÀÇ Y ÁÂÇ¥¸¦ °íÁ¤
+        float fixedY = startPosition.y; // í”Œë«í¼ì˜ Y ì¢Œí‘œë¥¼ ê³ ì •í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
+        Vector3 currentPosition = platform.transform.position; // í˜„ì¬ í”Œë«í¼ ìœ„ì¹˜
+        Vector3 targetFixedY = new Vector3(arrivalPoint.x, fixedY, arrivalPoint.z); // ëª©í‘œ ìœ„ì¹˜ì˜ Y ì¢Œí‘œë¥¼ ê³ ì •
 
-        platform.transform.position = Vector3.MoveTowards(currentPosition, targetFixedY, moveSpeed * Time.deltaTime); // ÇÃ·§Æû ÀÌµ¿
+        platform.transform.position = Vector3.MoveTowards(currentPosition, targetFixedY, moveSpeed * Time.deltaTime); // í”Œë«í¼ ì´ë™
 
-        if (Vector3.Distance(platform.transform.position, arrivalPoint) < 0.01f) // ¸ñÇ¥ À§Ä¡¿¡ µµ´ŞÇß´ÂÁö È®ÀÎ
+        if (Vector3.Distance(platform.transform.position, arrivalPoint) < 0.01f) // ëª©í‘œ ìœ„ì¹˜ì— ë„ë‹¬í–ˆëŠ”ì§€ í™•ì¸
         {
-            movingToTarget = !movingToTarget; // ÀÌµ¿ ¹æÇâ ÀüÈ¯
+            movingToTarget = !movingToTarget; // ì´ë™ ë°©í–¥ ì „í™˜
         }
     }
 
-    private void ClearParent() // ÇÃ·¹ÀÌ¾î¸¦ ÇÃ·§ÆûÀÇ ÀÚ½Ä¿¡¼­ ÇØÁ¦ÇÏ´Â ¸Ş¼­µå
+    private void ClearParent() // í”Œë ˆì´ì–´ë¥¼ í”Œë«í¼ì˜ ìì‹ì—ì„œ í•´ì œí•˜ëŠ” ë©”ì„œë“œ
     {
-        if (player != null && player.parent == transform) // ÇÃ·¹ÀÌ¾î°¡ ÇÃ·§ÆûÀÇ ÀÚ½ÄÀ¸·Î ¼³Á¤µÇ¾î ÀÖ´ÂÁö È®ÀÎ
+        if (player != null && player.parent == transform) // í”Œë ˆì´ì–´ê°€ í”Œë«í¼ì˜ ìì‹ìœ¼ë¡œ ì„¤ì •ë˜ì–´ ìˆëŠ”ì§€ í™•ì¸
         {
-            player.SetParent(null); // ÇÃ·¹ÀÌ¾î¸¦ ÇÃ·§ÆûÀÇ ÀÚ½Ä¿¡¼­ ÇØÁ¦
-            player = null; // ÇÃ·¹ÀÌ¾î Æ®·£½ºÆû ÃÊ±âÈ­
+            player.SetParent(null); // í”Œë ˆì´ì–´ë¥¼ í”Œë«í¼ì˜ ìì‹ì—ì„œ í•´ì œ
+            player = null; // í”Œë ˆì´ì–´ íŠ¸ëœìŠ¤í¼ ì´ˆê¸°í™”
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player")) // ÇÃ·¹ÀÌ¾î ·¹ÀÌ¾î È®ÀÎ
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player")) // í”Œë ˆì´ì–´ ë ˆì´ì–´ í™•ì¸
         {
-            player = collision.transform; // ÇÃ·¹ÀÌ¾î Æ®·£½ºÆû ÀúÀå
+            player = collision.transform; // í”Œë ˆì´ì–´ íŠ¸ëœìŠ¤í¼ ì €ì¥
             StartCoroutine(SetPlayerAsChildNextFrame());
-            StartCoroutine(Respawn()); // ÇÃ·¹ÀÌ¾î°¡ ÇÃ·§Æû¿¡ ´êÀ¸¸é Àç»ı¼º ÄÚ·çÆ¾ ½ÃÀÛ
+            StartCoroutine(Respawn()); // í”Œë ˆì´ì–´ê°€ í”Œë«í¼ì— ë‹¿ìœ¼ë©´ ì¬ìƒì„± ì½”ë£¨í‹´ ì‹œì‘
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player")) // ÇÃ·¹ÀÌ¾î°¡ ÇÃ·§Æû¿¡¼­ ¹ş¾î³µÀ» ¶§
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player")) // í”Œë ˆì´ì–´ê°€ í”Œë«í¼ì—ì„œ ë²—ì–´ë‚¬ì„ ë•Œ
         {
-            ClearParent(); // ÇÃ·¹ÀÌ¾î¸¦ ÇÃ·§ÆûÀÇ ÀÚ½Ä¿¡¼­ ÇØÁ¦
+            ClearParent(); // í”Œë ˆì´ì–´ë¥¼ í”Œë«í¼ì˜ ìì‹ì—ì„œ í•´ì œ
         }
     }
 
     private IEnumerator SetPlayerAsChildNextFrame()
     {
-        yield return null; // ÇÑ ÇÁ·¹ÀÓ ´ë±â
+        yield return null; // í•œ í”„ë ˆì„ ëŒ€ê¸°
         player.SetParent(transform);
     }
 
-    private IEnumerator Respawn() // ÇÃ·§Æû Àç»ı¼º ÄÚ·çÆ¾
+    private IEnumerator Respawn() // í”Œë«í¼ ì¬ìƒì„± ì½”ë£¨í‹´
     {
-        yield return new WaitForSeconds(disappearTime); // ÇÃ·§Æû »ç¶óÁö´Â ½Ã°£ µ¿¾È ´ë±â
+        yield return new WaitForSeconds(disappearTime); // í”Œë«í¼ ì‚¬ë¼ì§€ëŠ” ì‹œê°„ ë™ì•ˆ ëŒ€ê¸°
 
-        ClearParent(); // ÇÃ·¹ÀÌ¾î¸¦ ÇÃ·§ÆûÀÇ ÀÚ½Ä¿¡¼­ ÇØÁ¦
+        ClearParent(); // í”Œë ˆì´ì–´ë¥¼ í”Œë«í¼ì˜ ìì‹ì—ì„œ í•´ì œ
 
-        platform.GetComponent<Renderer>().enabled = false; // ÇÃ·§Æû ·»´õ·¯ ºñÈ°¼ºÈ­
-        platform.GetComponent<Collider2D>().enabled = false; // ÇÃ·§Æû Ãæµ¹Ã¼ ºñÈ°¼ºÈ­
+        EnablePlatform(); // í”Œë«í¼ ë¹„í™œì„±í™” ë©”ì„œë“œ í˜¸ì¶œ
 
-        platform.transform.position = startPosition; // ÇÃ·§Æû À§Ä¡¸¦ ½ÃÀÛ À§Ä¡·Î µÇµ¹¸²
+        platform.transform.position = startPosition; // í”Œë«í¼ ìœ„ì¹˜ë¥¼ ì‹œì‘ ìœ„ì¹˜ë¡œ ë˜ëŒë¦¼
 
-        yield return new WaitForSeconds(respawnTime); // ÁöÁ¤µÈ ½Ã°£ µ¿¾È ´ë±â
+        yield return new WaitForSeconds(respawnTime); // ì§€ì •ëœ ì‹œê°„ ë™ì•ˆ ëŒ€ê¸°
 
-        platform.GetComponent<Renderer>().enabled = true; // ÇÃ·§Æû ·»´õ·¯ È°¼ºÈ­
-        platform.GetComponent<Collider2D>().enabled = true; // ÇÃ·§Æû Ãæµ¹Ã¼ È°¼ºÈ­
+        OnablePlatform(); // í”Œë«í¼ í™œì„±í™” ë©”ì„œë“œ í˜¸ì¶œ
+    }
+
+    private void EnablePlatform()
+    {
+        platform1.GetComponentInChildren<Renderer>().enabled = false; // í”Œë«í¼ ë Œë”ëŸ¬ ë¹„í™œì„±í™”
+        platform1.GetComponentInChildren<Collider2D>().enabled = false; // í”Œë«í¼ ì¶©ëŒì²´ ë¹„í™œì„±í™”
+        platform2.GetComponentInChildren<Renderer>().enabled = false; // í”Œë«í¼ ë Œë”ëŸ¬ ë¹„í™œì„±í™”
+        platform2.GetComponentInChildren<Collider2D>().enabled = false; // í”Œë«í¼ ì¶©ëŒì²´ ë¹„í™œì„±í™”
+        platform3.GetComponentInChildren<Renderer>().enabled = false; // í”Œë«í¼ ë Œë”ëŸ¬ ë¹„í™œì„±í™”
+        platform3.GetComponentInChildren<Collider2D>().enabled = false; // í”Œë«í¼ ì¶©ëŒì²´ ë¹„í™œì„±í™”
+    }
+
+    private void OnablePlatform()
+    {
+        platform1.GetComponentInChildren<Renderer>().enabled = true; // í”Œë«í¼ ë Œë”ëŸ¬ ë¹„í™œì„±í™”
+        platform1.GetComponentInChildren<Collider2D>().enabled = true; // í”Œë«í¼ ì¶©ëŒì²´ ë¹„í™œì„±í™”
+        platform2.GetComponentInChildren<Renderer>().enabled = true; // í”Œë«í¼ ë Œë”ëŸ¬ ë¹„í™œì„±í™”
+        platform2.GetComponentInChildren<Collider2D>().enabled = true; // í”Œë«í¼ ì¶©ëŒì²´ ë¹„í™œì„±í™”
+        platform3.GetComponentInChildren<Renderer>().enabled = true; // í”Œë«í¼ ë Œë”ëŸ¬ ë¹„í™œì„±í™”
+        platform3.GetComponentInChildren<Collider2D>().enabled = true; // í”Œë«í¼ ì¶©ëŒì²´ ë¹„í™œì„±í™”
     }
 }
