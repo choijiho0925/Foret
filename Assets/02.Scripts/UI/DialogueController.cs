@@ -63,7 +63,7 @@ public class DialogueController : MonoBehaviour
     public void DisplayLine(string line)
     {
         npcNameText.text = npcName;
-        line.Replace("\\n", "\n");
+        line = line.Replace("\\n", "\n");
         fullCurrentLine = line;
         
         if (typingCoroutine != null)
