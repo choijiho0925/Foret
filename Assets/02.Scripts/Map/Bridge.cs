@@ -5,23 +5,23 @@ using UnityEngine;
 
 public class Bridge : MonoBehaviour
 {
-    private float delayTime = 0.5f; // ÇÃ·¹ÀÌ¾î°¡ ´Ù¸® À§¿¡ ÀÖÀ» ¶§ Áö¿¬ ½Ã°£
-    private float respawnTime = 5f; // ´Ù¸®°¡ ¶³¾îÁø ÈÄ Àç»ı¼º ½Ã°£
-    private bool hasFallen; // ´Ù¸®°¡ ¶³¾îÁ³´ÂÁö ¿©ºÎ¸¦ È®ÀÎÇÏ´Â º¯¼ö
-    private Vector3 startPosition; // ´Ù¸®ÀÇ ÃÊ±â À§Ä¡
-    private Rigidbody2D rb; // Rigidbody2D ÄÄÆ÷³ÍÆ®
+    private float delayTime = 0.4f; // í”Œë ˆì´ì–´ê°€ ë‹¤ë¦¬ ìœ„ì— ìˆì„ ë•Œ ì§€ì—° ì‹œê°„
+    private float respawnTime = 5f; // ë‹¤ë¦¬ê°€ ë–¨ì–´ì§„ í›„ ì¬ìƒì„± ì‹œê°„
+    private bool hasFallen; // ë‹¤ë¦¬ê°€ ë–¨ì–´ì¡ŒëŠ”ì§€ ì—¬ë¶€ë¥¼ í™•ì¸í•˜ëŠ” ë³€ìˆ˜
+    private Vector3 startPosition; // ë‹¤ë¦¬ì˜ ì´ˆê¸° ìœ„ì¹˜
+    private Rigidbody2D rb; // Rigidbody2D ì»´í¬ë„ŒíŠ¸
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        startPosition = transform.position; // ´Ù¸®ÀÇ ÃÊ±â À§Ä¡ ÀúÀå
+        startPosition = transform.position; // ë‹¤ë¦¬ì˜ ì´ˆê¸° ìœ„ì¹˜ ì €ì¥
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player") && !hasFallen)
         {
-            StartCoroutine(Fall()); // ÇÃ·¹ÀÌ¾î°¡ ´Ù¸® À§¿¡ ÀÖÀ» ¶§ ´Ù¸®°¡ ¶³¾îÁöµµ·Ï ÄÚ·çÆ¾ ½ÃÀÛ
+            StartCoroutine(Fall()); // í”Œë ˆì´ì–´ê°€ ë‹¤ë¦¬ ìœ„ì— ìˆì„ ë•Œ ë‹¤ë¦¬ê°€ ë–¨ì–´ì§€ë„ë¡ ì½”ë£¨í‹´ ì‹œì‘
         }
     }
 
@@ -29,7 +29,7 @@ public class Bridge : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("DeadZone"))
         {
-            StartCoroutine(Respawn()); // µ¥µåÁ¸¿¡ ´êÀ¸¸é Respawn ¸Ş¼­µå È£Ãâ
+            StartCoroutine(Respawn()); // ë°ë“œì¡´ì— ë‹¿ìœ¼ë©´ Respawn ë©”ì„œë“œ í˜¸ì¶œ
         }
     }
 
@@ -37,20 +37,21 @@ public class Bridge : MonoBehaviour
     {
         yield return new WaitForSeconds(delayTime);
 
-        rb.bodyType = RigidbodyType2D.Dynamic; // ´Ù¸®¸¦ µ¿Àû Rigidbody·Î ¼³Á¤
+        rb.bodyType = RigidbodyType2D.Dynamic; // ë‹¤ë¦¬ë¥¼ ë™ì  Rigidbodyë¡œ ì„¤ì •
     }
 
     private IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(respawnTime); // ÁöÁ¤µÈ ½Ã°£ µ¿¾È ´ë±â
+        yield return new WaitForSeconds(respawnTime); // ì§€ì •ëœ ì‹œê°„ ë™ì•ˆ ëŒ€ê¸°
 
-        ResetSetting(); // ´Ù¸®ÀÇ ¼³Á¤À» ÃÊ±âÈ­ÇÏ´Â ¸Ş¼­µå È£Ãâ
+        ResetSetting(); // ë‹¤ë¦¬ì˜ ì„¤ì •ì„ ì´ˆê¸°í™”í•˜ëŠ” ë©”ì„œë“œ í˜¸ì¶œ
 
     }
 
     private void ResetSetting()
     {
-        rb.bodyType = RigidbodyType2D.Static; // ´Ù¸®¸¦ Á¤Àû Rigidbody·Î ¼³Á¤
-        transform.position = startPosition; // ´Ù¸®ÀÇ À§Ä¡¸¦ ÃÊ±â À§Ä¡·Î µÇµ¹¸²
+        rb.bodyType = RigidbodyType2D.Static; // ë‹¤ë¦¬ë¥¼ ì •ì  Rigidbodyë¡œ ì„¤ì •
+        transform.position = startPosition; // ë‹¤ë¦¬ì˜ ìœ„ì¹˜ë¥¼ ì´ˆê¸° ìœ„ì¹˜ë¡œ ë˜ëŒë¦¼
+        transform.rotation = Quaternion.identity; // ë‹¤ë¦¬ì˜ íšŒì „ì„ ì´ˆê¸°í™”
     }
 }
