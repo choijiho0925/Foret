@@ -34,7 +34,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - ChangeBackGroundZone
   - NoJump
   - SavePoint
   m_SortingLayers:

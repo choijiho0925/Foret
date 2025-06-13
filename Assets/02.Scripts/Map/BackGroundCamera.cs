@@ -3,8 +3,9 @@ using UnityEngine;
 public class BackGroundCamera : MonoBehaviour
 {
     [SerializeField] Camera cam;
-    [SerializeField] Transform backGround;
     [SerializeField] Transform player;
+    [SerializeField] Transform firstBackGround;
+    [SerializeField] Transform secondBackGround; // 두 번째 배경
 
     private void Update()
     {
@@ -16,6 +17,7 @@ public class BackGroundCamera : MonoBehaviour
         {
             transform.position = player.position + new Vector3(0, 4f, -10); // 카메라는 플레이어 위치에 따라 이동
         }
-        backGround.position = transform.position + new Vector3(0, 1f, 9f); // 배경은 플레이어 위치에 따라 이동
+        firstBackGround.position = transform.position + new Vector3(0, 1f, 9f); // 배경은 플레이어 위치에 따라 이동
+        secondBackGround.position = firstBackGround.position + new Vector3(0, -1f, 0); // 두 번째 배경은 첫 번째 배경
     }
 }
