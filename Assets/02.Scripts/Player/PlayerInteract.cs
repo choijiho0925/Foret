@@ -27,15 +27,16 @@ public class PlayerInteract : MonoBehaviour
         }
     }
 
-    // private void OnTriggerExit2D(Collider2D other)
-    // {
-    //     if (currentInteractable == null) return;
-    //
-    //     if ((interactableLayer.value & (1 << other.gameObject.layer)) != 0)
-    //     {
-    //         currentInteractable = null;
-    //     }
-    // }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (currentInteractable == null) return;
+    
+        if ((interactableLayer.value & (1 << other.gameObject.layer)) != 0)
+        {
+            currentInteractable = null;
+            UIManager.Instance.interactableController.HideInteractable();
+        }
+    }
 
     public void OnInteract(InputAction.CallbackContext context)
     {
