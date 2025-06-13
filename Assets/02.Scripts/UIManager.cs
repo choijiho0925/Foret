@@ -8,6 +8,7 @@ public class UIManager : Singleton<UIManager>
     public HeartController heartController;
     public SettingController settingController;
     public DialogueController dialogueController;
+    public InteractableController interactableController;
 
     // Update is called once per frame
     void Update()
