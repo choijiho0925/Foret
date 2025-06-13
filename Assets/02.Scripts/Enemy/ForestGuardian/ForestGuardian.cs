@@ -4,17 +4,29 @@ using UnityEngine;
 public class ForestGuardian : BossBase
 {
     [Header("숲의 주인 설정")]
-    [SerializeField] private float meleeRange = 2f;     // 근접 공격 거리
-    [SerializeField] private float chaseRange = 5f;     // 달려오는 거리
-    [SerializeField] private float teleportRange = 2f;  // 순간이동 거리
+    [SerializeField] private float backdownRange = 1f;     // 너무 가까우면 회피
+    [SerializeField] private float meleeRange = 2f;        // 근접 공격 거리
+    [SerializeField] private float chargeRange = 5f;       // 돌진 공격 거리
+    [SerializeField] private float teleportRange = 10f;    // 텔레포트 가능 거리
+    [SerializeField] private float returnThreshold = 0.1f; // 복귀 거리
 
     // 초기 위치
     public Vector3 InitialPosition { get; private set; }
 
-    protected override void Awake()
+    // 읽기 전용
+    public float BackdownRange => backdownRange;
+    public float ChargeRange => chargeRange;
+    public float TeleportRange => teleportRange;
+    public float ReturnThreshold => returnThreshold;
+
+    protected override void Start()
     {
-        base.Awake();
+        base.Start();
+
+        // 초기 위치 저장
         InitialPosition = transform.position;
+
+        Debug.Log("보스 시작됨, 초기 상태: FGReturnState 진입");
 
         // 초기 상태는 복귀
         StateMachine.ChangeState(new FGReturnState(this));
@@ -32,99 +44,53 @@ public class ForestGuardian : BossBase
         return Vector3.Distance(transform.position, Player.transform.position);
     }
 
-    protected override IEnumerator ExecutePattern()
+    // 플레이어에게 이동
+    public void MoveToPlayer(Vector3 target)
     {
-        // 플레이어와의 거리
-        float distance = Vector3.Distance(transform.position, Player.transform.position);
-
-        // 가까우면 공격
-        if(distance <= meleeRange)
-        {
-            yield return MeleeAttack();
-        }
-
-        // 조금 떨어져 있으면 추격
-        else if (distance <= chaseRange)
-        {
-            yield return ChasePlayer();
-        }
-
-        // 더 떨어져 있으면 텔레포트
-        else if (distance <= DetectionRange)
-        {
-            yield return Teleport();
-        }
-
-        // 감지 범위 밖일 때
-        else
-        {
-            Debug.Log("플레이어가 감지 범위 밖에 있으므로 복귀");
-        }
+        Vector2 direction = (target - transform.position).normalized;
+        transform.position += (Vector3)(direction * MoveSpeed * Time.deltaTime);
     }
 
-    // 근접 공격 코루틴
-    private IEnumerator MeleeAttack()
-    {
-        Debug.Log("근접 공격 시도");
+    //// 초기 위치로 돌아가는 이동
+    //public void ReturnToInitialPosition()
+    //{
+    //    Vector2 direction = (InitialPosition - transform.position).normalized;
+    //    transform.position += (Vector3)(direction * MoveSpeed * Time.deltaTime);
+    //}
 
-        Attack();
-        yield return new WaitForSeconds(1f);
+    // 회피 거리 확인
+    public void BackdownFromPlayer(Vector3 from, float backdownDistance = 2f)
+    {
+        // 보스 기준으로 플레이어보다 왼쪽이면 오른쪽으로 회피, 오른쪽이면 왼쪽으로 회피
+        float direction = Mathf.Sign(transform.position.x - from.x);
+
+        // x축으로만 이동
+        transform.position += Vector3.right * direction * MoveSpeed * Time.deltaTime;
     }
 
-    // 추격 코루틴
-    private IEnumerator ChasePlayer()
+    // 플레이어 위로 텔레포트할 수 있는지 확인
+    public bool CanTeleportTo(Vector2 targetPos)
     {
-        Debug.Log("추격 시작");
-
-        // 방향 계산
-        Vector2 dir = (Player.transform.position - transform.position).normalized;
-
-        // 이동 속도 적용
-        transform.position += (Vector3)(dir * MoveSpeed * Time.deltaTime);
-
-        yield return null;
-    }
-
-    // 텔레포트 코루틴
-    private IEnumerator Teleport()
-    {
-        Debug.Log("순간이동");
-
-        // 플레이어 위쪽 거리
-        float checkDistance = 5f;
-
-        // 위쪽 방향
-        Vector2 teleportOffset = Vector2.up * checkDistance;
-
-        // 보스 크기와 동일한 충돌 체크 영역
-        Vector2 targetPos = (Vector2)Player.transform.position + teleportOffset;
-
         Collider2D collider = GetComponent<Collider2D>();
-
-        if(collider == null)
+        if (collider == null)
         {
-            Debug.LogWarning("보스 콜라이더 없음");
-            yield break;
+            Debug.LogWarning("보스에 Collider2D가 없음");
+            return false;
         }
 
-        // 보스의 월드 크기
         Vector2 bossSize = collider.bounds.size;
-
-        // 지형과 겹치는지 확인
         LayerMask mapMask = LayerMask.GetMask("Ground", "Top", "Wall");
+
         Collider2D hit = Physics2D.OverlapBox(targetPos, bossSize, 0f, mapMask);
 
-        if (hit == null)
-        {
-            transform.position = targetPos;
-            Debug.Log("순간이동 성공");
-        }
+        Debug.Log($"OverlapBox at {targetPos}, size {bossSize}, hit: {hit?.gameObject.name ?? "None"}");
 
-        else
-        {
-            Debug.Log("순간이동 실패. 지형 충돌");
-        }
+        return hit == null;
+    }
 
-        yield return new WaitForSeconds(1f);
+    // 플레이어 위로 텔레포트
+    public void TeleportTo(Vector2 position)
+    {
+        transform.position = position;
     }
 }

@@ -236,11 +236,14 @@ MonoBehaviour:
   moveSpeed: 10
   detectionRange: 50
   attackPower: 30
-  attackRange: 50
+  attackRange: 5
   isGround: 0
   patternDelay: 2
-  meleeRange: 2
-  teleportDistance: 2
+  backdownRange: 4
+  meleeRange: 6
+  chargeRange: 8
+  teleportRange: 11
+  returnThreshold: 0.1
 --- !u!61 &278915101
 BoxCollider2D:
   m_ObjectHideFlags: 0

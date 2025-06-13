@@ -2,17 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FGMeleeState : MonoBehaviour
+public class FGMeleeState : IState
 {
-    // Start is called before the first frame update
-    void Start()
+    private ForestGuardian boss;
+
+    public FGMeleeState(ForestGuardian boss)
     {
-        
+        this.boss = boss;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Enter()
     {
-        
+        boss.StartCoroutine(MeleeAttack());
+        Debug.Log("FGMeleeState 진입");
+    }
+
+    public void Exit() { }
+
+    public void Update() { }
+
+    private IEnumerator MeleeAttack()
+    {
+        // 공격
+        boss.Attack();
+
+        yield return new WaitForSeconds(boss.patternDelay);
+
+        boss.StateMachine.ChangeState(new FGDecisionState(boss));
+
     }
 }
