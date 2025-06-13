@@ -1,10 +1,13 @@
+using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class DialogueNPC : MonoBehaviour, IInteractable
 {
     [SerializeField] private DialogueData[] dialogueData;//스크립터블 오브젝트
-    
+    private PlayerInteract player;
     private int indexnum;
     private Queue<string> dialogueQueue = new Queue<string>();//이거 프로텍티드 다른 사람한테 조금 물어보자
     private bool isDialogueStart;
@@ -12,6 +15,7 @@ public class DialogueNPC : MonoBehaviour, IInteractable
     private void Start()
     {
         indexnum = 0;//나중에 저장 만들 때 indexnum,npc위치, 상태 저장 =>각 상속받는 스크립트에서
+        player = FindObjectOfType<PlayerInteract>();
     }
 
     public virtual void ShowInteractUI()
@@ -65,5 +69,6 @@ public class DialogueNPC : MonoBehaviour, IInteractable
         UIManager.Instance.dialogueController.HideDialoguePanel();
         UIManager.Instance.dialogueController.ClearTarget(this);
         indexnum++;//test용 indexnum를 높여주는 것은 퀘스트나 보스를 깼을 때 거기에 넣어주기
+        player.OnEndInteraction();
     }
 }
