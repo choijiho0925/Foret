@@ -1,0 +1,1707 @@
+fileFormatVersion: 2
+guid: 010dbb1165707c645ad442be7ee51921
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: Human_Soldier_Sword_Shield_Frame_0
+    originalName: 
+    pivot: {x: 0.66666675, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 127
+      y: 75
+      width: 21
+      height: 21
+    spriteID: 3e2df918415cde14ab98a2f2bccf0ab0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 127, y: 75}
+  - name: Human_Soldier_Sword_Shield_Frame_1
+    originalName: 
+    pivot: {x: 0.66666675, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 156
+      y: 75
+      width: 21
+      height: 21
+    spriteID: 1b9978f18b5f9f84091009be7edd6280
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 156, y: 75}
+  - name: Human_Soldier_Sword_Shield_Frame_2
+    originalName: 
+    pivot: {x: 0.66666675, y: -1.8000001}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 152
+      y: 134
+      width: 21
+      height: 20
+    spriteID: 48319e5b8b7efb349a4bd7991d56b18e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 152, y: 134}
+  - name: Human_Soldier_Sword_Shield_Frame_3
+    originalName: 
+    pivot: {x: 0.6818182, y: -1.8947368}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 88
+      y: 163
+      width: 22
+      height: 19
+    spriteID: cc762341f81f2f24b8001d945e66c83a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 88, y: 163}
+  - name: Human_Soldier_Sword_Shield_Frame_4
+    originalName: 
+    pivot: {x: 0.6818182, y: -1.8947368}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 118
+      y: 163
+      width: 22
+      height: 19
+    spriteID: f614c6e81eacedd408d2655527945549
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 118, y: 163}
+  - name: Human_Soldier_Sword_Shield_Frame_5
+    originalName: 
+    pivot: {x: 0.66666675, y: -1.8000001}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 181
+      y: 134
+      width: 21
+      height: 20
+    spriteID: 874e286baa9435f42b06d96de5baa97f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 181, y: 134}
+  - name: Human_Soldier_Sword_Shield_Frame_6
+    originalName: 
+    pivot: {x: 0.66666675, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 185
+      y: 75
+      width: 21
+      height: 21
+    spriteID: 44a985a8f5c09404088a77724598def8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 185, y: 75}
+  - name: Human_Soldier_Sword_Shield_Frame_7
+    originalName: 
+    pivot: {x: 0.65, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 210
+      y: 134
+      width: 20
+      height: 21
+    spriteID: 6f009ca7ccd371e47afd09ae13a3c2e3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 210, y: 134}
+  - name: Human_Soldier_Sword_Shield_Frame_8
+    originalName: 
+    pivot: {x: 0.65, y: -1.6363637}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 163
+      width: 20
+      height: 22
+    spriteID: 2492f0551f6c1554bba6065dd6957388
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 163}
+  - name: Human_Soldier_Sword_Shield_Frame_9
+    originalName: 
+    pivot: {x: 0.6315789, y: -1.6363637}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 148
+      y: 163
+      width: 19
+      height: 22
+    spriteID: 645fcc2beee4f8340a8d2189c7ba9d80
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 148, y: 163}
+  - name: Human_Soldier_Sword_Shield_Frame_10
+    originalName: 
+    pivot: {x: 0.65, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 32
+      y: 163
+      width: 20
+      height: 21
+    spriteID: 033dc445a364c65459ba7879ba88fd43
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 32, y: 163}
+  - name: Human_Soldier_Sword_Shield_Frame_11
+    originalName: 
+    pivot: {x: 0.66666675, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 214
+      y: 75
+      width: 21
+      height: 21
+    spriteID: 7ab4bf8927107ee44ab29dbedf3b4d3c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 214, y: 75}
+  - name: Human_Soldier_Sword_Shield_Frame_12
+    originalName: 
+    pivot: {x: 0.66666675, y: -1.6363637}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 230
+      y: 42
+      width: 21
+      height: 22
+    spriteID: 6f6b421acfa235f4e94ba1fd16a6e25c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 230, y: 42}
+  - name: Human_Soldier_Sword_Shield_Frame_13
+    originalName: 
+    pivot: {x: 0.66666675, y: -1.6363637}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 104
+      width: 21
+      height: 22
+    spriteID: dce746dada76fb64b8650c9bbcf2c4e4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 104}
+  - name: Human_Soldier_Sword_Shield_Frame_14
+    originalName: 
+    pivot: {x: 0.66666675, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 33
+      y: 104
+      width: 21
+      height: 21
+    spriteID: 5aaa44d489b4e8e48a27205d10145f16
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 33, y: 104}
+  - name: Human_Soldier_Sword_Shield_Frame_15
+    originalName: 
+    pivot: {x: 0.66666675, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 62
+      y: 104
+      width: 21
+      height: 21
+    spriteID: bb98d541d5c025649961c8a1d155f3d5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 62, y: 104}
+  - name: Human_Soldier_Sword_Shield_Frame_16
+    originalName: 
+    pivot: {x: 0.6363637, y: -1.5652174}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 133
+      y: 42
+      width: 22
+      height: 23
+    spriteID: 668b6ae0dda093a4db2f2849788292c1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 133, y: 42}
+  - name: Human_Soldier_Sword_Shield_Frame_17
+    originalName: 
+    pivot: {x: 0.6363637, y: -1.4399999}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 208
+      y: 4
+      width: 22
+      height: 25
+    spriteID: dea46db8fb6c4d5469b17c62913c5c7a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 208, y: 4}
+  - name: Human_Soldier_Sword_Shield_Frame_18
+    originalName: 
+    pivot: {x: 0.6363637, y: -1.4399999}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 42
+      width: 22
+      height: 25
+    spriteID: d56db13240fd3144292e6e262b4321de
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 42}
+  - name: Human_Soldier_Sword_Shield_Frame_19
+    originalName: 
+    pivot: {x: 0.6363637, y: -1.5652174}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 163
+      y: 42
+      width: 22
+      height: 23
+    spriteID: fec8e270c7f2dbc4d848e58602fac40e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 163, y: 42}
+  - name: Human_Soldier_Sword_Shield_Frame_20
+    originalName: 
+    pivot: {x: 0.66666675, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 91
+      y: 104
+      width: 21
+      height: 21
+    spriteID: 10715b6e51094424ebcca4397c756be3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 91, y: 104}
+  - name: Human_Soldier_Sword_Shield_Frame_21
+    originalName: 
+    pivot: {x: 0.66666675, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 120
+      y: 104
+      width: 21
+      height: 21
+    spriteID: e6db05f78ca48b14790aae95332663b3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 120, y: 104}
+  - name: Human_Soldier_Sword_Shield_Frame_22
+    originalName: 
+    pivot: {x: 0.6, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 163
+      width: 20
+      height: 21
+    spriteID: 0b6b61a6c0e44c547aae0f737c4d0606
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 163}
+  - name: Human_Soldier_Sword_Shield_Frame_23
+    originalName: 
+    pivot: {x: 0.6190476, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 149
+      y: 104
+      width: 21
+      height: 21
+    spriteID: 75a146d2a26556c44955c814d70654cb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 149, y: 104}
+  - name: Human_Soldier_Sword_Shield_Frame_24
+    originalName: 
+    pivot: {x: 0.6086957, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 75
+      width: 23
+      height: 21
+    spriteID: 54c76a544665f0242aad5c8f86eeb6be
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 75}
+  - name: Human_Soldier_Sword_Shield_Frame_25
+    originalName: 
+    pivot: {x: 0.66666675, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 178
+      y: 104
+      width: 21
+      height: 21
+    spriteID: a362d0ba4568b6d4589ef4722b724222
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 178, y: 104}
+  - name: Human_Soldier_Sword_Shield_Frame_26
+    originalName: 
+    pivot: {x: 0.66666675, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 207
+      y: 104
+      width: 21
+      height: 21
+    spriteID: b8e44184205b23449ba53275ee183a82
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 207, y: 104}
+  - name: Human_Soldier_Sword_Shield_Frame_27
+    originalName: 
+    pivot: {x: 0.66666675, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 134
+      width: 21
+      height: 21
+    spriteID: c6e3295f2d982ee44af5af9a4bafa779
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 134}
+  - name: Human_Soldier_Sword_Shield_Frame_28
+    originalName: 
+    pivot: {x: 0.6818182, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 97
+      y: 75
+      width: 22
+      height: 21
+    spriteID: 02655d1bf9f52f143b5118d81cef0462
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 97, y: 75}
+  - name: Human_Soldier_Sword_Shield_Frame_29
+    originalName: 
+    pivot: {x: 0.6956521, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 35
+      y: 75
+      width: 23
+      height: 21
+    spriteID: e601a46b58d9e624db9fdb4e9b5b0970
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 35, y: 75}
+  - name: Human_Soldier_Sword_Shield_Frame_30
+    originalName: 
+    pivot: {x: 0.2, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 132
+      y: 4
+      width: 30
+      height: 21
+    spriteID: 44dad052affcec643a740252d95ccd33
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 132, y: 4}
+  - name: Human_Soldier_Sword_Shield_Frame_31
+    originalName: 
+    pivot: {x: 0.2, y: -1.8000001}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 170
+      y: 4
+      width: 30
+      height: 20
+    spriteID: 7058a6bbeb1e1fe418825c95ffe2a046
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 170, y: 4}
+  - name: Human_Soldier_Sword_Shield_Frame_32
+    originalName: 
+    pivot: {x: 0.42857143, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 238
+      y: 134
+      width: 14
+      height: 21
+    spriteID: 11917dddba51e7a48893a9579601c97d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 238, y: 134}
+  - name: Human_Soldier_Sword_Shield_Frame_33
+    originalName: 
+    pivot: {x: 0.6315789, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 193
+      width: 19
+      height: 21
+    spriteID: a5a1b04a757951248b056814cdd2e785
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 193}
+  - name: Human_Soldier_Sword_Shield_Frame_34
+    originalName: 
+    pivot: {x: 0.66666675, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 33
+      y: 134
+      width: 21
+      height: 21
+    spriteID: 437682d648f7a194fb8d5c08be7a1e4a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 33, y: 134}
+  - name: Human_Soldier_Sword_Shield_Frame_35
+    originalName: 
+    pivot: {x: 0.7826087, y: -2}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 215
+      y: 163
+      width: 23
+      height: 18
+    spriteID: fa2debf06534db1419abc507abe816dd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 215, y: 163}
+  - name: Human_Soldier_Sword_Shield_Frame_36
+    originalName: 
+    pivot: {x: 0.8333334, y: -2}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 120
+      y: 134
+      width: 24
+      height: 18
+    spriteID: 954836c0857859d409f469d51fa0b304
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 120, y: 134}
+  - name: Human_Soldier_Sword_Shield_Frame_37
+    originalName: 
+    pivot: {x: 0.40476194, y: -1.2}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 42
+      height: 30
+    spriteID: 61284b94bee9bfc448beff9001d54169
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: Human_Soldier_Sword_Shield_Frame_38
+    originalName: 
+    pivot: {x: 0.19354838, y: -1.2}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 54
+      y: 4
+      width: 31
+      height: 30
+    spriteID: 7ef66bf749779d94683e784353f7d433
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 54, y: 4}
+  - name: Human_Soldier_Sword_Shield_Frame_39
+    originalName: 
+    pivot: {x: 0.19354838, y: -1.2413794}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 93
+      y: 4
+      width: 31
+      height: 29
+    spriteID: 653a2689894e6ac4fbdc1b11a664b83a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 93, y: 4}
+  - name: Human_Soldier_Sword_Shield_Frame_40
+    originalName: 
+    pivot: {x: 0.42857143, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 236
+      y: 104
+      width: 14
+      height: 21
+    spriteID: b2f6ffeda909f9145941d565179d9db7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 236, y: 104}
+  - name: Human_Soldier_Sword_Shield_Frame_41
+    originalName: 
+    pivot: {x: 0.6315789, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 193
+      width: 19
+      height: 21
+    spriteID: 27766bdb18f4cc642950521f520cb2d6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 31, y: 193}
+  - name: Human_Soldier_Sword_Shield_Frame_42
+    originalName: 
+    pivot: {x: 0.66666675, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 62
+      y: 134
+      width: 21
+      height: 21
+    spriteID: 2ceec9fd42de9fc449e927686e9d2577
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 62, y: 134}
+  - name: Human_Soldier_Sword_Shield_Frame_43
+    originalName: 
+    pivot: {x: 0.68, y: -1.6363637}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 34
+      y: 42
+      width: 25
+      height: 22
+    spriteID: 9cdece7a93028b74f8ecae5604716ed1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 34, y: 42}
+  - name: Human_Soldier_Sword_Shield_Frame_44
+    originalName: 
+    pivot: {x: 0.71999997, y: -1.6363637}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 67
+      y: 42
+      width: 25
+      height: 22
+    spriteID: 8a84a2555c013614b9b7b1475e85cadc
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 67, y: 42}
+  - name: Human_Soldier_Sword_Shield_Frame_45
+    originalName: 
+    pivot: {x: 0.6956521, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 66
+      y: 75
+      width: 23
+      height: 21
+    spriteID: 0fa91103c17cd1a4bad67be1ee4b6e4b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 66, y: 75}
+  - name: Human_Soldier_Sword_Shield_Frame_46
+    originalName: 
+    pivot: {x: 0.66666675, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 91
+      y: 134
+      width: 21
+      height: 21
+    spriteID: 14eb02ba11b099244a82b00dfd6daeb3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 91, y: 134}
+  - name: Human_Soldier_Sword_Shield_Frame_47
+    originalName: 
+    pivot: {x: 0.68, y: -1.7142859}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 100
+      y: 42
+      width: 25
+      height: 21
+    spriteID: 15b5a0a96b308fd40aac0e0e6b75c84e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 100, y: 42}
+  - name: Human_Soldier_Sword_Shield_Frame_48
+    originalName: 
+    pivot: {x: 0.6206897, y: -2.1176472}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 193
+      y: 42
+      width: 29
+      height: 17
+    spriteID: e1f9ad5a79d3a3c40a9b1a86c85e3039
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 193, y: 42}
+  - name: Human_Soldier_Sword_Shield_Frame_49
+    originalName: 
+    pivot: {x: 0.58064514, y: -3}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 222
+      width: 31
+      height: 12
+    spriteID: ee62e69107180cf4c8c58d9cc5600c36
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 222}
+  - name: Human_Soldier_Sword_Shield_Frame_50
+    originalName: 
+    pivot: {x: 0.5625, y: -2.7692308}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 175
+      y: 163
+      width: 32
+      height: 13
+    spriteID: b05f0561f7b94c340bdf44f2b722279e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 175, y: 163}
+  - name: Human_Soldier_Sword_Shield_Frame_51
+    originalName: 
+    pivot: {x: 0.5625, y: -3}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 58
+      y: 193
+      width: 32
+      height: 12
+    spriteID: 6be3c5483a5045d469c7e17b918816cf
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 58, y: 193}
+  - name: Human_Soldier_Sword_Shield_Frame_52
+    originalName: 
+    pivot: {x: 0.5625, y: -3}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 98
+      y: 193
+      width: 32
+      height: 12
+    spriteID: 4b13676c03f347b428e76c59c8b968fd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 98, y: 193}
+  - name: Human_Soldier_Sword_Shield_Frame_53
+    originalName: 
+    pivot: {x: 0.5625, y: -3}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 138
+      y: 193
+      width: 32
+      height: 12
+    spriteID: a23dcc775c448ed4da59f19fcd4139e8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 138, y: 193}
+  - name: Human_Soldier_Sword_Shield_Frame_54
+    originalName: 
+    pivot: {x: 0.5625, y: -3}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 178
+      y: 193
+      width: 32
+      height: 12
+    spriteID: 9b58fbae477be4a478c538a66a8908e6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 178, y: 193}
+  - name: Human_Soldier_Sword_Shield_Frame_55
+    originalName: 
+    pivot: {x: 0.5625, y: -3}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 218
+      y: 193
+      width: 32
+      height: 12
+    spriteID: 1e170ea8554af13408d9817ad4813ae3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 218, y: 193}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: -1093038400
+    name: Human_Soldier_Sword_Shield
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Human_Soldier_Sword_Shield_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 34
+        y: 36
+        width: 21
+        height: 21
+      spriteId: 3e2df918415cde14ab98a2f2bccf0ab0
+    - name: Human_Soldier_Sword_Shield_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 34
+        y: 36
+        width: 21
+        height: 21
+      spriteId: 1b9978f18b5f9f84091009be7edd6280
+    - name: Human_Soldier_Sword_Shield_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 34
+        y: 36
+        width: 21
+        height: 20
+      spriteId: 48319e5b8b7efb349a4bd7991d56b18e
+    - name: Human_Soldier_Sword_Shield_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 33
+        y: 36
+        width: 22
+        height: 19
+      spriteId: cc762341f81f2f24b8001d945e66c83a
+    - name: Human_Soldier_Sword_Shield_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 33
+        y: 36
+        width: 22
+        height: 19
+      spriteId: f614c6e81eacedd408d2655527945549
+    - name: Human_Soldier_Sword_Shield_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 34
+        y: 36
+        width: 21
+        height: 20
+      spriteId: 874e286baa9435f42b06d96de5baa97f
+    - name: Human_Soldier_Sword_Shield_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 34
+        y: 36
+        width: 21
+        height: 21
+      spriteId: 44a985a8f5c09404088a77724598def8
+    - name: Human_Soldier_Sword_Shield_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 35
+        y: 36
+        width: 20
+        height: 21
+      spriteId: 6f009ca7ccd371e47afd09ae13a3c2e3
+    - name: Human_Soldier_Sword_Shield_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 35
+        y: 36
+        width: 20
+        height: 22
+      spriteId: 2492f0551f6c1554bba6065dd6957388
+    - name: Human_Soldier_Sword_Shield_Frame_9
+      frameIndex: 9
+      cellRect:
+        x: 36
+        y: 36
+        width: 19
+        height: 22
+      spriteId: 645fcc2beee4f8340a8d2189c7ba9d80
+    - name: Human_Soldier_Sword_Shield_Frame_10
+      frameIndex: 10
+      cellRect:
+        x: 35
+        y: 36
+        width: 20
+        height: 21
+      spriteId: 033dc445a364c65459ba7879ba88fd43
+    - name: Human_Soldier_Sword_Shield_Frame_11
+      frameIndex: 11
+      cellRect:
+        x: 34
+        y: 36
+        width: 21
+        height: 21
+      spriteId: 7ab4bf8927107ee44ab29dbedf3b4d3c
+    - name: Human_Soldier_Sword_Shield_Frame_12
+      frameIndex: 12
+      cellRect:
+        x: 34
+        y: 36
+        width: 21
+        height: 22
+      spriteId: 6f6b421acfa235f4e94ba1fd16a6e25c
+    - name: Human_Soldier_Sword_Shield_Frame_13
+      frameIndex: 13
+      cellRect:
+        x: 34
+        y: 36
+        width: 21
+        height: 22
+      spriteId: dce746dada76fb64b8650c9bbcf2c4e4
+    - name: Human_Soldier_Sword_Shield_Frame_14
+      frameIndex: 14
+      cellRect:
+        x: 34
+        y: 36
+        width: 21
+        height: 21
+      spriteId: 5aaa44d489b4e8e48a27205d10145f16
+    - name: Human_Soldier_Sword_Shield_Frame_15
+      frameIndex: 15
+      cellRect:
+        x: 34
+        y: 36
+        width: 21
+        height: 21
+      spriteId: bb98d541d5c025649961c8a1d155f3d5
+    - name: Human_Soldier_Sword_Shield_Frame_16
+      frameIndex: 16
+      cellRect:
+        x: 34
+        y: 36
+        width: 22
+        height: 23
+      spriteId: 668b6ae0dda093a4db2f2849788292c1
+    - name: Human_Soldier_Sword_Shield_Frame_17
+      frameIndex: 17
+      cellRect:
+        x: 34
+        y: 36
+        width: 22
+        height: 25
+      spriteId: dea46db8fb6c4d5469b17c62913c5c7a
+    - name: Human_Soldier_Sword_Shield_Frame_18
+      frameIndex: 18
+      cellRect:
+        x: 34
+        y: 36
+        width: 22
+        height: 25
+      spriteId: d56db13240fd3144292e6e262b4321de
+    - name: Human_Soldier_Sword_Shield_Frame_19
+      frameIndex: 19
+      cellRect:
+        x: 34
+        y: 36
+        width: 22
+        height: 23
+      spriteId: fec8e270c7f2dbc4d848e58602fac40e
+    - name: Human_Soldier_Sword_Shield_Frame_20
+      frameIndex: 20
+      cellRect:
+        x: 34
+        y: 36
+        width: 21
+        height: 21
+      spriteId: 10715b6e51094424ebcca4397c756be3
+    - name: Human_Soldier_Sword_Shield_Frame_21
+      frameIndex: 21
+      cellRect:
+        x: 34
+        y: 36
+        width: 21
+        height: 21
+      spriteId: e6db05f78ca48b14790aae95332663b3
+    - name: Human_Soldier_Sword_Shield_Frame_22
+      frameIndex: 22
+      cellRect:
+        x: 36
+        y: 36
+        width: 20
+        height: 21
+      spriteId: 0b6b61a6c0e44c547aae0f737c4d0606
+    - name: Human_Soldier_Sword_Shield_Frame_23
+      frameIndex: 23
+      cellRect:
+        x: 35
+        y: 36
+        width: 21
+        height: 21
+      spriteId: 75a146d2a26556c44955c814d70654cb
+    - name: Human_Soldier_Sword_Shield_Frame_24
+      frameIndex: 24
+      cellRect:
+        x: 34
+        y: 36
+        width: 23
+        height: 21
+      spriteId: 54c76a544665f0242aad5c8f86eeb6be
+    - name: Human_Soldier_Sword_Shield_Frame_25
+      frameIndex: 25
+      cellRect:
+        x: 34
+        y: 36
+        width: 21
+        height: 21
+      spriteId: a362d0ba4568b6d4589ef4722b724222
+    - name: Human_Soldier_Sword_Shield_Frame_26
+      frameIndex: 26
+      cellRect:
+        x: 34
+        y: 36
+        width: 21
+        height: 21
+      spriteId: b8e44184205b23449ba53275ee183a82
+    - name: Human_Soldier_Sword_Shield_Frame_27
+      frameIndex: 27
+      cellRect:
+        x: 34
+        y: 36
+        width: 21
+        height: 21
+      spriteId: c6e3295f2d982ee44af5af9a4bafa779
+    - name: Human_Soldier_Sword_Shield_Frame_28
+      frameIndex: 28
+      cellRect:
+        x: 33
+        y: 36
+        width: 22
+        height: 21
+      spriteId: 02655d1bf9f52f143b5118d81cef0462
+    - name: Human_Soldier_Sword_Shield_Frame_29
+      frameIndex: 29
+      cellRect:
+        x: 32
+        y: 36
+        width: 23
+        height: 21
+      spriteId: e601a46b58d9e624db9fdb4e9b5b0970
+    - name: Human_Soldier_Sword_Shield_Frame_30
+      frameIndex: 30
+      cellRect:
+        x: 42
+        y: 36
+        width: 30
+        height: 21
+      spriteId: 44dad052affcec643a740252d95ccd33
+    - name: Human_Soldier_Sword_Shield_Frame_31
+      frameIndex: 31
+      cellRect:
+        x: 42
+        y: 36
+        width: 30
+        height: 20
+      spriteId: 7058a6bbeb1e1fe418825c95ffe2a046
+    - name: Human_Soldier_Sword_Shield_Frame_32
+      frameIndex: 32
+      cellRect:
+        x: 42
+        y: 36
+        width: 14
+        height: 21
+      spriteId: 11917dddba51e7a48893a9579601c97d
+    - name: Human_Soldier_Sword_Shield_Frame_33
+      frameIndex: 33
+      cellRect:
+        x: 36
+        y: 36
+        width: 19
+        height: 21
+      spriteId: a5a1b04a757951248b056814cdd2e785
+    - name: Human_Soldier_Sword_Shield_Frame_34
+      frameIndex: 34
+      cellRect:
+        x: 34
+        y: 36
+        width: 21
+        height: 21
+      spriteId: 437682d648f7a194fb8d5c08be7a1e4a
+    - name: Human_Soldier_Sword_Shield_Frame_35
+      frameIndex: 35
+      cellRect:
+        x: 30
+        y: 36
+        width: 23
+        height: 18
+      spriteId: fa2debf06534db1419abc507abe816dd
+    - name: Human_Soldier_Sword_Shield_Frame_36
+      frameIndex: 36
+      cellRect:
+        x: 28
+        y: 36
+        width: 24
+        height: 18
+      spriteId: 954836c0857859d409f469d51fa0b304
+    - name: Human_Soldier_Sword_Shield_Frame_37
+      frameIndex: 37
+      cellRect:
+        x: 31
+        y: 36
+        width: 42
+        height: 30
+      spriteId: 61284b94bee9bfc448beff9001d54169
+    - name: Human_Soldier_Sword_Shield_Frame_38
+      frameIndex: 38
+      cellRect:
+        x: 42
+        y: 36
+        width: 31
+        height: 30
+      spriteId: 7ef66bf749779d94683e784353f7d433
+    - name: Human_Soldier_Sword_Shield_Frame_39
+      frameIndex: 39
+      cellRect:
+        x: 42
+        y: 36
+        width: 31
+        height: 29
+      spriteId: 653a2689894e6ac4fbdc1b11a664b83a
+    - name: Human_Soldier_Sword_Shield_Frame_40
+      frameIndex: 40
+      cellRect:
+        x: 42
+        y: 36
+        width: 14
+        height: 21
+      spriteId: b2f6ffeda909f9145941d565179d9db7
+    - name: Human_Soldier_Sword_Shield_Frame_41
+      frameIndex: 41
+      cellRect:
+        x: 36
+        y: 36
+        width: 19
+        height: 21
+      spriteId: 27766bdb18f4cc642950521f520cb2d6
+    - name: Human_Soldier_Sword_Shield_Frame_42
+      frameIndex: 42
+      cellRect:
+        x: 34
+        y: 36
+        width: 21
+        height: 21
+      spriteId: 2ceec9fd42de9fc449e927686e9d2577
+    - name: Human_Soldier_Sword_Shield_Frame_43
+      frameIndex: 43
+      cellRect:
+        x: 31
+        y: 36
+        width: 25
+        height: 22
+      spriteId: 9cdece7a93028b74f8ecae5604716ed1
+    - name: Human_Soldier_Sword_Shield_Frame_44
+      frameIndex: 44
+      cellRect:
+        x: 30
+        y: 36
+        width: 25
+        height: 22
+      spriteId: 8a84a2555c013614b9b7b1475e85cadc
+    - name: Human_Soldier_Sword_Shield_Frame_45
+      frameIndex: 45
+      cellRect:
+        x: 32
+        y: 36
+        width: 23
+        height: 21
+      spriteId: 0fa91103c17cd1a4bad67be1ee4b6e4b
+    - name: Human_Soldier_Sword_Shield_Frame_46
+      frameIndex: 46
+      cellRect:
+        x: 34
+        y: 36
+        width: 21
+        height: 21
+      spriteId: 14eb02ba11b099244a82b00dfd6daeb3
+    - name: Human_Soldier_Sword_Shield_Frame_47
+      frameIndex: 47
+      cellRect:
+        x: 31
+        y: 36
+        width: 25
+        height: 21
+      spriteId: 15b5a0a96b308fd40aac0e0e6b75c84e
+    - name: Human_Soldier_Sword_Shield_Frame_48
+      frameIndex: 48
+      cellRect:
+        x: 30
+        y: 36
+        width: 29
+        height: 17
+      spriteId: e1f9ad5a79d3a3c40a9b1a86c85e3039
+    - name: Human_Soldier_Sword_Shield_Frame_49
+      frameIndex: 49
+      cellRect:
+        x: 30
+        y: 36
+        width: 31
+        height: 12
+      spriteId: ee62e69107180cf4c8c58d9cc5600c36
+    - name: Human_Soldier_Sword_Shield_Frame_50
+      frameIndex: 50
+      cellRect:
+        x: 30
+        y: 36
+        width: 32
+        height: 13
+      spriteId: b05f0561f7b94c340bdf44f2b722279e
+    - name: Human_Soldier_Sword_Shield_Frame_51
+      frameIndex: 51
+      cellRect:
+        x: 30
+        y: 36
+        width: 32
+        height: 12
+      spriteId: 6be3c5483a5045d469c7e17b918816cf
+    - name: Human_Soldier_Sword_Shield_Frame_52
+      frameIndex: 52
+      cellRect:
+        x: 30
+        y: 36
+        width: 32
+        height: 12
+      spriteId: 4b13676c03f347b428e76c59c8b968fd
+    - name: Human_Soldier_Sword_Shield_Frame_53
+      frameIndex: 53
+      cellRect:
+        x: 30
+        y: 36
+        width: 32
+        height: 12
+      spriteId: a23dcc775c448ed4da59f19fcd4139e8
+    - name: Human_Soldier_Sword_Shield_Frame_54
+      frameIndex: 54
+      cellRect:
+        x: 30
+        y: 36
+        width: 32
+        height: 12
+      spriteId: 9b58fbae477be4a478c538a66a8908e6
+    - name: Human_Soldier_Sword_Shield_Frame_55
+      frameIndex: 55
+      cellRect:
+        x: 30
+        y: 36
+        width: 32
+        height: 12
+      spriteId: 1e170ea8554af13408d9817ad4813ae3
+    linkedCells: []
+    parentIndex: -1
+  platformSettings: []
+  generatePhysicsShape: 0
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 96, y: 96}

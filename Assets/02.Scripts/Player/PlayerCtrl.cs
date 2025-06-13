@@ -7,27 +7,24 @@ namespace _02.Scripts.Player
 {
     public class PlayerCtrl : MonoBehaviour 
     {
-
         private PlayerMovement playerMovement;
         private PlayerAttack playerAttack;
-
+        private PlayerInteract playerInteract;
 
         public float runSpeed = 40f;
-
+        public bool canControl = true;      //플레이어 이동 가능 여부
+        
         private Vector2 moveInput;
-        bool jump = false;
-        bool dash = false;
-
+        private bool jump = false;
+        private bool dash = false;
+        
         private void Awake()
         {
             playerMovement = GetComponent<PlayerMovement>();
             playerAttack = GetComponent<PlayerAttack>();
+            playerInteract = GetComponent<PlayerInteract>();
         }
         
-
-        //bool dashAxis = false;
-        
-
         public void OnMove(InputAction.CallbackContext context)
         {
             if (context.phase == InputActionPhase.Performed)
@@ -74,9 +71,26 @@ namespace _02.Scripts.Player
                 playerAttack.ThrowAttack();
             }
         }
+        
+        //'상호작용' 상태일 때는 모든 움직임 제한
+        public void EnterInteraction()
+        {
+            canControl = false;
+        }
+        public void ExitInteraction()
+        {
+            canControl = true;
+        }
 
         private void FixedUpdate()
         {
+            if (!canControl)
+            {
+                jump = false;
+                dash = false;
+                return;
+            }
+            
             playerMovement.Move(moveInput.x * runSpeed * Time.fixedDeltaTime, jump, dash);
             jump = false;
             dash = false;
