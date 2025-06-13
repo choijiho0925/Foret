@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.AI;
+using UnityEngine;
 
 public abstract class MonsterBase : MonoBehaviour
 {
@@ -11,9 +10,10 @@ public abstract class MonsterBase : MonoBehaviour
 
     private GameObject player;                      // 플레이어
     private MonsterStateMachine stateMachine;       // 상태머신
-    private NavMeshAgent navMeshAgent;              // NavMeshAgent 참조 추가
+    private MonsterAnimationHandler animationHandler;   // 몬스터 애니메이션
+    private SpriteRenderer spriteRenderer;
 
-    // 프로퍼티
+    #region 프로퍼티
     public float MoveSpeed => moveSpeed;
     public float DetectionRange => detectionRange;
     public float AttackPower => attackPower;
@@ -21,12 +21,16 @@ public abstract class MonsterBase : MonoBehaviour
     public bool IsGround => isGround;
     public GameObject Player => player;
     public MonsterStateMachine StateMachine => stateMachine;
-    public NavMeshAgent NavMeshAgent => navMeshAgent;
+    public MonsterAnimationHandler AnimationHandler => animationHandler;
+    public SpriteRenderer SpriteRenderer => spriteRenderer;
+    #endregion
 
     protected virtual void Awake()
     {
         player = GameObject.FindWithTag("Player");
         stateMachine = new MonsterStateMachine(this);
+        animationHandler = GetComponent<MonsterAnimationHandler>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     protected virtual void Start()

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class AirAttackState : IState
 {
@@ -12,6 +12,7 @@ public class AirAttackState : IState
     public void Enter()
     {
         // Idle 상태 진입
+        
     }
 
     public void Exit()

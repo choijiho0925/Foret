@@ -152,12 +152,12 @@ TextureImporter:
       name: Bat-Attack1_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 24
-        width: 34
-        height: 16
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -173,12 +173,12 @@ TextureImporter:
       name: Bat-Attack1_1
       rect:
         serializedVersion: 2
-        x: 78
-        y: 29
-        width: 31
-        height: 17
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -194,12 +194,12 @@ TextureImporter:
       name: Bat-Attack1_2
       rect:
         serializedVersion: 2
-        x: 146
-        y: 33
-        width: 17
-        height: 17
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -215,12 +215,12 @@ TextureImporter:
       name: Bat-Attack1_3
       rect:
         serializedVersion: 2
-        x: 206
-        y: 37
-        width: 16
-        height: 18
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -236,12 +236,12 @@ TextureImporter:
       name: Bat-Attack1_4
       rect:
         serializedVersion: 2
-        x: 261
-        y: 22
-        width: 15
-        height: 20
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -257,12 +257,12 @@ TextureImporter:
       name: Bat-Attack1_6
       rect:
         serializedVersion: 2
-        x: 327
-        y: 10
-        width: 32
-        height: 24
+        x: 384
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -278,12 +278,12 @@ TextureImporter:
       name: Bat-Attack1_7
       rect:
         serializedVersion: 2
-        x: 412
-        y: 10
-        width: 17
-        height: 18
+        x: 448
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -296,22 +296,22 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bat-Attack1_8
+      name: Bat-Attack1_5
       rect:
         serializedVersion: 2
-        x: 469
-        y: 17
-        width: 26
-        height: 16
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b6609f9b1a78684a8bf77696072b9a5
-      internalID: 2109490516
+      spriteID: ced59b07831bcba4b9c5079d4f75609c
+      internalID: 628990082
       vertices: []
       indices: 
       edges: []
@@ -335,7 +335,6 @@ TextureImporter:
       Bat-Attack1_5: 628990082
       Bat-Attack1_6: -827108146
       Bat-Attack1_7: -988969655
-      Bat-Attack1_8: 2109490516
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

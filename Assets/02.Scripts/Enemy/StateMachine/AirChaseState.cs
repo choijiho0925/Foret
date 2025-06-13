@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class AirChaseState : IState
 {
@@ -12,11 +12,14 @@ public class AirChaseState : IState
     public void Enter()
     {
         // Chase 상태 진입
+        monster.AnimationHandler.Move(true);
+
     }
 
     public void Exit()
     {
         // Chase 상태 해제
+        monster.AnimationHandler.Move(false);
     }
 
     public void Update()
@@ -37,6 +40,16 @@ public class AirChaseState : IState
             // 공격 상태로 전환
             //monster.StateMachine.ChangeState(new AirAttackState(monster));
             return;
+        }
+
+        // 플레이어 위치에 맞게 보는 방향 수정
+        if (monster.Player.transform.position.x < monster.transform.position.x)
+        {
+            monster.SpriteRenderer.flipX = false;
+        }
+        else if (monster.Player.transform.position.x > monster.transform.position.x)
+        {
+            monster.SpriteRenderer.flipX = true;
         }
 
         // 이동
