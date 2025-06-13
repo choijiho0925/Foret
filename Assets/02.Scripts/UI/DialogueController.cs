@@ -81,7 +81,7 @@ public class DialogueController : MonoBehaviour
         
         StringBuilder sb = new StringBuilder();
         dialogueText.text = "";
-
+        line = line.Replace("\\n", "\n");
         foreach (char c in line)
         {
             sb.Append(c);
