@@ -43,16 +43,6 @@ public class AirChaseState : IState
             return;
         }
 
-        // 플레이어 위치에 맞게 보는 방향 수정
-        if (monster.Player.transform.position.x < monster.transform.position.x)
-        {
-            monster.SpriteRenderer.flipX = false;
-        }
-        else if (monster.Player.transform.position.x > monster.transform.position.x)
-        {
-            monster.SpriteRenderer.flipX = true;
-        }
-
         // 이동
         monster.Move();
     }

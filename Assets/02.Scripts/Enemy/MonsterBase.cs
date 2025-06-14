@@ -2,6 +2,7 @@ using UnityEngine;
 
 public abstract class MonsterBase : MonoBehaviour, IDamagable
 {
+    [Header("기본 스텟")]
     [SerializeField] private float health;          // 몬스터 체력
     [SerializeField] private float moveSpeed;       // 이동 속도
     [SerializeField] private float detectionRange;  // 감지 범위
@@ -81,6 +82,6 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
 
     public void Die()
     {
-        Destroy(gameObject, 3.0f);
+        Destroy(gameObject, 1.0f);
     }
 }
