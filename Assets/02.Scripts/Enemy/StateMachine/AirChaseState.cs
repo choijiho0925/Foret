@@ -32,24 +32,15 @@ public class AirChaseState : IState
         {
             // 대기 상태 전환
             monster.StateMachine.ChangeState(new AirIdleState(monster));
+            return;
         }
 
         // 공격 사거리 안에 플레이어가 들어왔을 경우
         if (distance <= monster.AttackRange - 0.5f)
         {
             // 공격 상태로 전환
-            //monster.StateMachine.ChangeState(new AirAttackState(monster));
+            monster.StateMachine.ChangeState(new AirAttackState(monster));
             return;
-        }
-
-        // 플레이어 위치에 맞게 보는 방향 수정
-        if (monster.Player.transform.position.x < monster.transform.position.x)
-        {
-            monster.SpriteRenderer.flipX = false;
-        }
-        else if (monster.Player.transform.position.x > monster.transform.position.x)
-        {
-            monster.SpriteRenderer.flipX = true;
         }
 
         // 이동
