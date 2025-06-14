@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6482345497280812796}
   - component: {fileID: 6196277592402840107}
   - component: {fileID: 7941553890216319843}
-  - component: {fileID: 5667194618801086711}
   - component: {fileID: 3721943105237993116}
+  - component: {fileID: 5667194618801086711}
   - component: {fileID: 1944089282572158530}
   m_Layer: 12
   m_Name: MainNPC
@@ -109,6 +109,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3721943105237993116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5405266460925711291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d594071ff50454eaff716dacfe11b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueData:
+  - {fileID: 11400000, guid: 21bc2fae8303ad043a320abfddc42e4c, type: 2}
+  - {fileID: 11400000, guid: b9b885d57cc70a7428f6f0501f58647f, type: 2}
+  - {fileID: 11400000, guid: 0afca954d840ccb43a01798f7ffd7f23, type: 2}
+  - {fileID: 11400000, guid: 4358cc2dff79e7942b61c543042c2c35, type: 2}
+  - {fileID: 11400000, guid: 6ca20d976355c744f91b8fa28aa8d71e, type: 2}
+  - {fileID: 11400000, guid: add3626821d22f949819f7502c1e0128, type: 2}
+  - {fileID: 11400000, guid: 886f7d073d624ec49aa6e1fae5638637, type: 2}
 --- !u!60 &5667194618801086711
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -158,26 +178,6 @@ PolygonCollider2D:
       - {x: -0.24, y: 0.009}
       - {x: 0.318, y: 0.009}
   m_UseDelaunayMesh: 0
---- !u!114 &3721943105237993116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5405266460925711291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97d594071ff50454eaff716dacfe11b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueData:
-  - {fileID: 11400000, guid: 21bc2fae8303ad043a320abfddc42e4c, type: 2}
-  - {fileID: 11400000, guid: b9b885d57cc70a7428f6f0501f58647f, type: 2}
-  - {fileID: 11400000, guid: 0afca954d840ccb43a01798f7ffd7f23, type: 2}
-  - {fileID: 11400000, guid: 4358cc2dff79e7942b61c543042c2c35, type: 2}
-  - {fileID: 11400000, guid: 6ca20d976355c744f91b8fa28aa8d71e, type: 2}
-  - {fileID: 11400000, guid: add3626821d22f949819f7502c1e0128, type: 2}
-  - {fileID: 11400000, guid: 886f7d073d624ec49aa6e1fae5638637, type: 2}
 --- !u!320 &1944089282572158530
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -187,7 +187,7 @@ PlayableDirector:
   m_GameObject: {fileID: 5405266460925711291}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: b478a29bee3443a4cb5f6c2d82c5988b, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: c01344978787e3948b822ab42d0cdf95, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -196,6 +196,8 @@ PlayableDirector:
   - key: {fileID: 6496345233014511309, guid: b478a29bee3443a4cb5f6c2d82c5988b, type: 2}
     value: {fileID: 7941553890216319843}
   - key: {fileID: -2330223241801574141, guid: b478a29bee3443a4cb5f6c2d82c5988b, type: 2}
+    value: {fileID: 7941553890216319843}
+  - key: {fileID: 666025230159874478, guid: c01344978787e3948b822ab42d0cdf95, type: 2}
     value: {fileID: 7941553890216319843}
   m_ExposedReferences:
     m_References: []
