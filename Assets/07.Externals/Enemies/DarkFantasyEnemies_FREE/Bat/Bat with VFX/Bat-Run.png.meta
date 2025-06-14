@@ -152,10 +152,10 @@ TextureImporter:
       name: Bat-Run_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 27
-        width: 34
-        height: 13
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,10 +173,10 @@ TextureImporter:
       name: Bat-Run_1
       rect:
         serializedVersion: 2
-        x: 87
-        y: 22
-        width: 16
-        height: 18
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,10 +194,10 @@ TextureImporter:
       name: Bat-Run_2
       rect:
         serializedVersion: 2
-        x: 153
-        y: 18
-        width: 13
-        height: 20
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,10 +215,10 @@ TextureImporter:
       name: Bat-Run_3
       rect:
         serializedVersion: 2
-        x: 216
-        y: 16
-        width: 15
-        height: 19
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,10 +236,10 @@ TextureImporter:
       name: Bat-Run_4
       rect:
         serializedVersion: 2
-        x: 272
-        y: 21
-        width: 33
-        height: 12
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,10 +257,10 @@ TextureImporter:
       name: Bat-Run_5
       rect:
         serializedVersion: 2
-        x: 346
-        y: 23
-        width: 16
-        height: 17
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,10 +278,10 @@ TextureImporter:
       name: Bat-Run_6
       rect:
         serializedVersion: 2
-        x: 414
-        y: 24
-        width: 10
-        height: 21
+        x: 384
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -299,10 +299,10 @@ TextureImporter:
       name: Bat-Run_7
       rect:
         serializedVersion: 2
-        x: 472
-        y: 29
-        width: 19
-        height: 15
+        x: 448
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
