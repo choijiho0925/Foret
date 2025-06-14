@@ -16,7 +16,6 @@ public class Respawn : MonoBehaviour, IInteractable
     {
         if (saveSpawnPoint.PlayerInZone)
         {
-            Debug.Log("리스폰 위치가 저장됐습니다."); // 플레이어가 SaveSpawnPoint 영역에 있을 때 로그 출력
             SaveRespawnPoint(); // 플레이어가 영역에 있을 때 부활 지점을 저장하는 메소드 호출
         }
     }
@@ -34,7 +33,7 @@ public class Respawn : MonoBehaviour, IInteractable
     public void RespawnPlayer() // 플레이어를 부활 지점으로 이동시키는 메소드
     {
         transform.position = respawnPoint; // 플레이어를 부활 지점으로 이동
-        // 부활할때 체력 -1 
+        // 부활할때 체력 -1
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
