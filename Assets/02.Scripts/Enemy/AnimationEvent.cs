@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class AnimationEvent : MonoBehaviour
 {
-    private Bat bat;
+    private FlyingMonster bat;
 
     private void Start()
     {
-        bat = GetComponentInParent<Bat>();
+        bat = GetComponentInParent<FlyingMonster>();
     }
 
     public void ShootProjectile()

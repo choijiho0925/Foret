@@ -175,10 +175,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bat
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7851906881020828200, guid: 5ff6946b64228974d988064f2bd3f3b5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8391968557791557543, guid: 5ff6946b64228974d988064f2bd3f3b5, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 834526630}
   m_SourcePrefab: {fileID: 100100000, guid: 5ff6946b64228974d988064f2bd3f3b5, type: 3}
 --- !u!1 &159926358
 GameObject:
@@ -557,6 +561,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f408ec43a8976e4c85a5f3e438c8f36, type: 3}
+--- !u!1 &834526624 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8391968557791557543, guid: 5ff6946b64228974d988064f2bd3f3b5, type: 3}
+  m_PrefabInstance: {fileID: 66016602}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &834526630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834526624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70628c8130a18c439cd6535387b010b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  moveSpeed: 5
+  detectionRange: 15
+  attackPower: 5
+  attackRange: 10
+  isGround: 0
+  monsterProjectilePrefab: {fileID: 1958311479825625687, guid: 7666638bf4864704c91e10d5c46844c7, type: 3}
+  projectilePos: {fileID: 1457776242}
+  attackCooltime: 1.5
+--- !u!4 &1457776242 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1354145411369922403, guid: 5ff6946b64228974d988064f2bd3f3b5, type: 3}
+  m_PrefabInstance: {fileID: 66016602}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3589619741461072900
 PrefabInstance:
   m_ObjectHideFlags: 0

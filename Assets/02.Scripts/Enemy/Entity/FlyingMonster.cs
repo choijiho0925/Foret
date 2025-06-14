@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Bat : MonsterBase
+public class FlyingMonster : MonsterBase
 {
     private NavMeshAgent agent;
 
