@@ -16,8 +16,10 @@ public class FGReturnState : IState
 
     public void Enter()
     {
+        boss.ResetAllAnimation();
+
         // 만약 플레이어와 가깝다면 바로 근접 공격 상태로 전환
-        if(boss.GetPlayerDistance() < boss.BackdownRange)
+        if (boss.GetPlayerDistance() < boss.BackdownRange)
         {
             boss.StateMachine.ChangeState(new FGMeleeState(boss));
         }    

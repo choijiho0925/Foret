@@ -4,7 +4,7 @@ using UnityEngine;
 public class BossBase : MonsterBase
 {
     // 패턴 간 딜레이
-    public float patternDelay = 2f;
+    public float patternDelay = 1f;
 
     // 플레이어가 범위 안에 들어왔는지
     private bool playerInRange = false;

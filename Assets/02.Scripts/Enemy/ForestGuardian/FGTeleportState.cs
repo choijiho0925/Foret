@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 플레이어 위로 텔레포트해 하단 공격을 가하는 상태 클래스
+/// </summary>
 public class FGTeleportState : IState
 {
     private ForestGuardian boss;
@@ -13,6 +16,7 @@ public class FGTeleportState : IState
 
     public void Enter()
     {
+        boss.ResetAllAnimation();
         boss.StartCoroutine(TeleportAttack());
         Debug.Log("FGTeleportState 진입");
     }

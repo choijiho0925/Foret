@@ -17,7 +17,8 @@ public class FGBackdownState : IState
     }
 
     public void Enter() 
-    { 
+    {
+        boss.ResetAllAnimation();
         Debug.Log("FGBackdownState 진입");
         timer = 0f;
     }

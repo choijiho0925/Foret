@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 플레이어를 쫓아가는 상태 클래스
+/// </summary>
 public class FGChaseState : IState
 {
     private ForestGuardian boss;
@@ -11,7 +14,11 @@ public class FGChaseState : IState
         this.boss = boss;
     }
 
-    public void Enter() { Debug.Log("FGChaseState 진입"); }
+    public void Enter() 
+    { 
+        Debug.Log("FGChaseState 진입");
+        boss.ResetAllAnimation();
+    }
 
     public void Exit() { }
 

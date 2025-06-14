@@ -233,13 +233,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a61572b67f7b7584eb01dd8a44b97458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   moveSpeed: 10
   detectionRange: 50
   attackPower: 30
   attackRange: 5
   isGround: 0
   patternDelay: 2
-  backdownRange: 4
+  backdownRange: 3
   meleeRange: 6
   chargeRange: 8
   teleportRange: 11
@@ -1272,6 +1273,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 58214acf-958a-4d29-9fdb-4f86a2a8970f
     m_ActionName: Player/Attack[/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5bcd167d-8d26-4ccd-af23-7c0b181e271f
+    m_ActionName: Player/Dash[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fb8673eb-ac92-4fc4-8687-28ffd355ee62
+    m_ActionName: Player/Throw[/Keyboard/x]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1425,6 +1434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runSpeed: 50
+  canControl: 1
 --- !u!212 &2011146413874775145
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6560,20 +6570,17 @@ MonoBehaviour:
   wallCheck: {fileID: 7952005002357497233}
   isGrounded: 0
   canDoubleJump: 1
-  m_DashForce: 25
+  dashForce: 25
   isDashing: 0
   isWall: 0
   life: 10
   invincible: 0
   canMove: 1
-  particleJumpUp: {fileID: 2918655078473296019}
-  particleJumpDown: {fileID: 7132230027174246378}
-  OnFallEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  OnLandEvent:
-    m_PersistentCalls:
-      m_Calls: []
+  jumpEffect: {fileID: 0}
+  afterimagePrefab: {fileID: 0}
+  afterimageSpawnRate: 0.05
+  dashEffect: {fileID: 0}
+  wallJumpControlLockTime: 0.5
 --- !u!4 &3326586353338199902
 Transform:
   m_ObjectHideFlags: 0
@@ -32567,6 +32574,9 @@ MonoBehaviour:
   attackEffectForward: {fileID: 4659043736182473301}
   attackEffectUp: {fileID: 4525222693708743150}
   attackEffectDown: {fileID: 793219163210227978}
+  attackHitEffect: {fileID: 0}
+  throwPositionOffsetX: 0.5
+  throwPositionOffsetY: 0.7
 --- !u!4 &6799429640185279723
 Transform:
   m_ObjectHideFlags: 0

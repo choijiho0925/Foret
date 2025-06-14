@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 플레이어에게 돌진 공격을 가하는 상태 클래스
+/// </summary>
 public class FGChargeAttackState : IState
 {
     private ForestGuardian boss;
@@ -13,6 +16,7 @@ public class FGChargeAttackState : IState
 
     public void Enter()
     {
+        boss.ResetAllAnimation();
         boss.StartCoroutine(ChargeAttack());
         Debug.Log("FGChargeAttackState 진입");
     }

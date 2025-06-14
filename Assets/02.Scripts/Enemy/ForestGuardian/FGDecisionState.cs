@@ -16,6 +16,8 @@ public class FGDecisionState : IState
 
     public void Enter()
     {
+        boss.ResetAllAnimation();
+
         float distance = boss.GetPlayerDistance();
 
         Debug.Log($"[Decision] 거리: {distance}");
