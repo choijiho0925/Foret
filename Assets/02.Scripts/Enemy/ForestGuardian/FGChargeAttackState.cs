@@ -28,22 +28,40 @@ public class FGChargeAttackState : IState
 
     private IEnumerator ChargeAttack()
     {
-        // 플레이어를 바라보는 방향
+        boss.ResetAllAnimation();
+
+        // 충전 애니메이션 재생 후 바로 공격 애니메이션 재생
+        boss.PlayChargeAnimation();
+
+        // 돌진
         Vector2 direction = (boss.Player.transform.position - boss.transform.position).normalized;
 
-        float chargeSpeed = boss.MoveSpeed * 3f;
-        float chargeTime = 0.5f;
+        // 플레이어 조금 앞에서 멈춤
+        float distanceOffset = 3f;
+        Vector2 targetPos = (Vector2)boss.Player.transform.position - direction * distanceOffset;
 
-        float timer = 0f;
+        float chargeSpeed = boss.MoveSpeed * boss.ChargeSpeedMultiplier * 1.5f;      
+       
+        // 물리기반 이동
+        Rigidbody2D rb = boss.GetComponent<Rigidbody2D>();
 
-        // 추후 차지 방식 변경
-        while(timer < chargeTime)
+        // 이동 거리
+        while (Vector2.Distance(rb.position, targetPos) > 0.05f)
         {
-            boss.transform.position += (Vector3)(direction * chargeSpeed * Time.deltaTime);
-            timer += Time.deltaTime;
+            Vector2 moveDelta = direction * chargeSpeed * Time.deltaTime;
+
+            // 목표 지점 넘어서는 문제 방지
+            if (Vector2.Distance(rb.position + moveDelta, targetPos) > Vector2.Distance(rb.position, targetPos))
+                break;
+
+            rb.MovePosition(rb.position + moveDelta);
             yield return null;
         }
 
+        //// 색상 원상복귀
+        //sprite.color = startColor;
+
+        // 다음 상태로 전환
         yield return new WaitForSeconds(boss.patternDelay);
         boss.StateMachine.ChangeState(new FGDecisionState(boss));
     }

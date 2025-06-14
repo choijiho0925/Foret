@@ -18,9 +18,13 @@ public class FGChaseState : IState
     { 
         Debug.Log("FGChaseState 진입");
         boss.ResetAllAnimation();
+        boss.PlayRunAnimation();
     }
 
-    public void Exit() { }
+    public void Exit()
+    {
+        boss.ResetAllAnimation(); // 이동 중단 시 애니메이션도 정지
+    }
 
     public void Update()
     {

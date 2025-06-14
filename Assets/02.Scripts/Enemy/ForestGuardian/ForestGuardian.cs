@@ -11,12 +11,17 @@ public class ForestGuardian : BossBase
     [SerializeField] private float returnThreshold = 0.1f; // 복귀 거리
 
     [Header("애니메이션 길이 설정")]
-    [SerializeField] private float attackDuration = 0.7f;
+    [SerializeField] private float attackDuration = 0.8f;
 
-    public float AttackDuration => attackDuration;
+    [Header("돌진 공격 충전 시간 설정")]
+    [SerializeField] private float chargeDelay = 2f;          // 충전 시간
+    [SerializeField] private float chargeDuration = 2f;       // 돌진 지속 시간
+    [SerializeField] private float chargeSpeedMultiplier = 50f;  // 돌진 속도 배수
 
     // 초기 위치
     public Vector3 InitialPosition { get; private set; }
+
+    private bool isCharging = false;
 
     // 읽기 전용
     public float BackdownRange => backdownRange;
@@ -24,18 +29,26 @@ public class ForestGuardian : BossBase
     public float TeleportRange => teleportRange;
     public float ReturnThreshold => returnThreshold;
 
+    public float AttackDuration => attackDuration;
+
+    public float ChargeDelay => chargeDelay;
+    public float ChargeDuration => chargeDuration;
+    public float ChargeSpeedMultiplier => chargeSpeedMultiplier;
+
+    public SpriteRenderer Sprite => sprite;
+
     // 물리 기반 이동
     private Rigidbody2D rb;
 
     private Animator animator;
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer sprite;
 
     private void Awake()
     {
         base.Awake();
         animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     protected override void Start()
@@ -71,7 +84,7 @@ public class ForestGuardian : BossBase
         if(Mathf.Abs(dirX) > 0.01f)
         {
             // 오른쪽에 있으면 flipX = true
-            spriteRenderer.flipX = dirX < 0;
+            sprite.flipX = dirX < 0;
         }
     }
 
@@ -139,6 +152,20 @@ public class ForestGuardian : BossBase
     public void PlayRunAnimation()
     {
         animator.SetBool("IsRunning", true);
+    }
+
+    // 애니메이션에서 호출됨
+    public void OnChargeAnimationEvent()
+    {
+        if(StateMachine.)
+    }
+
+    // 충전 애니메이션
+    public void PlayChargeAnimation()
+    {
+        animator.Play("Charge");
+        //animator.ResetTrigger("ChargeTrigger"); // 중복 방지용
+        //animator.SetTrigger("ChargeTrigger");
     }
 
     // 공격 애니메이션
