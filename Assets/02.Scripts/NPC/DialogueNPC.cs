@@ -3,29 +3,44 @@ using UnityEngine;
 
 public class DialogueNPC : MonoBehaviour, IInteractable
 {
-    [SerializeField] private DialogueData[] dialogueData;//스크립터블 오브젝트
-    private PlayerInteract player;
+    [SerializeField] private List<DialogueData> dialogueData;//스크립터블 오브젝트
     private int indexnum;
-    private Queue<string> dialogueQueue = new Queue<string>();//이거 프로텍티드 다른 사람한테 조금 물어보자
     private bool isDialogueStart;
+    private PlayerInteract player;
+    private Queue<string> dialogueQueue = new Queue<string>();//이거 프로텍티드 다른 사람한테 조금 물어보자
+    private NpcController npcController;
+    
     
     private void Start()
     {
         indexnum = 0;//나중에 저장 만들 때 indexnum,npc위치, 상태 저장 =>각 상속받는 스크립트에서
         player = FindObjectOfType<PlayerInteract>();
+        npcController = GetComponent<NpcController>();
+        isDialogueStart = true;
     }
 
-    public virtual void ShowInteractUI()
+    public void ShowInteractUI()
     {
-        //ui매니저에서 상호작용 연결
-        isDialogueStart = true;
         UIManager.Instance.dialogueController.SetTarget(this, dialogueData[indexnum].npcName);
         UIManager.Instance.interactableController.ShowInteractable(this.gameObject.layer);
     }
 
-    public virtual void InteractAction()
+    public void InteractAction()
     {
         UIManager.Instance.interactableController.HideInteractable();
+        if (dialogueData[indexnum].timing == ActionTiming.After)
+        {
+            npcController.action = InitDialogue;
+            npcController.Playtimeline();
+        }
+        else
+        {
+            InitDialogue();
+        }
+    }
+
+    private void InitDialogue()
+    {
         if (isDialogueStart)
         {
             StartDialogue();
@@ -36,7 +51,7 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 
     private void StartDialogue()
     {
-        if(indexnum >= dialogueData.Length) return;
+        if(indexnum >= dialogueData.Count) return;
         dialogueQueue.Clear();
         foreach (string dialogue in dialogueData[indexnum].dialogues)
         {
@@ -66,8 +81,22 @@ public class DialogueNPC : MonoBehaviour, IInteractable
     {
         UIManager.Instance.dialogueController.HideDialoguePanel();
         UIManager.Instance.dialogueController.ClearTarget(this);
+        if (dialogueData[indexnum].timing == ActionTiming.After)
+        {
+            npcController.action = AfterTimeline;
+            npcController.Playtimeline();
+        }
+        else
+        {
+            AfterTimeline();
+        }
+    }
+
+    private void AfterTimeline()
+    {
+        isDialogueStart = true;
         UIManager.Instance.interactableController.ShowInteractable(this.gameObject.layer);
         indexnum++;//test용 indexnum를 높여주는 것은 퀘스트나 보스를 깼을 때 거기에 넣어주기
-        player.OnEndInteraction();
+        player.OnEndInteraction(); 
     }
 }

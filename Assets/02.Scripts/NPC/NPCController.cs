@@ -1,21 +1,33 @@
-using DG.Tweening;
+using System;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Playables;
 
-public class NPCController : MonoBehaviour
+public class NpcController : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
-    public void MoveNpc()
+    public UnityAction action;
+    
+    [SerializeField] private PlayableAsset npcMove;
+    [SerializeField] private PlayableAsset npcAttack;
+    
+    private PlayableDirector director;
+
+    private void Start()
     {
-        transform.DOMoveX(3.0f, 3.0f);
+        director = GetComponent<PlayableDirector>();
+    }
+    
+    
+
+    public void Playtimeline()
+    {
+        director.stopped += OnTimelineFinished;
+        director.Play();
     }
 
-    public void Attack()
+    private void OnTimelineFinished(PlayableDirector d)
     {
-        
-    }
-
-    public void Heal()
-    {
-        
+        director.stopped -= OnTimelineFinished;
+        action?.Invoke();
     }
 }
