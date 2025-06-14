@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class MonsterBase : MonoBehaviour
+public abstract class MonsterBase : MonoBehaviour, IDamagable
 {
     [SerializeField] private float health;          // 몬스터 체력
     [SerializeField] private float moveSpeed;       // 이동 속도
@@ -55,4 +55,32 @@ public abstract class MonsterBase : MonoBehaviour
 
     public abstract void Move();    // 지상 / 공중 따른 이동 구현
     public abstract void Attack();  // 근거리 / 원거리 따른 공격 구현
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            if (isGround)
+                // 지상 몬스터 죽음 상태 전환
+                return;
+            else
+                stateMachine.ChangeState(new AirDeadState(this));
+
+            return;
+        }
+
+        animationHandler.Damage();
+        if (isGround)
+            // 지상 몬스터 상태 전환
+            return;
+        else
+            stateMachine.ChangeState(new AirDamageState(this));
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject, 3.0f);
+    }
 }
