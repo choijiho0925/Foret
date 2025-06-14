@@ -68,7 +68,7 @@ namespace _02.Scripts.Player
             if (context.phase == InputActionPhase.Started)
             {
                 // PlayerAttack 스크립트에 현재 이동 방향(moveInput)을 전달하며 공격 요청
-                playerAttack.ThrowAttack();
+                playerAttack.ThrowAttack(moveInput);
             }
         }
         
