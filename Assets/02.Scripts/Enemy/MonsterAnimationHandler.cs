@@ -24,9 +24,9 @@ public class MonsterAnimationHandler : MonoBehaviour
         animator.SetTrigger(isAttack);
     }
 
-    public void Damage(bool isDamaging)
+    public void Damage()
     {
-        animator.SetBool(isDamage, isDamaging);
+        animator.SetTrigger(isDamage);
     }
 
     public void Dead()
