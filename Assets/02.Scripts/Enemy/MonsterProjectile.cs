@@ -6,9 +6,9 @@ public class MonsterProjectile : MonoBehaviour
     [SerializeField] private float lifeTime = 5f;   // 투사체 유지 시간
 
     private Vector3 direction;  // 투사체 방향
-    private float damage;       // 투사체 데미지
+    private int damage;       // 투사체 데미지
 
-    public void Initialize(Vector3 dir, float dmg)  // 방향과 데미지 받아오는 함수
+    public void Initialize(Vector3 dir, int dmg)  // 방향과 데미지 받아오는 함수
     {
         direction = dir.normalized;
         damage = dmg;
