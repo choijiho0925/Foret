@@ -57,7 +57,7 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
     public abstract void Move();    // 지상 / 공중 따른 이동 구현
     public abstract void Attack();  // 근거리 / 원거리 따른 공격 구현
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         health -= damage;
 
