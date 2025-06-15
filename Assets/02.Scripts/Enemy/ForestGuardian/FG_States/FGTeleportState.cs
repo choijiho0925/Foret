@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// 할아버지(원본이미지)는 점점 하얘져야 됨
+/// 하드라이트 색상은 저기서 바꾸고 싶지 않음
+/// 근데 할아버지가 하얘지니까 하드라이트는 실시간 계산하니까 점점 하얘짐
+/// 그래서 하드라이트를 고정하고 싶음
+
 /// <summary>
 /// 플레이어 위로 텔레포트해 하단 공격을 가하는 상태 클래스
 /// </summary>
@@ -19,7 +25,9 @@ public class FGTeleportState : IState
     {
         boss.ResetAllAnimation();
         isTeleportStarted = false;  // 상태 재진입 시 플래그 초기화
-        boss.PlayAttackAnimation();
+
+        // 텔레포트 준비 애니메이션 재생
+        boss.PlayTeleportReadyAnimation();
         Debug.Log("FGTeleportState 진입");
     }
 
@@ -52,11 +60,15 @@ public class FGTeleportState : IState
         if (boss.CanTeleportTo(playerAbove))
         {
             // 텔레포트 선딜
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.7f);
 
             // 실제 텔레포트
+            boss.ApplyTeleportRotation();
             boss.TeleportTo(playerAbove);
             Debug.Log("▶ 순간이동 성공");
+
+            // 텔레포트 성공 후 낙하 공격
+            boss.PlayAttackAnimation();
 
             // 텔레포트 후 약간의 딜레이
             // yield return new WaitForSeconds(0.2f);

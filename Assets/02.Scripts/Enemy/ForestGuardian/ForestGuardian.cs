@@ -198,6 +198,13 @@ public class ForestGuardian : BossBase
     public void TeleportTo(Vector2 position)
     {
         transform.position = position;
+        StartFallAfterTeleport();
+    }
+
+    // 텔레포트 이후 아래로 떨어짐
+    public void StartFallAfterTeleport(float fallSpeed = -20f)
+    {
+        rb.velocity = new Vector2(0, fallSpeed);
     }
 
 
@@ -275,8 +282,6 @@ public class ForestGuardian : BossBase
             if (isTeleportAttacking) return;
 
             isTeleportAttacking = true;
-            sprite.transform.rotation = Quaternion.Euler(0, 0, 90f);
-            Debug.Log("텔레포트 공격 시작 - 스프라이트 회전 90도");
             LockState();
 
             teleportState.StartTeleport(); 
@@ -285,6 +290,22 @@ public class ForestGuardian : BossBase
         {
             Debug.LogWarning($"[OnTeleportAttackStart] 잘못된 상태: {StateMachine.CurrentState?.GetType().Name}");
         }
+    }
+
+    // 낙하 직전 회전
+    public void ApplyTeleportRotation()
+    {
+        // 회전 방향 결정 (오른쪽을 보고 있으면 true)
+        float rotationZ = sprite.flipX ? 90f : -90f;
+        sprite.transform.rotation = Quaternion.Euler(0, 0, rotationZ);
+        Debug.Log("텔레포트 공격 시작 - 스프라이트 회전 90도");
+    }
+
+    // 텔레포트 준비 애니메이션 재생
+    public void PlayTeleportReadyAnimation()
+    {
+        animator.ResetTrigger("TeleportAttackTrigger");
+        animator.SetTrigger("TeleportAttackTrigger");
     }
 
     // 텔레포트 공격 종료 시 호출
@@ -336,6 +357,7 @@ public class ForestGuardian : BossBase
     {
         animator.SetBool("IsRunning", false);
         animator.ResetTrigger("ChargeTrigger");
+        animator.ResetTrigger("TeleportAttackTrigger");
     }
 
 }
