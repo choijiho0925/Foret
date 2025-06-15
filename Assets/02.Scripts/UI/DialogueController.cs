@@ -9,6 +9,13 @@ public class DialogueController : MonoBehaviour
     public TextMeshProUGUI npcNameText;
     public TextMeshProUGUI dialogueText;
     public GameObject dialoguePanel;
+
+    // NPC의 말풍선을 띄우기 위한 멤버변수들
+    public Transform target;    // 타겟 NPC 위치
+    public Vector3 offset = new Vector3(0f, 3f, 0f);      // NPC 머리 위 위치 조절
+    public GameObject speechBubble; // 말풍선
+    public RectTransform rect; // 말풍선 Rect
+
     public bool IsTyping { get; private set; }
 
     private string fullCurrentLine;
@@ -22,6 +29,7 @@ public class DialogueController : MonoBehaviour
     {
         currentTarget = npc;
         npcName = name;
+        target = npc.transform;
     }
 
     // 타겟 클리어 메서드
@@ -32,7 +40,7 @@ public class DialogueController : MonoBehaviour
             currentTarget = null;
         }
     }
-    
+
     // 대화창 보여주는 메서드
     public void ShowDialoguePanel()
     {
@@ -65,12 +73,12 @@ public class DialogueController : MonoBehaviour
         npcNameText.text = npcName;
         line = line.Replace("\\n", "\n");
         fullCurrentLine = line;
-        
+
         if (typingCoroutine != null)
         {
             StopCoroutine(typingCoroutine);
         }
-        
+
         ShowDialoguePanel();
         typingCoroutine = StartCoroutine(TypeLine(line));
     }
@@ -79,7 +87,7 @@ public class DialogueController : MonoBehaviour
     private IEnumerator TypeLine(string line)
     {
         IsTyping = true;
-        
+
         StringBuilder sb = new StringBuilder();
         dialogueText.text = "";
         foreach (char c in line)
@@ -88,7 +96,25 @@ public class DialogueController : MonoBehaviour
             dialogueText.text = sb.ToString();
             yield return new WaitForSeconds(0.05f);
         }
-        
+
         IsTyping = false;
+    }
+
+    public void ShowSpeechBubble()
+    {
+        if (target == null) return;
+
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(target.position + offset);
+        rect.position = screenPos;
+
+        speechBubble.SetActive(true);
+    }
+
+    public void HideSpeechBubble()
+    {
+        if (speechBubble != null)
+        {
+            speechBubble.SetActive(false);
+        }
     }
 }

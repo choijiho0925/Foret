@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +22,18 @@ public class UIManager : Singleton<UIManager>
         if (Input.GetKeyDown(KeyCode.T))
         {
             Recovery();
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (!dialogueController.speechBubble.activeSelf)
+            {
+                dialogueController.ShowSpeechBubble();
+            }
+            else
+            {
+                dialogueController.HideSpeechBubble();
+            }
         }
     }
 
