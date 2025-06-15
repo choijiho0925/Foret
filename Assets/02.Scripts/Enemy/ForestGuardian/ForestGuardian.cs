@@ -198,6 +198,13 @@ public class ForestGuardian : BossBase
     public void TeleportTo(Vector2 position)
     {
         transform.position = position;
+        StartFallAfterTeleport();
+    }
+
+    // 텔레포트 이후 아래로 떨어짐
+    public void StartFallAfterTeleport(float fallSpeed = -20f)
+    {
+        rb.velocity = new Vector2(0, fallSpeed);
     }
 
 
@@ -294,6 +301,13 @@ public class ForestGuardian : BossBase
         Debug.Log("텔레포트 공격 시작 - 스프라이트 회전 90도");
     }
 
+    // 텔레포트 준비 애니메이션 재생
+    public void PlayTeleportReadyAnimation()
+    {
+        animator.ResetTrigger("TeleportAttackTrigger");
+        animator.SetTrigger("TeleportAttackTrigger");
+    }
+
     // 텔레포트 공격 종료 시 호출
     public void OnTeleportAttackEnd()
     {
@@ -343,6 +357,7 @@ public class ForestGuardian : BossBase
     {
         animator.SetBool("IsRunning", false);
         animator.ResetTrigger("ChargeTrigger");
+        animator.ResetTrigger("TeleportAttackTrigger");
     }
 
 }
