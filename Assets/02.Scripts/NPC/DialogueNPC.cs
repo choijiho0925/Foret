@@ -4,17 +4,16 @@ using UnityEngine;
 public class DialogueNPC : MonoBehaviour, IInteractable
 {
     [SerializeField] private List<DialogueData> dialogueData;//스크립터블 오브젝트
+    [SerializeField] private NpcController npcController;
     private int indexnum;
     private bool isDialogueStart;
     private PlayerInteract player;
     private Queue<string> dialogueQueue = new Queue<string>();//이거 프로텍티드 다른 사람한테 조금 물어보자
-    private NpcController npcController;
     private UIManager uiManager;
 
     private void Start()
     {
         player = FindObjectOfType<PlayerInteract>();
-        npcController = GetComponent<NpcController>();
         uiManager = UIManager.Instance;
         isDialogueStart = true;
         indexnum = 0;//나중에 저장 만들 때 indexnum,npc위치, 상태 저장 =>각 상속받는 스크립트에서
