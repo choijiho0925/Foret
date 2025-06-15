@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2488687628502943116}
   - component: {fileID: 3079591332910045774}
   m_Layer: 0
-  m_Name: Bat_Proj
+  m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167,4 +167,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   lifeTime: 5
-  projectile: {fileID: 209902505038541754}
