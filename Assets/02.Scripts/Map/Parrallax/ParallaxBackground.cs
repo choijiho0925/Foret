@@ -14,6 +14,8 @@ public class ParallaxBackground : MonoBehaviour
 	[SerializeField][Range(0.01f, 1.0f)]
 	private	float parallaxSpeed;			// layerMoveSpeed에 곱해서 사용하는 배경 스크롤 이동 속도
 
+    private float slowspeed = 0.5f;
+
 	private void Awake()
 	{
 		// 게임을 시작할 때 카메라의 위치 저장 (이동 거리 계산용)
@@ -54,9 +56,7 @@ public class ParallaxBackground : MonoBehaviour
 		for ( int i = 0; i < count; ++ i )
 		{
 			// 가장 멀리 떨어진 배경 레이어의 이동 속도 = 0
-			layerMoveSpeed[i] = 1 - (backgrounds[i].transform.position.z - cameraTransform.position.z) / farthestBackDistance;
-			// 이동속도 확인용 (테스트 후 삭제)
-			Debug.Log($"{layerMoveSpeed[i]}, 실제 이동속도 = {layerMoveSpeed[i] * parallaxSpeed}");
+			layerMoveSpeed[i] = 1 - slowspeed - (backgrounds[i].transform.position.z - cameraTransform.position.z) / farthestBackDistance;
 		}
 	}
 
@@ -65,7 +65,14 @@ public class ParallaxBackground : MonoBehaviour
 		// 카메라가 이동한 거리 = 카메라의 현재 위치 - 시작 위치
 		distance = cameraTransform.position.x - cameraStartPosition.x;
 		// 배경의 x 위치를 현재 카메라의 x 위치로 설정
-		transform.position = new Vector3(cameraTransform.position.x, cameraTransform.position.y, 0);
+        if (cameraTransform.position.x < 0)
+        {
+            transform.position = new Vector3(0, cameraTransform.position.y, 0);
+        }
+        else
+        {
+            transform.position = new Vector3(cameraTransform.position.x, cameraTransform.position.y, 0);
+        }
 
 		// 레이어별로 현재 배경이 출력되는 offset 설정
 		for ( int i = 0; i < materials.Length; ++ i )
@@ -75,4 +82,3 @@ public class ParallaxBackground : MonoBehaviour
 		}
 	}
 }
-
