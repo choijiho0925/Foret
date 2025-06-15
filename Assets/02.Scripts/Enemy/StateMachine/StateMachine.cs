@@ -1,4 +1,4 @@
-﻿public interface IState
+public interface IState
 {
     public void Enter();
     public void Exit();
@@ -9,6 +9,8 @@
 public abstract class StateMachine
 {
     protected IState currentState;
+
+    public IState CurrentState => currentState;
 
     public void ChangeState(IState state)
     {
