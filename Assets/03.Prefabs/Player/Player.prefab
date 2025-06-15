@@ -314,6 +314,7 @@ GameObject:
   - component: {fileID: 9053692394685853244}
   - component: {fileID: 4302860743254405335}
   - component: {fileID: 3155899312302287525}
+  - component: {fileID: 6199467669736934528}
   - component: {fileID: 4551964071166921394}
   - component: {fileID: 3692114234845861888}
   - component: {fileID: 3689895592802474628}
@@ -357,7 +358,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b985941cb4ac145a8812322604c161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 800
   movementSmoothing: 0.05
   canAirControl: 1
   groundLayer:
@@ -370,11 +370,8 @@ MonoBehaviour:
   wallCheck: {fileID: 5641323020010889433}
   isGrounded: 0
   canDoubleJump: 1
-  dashForce: 25
   isDashing: 0
   isWall: 0
-  life: 10
-  invincible: 0
   canMove: 1
   jumpEffect: {fileID: 1386656674039164754}
   afterimagePrefab: {fileID: 7514879471910159825, guid: 57287e30212cb214dad38c7f87c55acf, type: 3}
@@ -393,8 +390,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57e1307798f21f149b50af612ab63935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmgValue: 4
-  ProjectilePrefab: {fileID: 2030663912771262936, guid: 4f4db85d463e9294f9b2858bcf8e3d05, type: 3}
   canAttack: 1
   isTimeToCheck: 0
   cam: {fileID: 0}
@@ -409,7 +404,7 @@ MonoBehaviour:
   attackEffectUp: {fileID: 2224181312964902054}
   attackEffectDown: {fileID: 3103868198940040258}
   attackHitEffect: {fileID: 2949269542921859525, guid: 97582d8a89440eb49b4609bd9df0dea8, type: 3}
-  throwPositionOffsetX: 0.5
+  throwPositionOffsetX: 1.2
   throwPositionOffsetY: 0.7
 --- !u!114 &4302860743254405335
 MonoBehaviour:
@@ -440,6 +435,19 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 4096
+--- !u!114 &6199467669736934528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642589270903554043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68ea08047d8485446882c9c874435813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: 48ca3407528d7bf478f98638561b4b74, type: 2}
 --- !u!114 &4551964071166921394
 MonoBehaviour:
   m_ObjectHideFlags: 0

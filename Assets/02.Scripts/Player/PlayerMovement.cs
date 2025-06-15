@@ -7,7 +7,6 @@ namespace _02.Scripts.Player
 {
 	public class PlayerMovement : MonoBehaviour
 	{
-		[SerializeField] private float jumpForce = 400f;							// 점프력
 		[Range(0, .3f)] [SerializeField] private float movementSmoothing = .05f;	// 부드러운 이동 수치
 		[SerializeField] private bool canAirControl = true;						// 공중에서 컨트롤 가능 여부
 		[SerializeField] private LayerMask groundLayer;							// 땅 레이어
@@ -24,17 +23,15 @@ namespace _02.Scripts.Player
 		private float limitFallSpeed = 15f; // 떨어지는 최대 스피드
 
 		public bool canDoubleJump; //더블 점프 가능 여부
-		[SerializeField] private float dashForce = 25f;
 		private bool canDash = true;
 		public bool isDashing; 
 		public bool isWall; 
 		private bool isWallSliding; 
 		private bool oldWallSlidding;
 
-		public float life = 10f; 
-		public bool invincible; 
-		public bool canMove = true; 
+		public bool canMove = true;
 
+        private PlayerStat playerStat;
 		private PlayerAttack playerAttack;
 		private SpriteRenderer mainSprite;
 		private Animator animator;
@@ -67,6 +64,7 @@ namespace _02.Scripts.Player
 		{
 			rb = GetComponent<Rigidbody2D>();
 			animator = GetComponentInChildren<Animator>();
+            playerStat = GetComponent<PlayerStat>();
 			playerAttack = GetComponent<PlayerAttack>();
 			mainSprite = GetComponentInChildren<SpriteRenderer>();
 		}
@@ -117,13 +115,13 @@ namespace _02.Scripts.Player
 				animator.SetFloat(animIDSpeed, Mathf.Abs(move));
 				if (dash && canDash && !isWallSliding)
 				{
-					rb.AddForce(new Vector2(dashForce * transform.localScale.x, 0f));
+					rb.AddForce(new Vector2(playerStat.CurrentDashForce * transform.localScale.x, 0f));
 					StartCoroutine(DashCooldown());
 				}
 
 				if (isDashing)
 				{
-					rb.velocity = new Vector2(dashForce * transform.localScale.x, 0);
+					rb.velocity = new Vector2(playerStat.CurrentDashForce * transform.localScale.x, 0);
 				}
 				//플레이어가 땅에 붙어있거나 공중 제어 가능 상태일때만 움직일 수 있게
 				else if (isGrounded || canAirControl)
@@ -149,7 +147,7 @@ namespace _02.Scripts.Player
 					animator.SetBool(animIDJumping, true);
 					//animator.SetBool("JumpUp", true);
 					isGrounded = false;
-					rb.AddForce(new Vector2(0f, jumpForce));
+					rb.AddForce(new Vector2(0f, playerStat.CurrentJumpForce));
 					canDoubleJump = true;
                     StartCoroutine(ShowJumpEffect());
                     //particleJumpDown.Play();
@@ -159,7 +157,7 @@ namespace _02.Scripts.Player
 				{
 					canDoubleJump = false;
 					rb.velocity = new Vector2(rb.velocity.x, 0);
-					rb.AddForce(new Vector2(0f, jumpForce / 1.2f));
+					rb.AddForce(new Vector2(0f, playerStat.CurrentJumpForce / 1.2f));
 					animator.SetBool(animIDDoubleJumping, true);
 				}
 
@@ -200,7 +198,7 @@ namespace _02.Scripts.Player
 
 							rb.velocity = Vector2.zero; // 점프 전 속도 초기화
 							Flip(); // 방향 전환
-							rb.AddForce(new Vector2(transform.localScale.x * jumpForce * 0.5f, jumpForce));
+							rb.AddForce(new Vector2(transform.localScale.x * playerStat.CurrentJumpForce * 0.5f, playerStat.CurrentJumpForce));
                             
                             StartCoroutine(ShowJumpEffect());
 							// 점프 직후 잠시 조작을 막음
@@ -239,27 +237,7 @@ namespace _02.Scripts.Player
 			theScale.x *= -1;
 			transform.localScale = theScale;
 		}
-
-		public void ApplyDamage(float damage, Vector3 position) 
-		{
-			if (!invincible)
-			{
-				animator.SetBool(animIDIsHit, true);
-				life -= damage;
-				Vector2 damageDir = Vector3.Normalize(transform.position - position) * 40f ;
-				rb.velocity = Vector2.zero;
-				rb.AddForce(damageDir * 10);
-				if (life <= 0)
-				{
-					StartCoroutine(WaitToDead());
-				}
-				else
-				{
-					StartCoroutine(Stun(0.25f));
-					StartCoroutine(MakeInvincible(1f));
-				}
-			}
-		}
+        
 
         private IEnumerator ShowJumpEffect()
         {
@@ -314,14 +292,7 @@ namespace _02.Scripts.Player
 			yield return new WaitForSeconds(time);
 			canMove = true;
 		}
-
-		private IEnumerator MakeInvincible(float time) 
-		{
-			invincible = true;
-			yield return new WaitForSeconds(time);
-			invincible = false;
-		}
-
+        
 		private IEnumerator WaitToMove(float time)
 		{
 			canMove = false;
@@ -343,7 +314,7 @@ namespace _02.Scripts.Player
 		{
 			animator.SetBool(animIDIsDead, true);
 			canMove = false;
-			invincible = true;
+			//invincible = true;
 			playerAttack.enabled = false;
 			yield return new WaitForSeconds(0.4f);
 			rb.velocity = new Vector2(0, rb.velocity.y);
