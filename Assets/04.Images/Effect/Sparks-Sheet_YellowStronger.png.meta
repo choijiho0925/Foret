@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 92d42db3598069b48a83a3930912e20b
+guid: 24841bb015ccd6545b85f466f00e620e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -81,6 +81,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -106,144 +119,131 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sparks-Sheet_0
+      name: Sparks-Sheet_YellowStronger_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 212
-        width: 45
+        x: 10
+        y: 214
+        width: 53
         height: 35
       alignment: 9
-      pivot: {x: 0.13602157, y: 0.123428345}
+      pivot: {x: 0.11033868, y: 0.11361694}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91316ac053d0ee14797051eb509b64b1
-      internalID: 1794494718
+      spriteID: c1dbc6cda16830d408a2e0250754e91b
+      internalID: -1419218922
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sparks-Sheet_1
+      name: Sparks-Sheet_YellowStronger_1
       rect:
         serializedVersion: 2
         x: 107
-        y: 214
-        width: 45
+        y: 216
+        width: 53
         height: 35
       alignment: 9
-      pivot: {x: 0.14217919, y: 0.17183359}
+      pivot: {x: 0.14564687, y: 0.15371747}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd5fa30d8fbc1f84ca93cc7e99212914
-      internalID: 611179473
+      spriteID: 3cb32ad33b4dde64d9d5e2bcd10f7190
+      internalID: -1208645096
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sparks-Sheet_2
+      name: Sparks-Sheet_YellowStronger_2
       rect:
         serializedVersion: 2
-        x: 205
-        y: 218
-        width: 59
-        height: 37
+        x: 209
+        y: 221
+        width: 53
+        height: 35
       alignment: 9
-      pivot: {x: 0.1604935, y: 0.20750469}
+      pivot: {x: 0.16330129, y: 0.19381757}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a01a49ac18024264885199a2e9968fd9
-      internalID: -1300365187
+      spriteID: adcd6cd07015ae8429c1862096615d79
+      internalID: -787611186
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sparks-Sheet_3
+      name: Sparks-Sheet_YellowStronger_3
       rect:
         serializedVersion: 2
-        x: 20
+        x: 21
         y: 127
-        width: 59
-        height: 37
+        width: 57
+        height: 39
       alignment: 9
-      pivot: {x: 0.143143, y: 0.17292044}
+      pivot: {x: 0.16004927, y: 0.20992611}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3166183b8ada9ce4aab7a1bc4af095de
-      internalID: -1146484735
+      spriteID: 0b0b2451abe64164a9e438d623d9baed
+      internalID: 1376160586
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sparks-Sheet_4
+      name: Sparks-Sheet_YellowStronger_4
       rect:
         serializedVersion: 2
         x: 117
-        y: 127
+        y: 128
         width: 59
-        height: 43
+        height: 42
       alignment: 9
-      pivot: {x: 0.14314309, y: 0.15176782}
+      pivot: {x: 0.16651775, y: 0.17265356}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f107c2f52510c842a23b6a29705864c
-      internalID: -1288300684
+      spriteID: 6f8a466bf25245d4e9f82da9d08e6596
+      internalID: -1010661718
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sparks-Sheet_5
+      name: Sparks-Sheet_YellowStronger_5
       rect:
         serializedVersion: 2
         x: 215
-        y: 131
-        width: 60
-        height: 43
+        y: 130
+        width: 61
+        height: 44
       alignment: 9
-      pivot: {x: 0.15355352, y: 0.122009635}
+      pivot: {x: 0.15338886, y: 0.17012197}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eaf0fd6aa2208764d9f3b8701eb69ac0
-      internalID: 151202684
+      spriteID: d6ec93f64f639d441add8ba9135e6eed
+      internalID: -1279613527
       vertices: []
       indices: 
       edges: []
@@ -259,12 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sparks-Sheet_0: 1794494718
-      Sparks-Sheet_1: 611179473
-      Sparks-Sheet_2: -1300365187
-      Sparks-Sheet_3: -1146484735
-      Sparks-Sheet_4: -1288300684
-      Sparks-Sheet_5: 151202684
+      Sparks-Sheet_YellowStronger_0: -1419218922
+      Sparks-Sheet_YellowStronger_1: -1208645096
+      Sparks-Sheet_YellowStronger_2: -787611186
+      Sparks-Sheet_YellowStronger_3: 1376160586
+      Sparks-Sheet_YellowStronger_4: -1010661718
+      Sparks-Sheet_YellowStronger_5: -1279613527
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

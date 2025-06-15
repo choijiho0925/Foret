@@ -68,12 +68,16 @@ public class FlyingMonster : MonsterBase
     public void ShootProjectile()
     {
         //GameObject projectile = Instantiate(monsterProjectilePrefab, projectilePos.position, Quaternion.identity);
-        Projectile projectile =
-            PoolManager.Instance.ProjectilePool.Get(projectileType, projectilePos.position, Quaternion.identity);
-
+        
         Vector3 targetPos = Player.transform.position + Vector3.up;
         Vector3 dir = (targetPos - projectilePos.position).normalized;
+        
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        
+        Projectile projectile =
+            PoolManager.Instance.ProjectilePool.Get(projectileType, projectilePos.position, Quaternion.Euler(0,0,angle));
 
+    
         //projectile.GetComponent<MonsterProjectile>().Initialize(dir, AttackPower);
         projectile.Initialize(dir, AttackPower);
     }

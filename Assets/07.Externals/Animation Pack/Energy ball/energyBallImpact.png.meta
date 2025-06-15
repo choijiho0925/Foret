@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 92d42db3598069b48a83a3930912e20b
+guid: 6b3a5d2abeb3b464a87d721d44903342
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -81,6 +81,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -106,144 +119,152 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sparks-Sheet_0
-      rect:
-        serializedVersion: 2
-        x: 9
-        y: 212
-        width: 45
-        height: 35
-      alignment: 9
-      pivot: {x: 0.13602157, y: 0.123428345}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 91316ac053d0ee14797051eb509b64b1
-      internalID: 1794494718
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sparks-Sheet_1
-      rect:
-        serializedVersion: 2
-        x: 107
-        y: 214
-        width: 45
-        height: 35
-      alignment: 9
-      pivot: {x: 0.14217919, y: 0.17183359}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cd5fa30d8fbc1f84ca93cc7e99212914
-      internalID: 611179473
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sparks-Sheet_2
-      rect:
-        serializedVersion: 2
-        x: 205
-        y: 218
-        width: 59
-        height: 37
-      alignment: 9
-      pivot: {x: 0.1604935, y: 0.20750469}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a01a49ac18024264885199a2e9968fd9
-      internalID: -1300365187
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sparks-Sheet_3
+      name: energyBallImpact_0
       rect:
         serializedVersion: 2
         x: 20
-        y: 127
-        width: 59
-        height: 37
-      alignment: 9
-      pivot: {x: 0.143143, y: 0.17292044}
+        y: 940
+        width: 70
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3166183b8ada9ce4aab7a1bc4af095de
-      internalID: -1146484735
+      spriteID: eb0b474fffa63b9429654cbda4601b5d
+      internalID: -365335455
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sparks-Sheet_4
+      name: energyBallImpact_1
       rect:
         serializedVersion: 2
-        x: 117
-        y: 127
-        width: 59
-        height: 43
-      alignment: 9
-      pivot: {x: 0.14314309, y: 0.15176782}
+        x: 20
+        y: 809
+        width: 84
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f107c2f52510c842a23b6a29705864c
-      internalID: -1288300684
+      spriteID: 0cc8beea3b1aab84db39ecf3ddb0932a
+      internalID: 477081663
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sparks-Sheet_5
+      name: energyBallImpact_28
       rect:
         serializedVersion: 2
-        x: 215
-        y: 131
-        width: 60
-        height: 43
-      alignment: 9
-      pivot: {x: 0.15355352, y: 0.122009635}
+        x: 72
+        y: 476
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eaf0fd6aa2208764d9f3b8701eb69ac0
-      internalID: 151202684
+      spriteID: c1ff5e501a05d744cb4eb12a06c3674e
+      internalID: -647802191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energyBallImpact_2
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 674
+        width: 103
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d837ac0b10add5843bd05e058ff106e9
+      internalID: 1307827847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energyBallImpact_3
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 544
+        width: 117
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3698939977101fd4699e681eab4e5a64
+      internalID: -1604705324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energyBallImpact_4
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 408
+        width: 119
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 239079fd14196654aa3dce69d50c8e9a
+      internalID: -2106714372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energyBallImpact_5
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 140
+        width: 125
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90f6823c74e2e294593a2b561e08c7a5
+      internalID: 294443890
       vertices: []
       indices: 
       edges: []
@@ -259,12 +280,52 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sparks-Sheet_0: 1794494718
-      Sparks-Sheet_1: 611179473
-      Sparks-Sheet_2: -1300365187
-      Sparks-Sheet_3: -1146484735
-      Sparks-Sheet_4: -1288300684
-      Sparks-Sheet_5: 151202684
+      energyBallImpact_0: -365335455
+      energyBallImpact_1: 477081663
+      energyBallImpact_10: -998458022
+      energyBallImpact_11: -1010968649
+      energyBallImpact_12: -1394815736
+      energyBallImpact_13: 1510758968
+      energyBallImpact_14: -1684434341
+      energyBallImpact_15: -1631995336
+      energyBallImpact_16: 495905133
+      energyBallImpact_17: -1519616419
+      energyBallImpact_18: -1205488133
+      energyBallImpact_19: -1802572624
+      energyBallImpact_2: 1307827847
+      energyBallImpact_20: 1801862256
+      energyBallImpact_21: -1538495741
+      energyBallImpact_22: 708116490
+      energyBallImpact_23: -401052504
+      energyBallImpact_24: -318823038
+      energyBallImpact_25: 1321184600
+      energyBallImpact_26: -51926059
+      energyBallImpact_27: -1029546548
+      energyBallImpact_28: -647802191
+      energyBallImpact_29: 57733538
+      energyBallImpact_3: -1604705324
+      energyBallImpact_30: 1815594251
+      energyBallImpact_31: 808899121
+      energyBallImpact_32: -2089469906
+      energyBallImpact_33: -481505659
+      energyBallImpact_34: -255057226
+      energyBallImpact_35: -1424809528
+      energyBallImpact_36: -1735472766
+      energyBallImpact_37: 618857904
+      energyBallImpact_38: 1354246762
+      energyBallImpact_39: 1703348052
+      energyBallImpact_4: -2106714372
+      energyBallImpact_40: -1228128085
+      energyBallImpact_41: -1631396290
+      energyBallImpact_42: -1327946153
+      energyBallImpact_43: -683359357
+      energyBallImpact_44: -1263866600
+      energyBallImpact_45: -1348717541
+      energyBallImpact_5: 294443890
+      energyBallImpact_6: -698715697
+      energyBallImpact_7: -2026800996
+      energyBallImpact_8: -1140278227
+      energyBallImpact_9: -1346054110
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
