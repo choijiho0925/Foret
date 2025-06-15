@@ -3,29 +3,58 @@ using UnityEngine;
 
 public class DialogueNPC : MonoBehaviour, IInteractable
 {
-    [SerializeField] private DialogueData[] dialogueData;//스크립터블 오브젝트
-    private PlayerInteract player;
+    [SerializeField] private List<DialogueData> dialogueData;//스크립터블 오브젝트
     private int indexnum;
-    private Queue<string> dialogueQueue = new Queue<string>();//이거 프로텍티드 다른 사람한테 조금 물어보자
     private bool isDialogueStart;
+    private PlayerInteract player;
+    private Queue<string> dialogueQueue = new Queue<string>();//이거 프로텍티드 다른 사람한테 조금 물어보자
+    private NpcController npcController;
+    private UIManager uiManager;
     
     private void Start()
     {
-        indexnum = 0;//나중에 저장 만들 때 indexnum,npc위치, 상태 저장 =>각 상속받는 스크립트에서
         player = FindObjectOfType<PlayerInteract>();
-    }
-
-    public virtual void ShowInteractUI()
-    {
-        //ui매니저에서 상호작용 연결
+        npcController = GetComponent<NpcController>();
+        uiManager = UIManager.Instance;
         isDialogueStart = true;
-        UIManager.Instance.dialogueController.SetTarget(this, dialogueData[indexnum].npcName);
-        UIManager.Instance.interactableController.ShowInteractable(this.gameObject.layer);
+        indexnum = 0;//나중에 저장 만들 때 indexnum,npc위치, 상태 저장 =>각 상속받는 스크립트에서
     }
 
-    public virtual void InteractAction()
+    public void ShowInteractUI()
     {
-        UIManager.Instance.interactableController.HideInteractable();
+        uiManager.dialogueController.SetTarget(this, dialogueData[indexnum].npcName);
+        uiManager.interactableController.ShowInteractable(this.gameObject.layer);
+    }
+
+    public void InteractAction()
+    {
+        uiManager.interactableController.HideInteractable();
+        CheckAction();
+    }
+
+    private void CheckAction()
+    {
+        if (dialogueData[indexnum].timing != ActionTiming.None)
+        {
+            npcController.SetTimeline(dialogueData[indexnum]);
+            if (dialogueData[indexnum].timing == ActionTiming.Before)
+            {
+                npcController.action = InitDialogue;
+                npcController.Playtimeline();
+            }
+            else
+            {
+                InitDialogue();
+            }
+        }
+        else
+        {
+            InitDialogue();
+        }
+    }
+
+    private void InitDialogue()
+    {
         if (isDialogueStart)
         {
             StartDialogue();
@@ -36,7 +65,7 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 
     private void StartDialogue()
     {
-        if(indexnum >= dialogueData.Length) return;
+        if(indexnum >= dialogueData.Count) return;
         dialogueQueue.Clear();
         foreach (string dialogue in dialogueData[indexnum].dialogues)
         {
@@ -46,9 +75,9 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 
     private void ShowNextLine()
     {
-        if (UIManager.Instance.dialogueController.IsTyping)
+        if (uiManager.dialogueController.IsTyping)
         {
-            UIManager.Instance.dialogueController.CompleteCurrentLineInstantly();// 글자 다 안 나왔으면 바로 표시
+            uiManager.dialogueController.CompleteCurrentLineInstantly();// 글자 다 안 나왔으면 바로 표시
             return;
         }
 
@@ -59,14 +88,28 @@ public class DialogueNPC : MonoBehaviour, IInteractable
         }
 
         string line = dialogueQueue.Dequeue();
-        UIManager.Instance.dialogueController.DisplayLine(line);//디알로그 출력
+        uiManager.dialogueController.DisplayLine(line);//디알로그 출력
     }
 
     private void EndDialogue()//나중에 ESC키 같은 걸로 중간에 대사를 끊을 수 있을지도?
     {
-        UIManager.Instance.dialogueController.HideDialoguePanel();
-        UIManager.Instance.dialogueController.ClearTarget(this);
-        UIManager.Instance.interactableController.ShowInteractable(this.gameObject.layer);
+        uiManager.dialogueController.HideDialoguePanel();
+        uiManager.dialogueController.ClearTarget(this);
+        if (dialogueData[indexnum].timing == ActionTiming.After)
+        {
+            npcController.action = AfterTimeline;
+            npcController.Playtimeline();
+        }
+        else
+        {
+            AfterTimeline();
+        }
+    }
+
+    private void AfterTimeline()
+    {
+        isDialogueStart = true;
+        uiManager.interactableController.ShowInteractable(this.gameObject.layer);
         indexnum++;//test용 indexnum를 높여주는 것은 퀘스트나 보스를 깼을 때 거기에 넣어주기
         player.OnEndInteraction();
     }
