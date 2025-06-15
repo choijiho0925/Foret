@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3034731506633931652}
   - component: {fileID: 7690058897447753520}
   - component: {fileID: 1346164885949847006}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: PoisonProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 7230096329440560383}
   - component: {fileID: 847525563868077428}
   - component: {fileID: 6618231729860528073}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -18,8 +18,8 @@ TagManager:
   - Enemy
   - DeadZone
   - Interactable
-  - 
-  - 
+  - Projectile
+  - IgnoreProjectile
   - 
   - 
   - 

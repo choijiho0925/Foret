@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4668312303649464698}
   - component: {fileID: 7180066789899162026}
   - component: {fileID: 2462953091816999047}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 5687901407241206339}
   - component: {fileID: 6527837087405188240}
   - component: {fileID: 1104447439832377043}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: EnergyBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
