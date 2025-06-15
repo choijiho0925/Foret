@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 6482345497280812796}
   - component: {fileID: 6196277592402840107}
   - component: {fileID: 7941553890216319843}
-  - component: {fileID: 7457549355101660278}
   - component: {fileID: 3721943105237993116}
+  - component: {fileID: 4671601274485155241}
+  - component: {fileID: 5667194618801086711}
+  - component: {fileID: 1944089282572158530}
   m_Layer: 12
   m_Name: MainNPC
   m_TagString: Untagged
@@ -108,8 +110,45 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!61 &7457549355101660278
-BoxCollider2D:
+--- !u!114 &3721943105237993116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5405266460925711291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d594071ff50454eaff716dacfe11b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueData:
+  - {fileID: 11400000, guid: 21bc2fae8303ad043a320abfddc42e4c, type: 2}
+  - {fileID: 11400000, guid: b9b885d57cc70a7428f6f0501f58647f, type: 2}
+  - {fileID: 11400000, guid: 0afca954d840ccb43a01798f7ffd7f23, type: 2}
+  - {fileID: 11400000, guid: 4358cc2dff79e7942b61c543042c2c35, type: 2}
+  - {fileID: 11400000, guid: 6ca20d976355c744f91b8fa28aa8d71e, type: 2}
+  - {fileID: 11400000, guid: add3626821d22f949819f7502c1e0128, type: 2}
+  - {fileID: 11400000, guid: 886f7d073d624ec49aa6e1fae5638637, type: 2}
+--- !u!114 &4671601274485155241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5405266460925711291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4602fc16461ca74c861a09286ed09d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcTimeline:
+  - {fileID: 11400000, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
+  - {fileID: 11400000, guid: b01ac0307eb10f847900748c16f2d015, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!60 &5667194618801086711
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -140,35 +179,47 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01839614, y: 0.12176521}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.21, y: 0.19}
     newSize: {x: 0.21, y: 0.19}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.59719586, y: 0.43353042}
-  m_EdgeRadius: 0
---- !u!114 &3721943105237993116
-MonoBehaviour:
+  m_Points:
+    m_Paths:
+    - - {x: 0.318, y: 0.346}
+      - {x: -0.24, y: 0.346}
+      - {x: -0.24, y: 0.009}
+      - {x: 0.318, y: 0.009}
+  m_UseDelaunayMesh: 0
+--- !u!320 &1944089282572158530
+PlayableDirector:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5405266460925711291}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97d594071ff50454eaff716dacfe11b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueData:
-  - {fileID: 11400000, guid: 21bc2fae8303ad043a320abfddc42e4c, type: 2}
-  - {fileID: 11400000, guid: 0afca954d840ccb43a01798f7ffd7f23, type: 2}
-  - {fileID: 11400000, guid: 4358cc2dff79e7942b61c543042c2c35, type: 2}
-  - {fileID: 11400000, guid: 6ca20d976355c744f91b8fa28aa8d71e, type: 2}
-  - {fileID: 11400000, guid: add3626821d22f949819f7502c1e0128, type: 2}
-  - {fileID: 11400000, guid: 886f7d073d624ec49aa6e1fae5638637, type: 2}
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: b01ac0307eb10f847900748c16f2d015, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 6496345233014511309, guid: b478a29bee3443a4cb5f6c2d82c5988b, type: 2}
+    value: {fileID: 7941553890216319843}
+  - key: {fileID: -2330223241801574141, guid: b478a29bee3443a4cb5f6c2d82c5988b, type: 2}
+    value: {fileID: 7941553890216319843}
+  - key: {fileID: 666025230159874478, guid: c01344978787e3948b822ab42d0cdf95, type: 2}
+    value: {fileID: 7941553890216319843}
+  - key: {fileID: 666025230159874478, guid: b01ac0307eb10f847900748c16f2d015, type: 2}
+    value: {fileID: 7941553890216319843}
+  - key: {fileID: 7538212337555785884, guid: b01ac0307eb10f847900748c16f2d015, type: 2}
+    value: {fileID: 7941553890216319843}
+  m_ExposedReferences:
+    m_References: []

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2008110938951798034}
   - component: {fileID: 5468493823805471559}
   - component: {fileID: 4220333688642526652}
+  - component: {fileID: 5386191009128054447}
   m_Layer: 10
   m_Name: MainSprite
   m_TagString: Untagged
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 15
+  m_SortingOrder: 35
   m_Sprite: {fileID: 45494822, guid: beeb73526e3f6fe41bfa8ad4b5dcf839, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -106,6 +107,49 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5386191009128054447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807192683088770016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2130e2eab2884124da1e822e3f211df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1956139114659216972
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1354145411369922403}
+  m_Layer: 10
+  m_Name: ProjectilePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1354145411369922403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956139114659216972}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.6, y: -0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2689808716273541801}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8391968557791557543
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,6 +184,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2008110938951798034}
+  - {fileID: 1354145411369922403}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &8186514416663003751
@@ -186,15 +231,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 8391968557791557543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 647f0d07c3e4d27459da796843a0f6eb, type: 3}
+  m_Script: {fileID: 11500000, guid: b70628c8130a18c439cd6535387b010b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
   moveSpeed: 5
-  detectionRange: 10
-  attackPower: 0
-  attackRange: 5
+  detectionRange: 15
+  attackPower: 5
+  attackRange: 10
   isGround: 0
+  monsterProjectilePrefab: {fileID: 1958311479825625687, guid: 7666638bf4864704c91e10d5c46844c7, type: 3}
+  projectilePos: {fileID: 1354145411369922403}
+  attackCooltime: 1.5
 --- !u!114 &1658884277144609224
 MonoBehaviour:
   m_ObjectHideFlags: 0

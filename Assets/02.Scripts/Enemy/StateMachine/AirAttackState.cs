@@ -21,6 +21,12 @@ public class AirAttackState : IState
 
     public void Update()
     {
-        
+        if (Vector3.Distance(monster.Player.transform.position, monster.transform.position) > monster.AttackRange)
+        {
+            monster.StateMachine.ChangeState(new AirIdleState(monster));
+            return;
+        }
+
+        monster.Attack();
     }
 }
