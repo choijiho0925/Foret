@@ -3,10 +3,10 @@ using UnityEngine;
 public abstract class MonsterBase : MonoBehaviour, IDamagable
 {
     [Header("기본 스텟")]
-    [SerializeField] private float health;          // 몬스터 체력
+    [SerializeField] private int health;          // 몬스터 체력
     [SerializeField] private float moveSpeed;       // 이동 속도
     [SerializeField] private float detectionRange;  // 감지 범위
-    [SerializeField] private float attackPower;     // 공격력
+    [SerializeField] private int attackPower;     // 공격력
     [SerializeField] private float attackRange;     // 공격 범위
     [SerializeField] private bool isGround;         // 지상 몹인지 확인
 
@@ -16,10 +16,10 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
     private SpriteRenderer spriteRenderer;              // 몬스터 이미지
 
     #region 프로퍼티
-    public float Health { get => health; set => health = value; }
+    public int Health { get => health; set => health = value; }
     public float MoveSpeed => moveSpeed;
     public float DetectionRange => detectionRange;
-    public float AttackPower => attackPower;
+    public int AttackPower => attackPower;
     public float AttackRange => attackRange;
     public bool IsGround => isGround;
     public GameObject Player => player;
