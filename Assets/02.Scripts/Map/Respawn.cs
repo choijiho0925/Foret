@@ -7,6 +7,8 @@ public class Respawn : MonoBehaviour, IInteractable
 
     private SaveSpawnPoint saveSpawnPoint; // SaveSpawnPoint 스크립트의 인스턴스
 
+    [SerializeField] private PlayerStat playerStat;
+
     public void ShowInteractUI()
     {
         
@@ -33,6 +35,7 @@ public class Respawn : MonoBehaviour, IInteractable
     public void RespawnPlayer() // 플레이어를 부활 지점으로 이동시키는 메소드
     {
         transform.position = respawnPoint; // 플레이어를 부활 지점으로 이동
+        playerStat.TakeDamage(1);
         // 부활할때 체력 -1
     }
 
