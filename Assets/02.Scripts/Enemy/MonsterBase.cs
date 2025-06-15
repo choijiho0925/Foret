@@ -9,6 +9,7 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
     [SerializeField] private int attackPower;     // 공격력
     [SerializeField] private float attackRange;     // 공격 범위
     [SerializeField] private bool isGround;         // 지상 몹인지 확인
+    [SerializeField] private bool isBoss;           // 보스 몹인지 확인
 
     private GameObject player;                      // 플레이어
     private MonsterStateMachine stateMachine;       // 상태머신
@@ -22,6 +23,7 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
     public int AttackPower => attackPower;
     public float AttackRange => attackRange;
     public bool IsGround => isGround;
+    public bool IsBoss => isBoss;
     public GameObject Player => player;
     public MonsterStateMachine StateMachine => stateMachine;
     public MonsterAnimationHandler AnimationHandler => animationHandler;
@@ -38,14 +40,18 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
 
     protected virtual void Start()
     {
-        // 몬스터 종류에 따른 상태 초기화
-        if (isGround)
+        if (!isBoss)
         {
-            stateMachine.ChangeState(new GroundIdleState(this));
-        }
-        else
-        {
-            stateMachine.ChangeState(new AirIdleState(this));
+            // 몬스터 종류에 따른 상태 초기화
+            if (isGround)
+            {
+                stateMachine.ChangeState(new GroundIdleState(this));
+            }
+            else
+            {
+                stateMachine.ChangeState(new AirIdleState(this));
+            }
+            return;
         }
     }
 
@@ -54,7 +60,11 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
         stateMachine?.Update();
     }
 
-    public abstract void Move();    // 지상 / 공중 따른 이동 구현
+    public virtual void Move()  // 지상 / 공중 따른 이동 구현
+    {
+
+    }    
+
     public abstract void Attack();  // 근거리 / 원거리 따른 공격 구현
 
     public void TakeDamage(int damage)
