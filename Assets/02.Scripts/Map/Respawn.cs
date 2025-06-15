@@ -16,15 +16,15 @@ public class Respawn : MonoBehaviour, IInteractable
 
     public void InteractAction()
     {
-        if (saveSpawnPoint.PlayerInZone)
-        {
-            SaveRespawnPoint(); // 플레이어가 영역에 있을 때 부활 지점을 저장하는 메소드 호출
-        }
+
     }
 
     public void SetRespawnPoint(Vector3 newPoint) // 부활 지점을 설정하는 메소드
     {
-        respawnPoint = newPoint; // 새로운 부활 지점 설정
+        if (saveSpawnPoint.PlayerInZone)
+        {
+            respawnPoint = newPoint; // 새로운 부활 지점 설정
+        }
     }
 
     public void SaveRespawnPoint() // 부활 지점을 저장하는 메소드
@@ -44,6 +44,7 @@ public class Respawn : MonoBehaviour, IInteractable
         if (collision.gameObject.layer == LayerMask.NameToLayer("SavePoint"))
         {
             saveSpawnPoint = collision.GetComponent<SaveSpawnPoint>(); // SaveSpawnPoint 스크립트의 인스턴스를 가져옴
+            Debug.Log("SaveSpawnPoint 영역에 들어옴"); // 디버그 메시지 출력
         }
     }
 
