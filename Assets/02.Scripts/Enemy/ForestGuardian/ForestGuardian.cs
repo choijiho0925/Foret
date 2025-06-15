@@ -275,8 +275,6 @@ public class ForestGuardian : BossBase
             if (isTeleportAttacking) return;
 
             isTeleportAttacking = true;
-            sprite.transform.rotation = Quaternion.Euler(0, 0, 90f);
-            Debug.Log("텔레포트 공격 시작 - 스프라이트 회전 90도");
             LockState();
 
             teleportState.StartTeleport(); 
@@ -285,6 +283,15 @@ public class ForestGuardian : BossBase
         {
             Debug.LogWarning($"[OnTeleportAttackStart] 잘못된 상태: {StateMachine.CurrentState?.GetType().Name}");
         }
+    }
+
+    // 낙하 직전 회전
+    public void ApplyTeleportRotation()
+    {
+        // 회전 방향 결정 (오른쪽을 보고 있으면 true)
+        float rotationZ = sprite.flipX ? 90f : -90f;
+        sprite.transform.rotation = Quaternion.Euler(0, 0, rotationZ);
+        Debug.Log("텔레포트 공격 시작 - 스프라이트 회전 90도");
     }
 
     // 텔레포트 공격 종료 시 호출

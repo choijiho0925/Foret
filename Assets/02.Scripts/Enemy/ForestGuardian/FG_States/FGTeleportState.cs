@@ -55,6 +55,7 @@ public class FGTeleportState : IState
             yield return new WaitForSeconds(0.3f);
 
             // 실제 텔레포트
+            boss.ApplyTeleportRotation();
             boss.TeleportTo(playerAbove);
             Debug.Log("▶ 순간이동 성공");
 
