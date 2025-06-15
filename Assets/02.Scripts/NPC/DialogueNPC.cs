@@ -6,7 +6,6 @@ public class DialogueNPC : MonoBehaviour, IInteractable
     [SerializeField] private List<DialogueData> dialogueData;//스크립터블 오브젝트
     private int indexnum;
     private bool isDialogueStart;
-    private bool isSpeechBubbleStart;   // 말풍선 감지용 bool
     private PlayerInteract player;
     private Queue<string> dialogueQueue = new Queue<string>();//이거 프로텍티드 다른 사람한테 조금 물어보자
     private NpcController npcController;
@@ -18,7 +17,6 @@ public class DialogueNPC : MonoBehaviour, IInteractable
         npcController = GetComponent<NpcController>();
         uiManager = UIManager.Instance;
         isDialogueStart = true;
-        isSpeechBubbleStart = true;
         indexnum = 0;//나중에 저장 만들 때 indexnum,npc위치, 상태 저장 =>각 상속받는 스크립트에서
     }
 
@@ -36,6 +34,7 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 
     private void CheckAction()
     {
+        uiManager.dialogueController.IsScene(dialogueData[indexnum].isScene);
         if (dialogueData[indexnum].timing != ActionTiming.None)
         {
             npcController.SetTimeline(dialogueData[indexnum]);
@@ -62,30 +61,10 @@ public class DialogueNPC : MonoBehaviour, IInteractable
             StartDialogue();
             isDialogueStart = false;
         }
-        else if (isSpeechBubbleStart)
-        {
-            StartSpeedBubble();
-            isSpeechBubbleStart = false;
-        }
         ShowNextLine();
     }
 
     private void StartDialogue()
-    {
-        if (indexnum >= dialogueData.Count)
-        {
-            indexnum = dialogueData.Count;
-        }
-        if (indexnum >= dialogueData.Count) return;
-        dialogueQueue.Clear();
-        foreach (string dialogue in dialogueData[indexnum].dialogues)
-        {
-            dialogueQueue.Enqueue(dialogue);
-        }
-    }
-
-    // 말풍선 보여주기
-    private void StartSpeedBubble()
     {
         if (indexnum >= dialogueData.Count) return;
         dialogueQueue.Clear();
@@ -96,20 +75,7 @@ public class DialogueNPC : MonoBehaviour, IInteractable
     }
 
     // 말풍선 끄기
-    private void EndSpeechBubble()
-    {
-        uiManager.dialogueController.HideSpeechBubble();
-        uiManager.dialogueController.ClearTarget(this);
-        if (dialogueData[indexnum].timing == ActionTiming.After)
-        {
-            npcController.action = AfterTimeline;
-            npcController.Playtimeline();
-        }
-        else
-        {
-            AfterTimeline();
-        }
-    }
+    
 
     private void ShowNextLine()
     {
@@ -121,8 +87,14 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 
         if (dialogueQueue.Count == 0)
         {
-            EndDialogue();
-            EndSpeechBubble();
+            if (dialogueData[indexnum].isScene)
+            {
+                EndSpeechBubble();
+            }
+            else
+            {
+                EndDialogue();
+            }
             return;
         }
 
@@ -133,6 +105,21 @@ public class DialogueNPC : MonoBehaviour, IInteractable
     private void EndDialogue()//나중에 ESC키 같은 걸로 중간에 대사를 끊을 수 있을지도?
     {
         uiManager.dialogueController.HideDialoguePanel();
+        uiManager.dialogueController.ClearTarget(this);
+        if (dialogueData[indexnum].timing == ActionTiming.After)
+        {
+            npcController.action = AfterTimeline;
+            npcController.Playtimeline();
+        }
+        else
+        {
+            AfterTimeline();
+        }
+    }
+    
+    private void EndSpeechBubble()
+    {
+        uiManager.dialogueController.HideSpeechBubble();
         uiManager.dialogueController.ClearTarget(this);
         if (dialogueData[indexnum].timing == ActionTiming.After)
         {

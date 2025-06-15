@@ -9,6 +9,7 @@ public class DialogueController : MonoBehaviour
     public TextMeshProUGUI npcNameText;
     public TextMeshProUGUI dialogueText;
     public GameObject dialoguePanel;
+    public TextMeshProUGUI speechBubbleText;
 
     // NPC의 말풍선을 띄우기 위한 멤버변수들
     public Transform target;    // 타겟 NPC 위치
@@ -23,6 +24,8 @@ public class DialogueController : MonoBehaviour
 
     private DialogueNPC currentTarget;
     private string npcName;
+
+    private bool isScene;
 
     // 대화할 NPC를 타겟으로 설정
     public void SetTarget(DialogueNPC npc, string name)
@@ -54,7 +57,25 @@ public class DialogueController : MonoBehaviour
         IsTyping = false;
         dialoguePanel.SetActive(false);
     }
+    
+    public void ShowSpeechBubble()
+    {
+        if (target == null) return;
 
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(target.position + offset);
+        rect.position = screenPos;
+
+        speechBubble.SetActive(true);
+    }
+
+    public void HideSpeechBubble()
+    {
+        if (speechBubble != null)
+        {
+            speechBubble.SetActive(false);
+        }
+    }
+    
     // 대사 출력이 끝난 후 호출할 메서드
     public void CompleteCurrentLineInstantly()
     {
@@ -79,7 +100,14 @@ public class DialogueController : MonoBehaviour
             StopCoroutine(typingCoroutine);
         }
 
-        ShowDialoguePanel();
+        if (isScene)
+        {
+            ShowSpeechBubble();
+        }
+        else
+        {
+            ShowDialoguePanel();    
+        }
         typingCoroutine = StartCoroutine(TypeLine(line));
     }
 
@@ -100,21 +128,8 @@ public class DialogueController : MonoBehaviour
         IsTyping = false;
     }
 
-    public void ShowSpeechBubble()
+    public void IsScene(bool b)
     {
-        if (target == null) return;
-
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(target.position + offset);
-        rect.position = screenPos;
-
-        speechBubble.SetActive(true);
-    }
-
-    public void HideSpeechBubble()
-    {
-        if (speechBubble != null)
-        {
-            speechBubble.SetActive(false);
-        }
+        isScene = b;
     }
 }
