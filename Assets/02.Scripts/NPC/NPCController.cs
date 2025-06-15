@@ -9,15 +9,19 @@ public class NpcController : MonoBehaviour
     public UnityAction action;
     
     [SerializeField] private List<PlayableAsset> npcTimeline;
+    [SerializeField] private NpcPosData npcPosData;
     
     private PlayableDirector director;
     private Animator animator;
+    private int posnum;
 
     private void Start()
     {
         director = GetComponent<PlayableDirector>();
         animator = GetComponent<Animator>();
         animator.enabled = false;
+        posnum = 0;
+        GoNextPos();
     }
 
     public void SetTimeline(DialogueData data)
@@ -61,5 +65,15 @@ public class NpcController : MonoBehaviour
     {
         director.stopped -= OnTimelineFinished;
         action?.Invoke();
+    }
+
+    public void GoNextPos()//npc위치 변경
+    {
+        if (posnum >= npcPosData.pos.Count)
+        {
+            posnum = npcPosData.pos.Count;
+        }
+        transform.position = npcPosData.pos[posnum];
+        posnum++;
     }
 }

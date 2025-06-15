@@ -65,7 +65,10 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 
     private void StartDialogue()
     {
-        if(indexnum >= dialogueData.Count) return;
+        if (indexnum >= dialogueData.Count)
+        {
+            indexnum = dialogueData.Count;
+        }
         dialogueQueue.Clear();
         foreach (string dialogue in dialogueData[indexnum].dialogues)
         {

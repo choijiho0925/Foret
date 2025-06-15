@@ -126,6 +126,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b01ac0307eb10f847900748c16f2d015, type: 2}
   - {fileID: 11400000, guid: c01344978787e3948b822ab42d0cdf95, type: 2}
   - {fileID: 11400000, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
+  npcPosData: {fileID: 11400000, guid: d27fee44405f09e41b21bc4f69a02796, type: 2}
 --- !u!60 &5667194618801086711
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -184,30 +185,34 @@ PlayableDirector:
   m_GameObject: {fileID: 5405266460925711291}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: c01344978787e3948b822ab42d0cdf95, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: b01ac0307eb10f847900748c16f2d015, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: 6496345233014511309, guid: b478a29bee3443a4cb5f6c2d82c5988b, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 4880198771077447358}
   - key: {fileID: -2330223241801574141, guid: b478a29bee3443a4cb5f6c2d82c5988b, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 4880198771077447358}
   - key: {fileID: 666025230159874478, guid: c01344978787e3948b822ab42d0cdf95, type: 2}
     value: {fileID: 4880198771077447358}
   - key: {fileID: 666025230159874478, guid: b01ac0307eb10f847900748c16f2d015, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 4880198771077447358}
   - key: {fileID: 7538212337555785884, guid: b01ac0307eb10f847900748c16f2d015, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 4880198771077447358}
   - key: {fileID: 666025230159874478, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 4880198771077447358}
   - key: {fileID: -1415073646323511835, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 4880198771077447358}
   - key: {fileID: -5510727153117802824, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
     value: {fileID: 5405266460925711291}
   - key: {fileID: -995620804182172091, guid: c01344978787e3948b822ab42d0cdf95, type: 2}
     value: {fileID: 8756445290385065127}
+  - key: {fileID: -847540714381424761, guid: b478a29bee3443a4cb5f6c2d82c5988b, type: 2}
+    value: {fileID: 8756445290385065127}
+  - key: {fileID: 458402756136041098, guid: b01ac0307eb10f847900748c16f2d015, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &8756445290385065127
@@ -230,7 +235,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 4671601274485155241}
           m_TargetAssemblyTypeName: NpcController, Assembly-CSharp
-          m_MethodName: HealTrue
+          m_MethodName: GoNextPos
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
