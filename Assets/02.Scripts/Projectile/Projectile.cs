@@ -47,7 +47,18 @@ public class Projectile : MonoBehaviour
         rb.velocity = Vector3.zero;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    // private void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     //데미지 처리 대상이고, IDamagable 객체일 떄만 데미지 처리
+    //     if ((targetLayer.value & (1 << collision.gameObject.layer)) != 0 &&
+    //         collision.gameObject.TryGetComponent<IDamagable>(out IDamagable damagable))
+    //     {
+    //         damagable.TakeDamage(damage);
+    //     }
+    //     ReturnToPool();
+    // }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         //데미지 처리 대상이고, IDamagable 객체일 떄만 데미지 처리
         if ((targetLayer.value & (1 << collision.gameObject.layer)) != 0 &&
@@ -57,7 +68,6 @@ public class Projectile : MonoBehaviour
         }
         ReturnToPool();
     }
-
 
     private void ReturnToPool()
     {

@@ -9,6 +9,7 @@ public class FlyingMonster : MonsterBase
     [SerializeField] private GameObject monsterProjectilePrefab;
     [SerializeField] private Transform projectilePos;
     [SerializeField] private float attackCooltime = 1.5f;
+    [SerializeField] private ProjectileType projectileType;
 
     private float timeSinceLastAttack = float.MaxValue;
 
@@ -59,12 +60,14 @@ public class FlyingMonster : MonsterBase
 
     public void ShootProjectile()
     {
-        
-        GameObject projectile = Instantiate(monsterProjectilePrefab, projectilePos.position, Quaternion.identity);
+        //GameObject projectile = Instantiate(monsterProjectilePrefab, projectilePos.position, Quaternion.identity);
+        Projectile projectile =
+            PoolManager.Instance.ProjectilePool.Get(projectileType, projectilePos.position, Quaternion.identity);
 
         Vector3 targetPos = Player.transform.position + Vector3.up;
         Vector3 dir = (targetPos - projectilePos.position).normalized;
 
-        projectile.GetComponent<MonsterProjectile>().Initialize(dir, AttackPower);
+        //projectile.GetComponent<MonsterProjectile>().Initialize(dir, AttackPower);
+        projectile.Initialize(dir, AttackPower);
     }
 }
