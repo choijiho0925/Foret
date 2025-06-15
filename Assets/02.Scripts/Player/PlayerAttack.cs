@@ -113,7 +113,7 @@ namespace _02.Scripts.Player
             //발사 방향 설정
             float angle = Mathf.Atan2(fireDirection.y, fireDirection.x) * Mathf.Rad2Deg;
             
-            PoolManager.Instance.ProjectilePool.Get(transform.position + throwPositionOffset, Quaternion.Euler(0, 0, angle));
+            PoolManager.Instance.ProjectilePool.Get( ProjectileType.Player, transform.position + throwPositionOffset, Quaternion.Euler(0, 0, angle));
             
             StartCoroutine(AttackCooldown());
         }

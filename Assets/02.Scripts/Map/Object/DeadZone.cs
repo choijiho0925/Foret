@@ -6,8 +6,10 @@ public class DeadZone : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            Respawn respawn = collision.GetComponent<Respawn>();
-            respawn.RespawnPlayer();
+            if (collision.TryGetComponent<PlayerStat>(out var playerStat))
+            {
+                playerStat.DamageAndRespawn(1);
+            }
         }
     }
 }

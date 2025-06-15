@@ -16,7 +16,6 @@ public class Projectile : MonoBehaviour
 
     private void OnEnable()
     {
-        rb.AddForce(transform.right * speed);
         Invoke(nameof(SelfDestroy), lifeTime);
         SceneManager.sceneLoaded += OnSceneLoadedEvent;
     }
@@ -28,6 +27,15 @@ public class Projectile : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoadedEvent;
     }
 
+    public void Initialize(Vector3 dir, int dmg)
+    {
+        damage = dmg;
+    }
+
+    private void Fire() //발사
+    {
+        rb.AddForce(transform.right * speed);
+    }
     private void Reset()
     {
         rb.position = Vector3.zero;
@@ -46,10 +54,9 @@ public class Projectile : MonoBehaviour
     }
 
 
-
     private void ReturnToPool()
     {
-        PoolManager.Instance.ProjectilePool.Return(this);
+        //PoolManager.Instance.ProjectilePool.Return(this);
     }
 
     private void SelfDestroy()  //특정 시간이 지나면 자체 파괴(반환)

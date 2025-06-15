@@ -315,7 +315,6 @@ GameObject:
   - component: {fileID: 4302860743254405335}
   - component: {fileID: 3155899312302287525}
   - component: {fileID: 6199467669736934528}
-  - component: {fileID: 4551964071166921394}
   - component: {fileID: 3692114234845861888}
   - component: {fileID: 3689895592802474628}
   - component: {fileID: 4076293226720239261}
@@ -418,7 +417,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f19b0982e8919e4bbfeacc3966192d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 50
   canControl: 1
 --- !u!114 &3155899312302287525
 MonoBehaviour:
@@ -434,7 +432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableLayer:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 2415923200
 --- !u!114 &6199467669736934528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,18 +446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 48ca3407528d7bf478f98638561b4b74, type: 2}
---- !u!114 &4551964071166921394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1642589270903554043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d4dd3b3a9e99d847aeab4e39fc46483, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  isInvincible: 0
 --- !u!114 &3692114234845861888
 MonoBehaviour:
   m_ObjectHideFlags: 0
