@@ -25,21 +25,24 @@ public class NpcController : MonoBehaviour
             director.playableAsset = npcTimeline[0];
             return;
         }
-        switch (data.type)
+        else
         {
-            case ActionType.Move :
-                director.playableAsset = npcTimeline[0];
-                break;
-            case ActionType.Attack :
-                director.playableAsset = npcTimeline[1];
-                break;
-            case ActionType.Heal :
-                director.playableAsset = npcTimeline[2];
-                animator.SetBool(isHeal,true);
-                break;
-            case ActionType.Change :
-                director.playableAsset = npcTimeline[3];
-                break;
+            switch (data.type)
+            {
+                case ActionType.Move :
+                    director.playableAsset = npcTimeline[0];
+                    break;
+                case ActionType.Attack :
+                    director.playableAsset = npcTimeline[1];
+                    break;
+                case ActionType.Heal :
+                    director.playableAsset = npcTimeline[2];
+                    animator.SetBool(isHeal,true);
+                    break;
+                case ActionType.Change :
+                    director.playableAsset = npcTimeline[3];
+                    break;
+            }
         }
     }
 
