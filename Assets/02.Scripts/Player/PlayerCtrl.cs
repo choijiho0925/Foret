@@ -8,10 +8,10 @@ namespace _02.Scripts.Player
     public class PlayerCtrl : MonoBehaviour 
     {
         private PlayerMovement playerMovement;
+        private PlayerStat playerStat;
         private PlayerAttack playerAttack;
         private PlayerInteract playerInteract;
 
-        public float runSpeed = 40f;
         public bool canControl = true;      //플레이어 이동 가능 여부
         
         private Vector2 moveInput;
@@ -21,6 +21,7 @@ namespace _02.Scripts.Player
         private void Awake()
         {
             playerMovement = GetComponent<PlayerMovement>();
+            playerStat = GetComponent<PlayerStat>();
             playerAttack = GetComponent<PlayerAttack>();
             playerInteract = GetComponent<PlayerInteract>();
         }
@@ -68,7 +69,7 @@ namespace _02.Scripts.Player
             if (context.phase == InputActionPhase.Started)
             {
                 // PlayerAttack 스크립트에 현재 이동 방향(moveInput)을 전달하며 공격 요청
-                playerAttack.ThrowAttack();
+                playerAttack.ThrowAttack(moveInput);
             }
         }
         
@@ -91,7 +92,7 @@ namespace _02.Scripts.Player
                 return;
             }
             
-            playerMovement.Move(moveInput.x * runSpeed * Time.fixedDeltaTime, jump, dash);
+            playerMovement.Move(moveInput.x * playerStat.CurrentMoveSpeed * Time.fixedDeltaTime, jump, dash);
             jump = false;
             dash = false;
         }

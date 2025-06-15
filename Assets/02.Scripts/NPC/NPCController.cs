@@ -5,7 +5,7 @@ using UnityEngine.Playables;
 
 public class NpcController : MonoBehaviour
 {
-    private int isHeal = Animator.StringToHash("IsHeal");
+    
     public UnityAction action;
     
     [SerializeField] private List<PlayableAsset> npcTimeline;
@@ -16,6 +16,8 @@ public class NpcController : MonoBehaviour
     private void Start()
     {
         director = GetComponent<PlayableDirector>();
+        animator = GetComponent<Animator>();
+        animator.enabled = false;
     }
 
     public void SetTimeline(DialogueData data)
@@ -25,27 +27,33 @@ public class NpcController : MonoBehaviour
             director.playableAsset = npcTimeline[0];
             return;
         }
-        switch (data.type)
+        else
         {
-            case ActionType.Move :
-                director.playableAsset = npcTimeline[0];
-                break;
-            case ActionType.Attack :
-                director.playableAsset = npcTimeline[1];
-                break;
-            case ActionType.Heal :
-                director.playableAsset = npcTimeline[2];
-                animator.SetBool(isHeal,true);
-                break;
-            case ActionType.Change :
-                director.playableAsset = npcTimeline[3];
-                break;
+            switch (data.type)
+            {
+                case ActionType.Move :
+                    director.playableAsset = npcTimeline[0];
+                    break;
+                case ActionType.Attack :
+                    director.playableAsset = npcTimeline[1];
+                    break;
+                case ActionType.Heal :
+                    director.playableAsset = npcTimeline[2];
+                    break;
+                case ActionType.Change :
+                    director.playableAsset = npcTimeline[3];
+                    break;
+            }
         }
     }
 
     public void Playtimeline()
     {
         director.stopped += OnTimelineFinished;
+        if (animator.enabled == false)
+        {
+            animator.enabled = true;
+        }
         director.Play();
     }
 

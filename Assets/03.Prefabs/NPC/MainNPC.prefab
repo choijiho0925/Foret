@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 6482345497280812796}
   - component: {fileID: 6196277592402840107}
-  - component: {fileID: 7941553890216319843}
   - component: {fileID: 3721943105237993116}
   - component: {fileID: 4671601274485155241}
   - component: {fileID: 5667194618801086711}
   - component: {fileID: 1944089282572158530}
+  - component: {fileID: 8756445290385065127}
+  - component: {fileID: 4880198771077447358}
   m_Layer: 12
   m_Name: MainNPC
   m_TagString: Untagged
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 30
-  m_Sprite: {fileID: -1921449758, guid: 840268f37fc07c14988b6f0067de4864, type: 3}
+  m_Sprite: {fileID: -1502230765, guid: ab2f1a16fbb0f484496e7d45aff2ecc4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -89,27 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &7941553890216319843
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5405266460925711291}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 881e2dc0716b07a40b865fa99ceb7269, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &3721943105237993116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,7 +109,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4358cc2dff79e7942b61c543042c2c35, type: 2}
   - {fileID: 11400000, guid: 6ca20d976355c744f91b8fa28aa8d71e, type: 2}
   - {fileID: 11400000, guid: add3626821d22f949819f7502c1e0128, type: 2}
-  - {fileID: 11400000, guid: 886f7d073d624ec49aa6e1fae5638637, type: 2}
 --- !u!114 &4671601274485155241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,10 +122,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcTimeline:
-  - {fileID: 11400000, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
+  - {fileID: 11400000, guid: b478a29bee3443a4cb5f6c2d82c5988b, type: 2}
   - {fileID: 11400000, guid: b01ac0307eb10f847900748c16f2d015, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: c01344978787e3948b822ab42d0cdf95, type: 2}
+  - {fileID: 11400000, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
 --- !u!60 &5667194618801086711
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -183,7 +162,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 0.21, y: 0.19}
+    oldSize: {x: 0.32, y: 0.09}
     newSize: {x: 0.21, y: 0.19}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -205,21 +184,80 @@ PlayableDirector:
   m_GameObject: {fileID: 5405266460925711291}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: b01ac0307eb10f847900748c16f2d015, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: c01344978787e3948b822ab42d0cdf95, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: 6496345233014511309, guid: b478a29bee3443a4cb5f6c2d82c5988b, type: 2}
-    value: {fileID: 7941553890216319843}
+    value: {fileID: 0}
   - key: {fileID: -2330223241801574141, guid: b478a29bee3443a4cb5f6c2d82c5988b, type: 2}
-    value: {fileID: 7941553890216319843}
+    value: {fileID: 0}
   - key: {fileID: 666025230159874478, guid: c01344978787e3948b822ab42d0cdf95, type: 2}
-    value: {fileID: 7941553890216319843}
+    value: {fileID: 4880198771077447358}
   - key: {fileID: 666025230159874478, guid: b01ac0307eb10f847900748c16f2d015, type: 2}
-    value: {fileID: 7941553890216319843}
+    value: {fileID: 0}
   - key: {fileID: 7538212337555785884, guid: b01ac0307eb10f847900748c16f2d015, type: 2}
-    value: {fileID: 7941553890216319843}
+    value: {fileID: 0}
+  - key: {fileID: 666025230159874478, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -1415073646323511835, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -5510727153117802824, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
+    value: {fileID: 5405266460925711291}
+  - key: {fileID: -995620804182172091, guid: c01344978787e3948b822ab42d0cdf95, type: 2}
+    value: {fileID: 8756445290385065127}
   m_ExposedReferences:
     m_References: []
+--- !u!114 &8756445290385065127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5405266460925711291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 41b128f2d15c8cd4bae27eec25ccc07c, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4671601274485155241}
+          m_TargetAssemblyTypeName: NpcController, Assembly-CSharp
+          m_MethodName: HealTrue
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!95 &4880198771077447358
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5405266460925711291}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 881e2dc0716b07a40b865fa99ceb7269, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
