@@ -14,7 +14,11 @@ public class InteractableController : MonoBehaviour
         if (layer == LayerMask.NameToLayer("SavePoint"))
         {
             interactText.text = "위치 기억하기";
-            
+
+        }
+        else if (layer == LayerMask.NameToLayer("RuneStone"))
+        {
+            interactText.text = "돌을 만져보기";
         }
 
         interactText.text = "대화하기";
