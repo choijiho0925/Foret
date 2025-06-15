@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] private ProjectileType projectileType;
     [SerializeField] private int damage;
+    [SerializeField] private Vector3 direction;
     [SerializeField] private float speed;
     [SerializeField] private float lifeTime;
     [SerializeField] private LayerMask targetLayer;
@@ -29,12 +31,15 @@ public class Projectile : MonoBehaviour
 
     public void Initialize(Vector3 dir, int dmg)
     {
-        damage = dmg;
+        //총알 데미지, 방향 설정 후 발사
+        damage = dmg;   
+        direction = dir;
+        Fire();
     }
 
     private void Fire() //발사
     {
-        rb.AddForce(transform.right * speed);
+        rb.AddForce(direction * speed);
     }
     private void Reset()
     {
@@ -56,7 +61,7 @@ public class Projectile : MonoBehaviour
 
     private void ReturnToPool()
     {
-        //PoolManager.Instance.ProjectilePool.Return(this);
+        PoolManager.Instance.ProjectilePool.Return(projectileType, this);
     }
 
     private void SelfDestroy()  //특정 시간이 지나면 자체 파괴(반환)

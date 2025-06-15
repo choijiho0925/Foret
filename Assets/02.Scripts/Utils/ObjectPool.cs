@@ -11,7 +11,7 @@ public abstract class ObjectPool<TEnum, TMono> : MonoBehaviour
     {
         public TEnum type;
         public TMono prefab;
-        public int size;
+        public int size;    //풀 초기화 사이즈
     }
 
     public List<Pool> pools;

@@ -96,7 +96,6 @@ namespace _02.Scripts.Player
             {
                 animator.SetTrigger(animIDAttackForward); 
             }
-            animator.SetTrigger(animIDAttackForward); 
             
             //발사 위치 설정
             Vector3 throwPositionOffset = new Vector3(throwPositionOffsetX * transform.localScale.x, throwPositionOffsetY * transform.localScale.y, 0);
@@ -113,7 +112,13 @@ namespace _02.Scripts.Player
             //발사 방향 설정
             float angle = Mathf.Atan2(fireDirection.y, fireDirection.x) * Mathf.Rad2Deg;
             
-            PoolManager.Instance.ProjectilePool.Get( ProjectileType.Player, transform.position + throwPositionOffset, Quaternion.Euler(0, 0, angle));
+            Projectile projectile = PoolManager.Instance.ProjectilePool.Get
+                (ProjectileType.Player, transform.position + throwPositionOffset, Quaternion.Euler(0,0,angle));
+    
+            if (projectile != null)
+            {
+                projectile.Initialize(fireDirection, playerStat.CurrentThrowDamage);
+            }
             
             StartCoroutine(AttackCooldown());
         }
