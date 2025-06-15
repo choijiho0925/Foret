@@ -45,8 +45,6 @@ public class FGMeleeState : IState
 
             // 애니메이션 완료까지 대기
             yield return new WaitForSeconds(boss.AttackDuration);
-
-            
         }
     }
 }

@@ -8,6 +8,7 @@ using UnityEngine;
 public class FGChargeAttackState : IState
 {
     private ForestGuardian boss;
+    private bool isChargeStarted = false;
 
     public FGChargeAttackState(ForestGuardian boss)
     {
@@ -17,7 +18,7 @@ public class FGChargeAttackState : IState
     public void Enter()
     {
         boss.ResetAllAnimation();
-        boss.StartCoroutine(ChargeAttack());
+        boss.PlayChargeAnimation();
         Debug.Log("FGChargeAttackState 진입");
     }
 
@@ -26,13 +27,19 @@ public class FGChargeAttackState : IState
 
     public void Update() { }
 
+    // 애니메이션 이벤트에서 호출됨
+    public void StartCharge()
+    {
+        if(!isChargeStarted)
+        {
+            isChargeStarted = true;
+            boss.ResetAllAnimation();
+            boss.StartCoroutine(ChargeAttack());
+        }
+    }
+
     private IEnumerator ChargeAttack()
     {
-        boss.ResetAllAnimation();
-
-        // 충전 애니메이션 재생 후 바로 공격 애니메이션 재생
-        boss.PlayChargeAnimation();
-
         // 돌진
         Vector2 direction = (boss.Player.transform.position - boss.transform.position).normalized;
 

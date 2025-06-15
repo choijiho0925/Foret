@@ -18,10 +18,15 @@ public class ForestGuardian : BossBase
     [SerializeField] private float chargeDuration = 2f;       // 돌진 지속 시간
     [SerializeField] private float chargeSpeedMultiplier = 50f;  // 돌진 속도 배수
 
+    private bool isBackdown = false;        // 회피 중인지 체크
+    private float backdownCooldown = 0.5f;  // 회피 재진입 대기 시간
+    private float backdownTimer = 0f;
+
     // 초기 위치
     public Vector3 InitialPosition { get; private set; }
 
-    private bool isCharging = false;
+    // 플레이어를 바라보고 있는지(회피 시에는 반대)
+    private bool allowLookAtPlayer = true;
 
     // 읽기 전용
     public float BackdownRange => backdownRange;
@@ -76,7 +81,7 @@ public class ForestGuardian : BossBase
     // 플레이어를 바라보게 함
     public void LookAtPlayer()
     {
-        if (Player == null) return;
+        if (!allowLookAtPlayer || Player == null) return;
 
         float dirX = Player.transform.position.x - transform.position.x;
 
@@ -86,6 +91,12 @@ public class ForestGuardian : BossBase
             // 오른쪽에 있으면 flipX = true
             sprite.flipX = dirX < 0;
         }
+    }
+
+    // 플레이어 반대를 바라보게 함
+    public void SetAllowLookAtPlayer(bool value)
+    {
+        allowLookAtPlayer = value;
     }
 
     // 플레이어와의 거리 정보
@@ -110,15 +121,32 @@ public class ForestGuardian : BossBase
     //    transform.position += (Vector3)(direction * MoveSpeed * Time.deltaTime);
     //}
 
-    // 회피 거리 확인
-    public void BackdownFromPlayer(Vector3 from, float backdownDistance = 2f)
+    // 회피
+    public bool TryBackdownMove(float direction, float moveDistance)
     {
-        // 보스 기준으로 플레이어보다 왼쪽이면 오른쪽으로 회피, 오른쪽이면 왼쪽으로 회피
-        float direction = Mathf.Sign(transform.position.x - from.x);
+        Vector2 moveVector = Vector2.right * direction * moveDistance;
+        Vector2 targetPos = rb.position + moveVector;
 
-        Vector2 moveDelta = Vector2.right * direction * MoveSpeed * 5 * Time.deltaTime;
+        LayerMask mapMask = LayerMask.GetMask("Ground", "Wall", "Top");
+        RaycastHit2D hit = Physics2D.Raycast(rb.position, Vector2.right * direction, moveDistance + 0.1f, mapMask);
 
-        rb.MovePosition(rb.position + moveDelta);
+        if (hit.collider == null)
+        {
+            rb.MovePosition(targetPos);
+            sprite.flipX = direction < 0;
+            return true;
+        }
+
+        return false; // 막혔다
+    }
+
+    // 벽으로 막혀 있지 않은지 (회피 가능한지) 체크
+    public bool CanBackdown(float direction, float checkDistance)
+    {
+        Vector2 checkDir = Vector2.right * direction;
+        LayerMask mask = LayerMask.GetMask("Ground", "Wall", "Top");
+        RaycastHit2D hit = Physics2D.Raycast(rb.position, checkDir, checkDistance, mask);
+        return hit.collider == null;
     }
 
     // 플레이어 위로 텔레포트할 수 있는지 확인
@@ -157,15 +185,17 @@ public class ForestGuardian : BossBase
     // 애니메이션에서 호출됨
     public void OnChargeAnimationEvent()
     {
-        if(StateMachine.)
+        if(StateMachine.CurrentState is FGChargeAttackState chargeState)
+        {
+            chargeState.StartCharge();
+        }
     }
 
     // 충전 애니메이션
     public void PlayChargeAnimation()
     {
-        animator.Play("Charge");
-        //animator.ResetTrigger("ChargeTrigger"); // 중복 방지용
-        //animator.SetTrigger("ChargeTrigger");
+        animator.ResetTrigger("ChargeTrigger"); // 중복 방지용
+        animator.SetTrigger("ChargeTrigger");
     }
 
     // 공격 애니메이션
@@ -185,6 +215,7 @@ public class ForestGuardian : BossBase
     public void ResetAllAnimation()
     {
         animator.SetBool("IsRunning", false);
+        animator.ResetTrigger("ChargeTrigger");
     }
 
 }

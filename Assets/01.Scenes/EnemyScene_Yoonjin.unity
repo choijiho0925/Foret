@@ -242,8 +242,8 @@ MonoBehaviour:
   patternDelay: 2
   backdownRange: 2.5
   meleeRange: 4
-  chargeRange: 6
-  teleportRange: 10
+  chargeRange: 8
+  teleportRange: 12
   returnThreshold: 0.1
   attackDuration: 0.7
   chargeDelay: 0.5
@@ -524,6 +524,7 @@ GameObject:
   - component: {fileID: 1021632681}
   - component: {fileID: 1021632680}
   - component: {fileID: 1021632682}
+  - component: {fileID: 1021632683}
   m_Layer: 0
   m_Name: FGSprite
   m_TagString: Untagged
@@ -619,6 +620,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1021632683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021632679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15b294f11de20249ab45ae0cd00e58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &84417979695956243
 GameObject:
   m_ObjectHideFlags: 0
