@@ -1051,7 +1051,7 @@ PrefabInstance:
       objectReference: {fileID: 1154104868}
     - target: {fileID: 4564322958390833766, guid: b24c00b7344e37947b5260cc823b06a8, type: 3}
       propertyPath: offset.y
-      value: 0.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4564322958390833766, guid: b24c00b7344e37947b5260cc823b06a8, type: 3}
       propertyPath: speechBubble
