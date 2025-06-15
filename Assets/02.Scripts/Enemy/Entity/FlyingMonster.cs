@@ -11,6 +11,8 @@ public class FlyingMonster : MonsterBase
     [SerializeField] private float attackCooltime = 1.5f;
     [SerializeField] private ProjectileType projectileType;
 
+    private bool isLeft = true;
+
     private float timeSinceLastAttack = float.MaxValue;
 
     protected override void Awake()
@@ -47,14 +49,19 @@ public class FlyingMonster : MonsterBase
 
     public void LookDirection()
     {
-        // 플레이어 위치에 맞게 보는 방향 수정
-        if (Player.transform.position.x < transform.position.x)
+        // 플레이어 위치에 맞게 보는 방향 및 투사체 발사 위치 수정
+        bool shouldLeft = Player.transform.position.x < transform.position.x;
+
+        if (shouldLeft != isLeft)
         {
-            SpriteRenderer.flipX = false;
-        }
-        else if (Player.transform.position.x > transform.position.x)
-        {
-            SpriteRenderer.flipX = true;
+            isLeft = shouldLeft;
+
+            SpriteRenderer.flipX = !isLeft;
+
+            // projectilePos의 위치 반전
+            Vector3 localPos = projectilePos.localPosition;
+            localPos.x *= -1f;
+            projectilePos.localPosition = localPos;
         }
     }
 

@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 1956139114659216972}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.3, z: 0}
+  m_LocalPosition: {x: -0.9, y: -0.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -179,7 +179,7 @@ Transform:
   m_GameObject: {fileID: 8391968557791557543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.1, y: -0.82, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -243,6 +243,7 @@ MonoBehaviour:
   monsterProjectilePrefab: {fileID: 3815138734285726434, guid: f00c4cbfa6b76fa4c9b167c3d0983d77, type: 3}
   projectilePos: {fileID: 1354145411369922403}
   attackCooltime: 1.5
+  projectileType: 2
 --- !u!114 &1658884277144609224
 MonoBehaviour:
   m_ObjectHideFlags: 0
