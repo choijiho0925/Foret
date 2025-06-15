@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RuneStone : MonoBehaviour, IInteractable
 {
-    private bool canGoNextStage; // 다음 스테이지로 넘어갈 수 있는지 여부
+    private bool canGoNextStage = true; // 다음 스테이지로 넘어갈 수 있는지 여부
     private bool isPlayerInZone; // 플레이어가 영역에 있는지 여부
     private Renderer renderer;
     public Material normalMaterial;
