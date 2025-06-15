@@ -5,7 +5,7 @@ using UnityEngine.Playables;
 
 public class NpcController : MonoBehaviour
 {
-    private int isHeal = Animator.StringToHash("IsHeal");
+    
     public UnityAction action;
     
     [SerializeField] private List<PlayableAsset> npcTimeline;
@@ -16,6 +16,8 @@ public class NpcController : MonoBehaviour
     private void Start()
     {
         director = GetComponent<PlayableDirector>();
+        animator = GetComponent<Animator>();
+        animator.enabled = false;
     }
 
     public void SetTimeline(DialogueData data)
@@ -37,7 +39,6 @@ public class NpcController : MonoBehaviour
                     break;
                 case ActionType.Heal :
                     director.playableAsset = npcTimeline[2];
-                    animator.SetBool(isHeal,true);
                     break;
                 case ActionType.Change :
                     director.playableAsset = npcTimeline[3];
@@ -49,6 +50,10 @@ public class NpcController : MonoBehaviour
     public void Playtimeline()
     {
         director.stopped += OnTimelineFinished;
+        if (animator.enabled == false)
+        {
+            animator.enabled = true;
+        }
         director.Play();
     }
 
