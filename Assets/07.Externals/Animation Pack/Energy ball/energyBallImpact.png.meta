@@ -1,0 +1,333 @@
+fileFormatVersion: 2
+guid: 6b3a5d2abeb3b464a87d721d44903342
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: energyBallImpact_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 940
+        width: 70
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb0b474fffa63b9429654cbda4601b5d
+      internalID: -365335455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energyBallImpact_1
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 809
+        width: 84
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cc8beea3b1aab84db39ecf3ddb0932a
+      internalID: 477081663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energyBallImpact_28
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 476
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1ff5e501a05d744cb4eb12a06c3674e
+      internalID: -647802191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energyBallImpact_2
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 674
+        width: 103
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d837ac0b10add5843bd05e058ff106e9
+      internalID: 1307827847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energyBallImpact_3
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 544
+        width: 117
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3698939977101fd4699e681eab4e5a64
+      internalID: -1604705324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energyBallImpact_4
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 408
+        width: 119
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 239079fd14196654aa3dce69d50c8e9a
+      internalID: -2106714372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energyBallImpact_5
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 140
+        width: 125
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90f6823c74e2e294593a2b561e08c7a5
+      internalID: 294443890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      energyBallImpact_0: -365335455
+      energyBallImpact_1: 477081663
+      energyBallImpact_10: -998458022
+      energyBallImpact_11: -1010968649
+      energyBallImpact_12: -1394815736
+      energyBallImpact_13: 1510758968
+      energyBallImpact_14: -1684434341
+      energyBallImpact_15: -1631995336
+      energyBallImpact_16: 495905133
+      energyBallImpact_17: -1519616419
+      energyBallImpact_18: -1205488133
+      energyBallImpact_19: -1802572624
+      energyBallImpact_2: 1307827847
+      energyBallImpact_20: 1801862256
+      energyBallImpact_21: -1538495741
+      energyBallImpact_22: 708116490
+      energyBallImpact_23: -401052504
+      energyBallImpact_24: -318823038
+      energyBallImpact_25: 1321184600
+      energyBallImpact_26: -51926059
+      energyBallImpact_27: -1029546548
+      energyBallImpact_28: -647802191
+      energyBallImpact_29: 57733538
+      energyBallImpact_3: -1604705324
+      energyBallImpact_30: 1815594251
+      energyBallImpact_31: 808899121
+      energyBallImpact_32: -2089469906
+      energyBallImpact_33: -481505659
+      energyBallImpact_34: -255057226
+      energyBallImpact_35: -1424809528
+      energyBallImpact_36: -1735472766
+      energyBallImpact_37: 618857904
+      energyBallImpact_38: 1354246762
+      energyBallImpact_39: 1703348052
+      energyBallImpact_4: -2106714372
+      energyBallImpact_40: -1228128085
+      energyBallImpact_41: -1631396290
+      energyBallImpact_42: -1327946153
+      energyBallImpact_43: -683359357
+      energyBallImpact_44: -1263866600
+      energyBallImpact_45: -1348717541
+      energyBallImpact_5: 294443890
+      energyBallImpact_6: -698715697
+      energyBallImpact_7: -2026800996
+      energyBallImpact_8: -1140278227
+      energyBallImpact_9: -1346054110
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

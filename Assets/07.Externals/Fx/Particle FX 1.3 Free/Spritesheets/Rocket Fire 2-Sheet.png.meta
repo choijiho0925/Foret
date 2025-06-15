@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -106,9 +106,568 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 664
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfd3bff71cb285a4abf3d2d8bdc6d0f1
+      internalID: 1496884087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 659
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6f28220f7ecf2342ba249ebe5591147
+      internalID: -1605741039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 652
+        width: 18
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32f886b66ffc6fd40a5385d7c6dd209b
+      internalID: 1201253077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 651
+        width: 22
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 440a21d522dc63945aefba25a7aa6cc3
+      internalID: 907856453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 649
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 674c4558e7af1be4b9269a6e8ddce7bb
+      internalID: 1864728583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 492
+        width: 25
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70bc99e8d02021a43bf7d16b48c86590
+      internalID: -344902003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 484
+        width: 30
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 417066120a16627438da1c818f4ae49d
+      internalID: 201185683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 481
+        width: 36
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee0e52919f65d324da0b732ca3d88309
+      internalID: -950377588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 482
+        width: 29
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ffbe10ac27920e4ca42b537c6db3929
+      internalID: -1931662231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 483
+        width: 20
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e2bec6e638f08145a51fe5b692db150
+      internalID: 1516242033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 327
+        width: 22
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96855abb8ba7520419266c2ea62558a0
+      internalID: 1060505810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 326
+        width: 22
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2da30a5c381ee0746b5f6194e6ed218f
+      internalID: -477880279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 331
+        width: 25
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61d7c97345a42e04785e16326c47ff10
+      internalID: 76323271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 328
+        width: 24
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a658f461d4af7e440a834cadd8db7fea
+      internalID: 1405899626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 327
+        width: 27
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0079199c1d57b9143ba36dfb30b50242
+      internalID: 1317021397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 179
+        width: 21
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0590d59e194bc9b4ea581a2c1f9e7976
+      internalID: 293253430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 177
+        width: 26
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ba3897c70c1583429e6a344227f07aa
+      internalID: -1800831267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 214
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9684cadfc89bb447a4814a6a4b664fd
+      internalID: -656267505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 177
+        width: 26
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c80b663a00139a04bb720d11c221cf23
+      internalID: -953879737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 180
+        width: 34
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 083b51673382096448c97db06fc1a92e
+      internalID: -1097043071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 177
+        width: 26
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2e69c88660fd3f46888e5ce826a89bb
+      internalID: 810531903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 22
+        width: 31
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 850dd12f8cdfc6c4584394f463b76033
+      internalID: -945353401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 28
+        width: 19
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5c70645c375e80458dd96e278e279c4
+      internalID: 430278493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 27
+        width: 18
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58db5b03565726a4fb24de5a7353f1be
+      internalID: -1798268456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 26
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 777f4227ee3ee0240ad93b9b4446d770
+      internalID: -460535095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocket Fire 2-Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 29
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e91b0b83be4ca243910004ea837fe55
+      internalID: -407688173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +678,33 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Rocket Fire 2-Sheet_0: 1496884087
+      Rocket Fire 2-Sheet_1: -1605741039
+      Rocket Fire 2-Sheet_10: 1060505810
+      Rocket Fire 2-Sheet_11: -477880279
+      Rocket Fire 2-Sheet_12: 76323271
+      Rocket Fire 2-Sheet_13: 1405899626
+      Rocket Fire 2-Sheet_14: 1317021397
+      Rocket Fire 2-Sheet_15: 293253430
+      Rocket Fire 2-Sheet_16: -1800831267
+      Rocket Fire 2-Sheet_17: -656267505
+      Rocket Fire 2-Sheet_18: -953879737
+      Rocket Fire 2-Sheet_19: -1097043071
+      Rocket Fire 2-Sheet_2: 1201253077
+      Rocket Fire 2-Sheet_20: 810531903
+      Rocket Fire 2-Sheet_21: -945353401
+      Rocket Fire 2-Sheet_22: 430278493
+      Rocket Fire 2-Sheet_23: -1798268456
+      Rocket Fire 2-Sheet_24: -460535095
+      Rocket Fire 2-Sheet_25: -407688173
+      Rocket Fire 2-Sheet_3: 907856453
+      Rocket Fire 2-Sheet_4: 1864728583
+      Rocket Fire 2-Sheet_5: -344902003
+      Rocket Fire 2-Sheet_6: 201185683
+      Rocket Fire 2-Sheet_7: -950377588
+      Rocket Fire 2-Sheet_8: -1931662231
+      Rocket Fire 2-Sheet_9: 1516242033
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
