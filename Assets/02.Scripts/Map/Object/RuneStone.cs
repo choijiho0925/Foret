@@ -36,7 +36,7 @@ public class RuneStone : MonoBehaviour, IInteractable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             isPlayerInZone = true; // 플레이어가 영역에 들어옴
             renderer.material = outLineMaterial; // 플레이어가 영역에 들어오면 아웃라인 머티리얼로 변경
@@ -45,7 +45,7 @@ public class RuneStone : MonoBehaviour, IInteractable
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             isPlayerInZone = false; // 플레이어가 영역을 벗어남
             renderer.material = normalMaterial; // 플레이어가 영역을 벗어나면 원래 머티리얼로 변경

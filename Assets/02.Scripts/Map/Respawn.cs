@@ -9,7 +9,7 @@ public class Respawn : MonoBehaviour, IInteractable
 
     public void ShowInteractUI()
     {
-        //리스폰 위치가 저장됐습니다.
+        
     }
 
     public void InteractAction()
