@@ -9,6 +9,7 @@ public class BossStageCamera : MonoBehaviour
     [SerializeField] CinemachineConfiner2D confiner;
     [SerializeField] PolygonCollider2D mainArea;
     [SerializeField] PolygonCollider2D bossArea;
+    [SerializeField] GameObject backGround;
 
     private int currentPriority = 5;
     private int activePriority = 15;

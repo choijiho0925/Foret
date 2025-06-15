@@ -9,6 +9,9 @@ public class FlyingMonster : MonsterBase
     [SerializeField] private GameObject monsterProjectilePrefab;
     [SerializeField] private Transform projectilePos;
     [SerializeField] private float attackCooltime = 1.5f;
+    [SerializeField] private ProjectileType projectileType;
+
+    private bool isLeft = true;
 
     private float timeSinceLastAttack = float.MaxValue;
 
@@ -46,25 +49,36 @@ public class FlyingMonster : MonsterBase
 
     public void LookDirection()
     {
-        // 플레이어 위치에 맞게 보는 방향 수정
-        if (Player.transform.position.x < transform.position.x)
+        // 플레이어 위치에 맞게 보는 방향 및 투사체 발사 위치 수정
+        bool shouldLeft = Player.transform.position.x < transform.position.x;
+
+        if (shouldLeft != isLeft)
         {
-            SpriteRenderer.flipX = false;
-        }
-        else if (Player.transform.position.x > transform.position.x)
-        {
-            SpriteRenderer.flipX = true;
+            isLeft = shouldLeft;
+
+            SpriteRenderer.flipX = !isLeft;
+
+            // projectilePos의 위치 반전
+            Vector3 localPos = projectilePos.localPosition;
+            localPos.x *= -1f;
+            projectilePos.localPosition = localPos;
         }
     }
 
     public void ShootProjectile()
     {
+        //GameObject projectile = Instantiate(monsterProjectilePrefab, projectilePos.position, Quaternion.identity);
         
-        GameObject projectile = Instantiate(monsterProjectilePrefab, projectilePos.position, Quaternion.identity);
-
         Vector3 targetPos = Player.transform.position + Vector3.up;
         Vector3 dir = (targetPos - projectilePos.position).normalized;
+        
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        
+        Projectile projectile =
+            PoolManager.Instance.ProjectilePool.Get(projectileType, projectilePos.position, Quaternion.Euler(0,0,angle));
 
-        projectile.GetComponent<MonsterProjectile>().Initialize(dir, AttackPower);
+    
+        //projectile.GetComponent<MonsterProjectile>().Initialize(dir, AttackPower);
+        projectile.Initialize(dir, AttackPower);
     }
 }

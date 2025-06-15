@@ -296,6 +296,7 @@ public class ForestGuardian : BossBase
             Debug.Log("텔레포트 공격 종료 - 스프라이트 회전 초기화");
             isTeleportAttacking = false;
             UnlockState();
+            StartCoroutine(DelayedStateChange());
         }
         else
         {

@@ -6,6 +6,7 @@ using UnityEngine;
 public class PoolManager : Singleton<PoolManager>
 {
     public ProjectilePool ProjectilePool { get; private set;}
+    
 
     private void Awake()
     {

@@ -6,7 +6,10 @@ public enum ProjectileType
 {
     None,
     Player,
-    Bat,
+    Fireball,
+    Poison,
+    Skull,
+    EnergyBall,
 }
 public class ProjectilePool : ObjectPool<ProjectileType, Projectile>
 {
