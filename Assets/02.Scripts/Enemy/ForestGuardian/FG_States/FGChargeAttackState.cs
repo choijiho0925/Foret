@@ -30,12 +30,12 @@ public class FGChargeAttackState : IState
     // 애니메이션 이벤트에서 호출됨
     public void StartCharge()
     {
-        if(!isChargeStarted)
-        {
-            isChargeStarted = true;
+        //if(!isChargeStarted)
+        //{
+        //    isChargeStarted = true;
             boss.ResetAllAnimation();
             boss.StartCoroutine(ChargeAttack());
-        }
+        //}
     }
 
     private IEnumerator ChargeAttack()
@@ -70,6 +70,5 @@ public class FGChargeAttackState : IState
 
         // 다음 상태로 전환
         yield return new WaitForSeconds(boss.patternDelay);
-        boss.StateMachine.ChangeState(new FGDecisionState(boss));
     }
 }

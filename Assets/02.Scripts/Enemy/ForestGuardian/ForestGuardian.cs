@@ -18,9 +18,19 @@ public class ForestGuardian : BossBase
     [SerializeField] private float chargeDuration = 2f;       // 돌진 지속 시간
     [SerializeField] private float chargeSpeedMultiplier = 50f;  // 돌진 속도 배수
 
+    [Header("회피 설정")]
     private bool isBackdown = false;        // 회피 중인지 체크
     private float backdownCooldown = 0.5f;  // 회피 재진입 대기 시간
     private float backdownTimer = 0f;
+
+    // 상태 전환 잠금 변수
+    private bool isStateLocked = false;
+
+    // 차지 중인지 확인
+    private bool isChargeAttacking = false;
+
+    // 텔레포트 공격 중인지 확인
+    private bool isTeleportAttacking = false;
 
     // 초기 위치
     public Vector3 InitialPosition { get; private set; }
@@ -77,6 +87,21 @@ public class ForestGuardian : BossBase
         // 시야 조정
         LookAtPlayer();
     }
+
+    // 상태 잠금 설정
+    public void LockState()
+    {
+        isStateLocked = true;
+        Debug.Log("상태 잠금");
+    }
+
+    // 상태 잠금 해제
+    public void UnlockState()
+    {
+        isStateLocked = false;
+        Debug.Log("상태 잠금 해제");
+    }
+
 
     // 플레이어를 바라보게 함
     public void LookAtPlayer()
@@ -182,13 +207,107 @@ public class ForestGuardian : BossBase
         animator.SetBool("IsRunning", true);
     }
 
-    // 애니메이션에서 호출됨
+    // 차지 + 공격 애니메이션에서 호출됨
     public void OnChargeAnimationEvent()
     {
         if(StateMachine.CurrentState is FGChargeAttackState chargeState)
         {
             chargeState.StartCharge();
         }
+    }
+
+    //// 텔레포트 공격 애니메이션에서 호출됨
+    //public void OnTeleportAnimationEvent()
+    //{
+    //    if(StateMachine.CurrentState is FGTeleportState teleportState)
+    //    {
+    //        teleportState.StartTeleport();
+    //    }
+    //}
+
+    // 상태 전이 시도
+    public bool TryChangeState(IState newState)
+    {
+        if (isStateLocked)
+        {
+            Debug.LogWarning($"[TryChangeState 실패] 상태 잠금 중. 현재 상태: {StateMachine.CurrentState?.GetType().Name}");
+            return false;
+        }
+
+        Debug.Log($"[TryChangeState 성공] {StateMachine.CurrentState?.GetType().Name} → {newState.GetType().Name}");
+
+        StateMachine.ChangeState(newState);
+        return true;
+    }
+
+    // 차지 애니메이션 시작 시 호출
+    public void OnChargeStart()
+    {
+        if (isChargeAttacking) return;
+
+        isChargeAttacking = true;
+        LockState();  // 상태 잠금: 차지 시작
+        Debug.Log("차지 시작 - 상태 잠금");
+    }
+
+    // 차지 및 공격 애니메이션 종료 시 호출
+    public void OnChargeAndAttackEnd()
+    {
+        if (StateMachine.CurrentState is FGChargeAttackState && isChargeAttacking)
+        {
+            isChargeAttacking = false;
+            UnlockState();
+            Debug.Log("차지+공격 종료 - 상태 잠금 해제");
+
+            StartCoroutine(DelayedStateChange());
+        }
+        else
+        {
+            Debug.LogWarning($"[OnChargeAndAttackEnd] 잘못된 상태: {StateMachine.CurrentState?.GetType().Name}");
+        }
+    }
+
+    // 텔레포트 애니메이션 시작 시 호출
+    public void OnTeleportAttackStart()
+    {
+        if (StateMachine.CurrentState is FGTeleportState teleportState)
+        {
+            if (isTeleportAttacking) return;
+
+            isTeleportAttacking = true;
+            sprite.transform.rotation = Quaternion.Euler(0, 0, 90f);
+            Debug.Log("텔레포트 공격 시작 - 스프라이트 회전 90도");
+            LockState();
+
+            teleportState.StartTeleport(); 
+        }
+        else
+        {
+            Debug.LogWarning($"[OnTeleportAttackStart] 잘못된 상태: {StateMachine.CurrentState?.GetType().Name}");
+        }
+    }
+
+    // 텔레포트 공격 종료 시 호출
+    public void OnTeleportAttackEnd()
+    {
+        if (StateMachine.CurrentState is FGTeleportState && isTeleportAttacking)
+        {
+            sprite.transform.rotation = Quaternion.identity;
+            Debug.Log("텔레포트 공격 종료 - 스프라이트 회전 초기화");
+            isTeleportAttacking = false;
+            UnlockState();
+        }
+        else
+        {
+            Debug.LogWarning($"[OnTeleportAttackEnd] 잘못된 상태: {StateMachine.CurrentState?.GetType().Name}");
+        }
+    }
+
+    // 패턴 간 딜레이
+    private IEnumerator DelayedStateChange()
+    {
+        yield return new WaitForSeconds(patternDelay);
+        this.TryChangeState(new FGDecisionState(this));
     }
 
     // 충전 애니메이션
@@ -199,7 +318,7 @@ public class ForestGuardian : BossBase
     }
 
     // 공격 애니메이션
-    public void PlayeAttackAnimation()
+    public void PlayAttackAnimation()
     {
         animator.ResetTrigger("AttackTrigger"); // 중복 방지용
         animator.SetTrigger("AttackTrigger");

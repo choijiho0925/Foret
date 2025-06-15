@@ -29,6 +29,15 @@ public class FGMeleeState : IState
     {
         while (true)
         {
+            float distance = boss.GetPlayerDistance();
+
+            // 너무 가까워서 회피 상태로 전환
+            if (distance < boss.BackdownRange)
+            {
+                boss.StateMachine.ChangeState(new FGBackdownState(boss));
+                yield break;
+            }
+
             // 플레이어가 근접 범위에 있는지 확인
             if (boss.GetPlayerDistance() > boss.AttackRange)
             {
@@ -38,7 +47,7 @@ public class FGMeleeState : IState
             }
 
             // 공격 애니메이션
-            boss.PlayeAttackAnimation();
+            boss.PlayAttackAnimation();
 
             // 공격
             boss.Attack();

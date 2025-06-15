@@ -7,7 +7,7 @@ using UnityEngine;
 public class FGBackdownState : IState
 {
     private ForestGuardian boss;
-    private float backdownTotalDistance = 40f;    // 총 이동 거리
+    private float backdownTotalDistance = 25f;    // 총 이동 거리
     private float backdownSpeedMultiplier = 3f; // 속도 배수
     private Coroutine backdownCoroutine;
 
