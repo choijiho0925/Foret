@@ -6,17 +6,19 @@ public class DialogueNPC : MonoBehaviour, IInteractable
     [SerializeField] private List<DialogueData> dialogueData;//스크립터블 오브젝트
     private int indexnum;
     private bool isDialogueStart;
+    private bool isSpeechBubbleStart;   // 말풍선 감지용 bool
     private PlayerInteract player;
     private Queue<string> dialogueQueue = new Queue<string>();//이거 프로텍티드 다른 사람한테 조금 물어보자
     private NpcController npcController;
     private UIManager uiManager;
-    
+
     private void Start()
     {
         player = FindObjectOfType<PlayerInteract>();
         npcController = GetComponent<NpcController>();
         uiManager = UIManager.Instance;
         isDialogueStart = true;
+        isSpeechBubbleStart = true;
         indexnum = 0;//나중에 저장 만들 때 indexnum,npc위치, 상태 저장 =>각 상속받는 스크립트에서
     }
 
@@ -60,6 +62,11 @@ public class DialogueNPC : MonoBehaviour, IInteractable
             StartDialogue();
             isDialogueStart = false;
         }
+        else if (isSpeechBubbleStart)
+        {
+            StartSpeedBubble();
+            isSpeechBubbleStart = false;
+        }
         ShowNextLine();
     }
 
@@ -69,10 +76,38 @@ public class DialogueNPC : MonoBehaviour, IInteractable
         {
             indexnum = dialogueData.Count;
         }
+        if (indexnum >= dialogueData.Count) return;
         dialogueQueue.Clear();
         foreach (string dialogue in dialogueData[indexnum].dialogues)
         {
             dialogueQueue.Enqueue(dialogue);
+        }
+    }
+
+    // 말풍선 보여주기
+    private void StartSpeedBubble()
+    {
+        if (indexnum >= dialogueData.Count) return;
+        dialogueQueue.Clear();
+        foreach (string dialogue in dialogueData[indexnum].dialogues)
+        {
+            dialogueQueue.Enqueue(dialogue);
+        }
+    }
+
+    // 말풍선 끄기
+    private void EndSpeechBubble()
+    {
+        uiManager.dialogueController.HideSpeechBubble();
+        uiManager.dialogueController.ClearTarget(this);
+        if (dialogueData[indexnum].timing == ActionTiming.After)
+        {
+            npcController.action = AfterTimeline;
+            npcController.Playtimeline();
+        }
+        else
+        {
+            AfterTimeline();
         }
     }
 
@@ -87,6 +122,7 @@ public class DialogueNPC : MonoBehaviour, IInteractable
         if (dialogueQueue.Count == 0)
         {
             EndDialogue();
+            EndSpeechBubble();
             return;
         }
 

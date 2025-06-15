@@ -152,10 +152,10 @@ TextureImporter:
       name: Enemy3-Idle_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 7
-        width: 41
-        height: 53
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,10 +173,10 @@ TextureImporter:
       name: Enemy3-Idle_1
       rect:
         serializedVersion: 2
-        x: 75
-        y: 6
-        width: 41
-        height: 53
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,10 +194,10 @@ TextureImporter:
       name: Enemy3-Idle_2
       rect:
         serializedVersion: 2
-        x: 139
-        y: 5
-        width: 41
-        height: 53
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,10 +215,10 @@ TextureImporter:
       name: Enemy3-Idle_3
       rect:
         serializedVersion: 2
-        x: 203
-        y: 4
-        width: 41
-        height: 53
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,10 +236,10 @@ TextureImporter:
       name: Enemy3-Idle_4
       rect:
         serializedVersion: 2
-        x: 267
-        y: 5
-        width: 41
-        height: 53
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,10 +257,10 @@ TextureImporter:
       name: Enemy3-Idle_5
       rect:
         serializedVersion: 2
-        x: 331
-        y: 7
-        width: 41
-        height: 53
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,10 +278,10 @@ TextureImporter:
       name: Enemy3-Idle_6
       rect:
         serializedVersion: 2
-        x: 395
-        y: 8
-        width: 41
-        height: 53
+        x: 384
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -299,10 +299,10 @@ TextureImporter:
       name: Enemy3-Idle_7
       rect:
         serializedVersion: 2
-        x: 459
-        y: 9
-        width: 41
-        height: 52
+        x: 448
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

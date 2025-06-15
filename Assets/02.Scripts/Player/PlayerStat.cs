@@ -39,7 +39,7 @@ public class PlayerStat : MonoBehaviour, IDamagable
         currentEnergy = CurrentMaxEnergy;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         if (damage < 0) return;
 
