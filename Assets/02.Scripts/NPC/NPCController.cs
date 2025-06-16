@@ -7,7 +7,8 @@ public class NpcController : MonoBehaviour
 {
     
     public UnityAction action;
-    
+
+    [SerializeField] private GameObject mainNpc;
     [SerializeField] private List<PlayableAsset> npcTimeline;
     [SerializeField] private NpcPosData npcPosData;
     [SerializeField] private Animator mainNpcAnimator;
@@ -73,7 +74,7 @@ public class NpcController : MonoBehaviour
         {
             posnum = npcPosData.pos.Count;
         }
-        transform.position = npcPosData.pos[posnum];
+        mainNpc.transform.position = npcPosData.pos[posnum];
         posnum++;
     }
 }
