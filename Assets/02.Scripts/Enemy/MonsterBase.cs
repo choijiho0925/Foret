@@ -5,6 +5,7 @@ using UnityEngine.Events;
 public abstract class MonsterBase : MonoBehaviour, IDamagable
 {
     [Header("기본 스텟")]
+    [SerializeField] private int maxHealth;        //몬스터 최대 체력
     [SerializeField] private int health;          // 몬스터 체력
     [SerializeField] private float moveSpeed;       // 이동 속도
     [SerializeField] private float detectionRange;  // 감지 범위
@@ -47,6 +48,8 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
     private void OnEnable()
     {
         isDead = false;
+        //체력 초기화
+        health = maxHealth;
     }
 
     private void OnDisable()
