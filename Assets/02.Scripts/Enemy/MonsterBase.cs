@@ -8,8 +8,8 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
     [SerializeField] private float detectionRange;  // 감지 범위
     [SerializeField] private int attackPower;     // 공격력
     [SerializeField] private float attackRange;     // 공격 범위
+    [SerializeField] private bool isInvincible;     // 무적인지 확인
     [SerializeField] private bool isGround;         // 지상 몹인지 확인
-    [SerializeField] private bool isBoss;           // 보스 몹인지 확인
 
     private GameObject player;                      // 플레이어
     private MonsterStateMachine stateMachine;       // 상태머신
@@ -22,8 +22,8 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
     public float DetectionRange => detectionRange;
     public int AttackPower => attackPower;
     public float AttackRange => attackRange;
+    public bool IsInvincible { get => isInvincible; set => isInvincible = value; }
     public bool IsGround => isGround;
-    public bool IsBoss => isBoss;
     public GameObject Player => player;
     public MonsterStateMachine StateMachine => stateMachine;
     public MonsterAnimationHandler AnimationHandler => animationHandler;
@@ -40,18 +40,14 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
 
     protected virtual void Start()
     {
-        if (!isBoss)
+        // 몬스터 종류에 따른 상태 초기화
+        if (isGround)
         {
-            // 몬스터 종류에 따른 상태 초기화
-            if (isGround)
-            {
-                stateMachine.ChangeState(new GroundIdleState(this));
-            }
-            else
-            {
-                stateMachine.ChangeState(new AirIdleState(this));
-            }
-            return;
+            stateMachine.ChangeState(new GroundIdleState(this));
+        }
+        else
+        {
+            stateMachine.ChangeState(new AirIdleState(this));
         }
     }
 
@@ -60,15 +56,14 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
         stateMachine?.Update();
     }
 
-    public virtual void Move()  // 지상 / 공중 따른 이동 구현
-    {
-
-    }    
+    public abstract void Move();  // 지상 / 공중 따른 이동 구현
 
     public abstract void Attack();  // 근거리 / 원거리 따른 공격 구현
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
+        if (isInvincible) return;
+
         health -= damage;
 
         if (health <= 0)
@@ -90,7 +85,7 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
             stateMachine.ChangeState(new AirDamageState(this));
     }
 
-    public void Die()
+    public virtual void Die()
     {
         Destroy(gameObject, 1.0f);
     }

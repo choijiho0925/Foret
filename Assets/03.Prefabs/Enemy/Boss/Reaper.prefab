@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5553108760129374377}
   - component: {fileID: 8799438869437318780}
   - component: {fileID: 728795453719164976}
+  - component: {fileID: 8798586135416932037}
   m_Layer: 0
   m_Name: Slash_Wide
   m_TagString: Untagged
@@ -106,6 +107,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8798586135416932037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031968166145455461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7271b77b7716c43a684d1cfdba5448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2247147181455016262
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,7 +188,7 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.26, y: 0.48000002}
+  m_Offset: {x: 0, y: 0.48000002}
   m_Size: {x: 0.9, y: 1.96}
   m_Direction: 0
 --- !u!114 &1157420638020581216
@@ -194,18 +207,21 @@ MonoBehaviour:
   moveSpeed: 12
   detectionRange: 20
   attackPower: 2
-  attackRange: 2
+  attackRange: 2.5
+  isInvincible: 0
   isGround: 0
-  isBoss: 1
-  patternDelay: 2
+  patternDelay: 5
+  AttackCount: 0
   teleportDistance: 3
-  minionPrefab: {fileID: 0}
+  minionPrefab: {fileID: 9118491250020898405, guid: bfc64490f27595a47bbf3b663a46723d, type: 3}
   minionCount: 3
   clonePrefab: {fileID: 0}
   cloneCount: 2
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  slashNormal: {fileID: 8464377877135890409}
+  slashWide: {fileID: 1031968166145455461}
 --- !u!114 &3876735417640503622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,7 +241,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2247147181455016262}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
@@ -267,7 +283,7 @@ Transform:
   m_GameObject: {fileID: 7811027914358900019}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.26, y: -2.27, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -357,6 +373,7 @@ GameObject:
   - component: {fileID: 2107626437598947808}
   - component: {fileID: 5036963468367251356}
   - component: {fileID: 369936425180397530}
+  - component: {fileID: 1505208619074696549}
   m_Layer: 0
   m_Name: Slash_Normal
   m_TagString: Untagged
@@ -420,7 +437,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 40
-  m_Sprite: {fileID: -393463258, guid: 7f5d5394bf5f42649ad0ddc21963d51e, type: 3}
+  m_Sprite: {fileID: 1829116963, guid: 7f5d5394bf5f42649ad0ddc21963d51e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -452,6 +469,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1505208619074696549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8464377877135890409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7271b77b7716c43a684d1cfdba5448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9086529621577246228
 GameObject:
   m_ObjectHideFlags: 0
