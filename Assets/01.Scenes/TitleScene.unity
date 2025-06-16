@@ -340,6 +340,26 @@ PrefabInstance:
       propertyPath: gameStartText
       value: 
       objectReference: {fileID: 1181284982}
+    - target: {fileID: 4525894161297277884, guid: 7e07bf4b8d6fee3499e7306ef4d7b328, type: 3}
+      propertyPath: heartController
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4525894161297277884, guid: 7e07bf4b8d6fee3499e7306ef4d7b328, type: 3}
+      propertyPath: abilityController
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4525894161297277884, guid: 7e07bf4b8d6fee3499e7306ef4d7b328, type: 3}
+      propertyPath: settingController
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4525894161297277884, guid: 7e07bf4b8d6fee3499e7306ef4d7b328, type: 3}
+      propertyPath: dialogueController
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4525894161297277884, guid: 7e07bf4b8d6fee3499e7306ef4d7b328, type: 3}
+      propertyPath: interactableController
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6244248244638382275, guid: 7e07bf4b8d6fee3499e7306ef4d7b328, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
