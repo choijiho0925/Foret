@@ -12,4 +12,6 @@ public class PlayerData : ScriptableObject
     public float DashForce;     //대쉬 거리
     public int AttackDamage;  //공격력(평타)
     public int ThrowDamage;   //공격력(투사체)
+    public int RecoverAmount;   //회복 스킬 회복량
+    public int RecoverCost;     //화복 스킬 에너지 비용
 }

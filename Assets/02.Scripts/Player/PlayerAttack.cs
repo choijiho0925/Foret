@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -26,7 +27,8 @@ namespace _02.Scripts.Player
         public GameObject attackEffectForward;
         public GameObject attackEffectUp;
         public GameObject attackEffectDown;
-        public GameObject attackHitEffect;  
+        public GameObject attackHitEffect;
+        public int energyRestorePerAttack = 10; //공격 적중 당 에너지 회복량
 
         [Header("원거리 공격 설정")] 
         public float throwPositionOffsetX = 0.5f;
@@ -123,13 +125,7 @@ namespace _02.Scripts.Player
             StartCoroutine(AttackCooldown());
         }
 
-        IEnumerator AttackCooldown()
-        {
-            yield return new WaitForSeconds(0.25f);
-            canAttack = true;
-        }
-
-        public void DoDamage(Vector2 attackPos)
+        private void DoDamage(Vector2 attackPos)
         {
             //범위 내 모든 적 콜라이더를 자져옴
             Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(attackPos, attackRadius, enemyLayer);
@@ -149,8 +145,17 @@ namespace _02.Scripts.Player
                 {
                     damagable.TakeDamage(playerStat.CurrentAttackDamage);
                 }
+
+                playerStat.RestoreEnergy(energyRestorePerAttack);
             }
         }
+        IEnumerator AttackCooldown()
+        {
+            yield return new WaitForSeconds(0.25f);
+            canAttack = true;
+        }
+
+       
 
         IEnumerator ShowAttackEffect(GameObject effect)
         {

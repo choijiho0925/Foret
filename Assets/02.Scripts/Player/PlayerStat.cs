@@ -5,12 +5,12 @@ public class PlayerStat : MonoBehaviour, IDamagable
 {
     [SerializeField] private PlayerData playerData;
     
-    public float currentHeart{ get; private set; }        //현재 하트 수
-    public float currentEnergy{ get; private set; }    //현재 에너지
+    public int currentHeart{ get; private set; }        //현재 하트 수
+    public int currentEnergy{ get; private set; }    //현재 에너지
     
     //추가 스탯 
-    private float bonusMaxHeart;
-    private float bonusMaxEnergy;
+    private int bonusMaxHeart;
+    private int bonusMaxEnergy;
     private float bonusSpeed;
     private float bonusJumpForce;
     private float bonusDashForce;
@@ -23,8 +23,8 @@ public class PlayerStat : MonoBehaviour, IDamagable
     private static readonly int animIDDie = Animator.StringToHash("IsDie");
 
     public bool isInvincible;
-    public float CurrentMaxHeart => playerData.MaxHeart + bonusMaxHeart;
-    public float CurrentMaxEnergy => playerData.MaxEnergy + bonusMaxEnergy;
+    public int CurrentMaxHeart => playerData.MaxHeart + bonusMaxHeart;
+    public int CurrentMaxEnergy => playerData.MaxEnergy + bonusMaxEnergy;
     public float CurrentMoveSpeed => playerData.MoveSpeed + bonusSpeed;
     public float CurrentJumpForce => playerData.JumpForce + bonusJumpForce;
     public float CurrentDashForce => playerData.DashForce + bonusDashForce;
@@ -34,7 +34,6 @@ public class PlayerStat : MonoBehaviour, IDamagable
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
-        
         currentHeart = CurrentMaxHeart;
         currentEnergy = CurrentMaxEnergy;
     }
@@ -50,7 +49,6 @@ public class PlayerStat : MonoBehaviour, IDamagable
             UIManager.Instance.TakeDamage();
         }
         
-        Debug.Log("Player Damaged! Current Heart : " + currentHeart + "/" + CurrentMaxHeart);
         if (currentHeart <= 0)
         {
             currentHeart = 0;
@@ -58,9 +56,48 @@ public class PlayerStat : MonoBehaviour, IDamagable
         }
     }
 
+    public bool Heal(int heal)
+    {
+        if (heal < 0 || currentHeart == CurrentMaxHeart) return false;
+        
+        currentHeart = Mathf.Min(currentHeart + heal, CurrentMaxHeart);
+        for (int i = 0; i < heal; i++)
+        {
+            UIManager.Instance.Recovery();
+        }
+        return true;
+    }
+
+    public bool UseEnergy(int energy)
+    {
+        if (energy < 0) return false;
+        
+        currentEnergy = Mathf.Max(currentEnergy - energy, 0);
+
+        return true;
+    }
+
+    public bool RestoreEnergy(int energy)
+    {
+        if (energy < 0) return false;
+        
+        currentEnergy = Mathf.Min(currentEnergy + energy, CurrentMaxEnergy);
+
+        return true;
+    }
+
+    public void Recover()
+    {
+        //최대 체력이거나 에너지가 부족하면 회복 불가
+        if (currentHeart == CurrentMaxHeart || UseEnergy(playerData.RecoverCost))
+        {
+            Heal(playerData.RecoverAmount);
+        }
+    }
+
     public void DamageAndRespawn(int damage)
     {   //데미지 처리 및 리스폰까지
-        TakeDamage(1);
+        TakeDamage(damage);
         transform.position = GameManager.Instance.respawnPoint;
     }
     public void Die()

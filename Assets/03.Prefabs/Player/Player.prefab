@@ -403,6 +403,7 @@ MonoBehaviour:
   attackEffectUp: {fileID: 2224181312964902054}
   attackEffectDown: {fileID: 3103868198940040258}
   attackHitEffect: {fileID: 2949269542921859525, guid: 97582d8a89440eb49b4609bd9df0dea8, type: 3}
+  energyRestorePerAttack: 10
   throwPositionOffsetX: 1.2
   throwPositionOffsetY: 0.7
 --- !u!114 &4302860743254405335
@@ -568,6 +569,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: fb8673eb-ac92-4fc4-8687-28ffd355ee62
     m_ActionName: Player/Throw[/Keyboard/x]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4302860743254405335}
+        m_TargetAssemblyTypeName: _02.Scripts.Player.PlayerCtrl, Assembly-CSharp
+        m_MethodName: OnRecover
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f47f613c-f24e-413a-b32f-7acabeac487e
+    m_ActionName: Player/Recover[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
