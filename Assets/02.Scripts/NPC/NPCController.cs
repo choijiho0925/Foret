@@ -17,14 +17,14 @@ public class NpcController : MonoBehaviour
     
     private PlayableDirector director;
     private GameManager gameManager;
-    private int posnum;
+    private int posNum;
 
     private void Start()
     {
         director = GetComponent<PlayableDirector>();
         gameManager = GameManager.Instance;
         mainNpcAnimator.enabled = false;
-        posnum = 0;
+        posNum = 0;
         GoNextPos();
         bossRoomCollider.gameObject.SetActive(false);
         canInteract = true;
@@ -71,12 +71,12 @@ public class NpcController : MonoBehaviour
 
     public void GoNextPos()//npc위치 변경
     {
-        if (posnum >= npcPosData.pos.Count)
+        if (posNum >= npcPosData.pos.Count)
         {
-            posnum = npcPosData.pos.Count;
+            posNum = npcPosData.pos.Count;
         }
-        mainNpc.transform.position = npcPosData.pos[posnum];
-        posnum++;
+        mainNpc.transform.position = npcPosData.pos[posNum];
+        posNum++;
     }
     
     public void PlusIndex()

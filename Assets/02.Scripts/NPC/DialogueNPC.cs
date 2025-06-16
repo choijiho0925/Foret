@@ -94,6 +94,10 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 
         if (dialogueQueue.Count == 0)
         {
+            if (dialogueData[gameManager.mainNpcIndex].type == ActionType.Attack)
+            {
+                npcController.canInteract = false;
+            }
             if (dialogueData[gameManager.mainNpcIndex].isScene)
             {
                 EndSpeechBubble();
@@ -141,10 +145,6 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 
     private void AfterTimeline()
     {
-        if (dialogueData[gameManager.mainNpcIndex].type == ActionType.Attack)
-        {
-            npcController.canInteract = false;
-        }
         isDialogueStart = true;
         if (dialogueData[gameManager.mainNpcIndex].type == ActionType.Heal)
         {
