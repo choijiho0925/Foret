@@ -76,7 +76,15 @@ public class FlyingMonster : MonsterBase
         
         Projectile projectile =
             PoolManager.Instance.ProjectilePool.Get(projectileType, projectilePos.position, Quaternion.Euler(0,0,angle));
-
+        
+        if (dir.x < 0)
+        {
+            projectile.transform.localScale = new Vector3(1, -1, 1);
+        }
+        else
+        {
+            projectile.transform.localScale = new Vector3(1, 1, 1);
+        }
     
         //projectile.GetComponent<MonsterProjectile>().Initialize(dir, AttackPower);
         projectile.Initialize(dir, AttackPower);

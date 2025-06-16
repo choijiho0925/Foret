@@ -7,7 +7,6 @@ public class FGAnimationHandler : MonsterAnimationHandler
     private static readonly int isRunning = Animator.StringToHash("IsRunning");
     private static readonly int chargeTrigger = Animator.StringToHash("ChargeTrigger");
     private static readonly int teleportAttackTrigger = Animator.StringToHash("TeleportAttackTrigger");
-    private static readonly int hurtTrigger = Animator.StringToHash("HurtTrigger");
 
     private SpriteRenderer sprite;
 
@@ -38,11 +37,6 @@ public class FGAnimationHandler : MonsterAnimationHandler
     {
         animator.ResetTrigger(teleportAttackTrigger);
         animator.SetTrigger(teleportAttackTrigger);
-    }
-
-    public void PlayHurt()
-    {
-        animator.SetTrigger(hurtTrigger);
     }
 
     public void SetFlip(bool flipX)

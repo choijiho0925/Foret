@@ -11,6 +11,8 @@ public class UIManager : Singleton<UIManager>
     public InteractableController interactableController;
     public AbilityController abilityController;
 
+    private bool hasStarted = false;
+
     // Update is called once per frame
     void Update()
     {
@@ -24,6 +26,12 @@ public class UIManager : Singleton<UIManager>
             {
                 dialogueController.HideSpeechBubble();
             }
+        }
+
+        if (!hasStarted && Input.anyKeyDown)
+        {
+            hasStarted = true;
+            EventBus.Raise(new GameStartEvent());
         }
     }
 

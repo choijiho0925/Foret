@@ -85,7 +85,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4996333275811318205}
   - component: {fileID: 5633821731540359224}
-  - component: {fileID: 983032372906389972}
   m_Layer: 5
   m_Name: Health
   m_TagString: Untagged
@@ -136,22 +135,6 @@ MonoBehaviour:
   m_Spacing: {x: 25, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!114 &983032372906389972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2142303492893747503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e129e8e0684e89b4da47a1c1e7d7f4f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heartPrefab: {fileID: 3496372137200908203, guid: 05eb11bf68504c343a4019ed88a66777, type: 3}
-  heartContainer: {fileID: 4996333275811318205}
-  initHeartsCount: 5
-  maxHeartsCount: 0
 --- !u!1 &5231273205600519990
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,7 +146,6 @@ GameObject:
   - component: {fileID: 2709969581069701433}
   - component: {fileID: 6261137825658946928}
   - component: {fileID: 882073833569601053}
-  - component: {fileID: 836421870823020905}
   m_Layer: 5
   m_Name: Character
   m_TagString: Untagged
@@ -229,19 +211,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &836421870823020905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5231273205600519990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d274f0903e4437e43bf4833eeddfe893, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterImage: {fileID: 882073833569601053}
 --- !u!1 &7069929261237027207
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,6 +223,8 @@ GameObject:
   - component: {fileID: 4218166284844577100}
   - component: {fileID: 8444605538328070366}
   - component: {fileID: 1284745528001211623}
+  - component: {fileID: 5584481490733163630}
+  - component: {fileID: 747144986101380644}
   m_Layer: 5
   m_Name: HPCanvas
   m_TagString: Untagged
@@ -345,3 +316,32 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5584481490733163630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7069929261237027207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e129e8e0684e89b4da47a1c1e7d7f4f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heartPrefab: {fileID: 3496372137200908203, guid: 05eb11bf68504c343a4019ed88a66777, type: 3}
+  heartContainer: {fileID: 4996333275811318205}
+  initHeartsCount: 5
+  maxHeartsCount: 0
+--- !u!114 &747144986101380644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7069929261237027207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d274f0903e4437e43bf4833eeddfe893, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterImage: {fileID: 882073833569601053}
