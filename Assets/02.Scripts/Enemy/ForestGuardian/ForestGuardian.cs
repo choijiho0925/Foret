@@ -8,7 +8,6 @@ public class ForestGuardian : BossBase
     [SerializeField] private float meleeRange = 2f;        // 근접 공격 거리
     [SerializeField] private float chargeRange = 5f;       // 돌진 공격 거리
     [SerializeField] private float teleportRange = 10f;    // 텔레포트 가능 거리
-    [SerializeField] private float returnThreshold = 0.1f; // 복귀 거리
     [SerializeField] private float immuneDuration = 1f;    // 무적 시간
 
     [Header("애니메이션 길이 설정")]
@@ -49,7 +48,6 @@ public class ForestGuardian : BossBase
     public float BackdownRange => backdownRange;
     public float ChargeRange => chargeRange;
     public float TeleportRange => teleportRange;
-    public float ReturnThreshold => returnThreshold;
 
     public float AttackDuration => attackDuration;
 
