@@ -23,6 +23,9 @@ public class ForestGuardian : BossBase
     private float backdownCooldown = 0.5f;  // 회피 재진입 대기 시간
     private float backdownTimer = 0f;
 
+    // 사망(패배) 확인 변수
+    private bool dead = false;
+
     // 상태 전환 잠금 변수
     private bool isStateLocked = false;
 
@@ -98,7 +101,22 @@ public class ForestGuardian : BossBase
         isStateLocked = false;
     }
 
-    // 데미지 받음
+    // TakeDamage 오버라이드
+    public override void TakeDamage(int damage)
+    {
+        // 죽었으면 데미지 그만
+        if (dead) return;
+
+        Health -= damage;
+        PlayHurtAnimation();
+
+        if (Health <= 0 && !dead)
+        {
+            dead = true;
+            PlayDeathAnimation(); // 사망 애니메이션 재생만
+            rb.velocity = Vector2.zero; // 움직임 멈춤
+        }
+    }
 
     // 플레이어를 바라보게 함
     public void LookAtPlayer()
@@ -318,6 +336,12 @@ public class ForestGuardian : BossBase
     public void PlayHurtAnimation()
     {
         animationHandler.PlayHurt();
+    }
+
+    // 사망 애니메이션
+    public void PlayDeathAnimation()
+    {
+        animationHandler.Dead();
     }
 
     // 애니메이션 파라미터 리셋
