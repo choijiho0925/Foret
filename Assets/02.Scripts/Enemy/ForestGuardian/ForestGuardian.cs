@@ -9,7 +9,7 @@ public class ForestGuardian : BossBase
     [SerializeField] private float chargeRange = 5f;       // 돌진 공격 거리
     [SerializeField] private float teleportRange = 10f;    // 텔레포트 가능 거리
     [SerializeField] private float returnThreshold = 0.1f; // 복귀 거리
-    [SerializeField] private float immuneDuration = 1f;    // 무적 시간
+    [SerializeField] private float immuneDuration = 1.5f;    // 무적 시간
 
     [Header("애니메이션 길이 설정")]
     [SerializeField] private float attackDuration = 0.8f;
@@ -57,20 +57,20 @@ public class ForestGuardian : BossBase
     public float ChargeDuration => chargeDuration;
     public float ChargeSpeedMultiplier => chargeSpeedMultiplier;
 
-    public SpriteRenderer Sprite => animationHandler.Sprite;
+    public SpriteRenderer Sprite => fgAnimationHandler.Sprite;
 
     // 물리 기반 이동
     private Rigidbody2D rb;
 
     private Animator animator;
 
-    private FGAnimationHandler animationHandler;
+    private FGAnimationHandler fgAnimationHandler;
 
     private void Awake()
     {
         base.Awake();
         rb = GetComponent<Rigidbody2D>();
-        animationHandler = GetComponent<FGAnimationHandler>();
+        fgAnimationHandler = GetComponent<FGAnimationHandler>();
     }
 
     protected override void Start()
@@ -123,14 +123,11 @@ public class ForestGuardian : BossBase
         if (dead) return;
 
         Health -= damage;
-        animationHandler.Damage();
+        fgAnimationHandler.Damage();
 
         // 무적 시작
         isImmune = true;
         immuneTimer = immuneDuration;
-
-        // 상태 잠금 해제
-        UnlockState();
 
         if (Health <= 0 && !dead)
         {
@@ -138,6 +135,30 @@ public class ForestGuardian : BossBase
             PlayDeathAnimation(); // 사망 애니메이션 재생만
             rb.velocity = Vector2.zero; // 움직임 멈춤
         }
+
+        else
+        {
+            // 공격 중일 경우 일정 시간 후 잠금 해제
+            if (isChargeAttacking || isTeleportAttacking)
+            {
+                // 약간 여유 두기
+                StartCoroutine(UnlockAfterDelay(attackDuration + 0.3f)); 
+            }
+            else
+            {
+                UnlockState();
+                StartCoroutine(DelayedStateChange());
+            }
+        }
+
+    }
+
+    // 일정 시간 후에 상태 전환 시도
+    private IEnumerator UnlockAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        UnlockState();
+        TryChangeState(new FGDecisionState(this));
     }
 
     // 플레이어를 바라보게 함
@@ -151,7 +172,7 @@ public class ForestGuardian : BossBase
         if(Mathf.Abs(dirX) > 0.01f)
         {
             // 오른쪽에 있으면 flipX = true
-            animationHandler.SetFlip(dirX < 0);
+            fgAnimationHandler.SetFlip(dirX < 0);
         }
     }
 
@@ -195,7 +216,7 @@ public class ForestGuardian : BossBase
         if (hit.collider == null)
         {
             rb.MovePosition(targetPos);
-            animationHandler.SetFlip(direction < 0);
+            fgAnimationHandler.SetFlip(direction < 0);
             return true;
         }
 
@@ -245,7 +266,7 @@ public class ForestGuardian : BossBase
     // 달리기 애니메이션
     public void PlayRunAnimation()
     {
-        animationHandler.PlayRun(true);
+        fgAnimationHandler.PlayRun(true);
     }
 
     // 차지 + 공격 애니메이션에서 호출됨
@@ -310,14 +331,14 @@ public class ForestGuardian : BossBase
     public void ApplyTeleportRotation()
     {
         // 회전 방향 결정 (오른쪽을 보고 있으면 true)
-        float rotationZ = animationHandler.Sprite.flipX ? 90f : -90f;
-        animationHandler.SetRotation(rotationZ);
+        float rotationZ = fgAnimationHandler.Sprite.flipX ? 90f : -90f;
+        fgAnimationHandler.SetRotation(rotationZ);
     }
 
     // 텔레포트 준비 애니메이션 재생
     public void PlayTeleportReadyAnimation()
     {
-        animationHandler.PlayTeleportAttack();
+        fgAnimationHandler.PlayTeleportAttack();
     }
 
     // 텔레포트 공격 종료 시 호출
@@ -325,7 +346,7 @@ public class ForestGuardian : BossBase
     {
         if (StateMachine.CurrentState is FGTeleportState && isTeleportAttacking)
         {
-            animationHandler.ResetRotation();
+            fgAnimationHandler.ResetRotation();
             isTeleportAttacking = false;
             UnlockState();
 
@@ -345,25 +366,25 @@ public class ForestGuardian : BossBase
     // 충전 애니메이션
     public void PlayChargeAnimation()
     {
-        animationHandler.PlayCharge();
+        fgAnimationHandler.PlayCharge();
     }
 
     // 공격 애니메이션
     public void PlayAttackAnimation()
     {
-        animationHandler.Attack();
+        fgAnimationHandler.Attack();
     }
 
     // 사망 애니메이션
     public void PlayDeathAnimation()
     {
-        animationHandler.Dead();
+        fgAnimationHandler.Dead();
     }
 
     // 애니메이션 파라미터 리셋
     public void ResetAllAnimation()
     {
-        animationHandler.ResetAllAnimation();
+        fgAnimationHandler.ResetAllAnimation();
     }
 
 }
