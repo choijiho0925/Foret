@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class ReaperChaseState : IState
 {
-    private BossBase boss;
+    private Reaper boss;
 
-    public ReaperChaseState(BossBase boss)
+    public ReaperChaseState(Reaper boss)
     {
         this.boss = boss;
     }

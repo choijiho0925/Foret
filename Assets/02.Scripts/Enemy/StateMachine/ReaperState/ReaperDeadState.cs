@@ -1,10 +1,11 @@
+using System.Threading;
 using UnityEngine;
 
 public class ReaperDeadState : IState
 {
-    private BossBase boss;
+    private Reaper boss;
 
-    public ReaperDeadState(BossBase boss)
+    public ReaperDeadState(Reaper boss)
     {
         this.boss = boss;
     }
@@ -12,6 +13,8 @@ public class ReaperDeadState : IState
     public void Enter()
     {
         // Dead 상태 진입
+        boss.AnimationHandler.Dead();
+        boss.Die();
     }
 
     public void Exit()

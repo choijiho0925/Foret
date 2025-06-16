@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class ReaperAttackState : IState
 {
-    private BossBase boss;
+    private Reaper boss;
 
-    public ReaperAttackState(BossBase boss)
+    public ReaperAttackState(Reaper boss)
     {
         this.boss = boss;
     }

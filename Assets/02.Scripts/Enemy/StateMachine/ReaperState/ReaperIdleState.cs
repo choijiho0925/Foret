@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class ReaperIdleState : IState
 {
-    private BossBase boss;
+    private Reaper boss;
 
-    public ReaperIdleState(BossBase boss)
+    public ReaperIdleState(Reaper boss)
     {
         this.boss = boss;
     }

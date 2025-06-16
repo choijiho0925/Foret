@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8799438869437318780}
   - component: {fileID: 728795453719164976}
   - component: {fileID: 8798586135416932037}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Slash_Wide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 1157420638020581216}
   - component: {fileID: 3876735417640503622}
   - component: {fileID: 9159460560151678829}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Reaper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ MonoBehaviour:
   isInvincible: 0
   isGround: 0
   patternDelay: 5
-  AttackCount: 0
+  attackCount: 0
   teleportDistance: 3
   minionPrefab: {fileID: 9118491250020898405, guid: bfc64490f27595a47bbf3b663a46723d, type: 3}
   minionCount: 3
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 9117391288211927624}
   - component: {fileID: 5395323432491840033}
   - component: {fileID: 5160798174371373713}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +374,7 @@ GameObject:
   - component: {fileID: 5036963468367251356}
   - component: {fileID: 369936425180397530}
   - component: {fileID: 1505208619074696549}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Slash_Normal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -490,7 +490,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7977583028264931666}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}

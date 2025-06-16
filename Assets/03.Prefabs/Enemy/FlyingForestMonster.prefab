@@ -118,8 +118,9 @@ MonoBehaviour:
   health: 100
   moveSpeed: 5
   detectionRange: 15
-  attackPower: 5
+  attackPower: 1
   attackRange: 10
+  isInvincible: 0
   isGround: 0
   monsterProjectilePrefab: {fileID: 3462489277046486260, guid: d1ec04f8753385a47a3c9a7092fec461, type: 3}
   projectilePos: {fileID: 130538187842121633}

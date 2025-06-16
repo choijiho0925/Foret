@@ -1,10 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 public class ReaperDamageState : IState
 {
-    private BossBase boss;
+    private Reaper boss;
 
-    public ReaperDamageState(BossBase boss)
+    public ReaperDamageState(Reaper boss)
     {
         this.boss = boss;
     }
@@ -12,6 +13,7 @@ public class ReaperDamageState : IState
     public void Enter()
     {
         // Damage 상태 진입
+        boss.StartCoroutine(Invincible());
     }
 
     public void Exit()
@@ -21,6 +23,16 @@ public class ReaperDamageState : IState
 
     public void Update()
     {
-        
+        if (!boss.IsInvincible)
+        {
+            boss.StateMachine.ChangeState(new ReaperIdleState(boss));
+        }
+    }
+
+    private IEnumerator Invincible()
+    {
+        boss.IsInvincible = true;
+        yield return new WaitForSeconds(0.5f);
+        boss.IsInvincible = false;
     }
 }

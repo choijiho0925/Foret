@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class Reaper : BossBase
 {
     [Header("마왕(진) 설정")]
-    [SerializeField] private int AttackCount = 0;
+    [SerializeField] private int attackCount = 0;
     [SerializeField] private float teleportDistance = 3f;
     [SerializeField] private GameObject minionPrefab;
     [SerializeField] private int minionCount = 3;
@@ -19,6 +19,8 @@ public class Reaper : BossBase
 
     private BossAnimationHandler bossAnimationHandler;
     private NavMeshAgent agent;
+
+    public BossAnimationHandler BossAnimationHandler => bossAnimationHandler;
 
     protected override void Awake()
     {
@@ -38,9 +40,10 @@ public class Reaper : BossBase
         base.Update();
 
         // 기본 공격을 patternDelay만큼 한 이후 패턴 실행
-        if (AttackCount == patternDelay)
+        if (attackCount >= patternDelay)
         {
             StateMachine.ChangeState(new ReaperDecisionState(this));
+            attackCount = 0;
             return;
         }
     }
@@ -84,11 +87,11 @@ public class Reaper : BossBase
         if (hit != null)
             hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
         currentPattern = null;
-        AttackCount++;
-        Debug.Log(AttackCount);
+        attackCount++;
+        Debug.Log(attackCount);
         StateMachine.ChangeState(new ReaperIdleState(this));
     }
     #endregion
@@ -137,10 +140,23 @@ public class Reaper : BossBase
     }
     #endregion
 
+    public override void TakeDamage(int damage)
+    {
+        if (IsInvincible) return;
+        Health -= damage;
+
+        if (Health <= 0)
+        {
+            StateMachine.ChangeState(new ReaperDeadState(this));
+        }
+
+        bossAnimationHandler.Damage();
+        StateMachine.ChangeState(new ReaperDamageState(this));
+    }
+
     #region 패턴
     public IEnumerator SummonClones()
     {
-        Debug.Log("패턴1: 분신 소환");
         for (int i = 0; i < cloneCount; i++)
         {
             Vector2 pos = (Vector2)transform.position + Random.insideUnitCircle * 2f;

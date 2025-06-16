@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ReaperDecisionState : IState
 {
-    private BossBase boss;
+    private Reaper boss;
 
-    public ReaperDecisionState(BossBase boss)
+    public ReaperDecisionState(Reaper boss)
     {
         this.boss = boss;
     }
@@ -14,7 +12,21 @@ public class ReaperDecisionState : IState
     public void Enter()
     {
         // Decision 상태 진입
-        
+
+        int randomIndex = Random.Range(0, 3);
+
+        switch (randomIndex)
+        {
+            case 0:
+                boss.StateMachine.ChangeState(new ReaperSummonCloneState(boss));
+                break;
+            case 1:
+                boss.StateMachine.ChangeState(new ReaperSummonMinionsState(boss));
+                break;
+            case 2:
+                boss.StateMachine.ChangeState(new ReaperTeleportState(boss));
+                break;
+        }
     }
 
     public void Exit()
