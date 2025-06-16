@@ -50,20 +50,20 @@ public class ForestGuardian : BossBase
     public float ChargeDuration => chargeDuration;
     public float ChargeSpeedMultiplier => chargeSpeedMultiplier;
 
-    public SpriteRenderer Sprite => sprite;
+    public SpriteRenderer Sprite => animationHandler.Sprite;
 
     // 물리 기반 이동
     private Rigidbody2D rb;
 
     private Animator animator;
-    private SpriteRenderer sprite;
+
+    private FGAnimationHandler animationHandler;
 
     private void Awake()
     {
         base.Awake();
-        animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        sprite = GetComponentInChildren<SpriteRenderer>();
+        animationHandler = GetComponent<FGAnimationHandler>();
     }
 
     protected override void Start()
@@ -72,8 +72,6 @@ public class ForestGuardian : BossBase
 
         // 초기 위치 저장
         InitialPosition = transform.position;
-
-        Debug.Log("보스 시작됨, 초기 상태: FGReturnState 진입");
 
         // 초기 상태는 복귀
         StateMachine.ChangeState(new FGReturnState(this));
@@ -92,16 +90,15 @@ public class ForestGuardian : BossBase
     public void LockState()
     {
         isStateLocked = true;
-        Debug.Log("상태 잠금");
     }
 
     // 상태 잠금 해제
     public void UnlockState()
     {
         isStateLocked = false;
-        Debug.Log("상태 잠금 해제");
     }
 
+    // 데미지 받음
 
     // 플레이어를 바라보게 함
     public void LookAtPlayer()
@@ -114,11 +111,11 @@ public class ForestGuardian : BossBase
         if(Mathf.Abs(dirX) > 0.01f)
         {
             // 오른쪽에 있으면 flipX = true
-            sprite.flipX = dirX < 0;
+            animationHandler.SetFlip(dirX < 0);
         }
     }
 
-    // 플레이어 반대를 바라보게 함
+    // 플레이어를 바라보는 허용 여부
     public void SetAllowLookAtPlayer(bool value)
     {
         allowLookAtPlayer = value;
@@ -158,7 +155,7 @@ public class ForestGuardian : BossBase
         if (hit.collider == null)
         {
             rb.MovePosition(targetPos);
-            sprite.flipX = direction < 0;
+            animationHandler.SetFlip(direction < 0);
             return true;
         }
 
@@ -180,7 +177,6 @@ public class ForestGuardian : BossBase
         Collider2D collider = GetComponent<Collider2D>();
         if (collider == null)
         {
-            Debug.LogWarning("보스에 Collider2D가 없음");
             return false;
         }
 
@@ -188,8 +184,6 @@ public class ForestGuardian : BossBase
         LayerMask mapMask = LayerMask.GetMask("Ground", "Top", "Wall");
 
         Collider2D hit = Physics2D.OverlapBox(targetPos, bossSize, 0f, mapMask);
-
-        Debug.Log($"OverlapBox at {targetPos}, size {bossSize}, hit: {hit?.gameObject.name ?? "None"}");
 
         return hit == null;
     }
@@ -211,7 +205,7 @@ public class ForestGuardian : BossBase
     // 달리기 애니메이션
     public void PlayRunAnimation()
     {
-        animator.SetBool("IsRunning", true);
+        animationHandler.PlayRun(true);
     }
 
     // 차지 + 공격 애니메이션에서 호출됨
@@ -223,26 +217,13 @@ public class ForestGuardian : BossBase
         }
     }
 
-    //// 텔레포트 공격 애니메이션에서 호출됨
-    //public void OnTeleportAnimationEvent()
-    //{
-    //    if(StateMachine.CurrentState is FGTeleportState teleportState)
-    //    {
-    //        teleportState.StartTeleport();
-    //    }
-    //}
-
     // 상태 전이 시도
     public bool TryChangeState(IState newState)
     {
         if (isStateLocked)
         {
-            Debug.LogWarning($"[TryChangeState 실패] 상태 잠금 중. 현재 상태: {StateMachine.CurrentState?.GetType().Name}");
             return false;
         }
-
-        Debug.Log($"[TryChangeState 성공] {StateMachine.CurrentState?.GetType().Name} → {newState.GetType().Name}");
-
         StateMachine.ChangeState(newState);
         return true;
     }
@@ -254,7 +235,6 @@ public class ForestGuardian : BossBase
 
         isChargeAttacking = true;
         LockState();  // 상태 잠금: 차지 시작
-        Debug.Log("차지 시작 - 상태 잠금");
     }
 
     // 차지 및 공격 애니메이션 종료 시 호출
@@ -264,13 +244,8 @@ public class ForestGuardian : BossBase
         {
             isChargeAttacking = false;
             UnlockState();
-            Debug.Log("차지+공격 종료 - 상태 잠금 해제");
 
             StartCoroutine(DelayedStateChange());
-        }
-        else
-        {
-            Debug.LogWarning($"[OnChargeAndAttackEnd] 잘못된 상태: {StateMachine.CurrentState?.GetType().Name}");
         }
     }
 
@@ -284,11 +259,10 @@ public class ForestGuardian : BossBase
             isTeleportAttacking = true;
             LockState();
 
+            // 시야 고정
+            SetAllowLookAtPlayer(false);
+
             teleportState.StartTeleport(); 
-        }
-        else
-        {
-            Debug.LogWarning($"[OnTeleportAttackStart] 잘못된 상태: {StateMachine.CurrentState?.GetType().Name}");
         }
     }
 
@@ -296,16 +270,14 @@ public class ForestGuardian : BossBase
     public void ApplyTeleportRotation()
     {
         // 회전 방향 결정 (오른쪽을 보고 있으면 true)
-        float rotationZ = sprite.flipX ? 90f : -90f;
-        sprite.transform.rotation = Quaternion.Euler(0, 0, rotationZ);
-        Debug.Log("텔레포트 공격 시작 - 스프라이트 회전 90도");
+        float rotationZ = animationHandler.Sprite.flipX ? 90f : -90f;
+        animationHandler.SetRotation(rotationZ);
     }
 
     // 텔레포트 준비 애니메이션 재생
     public void PlayTeleportReadyAnimation()
     {
-        animator.ResetTrigger("TeleportAttackTrigger");
-        animator.SetTrigger("TeleportAttackTrigger");
+        animationHandler.PlayTeleportAttack();
     }
 
     // 텔레포트 공격 종료 시 호출
@@ -313,15 +285,13 @@ public class ForestGuardian : BossBase
     {
         if (StateMachine.CurrentState is FGTeleportState && isTeleportAttacking)
         {
-            sprite.transform.rotation = Quaternion.identity;
-            Debug.Log("텔레포트 공격 종료 - 스프라이트 회전 초기화");
+            animationHandler.ResetRotation();
             isTeleportAttacking = false;
             UnlockState();
+
+            SetAllowLookAtPlayer(true);
+
             StartCoroutine(DelayedStateChange());
-        }
-        else
-        {
-            Debug.LogWarning($"[OnTeleportAttackEnd] 잘못된 상태: {StateMachine.CurrentState?.GetType().Name}");
         }
     }
 
@@ -335,29 +305,25 @@ public class ForestGuardian : BossBase
     // 충전 애니메이션
     public void PlayChargeAnimation()
     {
-        animator.ResetTrigger("ChargeTrigger"); // 중복 방지용
-        animator.SetTrigger("ChargeTrigger");
+        animationHandler.PlayCharge();
     }
 
     // 공격 애니메이션
     public void PlayAttackAnimation()
     {
-        animator.ResetTrigger("AttackTrigger"); // 중복 방지용
-        animator.SetTrigger("AttackTrigger");
+        animationHandler.Attack();
     }
 
     // 피격 애니메이션
     public void PlayHurtAnimation()
     {
-        animator.SetTrigger("HurtTrigger");
+        animationHandler.PlayHurt();
     }
 
     // 애니메이션 파라미터 리셋
     public void ResetAllAnimation()
     {
-        animator.SetBool("IsRunning", false);
-        animator.ResetTrigger("ChargeTrigger");
-        animator.ResetTrigger("TeleportAttackTrigger");
+        animationHandler.ResetAllAnimation();
     }
 
 }

@@ -7,7 +7,7 @@ public class MonsterAnimationHandler : MonoBehaviour
     private static readonly int isDamage = Animator.StringToHash("IsDamage");
     private static readonly int isDead = Animator.StringToHash("IsDead");
 
-    private Animator animator;
+    protected Animator animator;
 
     protected virtual void Awake()
     {
