@@ -72,7 +72,9 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
             return;
         }
 
+        // Damage 애니메이션 적용
         animationHandler.Damage();
+
         if (isGround)
             // 지상 몬스터 상태 전환
             return;
