@@ -19,7 +19,6 @@ public class FGChargeAttackState : IState
     {
         boss.ResetAllAnimation();
         boss.PlayChargeAnimation();
-        Debug.Log("FGChargeAttackState 진입");
     }
 
 

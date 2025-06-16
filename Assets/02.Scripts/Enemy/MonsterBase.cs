@@ -57,7 +57,7 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
     public abstract void Move();    // 지상 / 공중 따른 이동 구현
     public abstract void Attack();  // 근거리 / 원거리 따른 공격 구현
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         health -= damage;
 
@@ -72,7 +72,9 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
             return;
         }
 
+        // Damage 애니메이션 적용
         animationHandler.Damage();
+
         if (isGround)
             // 지상 몬스터 상태 전환
             return;

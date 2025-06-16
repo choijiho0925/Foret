@@ -28,7 +28,6 @@ public class FGTeleportState : IState
 
         // 텔레포트 준비 애니메이션 재생
         boss.PlayTeleportReadyAnimation();
-        Debug.Log("FGTeleportState 진입");
     }
 
     public void Exit() 
@@ -41,8 +40,6 @@ public class FGTeleportState : IState
     // 애니메이션 이벤트에서 호출됨
     public void StartTeleport()
     {
-        Debug.Log("StartTeleport 시도");
-
         boss.ResetAllAnimation();
         isTeleportStarted = true;
         boss.StartCoroutine(TeleportAttack());
@@ -53,9 +50,6 @@ public class FGTeleportState : IState
         // 플레이어 위쪽으로 offset
         Vector2 playerAbove = boss.Player.transform.position + Vector3.up * 5f;
 
-        // 위치 확인용 디버그
-        Debug.Log($"텔레포트 시도 위치: {playerAbove}");
-
         // 시도
         if (boss.CanTeleportTo(playerAbove))
         {
@@ -65,20 +59,9 @@ public class FGTeleportState : IState
             // 실제 텔레포트
             boss.ApplyTeleportRotation();
             boss.TeleportTo(playerAbove);
-            Debug.Log("▶ 순간이동 성공");
 
             // 텔레포트 성공 후 낙하 공격
             boss.PlayAttackAnimation();
-
-            // 텔레포트 후 약간의 딜레이
-            // yield return new WaitForSeconds(0.2f);
-
-            // 공격 애니메이션 실행
-            //boss.PlayAttackAnimation();
-        }
-        else
-        {
-            Debug.Log("✖ 순간이동 실패 - 충돌 또는 공간 없음");
         }
 
         boss.TryChangeState(new FGDecisionState(boss));
