@@ -19,7 +19,6 @@ public class FGDecisionState : IState
         boss.ResetAllAnimation();
 
         float distance = boss.GetPlayerDistance();
-        float returnDistance = Vector3.Distance(boss.transform.position, boss.InitialPosition);
 
 
         if (distance < boss.BackdownRange)
@@ -53,17 +52,8 @@ public class FGDecisionState : IState
         }
         else
         {
-            if (returnDistance > boss.DetectionRange)
-            {
-                // 복귀
-                boss.StateMachine.ChangeState(new FGReturnState(boss));
-            }
-            else
-            {
-                // Idle 상태로 전환
-                boss.StateMachine.ChangeState(new FGIdleState(boss));
-            }
-            
+            // 복귀
+            boss.StateMachine.ChangeState(new FGReturnState(boss));
         }
     }
 

@@ -8,6 +8,7 @@ using UnityEngine;
 public class FGReturnState : IState
 {
     public ForestGuardian boss;
+    private bool isReturn = false;
 
     public FGReturnState(ForestGuardian boss)
     {
@@ -16,6 +17,7 @@ public class FGReturnState : IState
 
     public void Enter()
     {
+        isReturn = false;
         boss.ResetAllAnimation();
 
         // 만약 플레이어와 가깝다면 바로 근접 공격 상태로 전환
@@ -32,24 +34,37 @@ public class FGReturnState : IState
 
     public void Update()
     {
-        float playerDistance = boss.GetPlayerDistance();
-        float returnDistance = Vector3.Distance(boss.transform.position, boss.InitialPosition);
+        if (!isReturn)
+            ReturnToInitialPosition();
 
-        // 플레이어가 가까우면 공격 상태로 전이
-        if (playerDistance < boss.BackdownRange)
+        else
+            return;
+    }
+
+    public void ReturnToInitialPosition()
+    {
+        // 상태 유지 중에도 플레이어 거리 체크해서 상태 전이
+        float distance = boss.GetPlayerDistance();
+
+        // 플레이어가 가까우면 근접 상태로
+        if (distance < boss.BackdownRange)
         {
             boss.StateMachine.ChangeState(new FGMeleeState(boss));
-            return;
         }
 
-        // 아직 제자리에 도착하지 않았으면 이동
-        if (returnDistance > boss.DetectionRange)
+        // 초기 위치까지 거리 계산
+        float returnDistance = Vector3.Distance(boss.transform.position, boss.InitialPosition);
+
+        if (returnDistance > boss.ReturnThreshold)
         {
+            // 제자리로 이동
             boss.MoveToPlayer(boss.InitialPosition);
         }
+
         else
         {
-            // 제자리에 도착했으면 다음 상태로 전이
+            isReturn = true;
+            // 도착 시 다음 상태로 전이
             boss.StateMachine.ChangeState(new FGDecisionState(boss));
         }
     }
