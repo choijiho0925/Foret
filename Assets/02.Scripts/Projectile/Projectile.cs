@@ -97,16 +97,7 @@ public class Projectile : MonoBehaviour
     {
         PoolManager.Instance.ProjectilePool.Return(projectileType, this);
     }
-
-    private void SelfDestroy()  //특정 시간이 지나면 자체 파괴(반환)
-    {
-        if (this.enabled)
-        {
-            ReturnToPool();
-        }
-    }
     
-
     private void OnSceneLoadedEvent(Scene scene, LoadSceneMode mode)
     {   //Scene 전환 시 자동으로 비활성화
         ReturnToPool();
