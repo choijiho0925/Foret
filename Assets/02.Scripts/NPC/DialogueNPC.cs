@@ -22,12 +22,20 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 
     public void ShowInteractUI()
     {
+        if (!npcController.canInteract)
+        {
+            return;
+        }
         uiManager.dialogueController.SetTarget(this, dialogueData[gameManager.mainNpcIndex].npcName);
         uiManager.interactableController.ShowInteractable(this.gameObject.layer);
     }
 
     public void InteractAction()
     {
+        if (!npcController.canInteract)
+        {
+            return;
+        }
         uiManager.interactableController.HideInteractable();
         CheckAction();
     }
@@ -37,10 +45,7 @@ public class DialogueNPC : MonoBehaviour, IInteractable
         uiManager.dialogueController.IsScene(dialogueData[gameManager.mainNpcIndex].isScene);
         if (dialogueData[gameManager.mainNpcIndex].timing != ActionTiming.None)
         {
-            if (!npcController.SetTimeline(dialogueData[gameManager.mainNpcIndex]))
-            {
-                return;
-            }
+            npcController.SetTimeline(dialogueData[gameManager.mainNpcIndex]);
             if (dialogueData[gameManager.mainNpcIndex].timing == ActionTiming.Before)
             {
                 npcController.action = InitDialogue;
@@ -137,6 +142,10 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 
     private void AfterTimeline()
     {
+        if (dialogueData[gameManager.mainNpcIndex].type == ActionType.Attack)
+        {
+            npcController.canInteract = false;
+        }
         isDialogueStart = true;
         if (dialogueData[gameManager.mainNpcIndex].type == ActionType.Heal)
         {

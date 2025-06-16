@@ -7,6 +7,7 @@ public class NpcController : MonoBehaviour
 {
     
     public UnityAction action;
+    public bool canInteract;
 
     [SerializeField] private GameObject mainNpc;
     [SerializeField] private List<PlayableAsset> npcTimeline;
@@ -17,7 +18,6 @@ public class NpcController : MonoBehaviour
     private PlayableDirector director;
     private GameManager gameManager;
     private int posnum;
-    private bool[] isAnimationPlay;
 
     private void Start()
     {
@@ -27,49 +27,30 @@ public class NpcController : MonoBehaviour
         posnum = 0;
         GoNextPos();
         bossRoomCollider.gameObject.SetActive(false);
-        isAnimationPlay = new bool[npcTimeline.Count];
-        for (int i = 0; i < isAnimationPlay.Length; i++)
-        {
-            isAnimationPlay[i] = false;
-        }
+        canInteract = true;
     }
 
-    public bool SetTimeline(DialogueData data)
+    public void SetTimeline(DialogueData data)
     {
         if (npcTimeline.Count < 4)
         {
-            if (!isAnimationPlay[0])
-            {
-                director.playableAsset = npcTimeline[0];
-                isAnimationPlay[0] = true;
-                return true;
-            }
-            return false;
+            director.playableAsset = npcTimeline[0];
         }
         switch (data.type)
         {
             case ActionType.Move :
-                if(!isAnimationPlay[0]) return false;
                 director.playableAsset = npcTimeline[0];
-                isAnimationPlay[0] = true;
-                return true;
+                break;
             case ActionType.Attack :
-                if(!isAnimationPlay[1]) return false;
                 director.playableAsset = npcTimeline[1];
-                isAnimationPlay[1] = true;
-                return true;
+                break;
             case ActionType.Heal :
-                if(!isAnimationPlay[2]) return false;
                 director.playableAsset = npcTimeline[2];
-                isAnimationPlay[2] = true;
-                return true;
+                break;
             case ActionType.Change :
-                if(!isAnimationPlay[3]) return false;
                 director.playableAsset = npcTimeline[3];
-                isAnimationPlay[3] = true;
-                return true;
+                break;
         }
-        return false;
     }
 
     public void PlayTimeline()
@@ -106,5 +87,10 @@ public class NpcController : MonoBehaviour
    {
        bossRoomCollider.gameObject.SetActive(true);
        GameManager.Instance.SetRespawnPoint(transform.position);
+   }
+
+   public void CanInteract()
+   {
+       canInteract = true;
    }
 }
