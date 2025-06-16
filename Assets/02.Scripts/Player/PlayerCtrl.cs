@@ -86,6 +86,14 @@ namespace _02.Scripts.Player
                 playerStat.Recover();
             }    
         }
+
+        public void OnRevive(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Started)
+            {
+                playerStat.Revive();
+            }
+        }
         
         //'상호작용' 상태일 때는 모든 움직임 제한
         public void EnterInteraction()

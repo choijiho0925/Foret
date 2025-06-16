@@ -21,6 +21,7 @@ public class PlayerStat : MonoBehaviour, IDamagable
     private int bonusThrowDamage;
     
     private PlayerCtrl playerCtrl;
+    private PlayerMovement playerMovement;
     private Animator animator;
     private UIManager uiManager;
     
@@ -40,6 +41,7 @@ public class PlayerStat : MonoBehaviour, IDamagable
     {
         animator = GetComponentInChildren<Animator>();
         playerCtrl = GetComponent<PlayerCtrl>();
+        playerMovement = GetComponent<PlayerMovement>();
         uiManager = UIManager.Instance;
         currentHeart = CurrentMaxHeart;
         currentEnergy = CurrentMaxEnergy;
@@ -116,16 +118,21 @@ public class PlayerStat : MonoBehaviour, IDamagable
        //사망 관련 로직
        isDead = true;
        playerCtrl.canControl = false;
+       playerMovement.Stop();
        
        EventBus.Raise(new GameOverEvent());     //게임 오버 이벤트 실행
     }
-
-    public void Revive()    
+    public void Revive()
     {
+        if (!isDead) return;
+        
         isDead = false;
         animator.SetBool(animIDDie, false);
         playerCtrl.canControl = true;
+        Heal(CurrentMaxHeart);
         transform.position = GameManager.Instance.respawnPoint;
+        
+        EventBus.Raise(new PlayerReviveEvent());
     }
     private IEnumerator Damaged()   //피격 후 무적 코루틴
     {
