@@ -14,7 +14,7 @@ public class ParallaxBackground : MonoBehaviour
 	[SerializeField][Range(0.01f, 1.0f)]
 	private	float parallaxSpeed;			// layerMoveSpeed에 곱해서 사용하는 배경 스크롤 이동 속도
 
-    private float slowspeed = 0.5f;
+    private float slowspeed = 0.99f;
 
 	private void Awake()
 	{
@@ -57,8 +57,9 @@ public class ParallaxBackground : MonoBehaviour
 		{
 			// 가장 멀리 떨어진 배경 레이어의 이동 속도 = 0
 			layerMoveSpeed[i] = 1 - slowspeed - (backgrounds[i].transform.position.z - cameraTransform.position.z) / farthestBackDistance;
-		}
-	}
+            Debug.Log($"{layerMoveSpeed[i]}, 실제 이동속도 = {layerMoveSpeed[i] * parallaxSpeed}");
+        }
+    }
 
 	private void LateUpdate()
 	{
