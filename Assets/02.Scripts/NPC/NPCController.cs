@@ -15,7 +15,7 @@ public class NpcController : MonoBehaviour
     
     private PlayableDirector director;
     
-    private int posnum;
+    [SerializeField]private int posnum;
 
     private void Start()
     {
