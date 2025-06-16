@@ -11,6 +11,7 @@ public class NpcController : MonoBehaviour
     [SerializeField] private List<PlayableAsset> npcTimeline;
     [SerializeField] private NpcPosData npcPosData;
     [SerializeField] private Animator mainNpcAnimator;
+    [SerializeField] private GameObject mainNpc;
     
     private PlayableDirector director;
     
@@ -73,7 +74,7 @@ public class NpcController : MonoBehaviour
         {
             posnum = npcPosData.pos.Count;
         }
-        transform.position = npcPosData.pos[posnum];
+        mainNpc.transform.position = npcPosData.pos[posnum];
         posnum++;
     }
 }
