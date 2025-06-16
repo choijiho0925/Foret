@@ -7,12 +7,18 @@ public class PlayerInteract : MonoBehaviour
 {
     [Header("상호작용 가능 레이어")]
     [SerializeField] private LayerMask interactableLayer;
+    [Header("적 레이어")]
+    [SerializeField] private LayerMask enemyLayer;
     private PlayerCtrl playerCtrl;
+    private PlayerMovement playerMovement;
+    private PlayerStat playerStat;
     private IInteractable currentInteractable;
 
     private void Awake()
     {
         playerCtrl = GetComponent<PlayerCtrl>();
+        playerMovement = GetComponent<PlayerMovement>();
+        playerStat = GetComponent<PlayerStat>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -21,9 +27,12 @@ public class PlayerInteract : MonoBehaviour
         {
             if(other.TryGetComponent<IInteractable>(out currentInteractable))
             {
-                Debug.Log("Player Interact + " + other.gameObject.name);
                 currentInteractable.ShowInteractUI();
             }
+        }
+        else if ((enemyLayer.value & (1 << other.gameObject.layer)) != 0)
+        {
+            playerStat.TakeDamage(1);
         }
     }
 
@@ -46,6 +55,7 @@ public class PlayerInteract : MonoBehaviour
             // PlayerCtrl을 통해 플레이어의 움직임을 막고,
             // 대상 오브젝트의 상호작용을 시작함
             playerCtrl.EnterInteraction();
+            playerMovement.Stop();
             currentInteractable.InteractAction();
         }
     }

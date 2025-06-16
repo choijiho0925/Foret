@@ -116,6 +116,8 @@ public class PlayerStat : MonoBehaviour, IDamagable
        //사망 관련 로직
        isDead = true;
        playerCtrl.canControl = false;
+       
+       EventBus.Raise(new GameOverEvent());     //게임 오버 이벤트 실행
     }
 
     public void Revive()    

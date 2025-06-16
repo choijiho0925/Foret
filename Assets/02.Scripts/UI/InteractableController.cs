@@ -8,6 +8,11 @@ public class InteractableController : MonoBehaviour
     public GameObject toInteractObject;
     public TextMeshProUGUI interactText;
 
+    private void Start()
+    {
+        UIManager.Instance.RegisterInteractableController(this);
+    }
+
     public void ShowInteractable(int layer)
     {
         toInteractObject.SetActive(true);

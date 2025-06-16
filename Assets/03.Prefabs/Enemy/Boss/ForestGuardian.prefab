@@ -114,16 +114,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1000
   moveSpeed: 40
-  detectionRange: 50
+  detectionRange: 30
   attackPower: 30
   attackRange: 5
+  isInvincible: 0
   isGround: 0
   patternDelay: 0.35
   backdownRange: 2.5
   meleeRange: 4
   chargeRange: 8
   teleportRange: 12
-  returnThreshold: 0.1
+  immuneDuration: 1
   attackDuration: 0.7
   chargeDelay: 0.5
   chargeDuration: 0.3

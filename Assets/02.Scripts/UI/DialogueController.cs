@@ -27,6 +27,11 @@ public class DialogueController : MonoBehaviour
 
     private bool isScene;
 
+    private void Start()
+    {
+        UIManager.Instance.RegisterDialogueController(this);
+    }
+
     // 대화할 NPC를 타겟으로 설정
     public void SetTarget(DialogueNPC npc, string name)
     {
@@ -57,7 +62,7 @@ public class DialogueController : MonoBehaviour
         IsTyping = false;
         dialoguePanel.SetActive(false);
     }
-    
+
     public void ShowSpeechBubble()
     {
         if (target == null) return;
@@ -75,7 +80,7 @@ public class DialogueController : MonoBehaviour
             speechBubble.SetActive(false);
         }
     }
-    
+
     // 대사 출력이 끝난 후 호출할 메서드
     public void CompleteCurrentLineInstantly()
     {
@@ -106,7 +111,7 @@ public class DialogueController : MonoBehaviour
         }
         else
         {
-            ShowDialoguePanel();    
+            ShowDialoguePanel();
         }
         typingCoroutine = StartCoroutine(TypeLine(line));
     }

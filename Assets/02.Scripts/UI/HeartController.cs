@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +14,7 @@ public class HeartController : MonoBehaviour
     void Start()
     {
         InitHeart();
+        UIManager.Instance.RegisterHeartController(this);
     }
 
     public void InitHeart()

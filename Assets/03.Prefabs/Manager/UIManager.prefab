@@ -44,8 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe642eca9eda1bd42ba10f5e68abac35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heartController: {fileID: 5584481490733163630, guid: 04422170a8cc3fd4aabb45d174bc4631, type: 3}
-  settingController: {fileID: 658935287048994335, guid: 57c279756a45874448a6d599cbcb001b, type: 3}
-  dialogueController: {fileID: 4564322958390833766, guid: b24c00b7344e37947b5260cc823b06a8, type: 3}
-  interactableController: {fileID: 5443504488820525879, guid: 786573c9142f35d4886c82bafd1634e2, type: 3}
-  abilityController: {fileID: 747144986101380644, guid: 04422170a8cc3fd4aabb45d174bc4631, type: 3}
+  heartControllerPF: {fileID: 5584481490733163630, guid: 04422170a8cc3fd4aabb45d174bc4631, type: 3}
+  settingControllerPF: {fileID: 658935287048994335, guid: 57c279756a45874448a6d599cbcb001b, type: 3}
+  dialogueControllerPF: {fileID: 4564322958390833766, guid: b24c00b7344e37947b5260cc823b06a8, type: 3}
+  interactableControllerPF: {fileID: 5443504488820525879, guid: 786573c9142f35d4886c82bafd1634e2, type: 3}
+  abilityControllerPF: {fileID: 3382325903198520728, guid: ea8affe05a352634885e3ff49b4bb53b, type: 3}
+  heartController: {fileID: 0}
+  settingController: {fileID: 0}
+  dialogueController: {fileID: 0}
+  interactableController: {fileID: 0}
+  abilityController: {fileID: 0}
+  gameStartText: {fileID: 0}

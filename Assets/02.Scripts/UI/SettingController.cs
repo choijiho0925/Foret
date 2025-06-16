@@ -8,18 +8,19 @@ public class SettingController : MonoBehaviour
     public Button settingButton;
     public Button backButton;
     public GameObject settingPanel;
-    
+
     // Start is called before the first frame update
     void Start()
     {
         settingButton.onClick.AddListener(OnSettings);
         backButton.onClick.AddListener(OffSettings);
+        UIManager.Instance.RegisterSettingController(this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnSettings()

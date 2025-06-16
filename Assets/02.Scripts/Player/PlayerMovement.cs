@@ -229,6 +229,10 @@ namespace _02.Scripts.Player
 			}
 		}
 
+        public void Stop()
+        {
+            rb.velocity = Vector2.zero;
+        }
 
 		private void Flip()
 		{
