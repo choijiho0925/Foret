@@ -12,7 +12,7 @@ public class NpcController : MonoBehaviour
     [SerializeField] private List<PlayableAsset> npcTimeline;
     [SerializeField] private NpcPosData npcPosData;
     [SerializeField] private Animator mainNpcAnimator;
-    [SerializeField] private GameObject bossRoomCollider;
+    [SerializeField] private Collider2D bossRoomCollider;
     
     private PlayableDirector director;
     private GameManager gameManager;
@@ -25,7 +25,7 @@ public class NpcController : MonoBehaviour
         mainNpcAnimator.enabled = false;
         posnum = 0;
         GoNextPos();
-        bossRoomCollider.SetActive(false);
+        bossRoomCollider.gameObject.SetActive(false);
     }
 
     public void SetTimeline(DialogueData data)
@@ -33,7 +33,6 @@ public class NpcController : MonoBehaviour
         if (npcTimeline.Count < 4)
         {
             director.playableAsset = npcTimeline[0];
-            return;
         }
         else
         {
@@ -83,11 +82,11 @@ public class NpcController : MonoBehaviour
     
     public void PlusIndex()
     {
-        gameManager.NextIndex(gameManager.mainNpcIndex);
+        gameManager.NextIndex();
     }
    public void StartBossRoom()
    {
-       bossRoomCollider.SetActive(true);
+       bossRoomCollider.gameObject.SetActive(true);
        GameManager.Instance.SetRespawnPoint(transform.position);
    }
 }

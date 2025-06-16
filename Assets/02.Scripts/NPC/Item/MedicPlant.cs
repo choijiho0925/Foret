@@ -20,6 +20,7 @@ public class MedicPlant : MonoBehaviour,IInteractable
     private void Start()
     {
         player = FindObjectOfType<PlayerInteract>();
+        renderer = GetComponent<Renderer>();
         gameManager = GameManager.Instance;
         uiManager = UIManager.Instance;
         foreach (string dialogue in explainData.dialogues)
@@ -64,7 +65,7 @@ public class MedicPlant : MonoBehaviour,IInteractable
 
     public void GetPlant()
     {
-        gameManager.NextIndex(gameManager.mainNpcIndex);
+        gameManager.NextIndex();
         this.gameObject.SetActive(false);
     }
     

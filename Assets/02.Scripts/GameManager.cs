@@ -16,9 +16,9 @@ public class GameManager : Singleton<GameManager>
         respawnPoint = point;
     }
 
-    public void NextIndex(int index)
+    public void NextIndex()
     {
-        index++;
+        mainNpcIndex++;
     }
 
     private void OnEnable()
