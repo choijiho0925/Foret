@@ -62,12 +62,6 @@ public class FGTeleportState : IState
 
             // 텔레포트 성공 후 낙하 공격
             boss.PlayAttackAnimation();
-
-            // 텔레포트 후 약간의 딜레이
-            // yield return new WaitForSeconds(0.2f);
-
-            // 공격 애니메이션 실행
-            //boss.PlayAttackAnimation();
         }
 
         boss.TryChangeState(new FGDecisionState(boss));

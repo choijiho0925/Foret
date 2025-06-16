@@ -108,7 +108,7 @@ public class ForestGuardian : BossBase
         if (dead) return;
 
         Health -= damage;
-        PlayHurtAnimation();
+        animationHandler.Damage();
 
         if (Health <= 0 && !dead)
         {
@@ -330,12 +330,6 @@ public class ForestGuardian : BossBase
     public void PlayAttackAnimation()
     {
         animationHandler.Attack();
-    }
-
-    // 피격 애니메이션
-    public void PlayHurtAnimation()
-    {
-        animationHandler.PlayHurt();
     }
 
     // 사망 애니메이션
