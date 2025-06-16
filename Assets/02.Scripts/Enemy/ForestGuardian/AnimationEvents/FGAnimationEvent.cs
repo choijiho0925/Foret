@@ -7,21 +7,65 @@ public class FGAnimationEvent : MonoBehaviour
     private ForestGuardian fg;
     [SerializeField] private EnemyAttackHitbox attackHitbox;
 
+    private BoxCollider2D box;
+
+    private Vector2 initialSize;
+    private Vector2 initialOffset;
+
+    private bool isRotated90 = false;
+
     private void Awake()
     {
         fg = GetComponentInParent<ForestGuardian>();
+        box = attackHitbox.GetComponent<BoxCollider2D>();
+        initialSize = box.size;
+        initialOffset = box.offset;
     }
 
     // 히트 박스 방향 전환
     private void FlipAttackHitboxByFacing()
     {
-        if (attackHitbox == null || fg == null) return;
+        if (box == null || fg == null) return;
 
         // 왼쪽을 보면 true
-        bool isLookAtLeft = fg.Sprite.flipX;  
-        Vector3 pos = attackHitbox.transform.localPosition;
-        pos.x = isLookAtLeft ? -Mathf.Abs(pos.x) : Mathf.Abs(pos.x);
-        attackHitbox.transform.localPosition = pos;
+        bool isLookAtLeft = fg.Sprite.flipX;
+
+        // 텔레포트 등에서 Transform 회전 각도 확인
+        float zRotation = fg.Sprite.transform.localEulerAngles.z;
+
+        // 90도 or -90도일 때는 방향 반전 처리
+        if (Mathf.Approximately(zRotation, 90f) || Mathf.Approximately(zRotation, 270f))
+        {
+            // 텔레포트 상태에서 -90도 효과
+            if(!isRotated90)
+            {
+                // size와 offset 교체
+                box.size = new Vector2(initialSize.y, initialSize.x);
+                box.offset = new Vector2(initialOffset.y, initialOffset.x);
+
+                isRotated90 = true;
+            }
+
+            // 좌우 + 상하 반전
+            box.offset = new Vector2(
+                isLookAtLeft ? -Mathf.Abs(box.offset.x) : Mathf.Abs(box.offset.x),
+                -Mathf.Abs(box.offset.y));
+        }
+        else
+        {
+            // 텔레포트 아닌 일반 상태로 원복
+            if (isRotated90)
+            {
+                box.size = initialSize;
+                box.offset = initialOffset;
+                isRotated90 = false;
+            }
+
+            // 좌우 반전만 처리
+            box.offset = new Vector2(
+                isLookAtLeft ? -Mathf.Abs(initialOffset.x) : Mathf.Abs(initialOffset.x),
+                initialOffset.y);
+        }
     }
 
     // 히트박스 활성화
