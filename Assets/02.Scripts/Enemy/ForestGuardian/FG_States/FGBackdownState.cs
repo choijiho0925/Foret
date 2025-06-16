@@ -21,7 +21,6 @@ public class FGBackdownState : IState
         boss.SetAllowLookAtPlayer(false);
         boss.ResetAllAnimation();
         boss.PlayRunAnimation();
-        Debug.Log("FGBackdownState 진입");
 
         backdownCoroutine = boss.StartCoroutine(BackdownRoutine());
     }
@@ -52,7 +51,6 @@ public class FGBackdownState : IState
 
         if (!primaryClear && !secondaryClear)
         {
-            Debug.Log("회피 실패: 양쪽 다 막힘 (시작 전)");
             boss.StateMachine.ChangeState(new FGDecisionState(boss));
             yield break;
         }
@@ -79,7 +77,6 @@ public class FGBackdownState : IState
             }
             else
             {
-                Debug.Log("회피 실패: 이동 중 양쪽 다 막힘");
                 break;
             }
 

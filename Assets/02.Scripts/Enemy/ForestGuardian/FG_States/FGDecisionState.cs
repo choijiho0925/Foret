@@ -20,46 +20,39 @@ public class FGDecisionState : IState
 
         float distance = boss.GetPlayerDistance();
 
-        Debug.Log($"[Decision] 거리: {distance}");
 
         if (distance < boss.BackdownRange)
         {
             // 회피
-            Debug.Log("▶ Backdown");
             boss.StateMachine.ChangeState(new FGBackdownState(boss));
         }
 
         else if (distance <= boss.AttackRange)
         {
             // 근거리 공격
-            Debug.Log("▶ Melee");
             boss.StateMachine.ChangeState(new FGMeleeState(boss));
         }
 
         else if (distance <= boss.ChargeRange)
         {
             // 돌진 공격
-            Debug.Log("▶ ChargeAttack");
             boss.StateMachine.ChangeState(new FGChargeAttackState(boss));
         }
 
         else if (distance <= boss.TeleportRange)
         {
             // 추격
-            Debug.Log("▶ Chase");
             boss.StateMachine.ChangeState(new FGChaseState(boss));
         }
 
         else if (distance <= boss.DetectionRange)
         {
             // 텔레포트 공격
-            Debug.Log("▶ Teleport");
             boss.StateMachine.ChangeState(new FGTeleportState(boss));
         }
         else
         {
             // 복귀
-            Debug.Log("▶ Return");
             boss.StateMachine.ChangeState(new FGReturnState(boss));
         }
     }
