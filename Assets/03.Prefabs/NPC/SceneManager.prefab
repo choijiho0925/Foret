@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5655378711451188768}
   - component: {fileID: 4104806753545773145}
   - component: {fileID: 1249102998917198651}
+  - component: {fileID: 6854803305451605611}
   m_Layer: 0
   m_Name: Summon
   m_TagString: Untagged
@@ -106,6 +107,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6854803305451605611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4800988371724759834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27cc04a9752a2274daf1af2a8c167b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossRoomCollider: {fileID: 0}
 --- !u!1 &6855433787249192448
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,6 +167,7 @@ GameObject:
   - component: {fileID: 1792902029005582935}
   - component: {fileID: 5332360819678825614}
   - component: {fileID: 4758583024787343056}
+  - component: {fileID: 2728064886812639530}
   m_Layer: 0
   m_Name: Timeline
   m_TagString: Untagged
@@ -184,7 +199,7 @@ PlayableDirector:
   m_GameObject: {fileID: 7352385546920614812}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 0}
+  m_PlayableAsset: {fileID: 11400000, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -220,6 +235,8 @@ PlayableDirector:
     value: {fileID: 7926514646298852365}
   - key: {fileID: -6534005353958440, guid: b478a29bee3443a4cb5f6c2d82c5988b, type: 2}
     value: {fileID: 0}
+  - key: {fileID: -387349999116822153, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
+    value: {fileID: 2728064886812639530}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &4758583024787343056
@@ -241,6 +258,36 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
   npcPosData: {fileID: 11400000, guid: d27fee44405f09e41b21bc4f69a02796, type: 2}
   mainNpcAnimator: {fileID: 7926514646298852365}
+--- !u!114 &2728064886812639530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7352385546920614812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 073340cfbd0affb43a0bfa4fe2d62a4d, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6854803305451605611}
+          m_TargetAssemblyTypeName: StartBoss, Assembly-CSharp
+          m_MethodName: StartBossRoom
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &2622295880961736861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -252,6 +299,10 @@ PrefabInstance:
     - target: {fileID: 2529036047234834708, guid: 0e62b05eb8060434d910480d5d85cf4a, type: 3}
       propertyPath: m_Name
       value: Portal
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529036047234834708, guid: 0e62b05eb8060434d910480d5d85cf4a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6046444927901398659, guid: 0e62b05eb8060434d910480d5d85cf4a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -293,7 +344,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8451716699844647849, guid: 0e62b05eb8060434d910480d5d85cf4a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -318,6 +370,14 @@ PrefabInstance:
     - target: {fileID: 5405266460925711291, guid: 6f39f3c057d213f449c6d1f04d09338c, type: 3}
       propertyPath: m_Name
       value: MainNPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 5509701638220776889, guid: 6f39f3c057d213f449c6d1f04d09338c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.195143
+      objectReference: {fileID: 0}
+    - target: {fileID: 5509701638220776889, guid: 6f39f3c057d213f449c6d1f04d09338c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.608143
       objectReference: {fileID: 0}
     - target: {fileID: 6482345497280812796, guid: 6f39f3c057d213f449c6d1f04d09338c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -400,15 +460,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3624863225609250241, guid: 285d146403e156849b6246ab99dc0785, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 240.33
+      value: 45.634
       objectReference: {fileID: 0}
     - target: {fileID: 3624863225609250241, guid: 285d146403e156849b6246ab99dc0785, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 51.22
+      value: 15.943
       objectReference: {fileID: 0}
     - target: {fileID: 3624863225609250241, guid: 285d146403e156849b6246ab99dc0785, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.9097971
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3624863225609250241, guid: 285d146403e156849b6246ab99dc0785, type: 3}
       propertyPath: m_LocalRotation.w
