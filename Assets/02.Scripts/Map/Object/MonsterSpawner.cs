@@ -25,7 +25,19 @@ public class MonsterSpawner : MonoBehaviour
         SpawnMonsters();
     }
 
-    public void SpawnMonsters()     //모든 몬스터 스폰
+    private void OnEnable()
+    {
+        EventBus.Subscribe<GameOverEvent>(GameOverHandler);
+        EventBus.Subscribe<PlayerReviveEvent>(PlayerReviveHandler);
+    }
+
+    private void OnDisable()
+    {
+        EventBus.UnSubscribe<GameOverEvent>(GameOverHandler);
+        EventBus.UnSubscribe<PlayerReviveEvent>(PlayerReviveHandler);
+    }
+
+    private void SpawnMonsters()     //모든 몬스터 스폰
     {
         foreach (SpawnPoint spawnPoint in FFMSpawnPoints)
         {
@@ -41,7 +53,10 @@ public class MonsterSpawner : MonoBehaviour
             Spawn(spawnPoint);
         }
         
-        Spawn(ForestGuardianSpwanPoint);
+        //보스 몬스터는 예외 처리 필요!
+        if(!GameManager.Instance.CanGoNextStage)
+            Spawn(ForestGuardianSpwanPoint);
+        
         Spawn(ReaperSpawnPoint);
     }
 
@@ -62,5 +77,22 @@ public class MonsterSpawner : MonoBehaviour
         {
             monsters[spawnPoint.type].Remove(monster);
         });
+    }
+
+    private void GameOverHandler(GameOverEvent evnt)
+    {
+        //게임 오버(플레이어 사망)시 모든 몬스터 비활성화
+        foreach (MonsterType type in monsters.Keys)
+        {
+            foreach (MonsterBase monster in monsters[type])
+            {
+                PoolManager.Instance.MonsterPool.Return(type, monster);
+            }
+        }
+    }
+
+    private void PlayerReviveHandler(PlayerReviveEvent evnt)
+    {   //플레이어 부활 시 모든 몬스터 스폰
+        SpawnMonsters();
     }
 }
