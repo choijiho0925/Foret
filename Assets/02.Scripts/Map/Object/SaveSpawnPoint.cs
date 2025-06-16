@@ -60,12 +60,9 @@ public class SaveSpawnPoint : MonoBehaviour, IInteractable
         }
         
         string line = savePointQueue.Dequeue();
-        uiManager.dialogueController.DisplayLine(line);//디알로그 출력
-        
-        if (uiManager.dialogueController.IsTyping)
-        {
-            uiManager.dialogueController.CompleteCurrentLineInstantly();// 글자 다 안 나왔으면 바로 표시
-        }
+        uiManager.dialogueController.SetDialogue(line);//디알로그 출력
+        uiManager.dialogueController.ShowDialoguePanel();
+        uiManager.dialogueController.CompleteCurrentLineInstantly();// 글자 다 안 나왔으면 바로 표시
         
         
         

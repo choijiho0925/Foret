@@ -37,11 +37,14 @@ public class DialogueNPC : MonoBehaviour, IInteractable
         uiManager.dialogueController.IsScene(dialogueData[gameManager.mainNpcIndex].isScene);
         if (dialogueData[gameManager.mainNpcIndex].timing != ActionTiming.None)
         {
-            npcController.SetTimeline(dialogueData[gameManager.mainNpcIndex]);
+            if (!npcController.SetTimeline(dialogueData[gameManager.mainNpcIndex]))
+            {
+                return;
+            }
             if (dialogueData[gameManager.mainNpcIndex].timing == ActionTiming.Before)
             {
                 npcController.action = InitDialogue;
-                npcController.Playtimeline();
+                npcController.PlayTimeline();
             }
             else
             {
@@ -109,7 +112,7 @@ public class DialogueNPC : MonoBehaviour, IInteractable
         if (dialogueData[gameManager.mainNpcIndex].timing == ActionTiming.After)
         {
             npcController.action = AfterTimeline;
-            npcController.Playtimeline();
+            npcController.PlayTimeline();
         }
         else
         {
@@ -124,7 +127,7 @@ public class DialogueNPC : MonoBehaviour, IInteractable
         if (dialogueData[gameManager.mainNpcIndex].timing == ActionTiming.After)
         {
             npcController.action = AfterTimeline;
-            npcController.Playtimeline();
+            npcController.PlayTimeline();
         }
         else
         {

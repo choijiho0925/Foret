@@ -44,27 +44,27 @@ public class MedicPlant : MonoBehaviour,IInteractable
     {
         if (plantQueue.Count == 0)
         {
+            Debug.Log("Enddialogue");
             EndDialogue();
             return;
         }
-        
         string line = plantQueue.Dequeue();
-        uiManager.dialogueController.DisplayLine(line);//디알로그 출력
-        if (uiManager.dialogueController.IsTyping)
-        {
-            uiManager.dialogueController.CompleteCurrentLineInstantly();// 글자 다 안 나왔으면 바로 표시
-        }
+        uiManager.dialogueController.SetDialogue(line);//디알로그 출력
+        uiManager.dialogueController.ShowDialoguePanel();
+        uiManager.dialogueController.CompleteCurrentLineInstantly();// 글자 다 안 나왔으면 바로 표시
     }
     
     private void EndDialogue() //나중에 ESC키 같은 걸로 중간에 대사를 끊을 수 있을지도?
     {
+        Debug.Log("GetPlant");
         GetPlant();
         uiManager.dialogueController.HideDialoguePanel();
         player.OnEndInteraction();
     }
 
-    public void GetPlant()
+    private void GetPlant()
     {
+        Debug.Log("Index추가");
         gameManager.NextIndex();
         this.gameObject.SetActive(false);
     }

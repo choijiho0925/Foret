@@ -79,6 +79,9 @@ public class DialogueController : MonoBehaviour
         {
             speechBubble.SetActive(false);
         }
+        speechBubbleText.text = "";
+        IsTyping = false;
+        dialoguePanel.SetActive(false);
     }
 
     // 대사 출력이 끝난 후 호출할 메서드
@@ -89,7 +92,14 @@ public class DialogueController : MonoBehaviour
             StopCoroutine(typingCoroutine);
         }
 
-        dialogueText.text = fullCurrentLine;
+        if (isScene)
+        {
+            speechBubbleText.text = fullCurrentLine;
+        }
+        else
+        {
+            dialogueText.text = fullCurrentLine;
+        }
         IsTyping = false;
     }
 
@@ -99,7 +109,6 @@ public class DialogueController : MonoBehaviour
         npcNameText.text = npcName;
         line = line.Replace("\\n", "\n");
         fullCurrentLine = line;
-
         if (typingCoroutine != null)
         {
             StopCoroutine(typingCoroutine);
@@ -116,17 +125,38 @@ public class DialogueController : MonoBehaviour
         typingCoroutine = StartCoroutine(TypeLine(line));
     }
 
+    public void SetDialogue(string line)
+    {
+        npcNameText.text = npcName;
+        line = line.Replace("\\n", "\n");
+        fullCurrentLine = line;
+    }
+
     // NPC 대사를 한글자씩 출력하기 위한 IEnumerator
     private IEnumerator TypeLine(string line)
     {
         IsTyping = true;
 
         StringBuilder sb = new StringBuilder();
-        dialogueText.text = "";
+        if (isScene)
+        {
+            speechBubbleText.text = "";
+        }
+        else
+        {
+            dialogueText.text = "";
+        }
         foreach (char c in line)
         {
             sb.Append(c);
-            dialogueText.text = sb.ToString();
+            if (isScene)
+            {
+                speechBubbleText.text = sb.ToString();
+            }
+            else
+            {
+                dialogueText.text = sb.ToString();
+            }
             yield return new WaitForSeconds(0.05f);
         }
 

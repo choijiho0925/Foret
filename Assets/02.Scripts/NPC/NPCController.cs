@@ -16,7 +16,8 @@ public class NpcController : MonoBehaviour
     
     private PlayableDirector director;
     private GameManager gameManager;
-    [SerializeField]private int posnum;
+    private int posnum;
+    private bool[] isAnimationPlay;
 
     private void Start()
     {
@@ -26,35 +27,52 @@ public class NpcController : MonoBehaviour
         posnum = 0;
         GoNextPos();
         bossRoomCollider.gameObject.SetActive(false);
+        isAnimationPlay = new bool[npcTimeline.Count];
+        for (int i = 0; i < isAnimationPlay.Length; i++)
+        {
+            isAnimationPlay[i] = false;
+        }
     }
 
-    public void SetTimeline(DialogueData data)
+    public bool SetTimeline(DialogueData data)
     {
         if (npcTimeline.Count < 4)
         {
-            director.playableAsset = npcTimeline[0];
-        }
-        else
-        {
-            switch (data.type)
+            if (!isAnimationPlay[0])
             {
-                case ActionType.Move :
-                    director.playableAsset = npcTimeline[0];
-                    break;
-                case ActionType.Attack :
-                    director.playableAsset = npcTimeline[1];
-                    break;
-                case ActionType.Heal :
-                    director.playableAsset = npcTimeline[2];
-                    break;
-                case ActionType.Change :
-                    director.playableAsset = npcTimeline[3];
-                    break;
+                director.playableAsset = npcTimeline[0];
+                isAnimationPlay[0] = true;
+                return true;
             }
+            return false;
         }
+        switch (data.type)
+        {
+            case ActionType.Move :
+                if(!isAnimationPlay[0]) return false;
+                director.playableAsset = npcTimeline[0];
+                isAnimationPlay[0] = true;
+                return true;
+            case ActionType.Attack :
+                if(!isAnimationPlay[1]) return false;
+                director.playableAsset = npcTimeline[1];
+                isAnimationPlay[1] = true;
+                return true;
+            case ActionType.Heal :
+                if(!isAnimationPlay[2]) return false;
+                director.playableAsset = npcTimeline[2];
+                isAnimationPlay[2] = true;
+                return true;
+            case ActionType.Change :
+                if(!isAnimationPlay[3]) return false;
+                director.playableAsset = npcTimeline[3];
+                isAnimationPlay[3] = true;
+                return true;
+        }
+        return false;
     }
 
-    public void Playtimeline()
+    public void PlayTimeline()
     {
         director.stopped += OnTimelineFinished;
         if (mainNpcAnimator.enabled == false)

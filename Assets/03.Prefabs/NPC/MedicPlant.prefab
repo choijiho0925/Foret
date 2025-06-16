@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6134792000903043051}
   - component: {fileID: 6905728786737443123}
-  - component: {fileID: 2055161283751177912}
   - component: {fileID: 7870980048351348507}
   - component: {fileID: 8046786106722399287}
-  m_Layer: 0
+  m_Layer: 25
   m_Name: MedicPlant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,21 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2055161283751177912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225505198505759803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97d594071ff50454eaff716dacfe11b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueData:
-  - {fileID: 11400000, guid: b99cd826d93047443bb397546d315d3b, type: 2}
-  npcController: {fileID: 0}
 --- !u!114 &7870980048351348507
 MonoBehaviour:
   m_ObjectHideFlags: 0
