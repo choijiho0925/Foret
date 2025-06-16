@@ -8,6 +8,13 @@ using DG.Tweening;
 
 public class UIManager : Singleton<UIManager>
 {
+    [Header("Controller Prefabs")]
+    [SerializeField] private HeartController heartControllerPF;
+    [SerializeField] private SettingController settingControllerPF;
+    [SerializeField] private DialogueController dialogueControllerPF;
+    [SerializeField] private InteractableController interactableControllerPF;
+    [SerializeField] private AbilityController abilityControllerPF;
+
     public HeartController heartController;
     public SettingController settingController;
     public DialogueController dialogueController;
@@ -15,7 +22,6 @@ public class UIManager : Singleton<UIManager>
     public AbilityController abilityController;
 
     public TextMeshProUGUI gameStartText;
-
     private bool hasStarted = false;
 
     private void Start()
@@ -24,6 +30,16 @@ public class UIManager : Singleton<UIManager>
         {
             gameStartText.DOFade(0f, 2f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
         }
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     // Update is called once per frame
@@ -62,4 +78,27 @@ public class UIManager : Singleton<UIManager>
     {
         abilityController.UseGauge(amount);
     }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "MainScene")
+        {
+            InstantiateControllers();
+        }
+    }
+
+    private void InstantiateControllers()
+    {
+        Instantiate(dialogueControllerPF);
+        Instantiate(heartControllerPF);
+        Instantiate(abilityControllerPF);
+        Instantiate(interactableControllerPF);
+        Instantiate(settingControllerPF);
+    }
+
+    public void RegisterHeartController(HeartController hc) => heartController = hc;
+    public void RegisterSettingController(SettingController sc) => settingController = sc;
+    public void RegisterDialogueController(DialogueController dc) => dialogueController = dc;
+    public void RegisterInteractableController(InteractableController ic) => interactableController = ic;
+    public void RegisterAbilityController(AbilityController ac) => abilityController = ac;
 }
