@@ -9,7 +9,7 @@ public class ForestGuardian : BossBase
     [SerializeField] private float chargeRange = 5f;       // 돌진 공격 거리
     [SerializeField] private float teleportRange = 10f;    // 텔레포트 가능 거리
     [SerializeField] private float returnThreshold = 0.1f; // 복귀 거리
-    [SerializeField] private float immuneDuration = 1f;    // 무적 시간
+    [SerializeField] private float immuneDuration = 1.5f;    // 무적 시간
 
     [Header("애니메이션 길이 설정")]
     [SerializeField] private float attackDuration = 0.8f;
@@ -129,15 +129,36 @@ public class ForestGuardian : BossBase
         isImmune = true;
         immuneTimer = immuneDuration;
 
-        // 상태 잠금 해제
-        UnlockState();
-
         if (Health <= 0 && !dead)
         {
             dead = true;
             PlayDeathAnimation(); // 사망 애니메이션 재생만
             rb.velocity = Vector2.zero; // 움직임 멈춤
         }
+
+        else
+        {
+            // 공격 중일 경우 일정 시간 후 잠금 해제
+            if (isChargeAttacking || isTeleportAttacking)
+            {
+                // 약간 여유 두기
+                StartCoroutine(UnlockAfterDelay(attackDuration + 0.3f)); 
+            }
+            else
+            {
+                UnlockState();
+                StartCoroutine(DelayedStateChange());
+            }
+        }
+
+    }
+
+    // 일정 시간 후에 상태 전환 시도
+    private IEnumerator UnlockAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        UnlockState();
+        TryChangeState(new FGDecisionState(this));
     }
 
     // 플레이어를 바라보게 함
