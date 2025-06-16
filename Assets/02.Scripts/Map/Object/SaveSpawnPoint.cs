@@ -15,15 +15,14 @@ public class SaveSpawnPoint : MonoBehaviour, IInteractable
     private UIManager uiManager;
     private Queue<string> savePointQueue = new Queue<string>();
 
+    private bool isStart;
+
     private void Start()
     {
         renderer = GetComponentInChildren<SpriteRenderer>(); // 스프라이트 렌더러 컴포넌트 초기화
         player = FindAnyObjectByType<PlayerInteract>();
         uiManager = UIManager.Instance;
-        foreach (string dialogue in saveTextData.dialogues)
-        {
-            savePointQueue.Enqueue(dialogue);
-        }
+        isStart = true;
     }
 
     public void ShowInteractUI()
@@ -33,28 +32,49 @@ public class SaveSpawnPoint : MonoBehaviour, IInteractable
 
     public void InteractAction()
     {
-        GameManager.Instance.SetRespawnPoint(this.transform.position);
         uiManager.interactableController.HideInteractable();
+        InitInteraction();
+    }
+    
+    private void InitInteraction()
+    {
+        if (isStart)
+        {
+            savePointQueue.Clear();
+            foreach (string dialogue in saveTextData.dialogues)
+            {
+                savePointQueue.Enqueue(dialogue);
+            }
+
+            isStart = false;
+        }
+        ShowNextLine();
     }
     
     private void ShowNextLine()
     {
-        if (uiManager.dialogueController.IsTyping)
-        {
-            uiManager.dialogueController.CompleteCurrentLineInstantly();// 글자 다 안 나왔으면 바로 표시
-            return;
-        }
-
         if (savePointQueue.Count == 0)
         {
             EndDialogue();
+            return;
         }
+        
         string line = savePointQueue.Dequeue();
         uiManager.dialogueController.DisplayLine(line);//디알로그 출력
+        
+        if (uiManager.dialogueController.IsTyping)
+        {
+            uiManager.dialogueController.CompleteCurrentLineInstantly();// 글자 다 안 나왔으면 바로 표시
+        }
+        
+        
+        
     }
     
     private void EndDialogue() //나중에 ESC키 같은 걸로 중간에 대사를 끊을 수 있을지도?
     {
+        isStart = true;
+        GameManager.Instance.SetRespawnPoint(this.transform.position);
         uiManager.dialogueController.HideDialoguePanel();
         uiManager.interactableController.ShowInteractable(this.gameObject.layer);
         player.OnEndInteraction();
