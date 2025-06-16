@@ -13,6 +13,7 @@ public class AirDeadState : IState
     {
         // Dead 상태 진입
         monster.AnimationHandler.Dead();
+        monster.Die();
     }
 
     public void Exit()
@@ -22,6 +23,6 @@ public class AirDeadState : IState
 
     public void Update()
     {
-        monster.Die();
+        
     }
 }

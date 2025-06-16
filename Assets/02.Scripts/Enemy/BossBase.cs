@@ -37,11 +37,11 @@ public class BossBase : MonsterBase
 
     public override void Move()
     {
-        
+
     }
 
     public override void Attack()
     {
-        
+
     }
 }
