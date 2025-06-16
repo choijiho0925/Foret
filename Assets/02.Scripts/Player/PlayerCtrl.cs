@@ -72,6 +72,14 @@ namespace _02.Scripts.Player
                 playerAttack.ThrowAttack(moveInput);
             }
         }
+
+        public void OnRecover(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Started)
+            {
+                playerStat.Recover();
+            }    
+        }
         
         //'상호작용' 상태일 때는 모든 움직임 제한
         public void EnterInteraction()
