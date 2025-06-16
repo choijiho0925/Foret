@@ -13,6 +13,7 @@ public class AbilityController : MonoBehaviour
     private void Start()
     {
         currentAmount = fullAmount;
+        UIManager.Instance.RegisterAbilityController(this);
     }
 
     public void UseGauge(float amount)
