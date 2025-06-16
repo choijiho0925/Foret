@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerStat : MonoBehaviour, IDamagable
 {
     [SerializeField] private PlayerData playerData;
+    [SerializeField] private GameObject recoverEffect;
     
     public int currentHeart{ get; private set; }        //현재 하트 수
     public int currentEnergy{ get; private set; }    //현재 에너지
@@ -70,10 +71,10 @@ public class PlayerStat : MonoBehaviour, IDamagable
 
     public bool UseEnergy(int energy)
     {
-        if (energy < 0) return false;
+        if (energy > currentEnergy || energy < 0) return false;
         
         currentEnergy = Mathf.Max(currentEnergy - energy, 0);
-
+        UIManager.Instance.UpdateGauge(((float)energy/CurrentMaxEnergy));
         return true;
     }
 
@@ -82,7 +83,7 @@ public class PlayerStat : MonoBehaviour, IDamagable
         if (energy < 0) return false;
         
         currentEnergy = Mathf.Min(currentEnergy + energy, CurrentMaxEnergy);
-
+        UIManager.Instance.UpdateGauge((-(float)energy/CurrentMaxEnergy));
         return true;
     }
 
@@ -92,6 +93,7 @@ public class PlayerStat : MonoBehaviour, IDamagable
         if (currentHeart == CurrentMaxHeart || UseEnergy(playerData.RecoverCost))
         {
             Heal(playerData.RecoverAmount);
+            StartCoroutine(RecoverEffect());
         }
     }
 
@@ -113,5 +115,12 @@ public class PlayerStat : MonoBehaviour, IDamagable
         yield return new WaitForSeconds(2.0f);
         animator.SetBool(animIDHit, false);
         isInvincible = false;
+    }
+
+    private IEnumerator RecoverEffect() //회복 이팩트
+    {
+        recoverEffect.SetActive(true);
+        yield return new WaitForSeconds(0.7f);
+        recoverEffect.SetActive(false);
     }
 }

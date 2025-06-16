@@ -33,6 +33,7 @@ namespace _02.Scripts.Player
         [Header("원거리 공격 설정")] 
         public float throwPositionOffsetX = 0.5f;
         public float throwPositionOffsetY = 0.7f;
+        public int throwAttackEnergyCost;     //원거리 공격 에너지 소모량
 
         private static readonly int animIDAttackForward = Animator.StringToHash("IsAttack");
         private static readonly int animIDAttackUp = Animator.StringToHash("IsAttackUp");
@@ -83,6 +84,9 @@ namespace _02.Scripts.Player
         public void ThrowAttack(Vector2 inputDirection)
         {
             if (!canAttack) return;
+
+            if (!playerStat.UseEnergy(throwAttackEnergyCost)) return;
+            
             canAttack = false;
             
             if (inputDirection.y > 0.7f) 
