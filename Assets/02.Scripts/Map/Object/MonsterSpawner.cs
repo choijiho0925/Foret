@@ -54,7 +54,9 @@ public class MonsterSpawner : MonoBehaviour
         }
         
         //보스 몬스터는 예외 처리 필요!
-        Spawn(ForestGuardianSpwanPoint);
+        if(!GameManager.Instance.CanGoNextStage)
+            Spawn(ForestGuardianSpwanPoint);
+        
         Spawn(ReaperSpawnPoint);
     }
 
