@@ -42,22 +42,27 @@ public class ParallaxBackground : MonoBehaviour
 
 	private void CalculateMoveSpeedByLayer(GameObject[] backgrounds, int count)
 	{
-		float farthestBackDistance = 0;
-		// 카메라로부터 가장 멀리 떨어진 배경 레이어와의 z 거리 계산
-		for ( int i = 0; i < count; ++ i )
-		{
-			if ( (backgrounds[i].transform.position.z - cameraTransform.position.z ) > farthestBackDistance )
-			{
-				farthestBackDistance = backgrounds[i].transform.position.z - cameraTransform.position.z;
-			}
-		}
+        float closeDistance = float.MaxValue;
+        float farDistance = float.MinValue;
 
-		// 카메라와의 z 위치 거리가 다른 배경 레이어별로 이동 속도 설정
-		for ( int i = 0; i < count; ++ i )
-		{
-			// 가장 멀리 떨어진 배경 레이어의 이동 속도 = 0
-			layerMoveSpeed[i] = 1 - slowspeed - (backgrounds[i].transform.position.z - cameraTransform.position.z) / farthestBackDistance;
-            Debug.Log($"{layerMoveSpeed[i]}, 실제 이동속도 = {layerMoveSpeed[i] * parallaxSpeed}");
+        // 모든 배경의 카메라로부터의 z 거리 측정
+        for (int i = 0; i < count; ++i)
+        {
+            float zDistance = Mathf.Abs(backgrounds[i].transform.position.z - cameraTransform.position.z);
+            if (zDistance < closeDistance) closeDistance = zDistance;
+            if (zDistance > farDistance) farDistance = zDistance;
+        }
+
+        // 안전 처리: 거리가 모두 같으면 동일 속도 부여
+        float distanceRange = Mathf.Max(farDistance - closeDistance, 0.0001f);
+
+        for (int i = 0; i < count; ++i)
+        {
+            float zDistance = Mathf.Abs(backgrounds[i].transform.position.z - cameraTransform.position.z);
+
+            // 가까운 배경은 1에 가까운 값, 멀수록 0에 가까운 값
+            float t = 1f - ((zDistance - closeDistance) / distanceRange);
+            layerMoveSpeed[i] = Mathf.Lerp(0.1f, 1f, t);  // 최소 속도 0.1 ~ 최대 속도 1
         }
     }
 

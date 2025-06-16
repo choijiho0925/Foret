@@ -55,10 +55,13 @@ MonoBehaviour:
     prefab: {fileID: 3034731506633931652, guid: be3547f5008c96d4c89c7d9655c9a822, type: 3}
     size: 5
   - type: 4
-    prefab: {fileID: 1134624673359964870, guid: 415d8d6526dfb1345be5ac3be05109bd, type: 3}
+    prefab: {fileID: 489759837166936605, guid: fa13f51e07179aa44ae7231a56e5dd39, type: 3}
     size: 5
   - type: 5
     prefab: {fileID: 5687901407241206339, guid: 5d02f00c1e61dd5479998af1a56bbd7a, type: 3}
+    size: 5
+  - type: 6
+    prefab: {fileID: 2970868700069027602, guid: f444fd88f2a21e74e8de5b0165d96d85, type: 3}
     size: 5
 --- !u!1 &7486217406580547324
 GameObject:
