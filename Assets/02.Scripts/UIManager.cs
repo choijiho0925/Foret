@@ -25,16 +25,6 @@ public class UIManager : Singleton<UIManager>
                 dialogueController.HideSpeechBubble();
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            UpdateGauge(0.3f);
-        }
-
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            UpdateGauge(-0.3f);
-        }
     }
 
     public void TakeDamage()
