@@ -10,16 +10,16 @@ public class NpcController : MonoBehaviour
     
     [SerializeField] private List<PlayableAsset> npcTimeline;
     [SerializeField] private NpcPosData npcPosData;
+    [SerializeField] private Animator mainNpcAnimator;
     
     private PlayableDirector director;
-    private Animator animator;
+    
     private int posnum;
 
     private void Start()
     {
         director = GetComponent<PlayableDirector>();
-        animator = GetComponent<Animator>();
-        animator.enabled = false;
+        mainNpcAnimator.enabled = false;
         posnum = 0;
         GoNextPos();
     }
@@ -54,9 +54,9 @@ public class NpcController : MonoBehaviour
     public void Playtimeline()
     {
         director.stopped += OnTimelineFinished;
-        if (animator.enabled == false)
+        if (mainNpcAnimator.enabled == false)
         {
-            animator.enabled = true;
+            mainNpcAnimator.enabled = true;
         }
         director.Play();
     }

@@ -20,8 +20,10 @@ public class InteractableController : MonoBehaviour
         {
             interactText.text = "돌을 만져보기";
         }
-
-        interactText.text = "대화하기";
+        else
+        {
+            interactText.text = "대화하기";
+        }
     }
 
     public void HideInteractable()

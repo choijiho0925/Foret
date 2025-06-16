@@ -230,6 +230,7 @@ MonoBehaviour:
   normalMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   outLineMaterial: {fileID: 2100000, guid: 7a18857ad11533541822e0995e6a66f4, type: 2}
   interactGameObject: {fileID: 0}
+  explainData: {fileID: 11400000, guid: 6acbfb759a9075b4eb23c4d91d934e05, type: 2}
 --- !u!1 &7439911631877103013
 GameObject:
   m_ObjectHideFlags: 0

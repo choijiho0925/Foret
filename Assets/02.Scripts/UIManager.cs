@@ -9,21 +9,11 @@ public class UIManager : Singleton<UIManager>
     public SettingController settingController;
     public DialogueController dialogueController;
     public InteractableController interactableController;
+    public AbilityController abilityController;
 
     // Update is called once per frame
     void Update()
     {
-        // 테스트용 키 입력
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            TakeDamage();
-        }
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            Recovery();
-        }
-
         if (Input.GetKeyDown(KeyCode.P))
         {
             if (!dialogueController.speechBubble.activeSelf)
@@ -45,5 +35,10 @@ public class UIManager : Singleton<UIManager>
     public void Recovery()
     {
         heartController.RecoverHeart();
+    }
+
+    public void UpdateGauge(float amount)
+    {
+        abilityController.UseGauge(amount);
     }
 }

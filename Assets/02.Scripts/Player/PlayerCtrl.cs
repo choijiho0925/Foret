@@ -56,6 +56,8 @@ namespace _02.Scripts.Player
         
         public void OnAttack(InputAction.CallbackContext context)
         {
+            if (!canControl) return;
+            
             // 일반 공격
             if (context.phase == InputActionPhase.Started)
             {
@@ -65,12 +67,24 @@ namespace _02.Scripts.Player
         }   
         public void OnThrow(InputAction.CallbackContext context)
         {
+            if(!canControl) return;
+            
             // 원거리 공격
             if (context.phase == InputActionPhase.Started)
             {
                 // PlayerAttack 스크립트에 현재 이동 방향(moveInput)을 전달하며 공격 요청
                 playerAttack.ThrowAttack(moveInput);
             }
+        }
+
+        public void OnRecover(InputAction.CallbackContext context)
+        {
+            if(!canControl) return;
+            
+            if (context.phase == InputActionPhase.Started)
+            {
+                playerStat.Recover();
+            }    
         }
         
         //'상호작용' 상태일 때는 모든 움직임 제한
