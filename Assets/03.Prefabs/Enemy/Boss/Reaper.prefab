@@ -220,6 +220,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  mainSprite: {fileID: 7811027914358900019}
   slashNormal: {fileID: 8464377877135890409}
   slashWide: {fileID: 1031968166145455461}
 --- !u!114 &3876735417640503622

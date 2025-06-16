@@ -12,6 +12,7 @@ public class Reaper : BossBase
     [SerializeField] private GameObject clonePrefab;
     [SerializeField] private int cloneCount = 2;
     [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private GameObject mainSprite;
     [SerializeField] private GameObject slashNormal;
     [SerializeField] private GameObject slashWide;
 
@@ -82,16 +83,15 @@ public class Reaper : BossBase
         AnimationHandler.Attack();
         StartCoroutine(ShowAttackEffect(effect));
 
-        Collider2D hit = Physics2D.OverlapCircle(slashNormal.transform.position, AttackRange, playerLayer);
+        //Collider2D hit = Physics2D.OverlapCircle(slashNormal.transform.position, AttackRange, playerLayer);
 
-        if (hit != null)
-            hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
+        //if (hit != null)
+        //    hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
 
         yield return new WaitForSeconds(3f);
 
         currentPattern = null;
         attackCount++;
-        Debug.Log(attackCount);
         StateMachine.ChangeState(new ReaperIdleState(this));
     }
     #endregion
@@ -187,41 +187,57 @@ public class Reaper : BossBase
 
     public IEnumerator TeleportAttack()
     {
-        Vector2 originPos = transform.position;
-
         // 플레이어 등쪽으로 순간이동
+        StartCoroutine(Teleport());
+
+        yield return new WaitForSeconds(3f);
+    }
+
+    public IEnumerator Teleport()
+    {
+        bossAnimationHandler.Teleport();
+        yield return new WaitForSeconds(0.4f);
+
+        mainSprite.SetActive(false);
+        yield return new WaitForSeconds(2f);
+
+        Appear();
+        yield return new WaitForSeconds(0.4f);
+
+        // 긴 공격 실행
+        LongAttack(slashWide);
+    }
+
+    private void Appear()
+    {
         float playerFacing = Player.transform.localScale.x > 0 ? 1f : -1f;
         Vector2 offset = new Vector2(-playerFacing, 0f) * teleportDistance;
         transform.position = Player.transform.position + (Vector3)offset;
 
         LookDirection();
 
-        // 긴 공격 실행
-        LongAttack(slashWide);
-
-        yield return new WaitForSeconds(2f);
-
-        transform.position = originPos;
-    }
+        mainSprite.SetActive(true);
+        bossAnimationHandler.Appear();
+    } 
 
     private void LongAttack(GameObject effect)
     {
         StartCoroutine(ShowAttackEffect(effect));
 
-        Vector2 attackPos = (Vector2)slashWide.transform.position + (Vector2)(transform.up * 0.5f);
-        Vector2 size = new Vector2(12f, 2.5f); // 캡슐 범위
-        float angle = 0f; // 수평 방향
+        //Vector2 attackPos = (Vector2)slashWide.transform.position + (Vector2)(transform.up * 0.5f);
+        //Vector2 size = new Vector2(12f, 2.5f); // 캡슐 범위
+        //float angle = 0f; // 수평 방향
 
-        Collider2D hit = Physics2D.OverlapCapsule(
-            attackPos,
-            size,
-            CapsuleDirection2D.Horizontal,
-            angle,
-            playerLayer
-        );
+        //Collider2D hit = Physics2D.OverlapCapsule(
+        //    attackPos,
+        //    size,
+        //    CapsuleDirection2D.Horizontal,
+        //    angle,
+        //    playerLayer
+        //);
 
-        if (hit != null)
-            hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
+        //if (hit != null)
+        //    hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
     }
     #endregion
 }
