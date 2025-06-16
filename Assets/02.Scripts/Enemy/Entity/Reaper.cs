@@ -36,6 +36,7 @@ public class Reaper : BossBase
     {
         StateMachine.ChangeState(new ReaperIdleState(this));
     }
+
     protected override void Update()
     {
         base.Update();
@@ -61,6 +62,13 @@ public class Reaper : BossBase
         agent.SetDestination(targetPos);
     }
 
+    IEnumerator ShowAttackEffect(GameObject effect)
+    {
+        effect.SetActive(true);
+        yield return new WaitForSeconds(0.4f);
+        effect.SetActive(false);
+    }
+
     #region 기본 공격
     public override void Attack()
     {
@@ -71,22 +79,15 @@ public class Reaper : BossBase
         currentPattern = StartCoroutine(NormalAttack(slashNormal));
     }
 
-    IEnumerator ShowAttackEffect(GameObject effect)
-    {
-        effect.SetActive(true);
-        yield return new WaitForSeconds(0.4f);
-        effect.SetActive(false);
-    }
-
     public IEnumerator NormalAttack(GameObject effect)
     {
         AnimationHandler.Attack();
         StartCoroutine(ShowAttackEffect(effect));
 
-        //Collider2D hit = Physics2D.OverlapCircle(slashNormal.transform.position, AttackRange, playerLayer);
+        Collider2D hit = Physics2D.OverlapCircle(slashNormal.transform.position, AttackRange, playerLayer);
 
-        //if (hit != null)
-        //    hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
+        if (hit != null)
+            hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
 
         yield return new WaitForSeconds(3f);
 
@@ -101,8 +102,8 @@ public class Reaper : BossBase
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(slashNormal.transform.position, AttackRange);
 
-        Vector2 attackPos = (Vector2)slashWide.transform.position + (Vector2)(transform.up * 0.5f);
-        Vector2 size = new Vector2(12f, 2.5f);
+        Vector2 attackPos = (Vector2)slashWide.transform.position + (Vector2)(transform.up * 0.75f);
+        Vector2 size = new Vector2(15f, 2.5f);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(attackPos, size);
     }
@@ -157,6 +158,7 @@ public class Reaper : BossBase
     #region 패턴
     public IEnumerator SummonClones()
     {
+        yield return new WaitForSeconds(0.2f);
         for (int i = 0; i < cloneCount; i++)
         {
             Vector2 pos = (Vector2)transform.position + Random.insideUnitCircle * 2f;
@@ -168,8 +170,11 @@ public class Reaper : BossBase
 
     public IEnumerator SummonMinions()
     {
+        var sprite = mainSprite.GetComponent<SpriteRenderer>();
+
         // 무적 처리
         IsInvincible = true;
+        sprite.color = new Color(100/255f, 100/255f, 100/255f);
 
         // 잡몹 소환
         for (int i = 0; i < minionCount; i++)
@@ -179,10 +184,11 @@ public class Reaper : BossBase
         }
 
         // 일정 시간 대기
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(10f);
 
         // 무적 해제
         IsInvincible = false;
+        sprite.color = new Color(1f, 1f, 1f);
     }
 
     public IEnumerator TeleportAttack()
@@ -206,6 +212,7 @@ public class Reaper : BossBase
 
         // 긴 공격 실행
         LongAttack(slashWide);
+        yield return new WaitForSeconds(2f);
     }
 
     private void Appear()
@@ -224,20 +231,20 @@ public class Reaper : BossBase
     {
         StartCoroutine(ShowAttackEffect(effect));
 
-        //Vector2 attackPos = (Vector2)slashWide.transform.position + (Vector2)(transform.up * 0.5f);
-        //Vector2 size = new Vector2(12f, 2.5f); // 캡슐 범위
-        //float angle = 0f; // 수평 방향
+        Vector2 attackPos = (Vector2)slashWide.transform.position + (Vector2)(transform.up * 0.5f);
+        Vector2 size = new Vector2(15f, 2.5f); // 캡슐 범위
+        float angle = 0f; // 수평 방향
 
-        //Collider2D hit = Physics2D.OverlapCapsule(
-        //    attackPos,
-        //    size,
-        //    CapsuleDirection2D.Horizontal,
-        //    angle,
-        //    playerLayer
-        //);
+        Collider2D hit = Physics2D.OverlapCapsule(
+            attackPos,
+            size,
+            CapsuleDirection2D.Horizontal,
+            angle,
+            playerLayer
+        );
 
-        //if (hit != null)
-        //    hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
+        if (hit != null)
+            hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
     }
     #endregion
 }
