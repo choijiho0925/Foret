@@ -436,6 +436,9 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 2415923200
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &6199467669736934528
 MonoBehaviour:
   m_ObjectHideFlags: 0
