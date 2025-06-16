@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a61572b67f7b7584eb01dd8a44b97458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
   health: 1000
   moveSpeed: 40
   detectionRange: 30
@@ -119,11 +120,13 @@ MonoBehaviour:
   attackRange: 5
   isInvincible: 0
   isGround: 0
+  type: 0
   patternDelay: 0.35
   backdownRange: 2.5
   meleeRange: 4
   chargeRange: 8
   teleportRange: 12
+  returnThreshold: 0.1
   immuneDuration: 1
   attackDuration: 0.7
   chargeDelay: 0.5

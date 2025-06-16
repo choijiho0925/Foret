@@ -10,10 +10,15 @@ public class GameManager : Singleton<GameManager>
     public Vector3 respawnPoint { get; private set; } //플레이어 리스폰 지점
     public bool CanGoNextStage;
     public bool isSecondPhase;
-
+    public int mainNpcIndex { get; private set; }
     public void SetRespawnPoint(Vector3 point)
     {
         respawnPoint = point;
+    }
+
+    public void NextIndex(int index)
+    {
+        index++;
     }
 
     private void OnEnable()
