@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MainNPC5
   m_EditorClassIdentifier: 
   timing: 0
-  type: 0
+  type: 2
   npcName: "\uBC25"
   dialogues:
   - "\uC232\uC758 \uB354 \uAE4A\uC740 \uACF3\uC73C\uB85C \uB4E4\uC5B4\uAC00\uACE0
