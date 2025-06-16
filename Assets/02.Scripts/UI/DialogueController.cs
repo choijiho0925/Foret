@@ -22,7 +22,7 @@ public class DialogueController : MonoBehaviour
     private string fullCurrentLine;
     private Coroutine typingCoroutine;
 
-    private DialogueNPC currentTarget;
+    private GameObject currentTarget;
     private string npcName;
 
     private bool isScene;
@@ -33,17 +33,17 @@ public class DialogueController : MonoBehaviour
     }
 
     // 대화할 NPC를 타겟으로 설정
-    public void SetTarget(DialogueNPC npc, string name)
+    public void SetTarget(GameObject gameObject, string name)
     {
-        currentTarget = npc;
+        currentTarget = gameObject;
         npcName = name;
-        target = npc.transform;
+        target = gameObject.transform;
     }
 
     // 타겟 클리어 메서드
-    public void ClearTarget(DialogueNPC npc)
+    public void ClearTarget(GameObject gameObject)
     {
-        if (currentTarget == npc)
+        if (currentTarget == gameObject)
         {
             currentTarget = null;
         }

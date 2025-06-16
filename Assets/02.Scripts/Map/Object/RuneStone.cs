@@ -26,7 +26,6 @@ public class RuneStone : MonoBehaviour, IInteractable
         {
             runeStoneQueue.Enqueue(dialogue);
         }
-
         isFirst = true;
     }
 
@@ -36,6 +35,7 @@ public class RuneStone : MonoBehaviour, IInteractable
         {
             uiManager.interactableController.ShowInteractable(this.gameObject.layer);
         }
+        uiManager.dialogueController.SetTarget(this.gameObject, explainData.npcName);
     }
 
     public void InteractAction()
@@ -72,6 +72,7 @@ public class RuneStone : MonoBehaviour, IInteractable
     {
         isFirst = false;
         OpenNextStage();
+        uiManager.dialogueController.ClearTarget(this.gameObject);
         uiManager.dialogueController.HideDialoguePanel();
         player.OnEndInteraction();
     }

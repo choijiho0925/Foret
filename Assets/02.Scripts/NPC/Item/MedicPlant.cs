@@ -32,6 +32,7 @@ public class MedicPlant : MonoBehaviour,IInteractable
     public void ShowInteractUI()
     {
         uiManager.interactableController.ShowInteractable(this.gameObject.layer);
+        uiManager.dialogueController.SetTarget(this.gameObject, explainData.npcName);
     }
     
     public void InteractAction()
@@ -44,7 +45,6 @@ public class MedicPlant : MonoBehaviour,IInteractable
     {
         if (plantQueue.Count == 0)
         {
-            Debug.Log("Enddialogue");
             EndDialogue();
             return;
         }
@@ -56,7 +56,7 @@ public class MedicPlant : MonoBehaviour,IInteractable
     
     private void EndDialogue() //나중에 ESC키 같은 걸로 중간에 대사를 끊을 수 있을지도?
     {
-        Debug.Log("GetPlant");
+        uiManager.dialogueController.ClearTarget(this.gameObject);
         GetPlant();
         uiManager.dialogueController.HideDialoguePanel();
         player.OnEndInteraction();
@@ -64,7 +64,6 @@ public class MedicPlant : MonoBehaviour,IInteractable
 
     private void GetPlant()
     {
-        Debug.Log("Index추가");
         gameManager.NextIndex();
         this.gameObject.SetActive(false);
     }

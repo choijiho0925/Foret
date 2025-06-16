@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,10 +11,12 @@ public class DialogueNPC : MonoBehaviour, IInteractable
     private Queue<string> dialogueQueue = new Queue<string>();//이거 프로텍티드 다른 사람한테 조금 물어보자
     private UIManager uiManager;
     private GameManager gameManager;
+    private CinemachineVirtualCamera virtualCamera;
 
     private void Start()
     {
         player = FindObjectOfType<PlayerInteract>();
+        virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
         uiManager = UIManager.Instance;
         gameManager = GameManager.Instance;
         isDialogueStart = true; 
@@ -27,7 +30,7 @@ public class DialogueNPC : MonoBehaviour, IInteractable
             player.OnEndInteraction();
             return;
         }
-        uiManager.dialogueController.SetTarget(this, dialogueData[gameManager.mainNpcIndex].npcName);
+        uiManager.dialogueController.SetTarget(this.gameObject, dialogueData[gameManager.mainNpcIndex].npcName);
         uiManager.interactableController.ShowInteractable(this.gameObject.layer);
     }
 
@@ -37,6 +40,11 @@ public class DialogueNPC : MonoBehaviour, IInteractable
         {
             player.OnEndInteraction();
             return;
+        }
+
+        if (dialogueData[gameManager.mainNpcIndex].isScene)
+        {
+            virtualCamera.Priority = 15;
         }
         uiManager.interactableController.HideInteractable();
         CheckAction();
@@ -116,7 +124,7 @@ public class DialogueNPC : MonoBehaviour, IInteractable
     private void EndDialogue()//나중에 ESC키 같은 걸로 중간에 대사를 끊을 수 있을지도?
     {
         uiManager.dialogueController.HideDialoguePanel();
-        uiManager.dialogueController.ClearTarget(this);
+        uiManager.dialogueController.ClearTarget(this.gameObject);
         if (dialogueData[gameManager.mainNpcIndex].timing == ActionTiming.After)
         {
             npcController.action = AfterTimeline;
@@ -131,7 +139,7 @@ public class DialogueNPC : MonoBehaviour, IInteractable
     private void EndSpeechBubble()
     {
         uiManager.dialogueController.HideSpeechBubble();
-        uiManager.dialogueController.ClearTarget(this);
+        uiManager.dialogueController.ClearTarget(this.gameObject);
         if (dialogueData[gameManager.mainNpcIndex].timing == ActionTiming.After)
         {
             npcController.action = AfterTimeline;
@@ -151,5 +159,6 @@ public class DialogueNPC : MonoBehaviour, IInteractable
             uiManager.interactableController.ShowInteractable(this.gameObject.layer);
         }
         player.OnEndInteraction();
+        virtualCamera.Priority = 3;
     }
 }

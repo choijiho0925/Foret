@@ -27,6 +27,7 @@ public class SaveSpawnPoint : MonoBehaviour, IInteractable
 
     public void ShowInteractUI()
     {
+        uiManager.dialogueController.SetTarget(this.gameObject, saveTextData.npcName);
         uiManager.interactableController.ShowInteractable(this.gameObject.layer);
     }
 
@@ -72,6 +73,7 @@ public class SaveSpawnPoint : MonoBehaviour, IInteractable
     {
         isStart = true;
         GameManager.Instance.SetRespawnPoint(this.transform.position);
+        uiManager.dialogueController.ClearTarget(this.gameObject);
         uiManager.dialogueController.HideDialoguePanel();
         uiManager.interactableController.ShowInteractable(this.gameObject.layer);
         player.OnEndInteraction();
