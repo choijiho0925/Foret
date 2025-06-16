@@ -24,6 +24,7 @@ public class DialogueNPC : MonoBehaviour, IInteractable
     {
         if (!npcController.canInteract)
         {
+            player.OnEndInteraction();
             return;
         }
         uiManager.dialogueController.SetTarget(this, dialogueData[gameManager.mainNpcIndex].npcName);
@@ -34,6 +35,7 @@ public class DialogueNPC : MonoBehaviour, IInteractable
     {
         if (!npcController.canInteract)
         {
+            player.OnEndInteraction();
             return;
         }
         uiManager.interactableController.HideInteractable();
@@ -81,9 +83,6 @@ public class DialogueNPC : MonoBehaviour, IInteractable
             dialogueQueue.Enqueue(dialogue);
         }
     }
-
-    // 말풍선 끄기
-    
 
     private void ShowNextLine()
     {
