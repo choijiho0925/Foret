@@ -18,7 +18,6 @@ public class FGMeleeState : IState
     {
         boss.ResetAllAnimation();
         boss.StartCoroutine(MeleeAttack());
-        Debug.Log("FGMeleeState 진입");
     }
 
     public void Exit() { }
