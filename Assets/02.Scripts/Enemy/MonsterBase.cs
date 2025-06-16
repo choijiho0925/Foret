@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class MonsterBase : MonoBehaviour, IDamagable
 {
@@ -10,11 +12,15 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
     [SerializeField] private float attackRange;     // 공격 범위
     [SerializeField] private bool isInvincible;     // 무적인지 확인
     [SerializeField] private bool isGround;         // 지상 몹인지 확인
+    [SerializeField] private MonsterType type;      //몬스터 종류
 
+    public UnityAction OnDeath;    
+    
     private GameObject player;                      // 플레이어
     private MonsterStateMachine stateMachine;       // 상태머신
     private MonsterAnimationHandler animationHandler;   // 몬스터 애니메이션
     private SpriteRenderer spriteRenderer;              // 몬스터 이미지
+    private bool isDead;                            //사망 여부
 
     #region 프로퍼티
     public int Health { get => health; set => health = value; }
@@ -38,6 +44,16 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
+    private void OnEnable()
+    {
+        isDead = false;
+    }
+
+    private void OnDisable()
+    {
+        OnDeath = null;
+    }
+
     protected virtual void Start()
     {
         // 몬스터 종류에 따른 상태 초기화
@@ -53,6 +69,8 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
 
     protected virtual void Update()
     {
+        if (isDead) return;
+        
         stateMachine?.Update();
     }
 
@@ -62,7 +80,7 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
 
     public virtual void TakeDamage(int damage)
     {
-        if (isInvincible) return;
+        if (isInvincible || isDead) return;
 
         health -= damage;
 
@@ -89,6 +107,14 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
 
     public virtual void Die()
     {
-        Destroy(gameObject, 1.0f);
+        isDead = true;
+        StartCoroutine(DieRoutine());
+    }
+
+    private IEnumerator DieRoutine()
+    {
+        yield return new WaitForSeconds(1.0f);
+        PoolManager.Instance.MonsterPool.Return(type, this);
+        OnDeath?.Invoke();
     }
 }

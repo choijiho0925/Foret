@@ -134,7 +134,10 @@ public class DialogueNPC : MonoBehaviour, IInteractable
     private void AfterTimeline()
     {
         isDialogueStart = true;
-        uiManager.interactableController.ShowInteractable(this.gameObject.layer);
+        if (dialogueData[indexnum].type == ActionType.Heal)
+        {
+            uiManager.interactableController.ShowInteractable(this.gameObject.layer);
+        }
         indexnum++;//test용 indexnum를 높여주는 것은 퀘스트나 보스를 깼을 때 거기에 넣어주기
         player.OnEndInteraction();
     }

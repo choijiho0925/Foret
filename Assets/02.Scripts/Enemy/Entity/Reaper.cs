@@ -12,6 +12,7 @@ public class Reaper : BossBase
     [SerializeField] private GameObject clonePrefab;
     [SerializeField] private int cloneCount = 2;
     [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private GameObject mainSprite;
     [SerializeField] private GameObject slashNormal;
     [SerializeField] private GameObject slashWide;
 
@@ -35,6 +36,7 @@ public class Reaper : BossBase
     {
         StateMachine.ChangeState(new ReaperIdleState(this));
     }
+
     protected override void Update()
     {
         base.Update();
@@ -60,6 +62,13 @@ public class Reaper : BossBase
         agent.SetDestination(targetPos);
     }
 
+    IEnumerator ShowAttackEffect(GameObject effect)
+    {
+        effect.SetActive(true);
+        yield return new WaitForSeconds(0.4f);
+        effect.SetActive(false);
+    }
+
     #region 기본 공격
     public override void Attack()
     {
@@ -68,13 +77,6 @@ public class Reaper : BossBase
 
         // 기본 공격
         currentPattern = StartCoroutine(NormalAttack(slashNormal));
-    }
-
-    IEnumerator ShowAttackEffect(GameObject effect)
-    {
-        effect.SetActive(true);
-        yield return new WaitForSeconds(0.4f);
-        effect.SetActive(false);
     }
 
     public IEnumerator NormalAttack(GameObject effect)
@@ -91,7 +93,6 @@ public class Reaper : BossBase
 
         currentPattern = null;
         attackCount++;
-        Debug.Log(attackCount);
         StateMachine.ChangeState(new ReaperIdleState(this));
     }
     #endregion
@@ -101,8 +102,8 @@ public class Reaper : BossBase
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(slashNormal.transform.position, AttackRange);
 
-        Vector2 attackPos = (Vector2)slashWide.transform.position + (Vector2)(transform.up * 0.5f);
-        Vector2 size = new Vector2(12f, 2.5f);
+        Vector2 attackPos = (Vector2)slashWide.transform.position + (Vector2)(transform.up * 0.75f);
+        Vector2 size = new Vector2(15f, 2.5f);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(attackPos, size);
     }
@@ -157,6 +158,7 @@ public class Reaper : BossBase
     #region 패턴
     public IEnumerator SummonClones()
     {
+        yield return new WaitForSeconds(0.2f);
         for (int i = 0; i < cloneCount; i++)
         {
             Vector2 pos = (Vector2)transform.position + Random.insideUnitCircle * 2f;
@@ -168,8 +170,11 @@ public class Reaper : BossBase
 
     public IEnumerator SummonMinions()
     {
+        var sprite = mainSprite.GetComponent<SpriteRenderer>();
+
         // 무적 처리
         IsInvincible = true;
+        sprite.color = new Color(100/255f, 100/255f, 100/255f);
 
         // 잡몹 소환
         for (int i = 0; i < minionCount; i++)
@@ -179,37 +184,55 @@ public class Reaper : BossBase
         }
 
         // 일정 시간 대기
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(10f);
 
         // 무적 해제
         IsInvincible = false;
+        sprite.color = new Color(1f, 1f, 1f);
     }
 
     public IEnumerator TeleportAttack()
     {
-        Vector2 originPos = transform.position;
-
         // 플레이어 등쪽으로 순간이동
+        StartCoroutine(Teleport());
+
+        yield return new WaitForSeconds(3f);
+    }
+
+    public IEnumerator Teleport()
+    {
+        bossAnimationHandler.Teleport();
+        yield return new WaitForSeconds(0.4f);
+
+        mainSprite.SetActive(false);
+        yield return new WaitForSeconds(2f);
+
+        Appear();
+        yield return new WaitForSeconds(0.4f);
+
+        // 긴 공격 실행
+        LongAttack(slashWide);
+        yield return new WaitForSeconds(2f);
+    }
+
+    private void Appear()
+    {
         float playerFacing = Player.transform.localScale.x > 0 ? 1f : -1f;
         Vector2 offset = new Vector2(-playerFacing, 0f) * teleportDistance;
         transform.position = Player.transform.position + (Vector3)offset;
 
         LookDirection();
 
-        // 긴 공격 실행
-        LongAttack(slashWide);
-
-        yield return new WaitForSeconds(2f);
-
-        transform.position = originPos;
-    }
+        mainSprite.SetActive(true);
+        bossAnimationHandler.Appear();
+    } 
 
     private void LongAttack(GameObject effect)
     {
         StartCoroutine(ShowAttackEffect(effect));
 
         Vector2 attackPos = (Vector2)slashWide.transform.position + (Vector2)(transform.up * 0.5f);
-        Vector2 size = new Vector2(12f, 2.5f); // 캡슐 범위
+        Vector2 size = new Vector2(15f, 2.5f); // 캡슐 범위
         float angle = 0f; // 수평 방향
 
         Collider2D hit = Physics2D.OverlapCapsule(
