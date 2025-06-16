@@ -152,10 +152,10 @@ TextureImporter:
       name: Mushroom-Run_0
       rect:
         serializedVersion: 2
-        x: 24
+        x: 0
         y: 0
-        width: 30
-        height: 34
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,10 +173,10 @@ TextureImporter:
       name: Mushroom-Run_1
       rect:
         serializedVersion: 2
-        x: 104
+        x: 80
         y: 0
-        width: 30
-        height: 31
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,10 +194,10 @@ TextureImporter:
       name: Mushroom-Run_2
       rect:
         serializedVersion: 2
-        x: 184
+        x: 160
         y: 0
-        width: 30
-        height: 33
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,10 +215,10 @@ TextureImporter:
       name: Mushroom-Run_3
       rect:
         serializedVersion: 2
-        x: 264
-        y: 3
-        width: 30
-        height: 32
+        x: 240
+        y: 0
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,10 +236,10 @@ TextureImporter:
       name: Mushroom-Run_4
       rect:
         serializedVersion: 2
-        x: 344
+        x: 320
         y: 0
-        width: 30
-        height: 34
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,10 +257,10 @@ TextureImporter:
       name: Mushroom-Run_5
       rect:
         serializedVersion: 2
-        x: 424
+        x: 400
         y: 0
-        width: 30
-        height: 31
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,10 +278,10 @@ TextureImporter:
       name: Mushroom-Run_6
       rect:
         serializedVersion: 2
-        x: 504
+        x: 480
         y: 0
-        width: 30
-        height: 33
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -299,10 +299,10 @@ TextureImporter:
       name: Mushroom-Run_7
       rect:
         serializedVersion: 2
-        x: 584
-        y: 3
-        width: 30
-        height: 32
+        x: 560
+        y: 0
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
