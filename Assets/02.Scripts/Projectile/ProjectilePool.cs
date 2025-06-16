@@ -10,6 +10,7 @@ public enum ProjectileType
     Poison,
     Skull,
     EnergyBall,
+    IceBall,
 }
 public class ProjectilePool : ObjectPool<ProjectileType, Projectile>
 {

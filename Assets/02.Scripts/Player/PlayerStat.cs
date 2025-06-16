@@ -22,6 +22,7 @@ public class PlayerStat : MonoBehaviour, IDamagable
     
     private PlayerCtrl playerCtrl;
     private Animator animator;
+    private UIManager uiManager;
     
     private static readonly int animIDHit = Animator.StringToHash("IsHit");
     private static readonly int animIDDie = Animator.StringToHash("IsDie");
@@ -39,6 +40,7 @@ public class PlayerStat : MonoBehaviour, IDamagable
     {
         animator = GetComponentInChildren<Animator>();
         playerCtrl = GetComponent<PlayerCtrl>();
+        uiManager = UIManager.Instance;
         currentHeart = CurrentMaxHeart;
         currentEnergy = CurrentMaxEnergy;
     }
@@ -51,7 +53,7 @@ public class PlayerStat : MonoBehaviour, IDamagable
         StartCoroutine(Damaged());
         for (int i = 0; i < damage; i++)
         {
-            UIManager.Instance.TakeDamage();
+            uiManager.TakeDamage();
         }
         
         if (currentHeart <= 0)
@@ -68,7 +70,7 @@ public class PlayerStat : MonoBehaviour, IDamagable
         currentHeart = Mathf.Min(currentHeart + heal, CurrentMaxHeart);
         for (int i = 0; i < heal; i++)
         {
-            UIManager.Instance.Recovery();
+            uiManager.Recovery();
         }
         return true;
     }
@@ -78,7 +80,7 @@ public class PlayerStat : MonoBehaviour, IDamagable
         if (energy > currentEnergy || energy < 0 || isDead) return false;
         
         currentEnergy = Mathf.Max(currentEnergy - energy, 0);
-        UIManager.Instance.UpdateGauge(((float)energy/CurrentMaxEnergy));
+        uiManager.UpdateGauge(((float)energy/CurrentMaxEnergy));
         return true;
     }
 
@@ -87,7 +89,7 @@ public class PlayerStat : MonoBehaviour, IDamagable
         if (energy < 0 || isDead) return false;
         
         currentEnergy = Mathf.Min(currentEnergy + energy, CurrentMaxEnergy);
-        UIManager.Instance.UpdateGauge((-(float)energy/CurrentMaxEnergy));
+        uiManager.UpdateGauge((-(float)energy/CurrentMaxEnergy));
         return true;
     }
 
