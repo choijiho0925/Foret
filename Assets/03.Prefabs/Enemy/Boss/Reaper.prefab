@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5, y: -0.5, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7977583028264931666}
@@ -188,8 +188,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.48000002}
-  m_Size: {x: 0.9, y: 1.96}
+  m_Offset: {x: -0.35, y: 0.75}
+  m_Size: {x: 1.4, y: 3}
   m_Direction: 0
 --- !u!114 &1157420638020581216
 MonoBehaviour:
@@ -207,7 +207,7 @@ MonoBehaviour:
   moveSpeed: 12
   detectionRange: 20
   attackPower: 2
-  attackRange: 2.5
+  attackRange: 3.5
   isInvincible: 0
   isGround: 0
   patternDelay: 5
@@ -215,11 +215,12 @@ MonoBehaviour:
   teleportDistance: 3
   minionPrefab: {fileID: 9118491250020898405, guid: bfc64490f27595a47bbf3b663a46723d, type: 3}
   minionCount: 3
-  clonePrefab: {fileID: 0}
+  clonePrefab: {fileID: 8982954221081620016, guid: eb3d86a6070cf0642aaaf4381c3a0721, type: 3}
   cloneCount: 2
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  mainSprite: {fileID: 7811027914358900019}
   slashNormal: {fileID: 8464377877135890409}
   slashWide: {fileID: 1031968166145455461}
 --- !u!114 &3876735417640503622
@@ -284,7 +285,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7334758818657566092}
@@ -391,7 +392,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.9, y: 0.4, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7977583028264931666}
