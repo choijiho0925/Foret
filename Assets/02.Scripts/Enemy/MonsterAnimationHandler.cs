@@ -14,22 +14,22 @@ public class MonsterAnimationHandler : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    public void Move(bool isMoving)
+    public virtual void Move(bool isMoving)
     {
         animator.SetBool(isMove, isMoving);
     }
 
-    public void Attack()
+    public virtual void Attack()
     {
         animator.SetTrigger(isAttack);
     }
 
-    public void Damage()
+    public virtual void Damage()
     {
         animator.SetTrigger(isDamage);
     }
 
-    public void Dead()
+    public virtual void Dead()
     {
         animator.SetTrigger(isDead);
     }

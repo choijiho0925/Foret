@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2970868700069027602}
   - component: {fileID: 5601678981215156796}
   - component: {fileID: 4716923393970978726}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: IceBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 6533116270393322974}
   - component: {fileID: 7373200657665746866}
   - component: {fileID: 6998698757184204311}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
