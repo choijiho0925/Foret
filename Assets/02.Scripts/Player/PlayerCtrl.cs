@@ -56,6 +56,8 @@ namespace _02.Scripts.Player
         
         public void OnAttack(InputAction.CallbackContext context)
         {
+            if (!canControl) return;
+            
             // 일반 공격
             if (context.phase == InputActionPhase.Started)
             {
@@ -65,6 +67,8 @@ namespace _02.Scripts.Player
         }   
         public void OnThrow(InputAction.CallbackContext context)
         {
+            if(!canControl) return;
+            
             // 원거리 공격
             if (context.phase == InputActionPhase.Started)
             {
@@ -75,6 +79,8 @@ namespace _02.Scripts.Player
 
         public void OnRecover(InputAction.CallbackContext context)
         {
+            if(!canControl) return;
+            
             if (context.phase == InputActionPhase.Started)
             {
                 playerStat.Recover();
