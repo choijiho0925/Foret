@@ -9,6 +9,7 @@ public class ForestGuardian : BossBase
     [SerializeField] private float chargeRange = 5f;       // 돌진 공격 거리
     [SerializeField] private float teleportRange = 10f;    // 텔레포트 가능 거리
     [SerializeField] private float returnThreshold = 0.1f; // 복귀 거리
+    [SerializeField] private float immuneDuration = 1f;    // 무적 시간
 
     [Header("애니메이션 길이 설정")]
     [SerializeField] private float attackDuration = 0.8f;
@@ -28,6 +29,9 @@ public class ForestGuardian : BossBase
 
     // 상태 전환 잠금 변수
     private bool isStateLocked = false;
+
+    private float immuneTimer = 0f;    // 무적 시간 카운터
+    private bool isImmune = false;      // 무적 상태 여부
 
     // 차지 중인지 확인
     private bool isChargeAttacking = false;
@@ -87,6 +91,17 @@ public class ForestGuardian : BossBase
 
         // 시야 조정
         LookAtPlayer();
+
+        // 무적 시간 카운트
+        if(isImmune)
+        {
+            immuneTimer -= Time.deltaTime;
+
+            if(immuneTimer <= 0f)
+            {
+                isImmune = false;
+            }
+        }
     }
 
     // 상태 잠금 설정
@@ -109,6 +124,13 @@ public class ForestGuardian : BossBase
 
         Health -= damage;
         animationHandler.Damage();
+
+        // 무적 시작
+        isImmune = true;
+        immuneTimer = immuneDuration;
+
+        // 상태 잠금 해제
+        UnlockState();
 
         if (Health <= 0 && !dead)
         {
