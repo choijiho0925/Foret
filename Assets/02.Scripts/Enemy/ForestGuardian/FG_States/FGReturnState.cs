@@ -53,7 +53,6 @@ public class FGReturnState : IState
         else
         {
             // 도착 시 다음 상태로 전이
-            Debug.Log("보스 초기 위치 도착");
             boss.StateMachine.ChangeState(new FGDecisionState(boss));
         }
     }

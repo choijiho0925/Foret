@@ -16,7 +16,6 @@ public class FGChaseState : IState
 
     public void Enter() 
     { 
-        Debug.Log("FGChaseState 진입");
         boss.ResetAllAnimation();
         boss.PlayRunAnimation();
     }
