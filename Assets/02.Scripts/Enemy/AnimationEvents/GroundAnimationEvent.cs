@@ -20,7 +20,7 @@ public class GroundAnimationEvent : MonoBehaviour
             Debug.LogWarning("[GroundAnimationEvent] attackHitbox가 인스펙터에서 설정되지 않았습니다.");
     }
 
-    // 애니메이션 이벤트에서 호출할 함수들
+    
     public void EnableHitbox()
     {
         if (attackHitbox != null)
@@ -35,5 +35,17 @@ public class GroundAnimationEvent : MonoBehaviour
         {
             attackHitbox.SetHitboxActive(false);
         }
+    }
+
+    public void StartAttackMotion()
+    {
+        if (monster != null)
+            monster.StartAttack();
+    }
+
+    public void EndAttackMotion()
+    {
+        if (monster != null)
+            monster.EndAttack();
     }
 }

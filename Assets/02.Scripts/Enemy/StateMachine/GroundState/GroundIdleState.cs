@@ -13,7 +13,6 @@ public class GroundIdleState : IState
 
     public void Enter() 
     {
-        monster.AnimationHandler.Move(false);
     }
 
     public void Exit() { }

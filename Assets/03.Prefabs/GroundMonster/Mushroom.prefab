@@ -110,6 +110,7 @@ MonoBehaviour:
   groundCheck: {fileID: 7969362135262155864}
   wallCheck: {fileID: 3615789668051243650}
   attackCooldown: 1.5
+  isMovingRight: 0
 --- !u!50 &5197451190180753027
 Rigidbody2D:
   serializedVersion: 4
@@ -277,7 +278,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 35
   m_Sprite: {fileID: -786273009, guid: e4eb8e89272b08c49b92684155070a71, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -10,11 +10,18 @@ public class GroundMonster : MonsterBase
     public Transform wallCheck;                   // 벽 확인용
     public float attackCooldown = 1.5f;           // 공격 쿨타임
 
+    [Header("기본 방향")]
+    [SerializeField]
+    private bool isMovingRight = false; // 기본값은 왼쪽 이동
+
     private Rigidbody2D rb;
-    private bool isMovingRight = false;           // 이동 방향 플래그
     private float startX;                         // 시작 지점 X좌표
     private float attackTimer = 0f;
     private float flipCooldown = 0f;              // 방향 전환 쿨타임
+
+    // 공격 중인지 확인
+    private bool isAttacking;
+    public bool IsAttacking => isAttacking;
 
     protected override void Awake()
     {
@@ -59,17 +66,14 @@ public class GroundMonster : MonsterBase
         }
     }
 
-    private void FixedUpdate()
-    {
-        // Patrol 상태일 때만 움직임
-        if (StateMachine.CurrentState is GroundPatrolState)
-        {
-            Move();
-        }
-    }
-
     public override void Move()
     {
+        if(isAttacking)
+        {
+            rb.velocity = new Vector2(0f, rb.velocity.y);
+            return;
+        }
+
         float dir = isMovingRight ? 1f : -1f;
         Vector2 moveDir = new Vector2(dir, 0f);
 
@@ -90,6 +94,10 @@ public class GroundMonster : MonsterBase
         }
 
         rb.velocity = new Vector2(moveDir.x * MoveSpeed, rb.velocity.y);
+
+        // 중복호출 방지
+        bool isActuallyMoving = Mathf.Abs(rb.velocity.x) > 0.05f;
+        AnimationHandler.Move(isActuallyMoving); 
 
         // 방향 전환 조건 확인
         flipCooldown -= Time.deltaTime;
@@ -120,6 +128,21 @@ public class GroundMonster : MonsterBase
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+    }
+
+    // 공격 시작
+    public void StartAttack()
+    {
+        isAttacking = true;
+        AnimationHandler.Move(false);
+        rb.velocity = new Vector2(0f, rb.velocity.y);
+    }
+
+    // 공격 종료
+    public void EndAttack()
+    {
+        isAttacking = false;
+        AnimationHandler.Move(true);
     }
 
     public void LookDirection()

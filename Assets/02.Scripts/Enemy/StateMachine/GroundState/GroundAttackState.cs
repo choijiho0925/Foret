@@ -15,9 +15,13 @@ public class GroundAttackState : IState
     public void Enter()
     {
         attackCooldown = 0f;
+        monster.AnimationHandler.Move(true);
     }
 
-    public void Exit() { }
+    public void Exit() 
+    {
+        monster.AnimationHandler.Move(false);
+    }
 
     public void Update()
     {

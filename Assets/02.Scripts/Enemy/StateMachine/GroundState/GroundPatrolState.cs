@@ -30,5 +30,7 @@ public class GroundPatrolState : IState
             monster.StateMachine.ChangeState(new GroundAttackState(monster));
             return;
         }
+
+        monster.Move();
     }
 }
