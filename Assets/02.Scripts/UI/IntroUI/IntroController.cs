@@ -13,7 +13,7 @@ public class IntroController : MonoBehaviour
     [SerializeField] private List<IntroTextData> introTextData;
 
     private int sceneIndex;
-    private float duration = 1.0f;
+    private float duration = 1.5f;
     private Coroutine typingCoroutine;
 
     private void Start()
@@ -48,10 +48,21 @@ public class IntroController : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
 
-        yield return new WaitForSeconds(1.5f);
-        introImage.DOFade(0.0f, duration);
+        yield return new WaitForSeconds(2.0f);
+        bool fadeComplete = false;
+        introImage.DOFade(0.0f, duration).OnComplete(() => fadeComplete = true);
         introText.DOFade(0.0f, duration);
+
+        yield return new WaitUntil(() => fadeComplete);
+
         sceneIndex++;
-        DisplayLine(introTextData[sceneIndex].sprite,introTextData[sceneIndex].introText);
+        if (sceneIndex < introTextData.Count)
+        {
+            DisplayLine(introTextData[sceneIndex].sprite, introTextData[sceneIndex].introText);
+        }
+        else
+        {
+            // 씬 전환
+        }
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49af67df4f146c044a61a4077c2ab09a, type: 3}
   m_Name: IntroText5
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 35f467d4e1f15cb4e823163173b09f1f, type: 3}
   introText: "\uC804\uC7C1\uC73C\uB85C\uBD80\uD130 5\uB144 \uD6C4, \uC18C\uB144\uC740
     \uB9C8\uC744 \uC8FC\uBCC0 \uC232\uC758 \uB3D9\uBB3C\uB4E4\uC774 \uD749\uD3ED\uD574\uC84C\uB2E4\uB294\\n\uC18C\uBB38\uC744
     \uB4E3\uAC8C \uB418\uACE0, \uC804 \uAE30\uC0AC\uB2E8\uC73C\uB85C\uC368 \uC232\uC758
