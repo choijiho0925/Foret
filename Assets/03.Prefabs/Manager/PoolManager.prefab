@@ -63,12 +63,6 @@ MonoBehaviour:
   - type: 6
     prefab: {fileID: 4820802820621499311, guid: bfc64490f27595a47bbf3b663a46723d, type: 3}
     size: 5
-  - type: 7
-    prefab: {fileID: 3586941358447818723, guid: 1609f68b31deb8e44922d99e85211c02, type: 3}
-    size: 1
-  - type: 8
-    prefab: {fileID: 1157420638020581216, guid: 28d877bc5ff4fcb4b902b598268c27cf, type: 3}
-    size: 1
 --- !u!1 &2685512695315710222
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,6 +18,9 @@ public class FGNpcState : IState
 
     public void Enter()
     {
+        // 방향 고정
+        boss.SetAllowLookAtPlayer(false); 
+
         // Idle 애니메이션으로 복귀
         boss.ResetAllAnimation();
 
@@ -26,7 +29,7 @@ public class FGNpcState : IState
 
         if(!hasMoved)
         {
-            boss.transform.position = npcPosition;
+            boss.transform.position = boss.InitialPosition;
             hasMoved = true;
         }
     }

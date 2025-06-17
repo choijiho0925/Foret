@@ -22,6 +22,7 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
     private MonsterAnimationHandler animationHandler;   // 몬스터 애니메이션
     private SpriteRenderer spriteRenderer;              // 몬스터 이미지
     private bool isDead;                            //사망 여부
+    private Collider2D collider;
 
     #region 프로퍼티
     public int Health { get => health; set => health = value; }
@@ -35,6 +36,8 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
     public MonsterStateMachine StateMachine => stateMachine;
     public MonsterAnimationHandler AnimationHandler => animationHandler;
     public SpriteRenderer SpriteRenderer => spriteRenderer;
+    public bool IsDead => isDead;
+
     #endregion
 
     protected virtual void Awake()
@@ -43,12 +46,19 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
         stateMachine = new MonsterStateMachine(this);
         animationHandler = GetComponent<MonsterAnimationHandler>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        collider = GetComponent<Collider2D>();
     }
 
     private void OnEnable()
     {
         isDead = false;
         //체력 초기화
+        health = maxHealth;
+    }
+
+    protected void Initialize()
+    {
+        isDead = false;
         health = maxHealth;
     }
 
@@ -111,6 +121,7 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
     public virtual void Die()
     {
         isDead = true;
+        collider.enabled = false;
         StartCoroutine(DieRoutine());
     }
 

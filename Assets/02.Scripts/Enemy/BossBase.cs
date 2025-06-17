@@ -12,6 +12,10 @@ public class BossBase : MonsterBase
     protected bool isPatterning = false;    // 현재 패턴 실행 중인지
     protected Coroutine currentPattern;     // 실행 중인 패턴 코루틴 참조
 
+    protected Collider2D bossCollider;
+    protected Collider2D playerCollider;
+
+
     protected override void Awake()
     {
         base.Awake();
@@ -20,8 +24,8 @@ public class BossBase : MonsterBase
 
         if(player != null)
         {
-            Collider2D bossCollider = GetComponent<Collider2D>();
-            Collider2D playerCollider = player.GetComponent<Collider2D>();
+             bossCollider = GetComponent<Collider2D>();
+             playerCollider = player.GetComponent<Collider2D>();
 
             if(bossCollider != null && playerCollider != null)
             {
@@ -43,5 +47,10 @@ public class BossBase : MonsterBase
     public override void Attack()
     {
 
+    }
+
+    public override void Die()
+    {
+        bossCollider.enabled = false;
     }
 }
