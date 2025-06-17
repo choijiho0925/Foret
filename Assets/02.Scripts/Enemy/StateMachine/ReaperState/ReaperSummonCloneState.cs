@@ -13,7 +13,7 @@ public class ReaperSummonCloneState : IState
     public void Enter()
     {
         // SummonClone 상태 진입
-        boss.BossAnimationHandler.SummonClone();
+        boss.BossAnimationHandler.Pattern1();
         boss.StartCoroutine(SummonClonesState());
     }
 
