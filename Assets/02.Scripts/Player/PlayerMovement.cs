@@ -23,7 +23,7 @@ namespace _02.Scripts.Player
 		private float limitFallSpeed = 15f; // 떨어지는 최대 스피드
 
         private bool canJump = true;
-		public bool canDoubleJump; //더블 점프 가능 여부
+		private bool canDoubleJump; //더블 점프 가능 여부
 		private bool canDash = true;
 		public bool isDashing; 
 		public bool isWall; 
@@ -81,7 +81,6 @@ namespace _02.Scripts.Player
 			// 착지한 순간에만 처리
 			if (!wasGrounded && isGrounded)
 			{
-                Debug.Log("땅 착지");
 				animator.SetBool(animIDGrounded, true);
                 // 착지 시 점프 상태 해제
 				animator.SetBool(animIDJumping, false);
@@ -114,16 +113,18 @@ namespace _02.Scripts.Player
 			if (canMove)
 			{
 				animator.SetFloat(animIDSpeed, Mathf.Abs(move));
+                //플레이어 대쉬
 				if (dash && canDash && !isWallSliding)
 				{
 					rb.AddForce(new Vector2(playerStat.CurrentDashForce * transform.localScale.x, 0f));
 					StartCoroutine(DashCooldown());
 				}
-
+                
 				if (isDashing)
 				{
 					rb.velocity = new Vector2(playerStat.CurrentDashForce * transform.localScale.x, 0);
 				}
+                
 				//플레이어가 땅에 붙어있거나 공중 제어 가능 상태일때만 움직일 수 있게
 				else if (isGrounded || canAirControl)
 				{
@@ -150,11 +151,12 @@ namespace _02.Scripts.Player
 					rb.AddForce(new Vector2(0f, playerStat.CurrentJumpForce));
 					canDoubleJump = true;
                     StartCoroutine(ShowJumpEffect());
-                }
+                }   //더블 점프
 				else if (jump && canDoubleJump && !isWallSliding)
 				{
 					animator.SetBool(animIDDoubleJumping, true);
 					canDoubleJump = false;
+                    rb.velocity = new Vector2(rb.velocity.x, 0);
 					rb.AddForce(new Vector2(0f, playerStat.CurrentJumpForce / 1.2f));
 				}
 
