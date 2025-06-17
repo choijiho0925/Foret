@@ -20,13 +20,9 @@ public class AudioManager : Singleton<AudioManager>
 
     private void SetInitializeSlider()
     {
-        float masterVolume;
-        float bgmVolume;
-        float sfxVolume;
-
-        audioMixer.GetFloat("Master", out masterVolume);
-        audioMixer.GetFloat("BGM", out bgmVolume);
-        audioMixer.GetFloat("SFX", out sfxVolume);
+        audioMixer.GetFloat("Master", out float masterVolume);
+        audioMixer.GetFloat("BGM", out float bgmVolume);
+        audioMixer.GetFloat("SFX", out float sfxVolume);
 
         masterSlider.value = Mathf.Pow(10, masterVolume / 20);
         bgmSlider.value = Mathf.Pow(10, bgmVolume / 20);
