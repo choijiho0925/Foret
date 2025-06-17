@@ -73,7 +73,7 @@ public class UIManager : Singleton<UIManager>
     {
         heartController.RecoverHeart();
     }
-    
+
     public void UpdateGauge(float amount)
     {
         abilityController.UpdateGauge(amount);

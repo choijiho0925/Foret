@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AudioChanger : MonoBehaviour
 {
-    public AudioClip bossBGM;
+    public AudioClip newBGM;
     private bool hasPlayed = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -14,6 +14,8 @@ public class AudioChanger : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             //AudioManager.Instance.PlayBGM();
+            AudioManager.Instance.PlayBGM(newBGM, 1f);
+            hasPlayed = true;
         }
     }
 }
