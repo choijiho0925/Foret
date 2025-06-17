@@ -19,9 +19,17 @@ public class MedicPlant : MonoBehaviour,IInteractable
 
     private void Start()
     {
+        gameManager = GameManager.Instance;
+        
+        // 이미 이벤트 진행 했을 시 오브젝트 비활성화
+        if (gameManager.mainNpcIndex >= 2)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+        
         player = FindObjectOfType<PlayerInteract>();
         renderer = GetComponent<Renderer>();
-        gameManager = GameManager.Instance;
         uiManager = UIManager.Instance;
         foreach (string dialogue in explainData.dialogues)
         {
