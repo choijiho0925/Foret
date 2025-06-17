@@ -73,7 +73,7 @@ public class NpcController : MonoBehaviour
     {
         if (posNum >= npcPosData.pos.Count)
         {
-            posNum = npcPosData.pos.Count;
+            posNum = npcPosData.pos.Count - 1;
         }
         mainNpc.transform.position = npcPosData.pos[posNum];
         posNum++;
