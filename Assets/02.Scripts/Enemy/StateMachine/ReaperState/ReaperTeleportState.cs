@@ -13,7 +13,6 @@ public class ReaperTeleportState : IState
     public void Enter()
     {
         // Teleport 상태 진입
-        boss.BossAnimationHandler.Teleport();
         boss.StartCoroutine(TeleportState());
     }
 

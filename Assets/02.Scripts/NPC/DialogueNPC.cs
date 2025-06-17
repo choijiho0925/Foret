@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,42 +6,60 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 {
     [SerializeField] private List<DialogueData> dialogueData;//스크립터블 오브젝트
     [SerializeField] private NpcController npcController;
-    private int indexnum;
     private bool isDialogueStart;
     private PlayerInteract player;
     private Queue<string> dialogueQueue = new Queue<string>();//이거 프로텍티드 다른 사람한테 조금 물어보자
     private UIManager uiManager;
+    private GameManager gameManager;
+    private CinemachineVirtualCamera virtualCamera;
 
     private void Start()
     {
         player = FindObjectOfType<PlayerInteract>();
+        virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
         uiManager = UIManager.Instance;
-        isDialogueStart = true;
-        indexnum = 0;//나중에 저장 만들 때 indexnum,npc위치, 상태 저장 =>각 상속받는 스크립트에서
+        gameManager = GameManager.Instance;
+        isDialogueStart = true; 
+        //나중에 저장 만들 때 indexnum,npc위치, 상태 저장 =>각 상속받는 스크립트에서
     }
 
     public void ShowInteractUI()
     {
-        uiManager.dialogueController.SetTarget(this, dialogueData[indexnum].npcName);
+        if (!npcController.canInteract)
+        {
+            player.OnEndInteraction();
+            return;
+        }
+        uiManager.dialogueController.SetTarget(this.gameObject, dialogueData[gameManager.mainNpcIndex].npcName);
         uiManager.interactableController.ShowInteractable(this.gameObject.layer);
     }
 
     public void InteractAction()
     {
+        if (!npcController.canInteract)
+        {
+            player.OnEndInteraction();
+            return;
+        }
+
+        if (dialogueData[gameManager.mainNpcIndex].isScene)
+        {
+            virtualCamera.Priority = 15;
+        }
         uiManager.interactableController.HideInteractable();
         CheckAction();
     }
 
     private void CheckAction()
     {
-        uiManager.dialogueController.IsScene(dialogueData[indexnum].isScene);
-        if (dialogueData[indexnum].timing != ActionTiming.None)
+        uiManager.dialogueController.IsScene(dialogueData[gameManager.mainNpcIndex].isScene);
+        if (dialogueData[gameManager.mainNpcIndex].timing != ActionTiming.None)
         {
-            npcController.SetTimeline(dialogueData[indexnum]);
-            if (dialogueData[indexnum].timing == ActionTiming.Before)
+            npcController.SetTimeline(dialogueData[gameManager.mainNpcIndex]);
+            if (dialogueData[gameManager.mainNpcIndex].timing == ActionTiming.Before)
             {
                 npcController.action = InitDialogue;
-                npcController.Playtimeline();
+                npcController.PlayTimeline();
             }
             else
             {
@@ -65,16 +84,13 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 
     private void StartDialogue()
     {
-        if (indexnum >= dialogueData.Count) return;
+        if (gameManager.mainNpcIndex >= dialogueData.Count) return;
         dialogueQueue.Clear();
-        foreach (string dialogue in dialogueData[indexnum].dialogues)
+        foreach (string dialogue in dialogueData[gameManager.mainNpcIndex].dialogues)
         {
             dialogueQueue.Enqueue(dialogue);
         }
     }
-
-    // 말풍선 끄기
-    
 
     private void ShowNextLine()
     {
@@ -86,7 +102,11 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 
         if (dialogueQueue.Count == 0)
         {
-            if (dialogueData[indexnum].isScene)
+            if (dialogueData[gameManager.mainNpcIndex].type == ActionType.Attack)
+            {
+                npcController.canInteract = false;
+            }
+            if (dialogueData[gameManager.mainNpcIndex].isScene)
             {
                 EndSpeechBubble();
             }
@@ -104,11 +124,11 @@ public class DialogueNPC : MonoBehaviour, IInteractable
     private void EndDialogue()//나중에 ESC키 같은 걸로 중간에 대사를 끊을 수 있을지도?
     {
         uiManager.dialogueController.HideDialoguePanel();
-        uiManager.dialogueController.ClearTarget(this);
-        if (dialogueData[indexnum].timing == ActionTiming.After)
+        uiManager.dialogueController.ClearTarget(this.gameObject);
+        if (dialogueData[gameManager.mainNpcIndex].timing == ActionTiming.After)
         {
             npcController.action = AfterTimeline;
-            npcController.Playtimeline();
+            npcController.PlayTimeline();
         }
         else
         {
@@ -119,11 +139,11 @@ public class DialogueNPC : MonoBehaviour, IInteractable
     private void EndSpeechBubble()
     {
         uiManager.dialogueController.HideSpeechBubble();
-        uiManager.dialogueController.ClearTarget(this);
-        if (dialogueData[indexnum].timing == ActionTiming.After)
+        uiManager.dialogueController.ClearTarget(this.gameObject);
+        if (dialogueData[gameManager.mainNpcIndex].timing == ActionTiming.After)
         {
             npcController.action = AfterTimeline;
-            npcController.Playtimeline();
+            npcController.PlayTimeline();
         }
         else
         {
@@ -134,8 +154,11 @@ public class DialogueNPC : MonoBehaviour, IInteractable
     private void AfterTimeline()
     {
         isDialogueStart = true;
-        uiManager.interactableController.ShowInteractable(this.gameObject.layer);
-        indexnum++;//test용 indexnum를 높여주는 것은 퀘스트나 보스를 깼을 때 거기에 넣어주기
+        if (dialogueData[gameManager.mainNpcIndex].type == ActionType.Heal)
+        {
+            uiManager.interactableController.ShowInteractable(this.gameObject.layer);
+        }
         player.OnEndInteraction();
+        virtualCamera.Priority = 3;
     }
 }

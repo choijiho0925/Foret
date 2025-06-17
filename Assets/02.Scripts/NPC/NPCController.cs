@@ -7,21 +7,27 @@ public class NpcController : MonoBehaviour
 {
     
     public UnityAction action;
-    
+    public bool canInteract;
+
+    [SerializeField] private GameObject mainNpc;
     [SerializeField] private List<PlayableAsset> npcTimeline;
     [SerializeField] private NpcPosData npcPosData;
     [SerializeField] private Animator mainNpcAnimator;
+    [SerializeField] private Collider2D bossRoomCollider;
     
     private PlayableDirector director;
-    
-    private int posnum;
+    private GameManager gameManager;
+    private int posNum;
 
     private void Start()
     {
         director = GetComponent<PlayableDirector>();
+        gameManager = GameManager.Instance;
         mainNpcAnimator.enabled = false;
-        posnum = 0;
+        posNum = 0;
         GoNextPos();
+        bossRoomCollider.gameObject.SetActive(false);
+        canInteract = true;
     }
 
     public void SetTimeline(DialogueData data)
@@ -29,29 +35,25 @@ public class NpcController : MonoBehaviour
         if (npcTimeline.Count < 4)
         {
             director.playableAsset = npcTimeline[0];
-            return;
         }
-        else
+        switch (data.type)
         {
-            switch (data.type)
-            {
-                case ActionType.Move :
-                    director.playableAsset = npcTimeline[0];
-                    break;
-                case ActionType.Attack :
-                    director.playableAsset = npcTimeline[1];
-                    break;
-                case ActionType.Heal :
-                    director.playableAsset = npcTimeline[2];
-                    break;
-                case ActionType.Change :
-                    director.playableAsset = npcTimeline[3];
-                    break;
-            }
+            case ActionType.Move :
+                director.playableAsset = npcTimeline[0];
+                break;
+            case ActionType.Attack :
+                director.playableAsset = npcTimeline[1];
+                break;
+            case ActionType.Heal :
+                director.playableAsset = npcTimeline[2];
+                break;
+            case ActionType.Change :
+                director.playableAsset = npcTimeline[3];
+                break;
         }
     }
 
-    public void Playtimeline()
+    public void PlayTimeline()
     {
         director.stopped += OnTimelineFinished;
         if (mainNpcAnimator.enabled == false)
@@ -69,11 +71,26 @@ public class NpcController : MonoBehaviour
 
     public void GoNextPos()//npc위치 변경
     {
-        if (posnum >= npcPosData.pos.Count)
+        if (posNum >= npcPosData.pos.Count)
         {
-            posnum = npcPosData.pos.Count;
+            posNum = npcPosData.pos.Count;
         }
-        transform.position = npcPosData.pos[posnum];
-        posnum++;
+        mainNpc.transform.position = npcPosData.pos[posNum];
+        posNum++;
     }
+    
+    public void PlusIndex()
+    {
+        gameManager.NextIndex();
+    }
+   public void StartBossRoom()
+   {
+       bossRoomCollider.gameObject.SetActive(true);
+       GameManager.Instance.SetRespawnPoint(transform.position);
+   }
+
+   public void CanInteract()
+   {
+       canInteract = true;
+   }
 }
