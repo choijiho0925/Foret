@@ -34,6 +34,7 @@ public class SaveSpawnPoint : MonoBehaviour, IInteractable
     public void InteractAction()
     {
         uiManager.interactableController.HideInteractable();
+        uiManager.dialogueController.IsScene(saveTextData.isScene);
         InitInteraction();
     }
     
@@ -64,9 +65,6 @@ public class SaveSpawnPoint : MonoBehaviour, IInteractable
         uiManager.dialogueController.SetDialogue(line);//디알로그 출력
         uiManager.dialogueController.ShowDialoguePanel();
         uiManager.dialogueController.CompleteCurrentLineInstantly();// 글자 다 안 나왔으면 바로 표시
-        
-        
-        
     }
     
     private void EndDialogue() //나중에 ESC키 같은 걸로 중간에 대사를 끊을 수 있을지도?

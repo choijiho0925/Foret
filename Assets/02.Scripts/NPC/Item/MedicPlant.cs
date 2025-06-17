@@ -38,6 +38,7 @@ public class MedicPlant : MonoBehaviour,IInteractable
     public void InteractAction()
     {
         uiManager.interactableController.HideInteractable();
+        uiManager.dialogueController.IsScene(explainData.isScene);
         ShowNextLine();
     }
     

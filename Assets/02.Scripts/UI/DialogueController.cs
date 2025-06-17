@@ -91,13 +91,14 @@ public class DialogueController : MonoBehaviour
         {
             StopCoroutine(typingCoroutine);
         }
-
+        
         if (isScene)
         {
             speechBubbleText.text = fullCurrentLine;
         }
         else
         {
+            Debug.Log(fullCurrentLine);
             dialogueText.text = fullCurrentLine;
         }
         IsTyping = false;

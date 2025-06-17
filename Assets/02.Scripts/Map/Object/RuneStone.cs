@@ -46,6 +46,7 @@ public class RuneStone : MonoBehaviour, IInteractable
             {
                 uiManager.interactableController.HideInteractable();
             }
+            uiManager.dialogueController.IsScene(explainData.isScene);
             ShowNextLine();
         }
     }
