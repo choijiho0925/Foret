@@ -146,6 +146,7 @@ public class DialogueController : MonoBehaviour
         else
         {
             dialogueText.text = "";
+            yield return new WaitForSeconds(2.0f);
         }
         foreach (char c in line)
         {
