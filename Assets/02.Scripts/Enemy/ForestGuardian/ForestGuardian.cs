@@ -24,6 +24,10 @@ public class ForestGuardian : BossBase
     private float backdownCooldown = 0.5f;  // 회피 재진입 대기 시간
     private float backdownTimer = 0f;
 
+    [Header("npc화 이후 할당")]
+    [SerializeField] private NpcController npcController;
+    [SerializeField] private GameObject runStone;
+
     // 사망(패배) 확인 변수
     private bool dead = false;
 
@@ -58,6 +62,10 @@ public class ForestGuardian : BossBase
     public float ChargeSpeedMultiplier => chargeSpeedMultiplier;
 
     public bool Dead => dead;
+
+    public NpcController NpcController => npcController;
+
+    public GameObject RunStone => runStone;
 
 
 

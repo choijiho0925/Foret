@@ -40,7 +40,7 @@ public class FGReturnState : IState
         if (returnDistance > boss.DetectionRange)
         {
             // 제자리로 이동
-            boss.MoveToPlayer(boss.InitialPosition);
+            boss.transform.position = boss.InitialPosition;
         }
 
         else

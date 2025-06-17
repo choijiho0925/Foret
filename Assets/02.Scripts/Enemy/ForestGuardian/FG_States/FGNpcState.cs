@@ -13,7 +13,13 @@ public class FGNpcState : IState
 
     public void Enter()
     {
-        Debug.Log("보스 제자리");
+        // BGM 다시 변경
+        AudioManager.Instance.RestoreBeforeBGM();
+
+        // 대화 가능 및 돌 생성
+        boss.NpcController.CanInteract();
+        boss.RunStone.SetActive(true);
+
         // 방향 고정
         boss.SetAllowLookAtPlayer(false); 
 
