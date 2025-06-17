@@ -100,7 +100,6 @@ GameObject:
   - component: {fileID: 6196277592402840107}
   - component: {fileID: 3721943105237993116}
   - component: {fileID: 5667194618801086711}
-  - component: {fileID: 8756445290385065127}
   - component: {fileID: 4880198771077447358}
   m_Layer: 12
   m_Name: MainNPC
@@ -246,36 +245,6 @@ PolygonCollider2D:
       - {x: -0.24, y: 0.009}
       - {x: 0.318, y: 0.009}
   m_UseDelaunayMesh: 0
---- !u!114 &8756445290385065127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5405266460925711291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Events:
-    m_Signals:
-    - {fileID: 11400000, guid: 41b128f2d15c8cd4bae27eec25ccc07c, type: 2}
-    m_Events:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: NpcController, Assembly-CSharp
-          m_MethodName: GoNextPos
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!95 &4880198771077447358
 Animator:
   serializedVersion: 5
@@ -307,7 +276,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5509701638220776889}
   - component: {fileID: 8183964462497346507}
-  - component: {fileID: 1266951462026534294}
   m_Layer: 12
   m_Name: VirtualCameraContainer
   m_TagString: Untagged
@@ -324,7 +292,7 @@ Transform:
   m_GameObject: {fileID: 5674361822496333277}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.9999832, z: -10}
+  m_LocalPosition: {x: -6.441309, y: -2.6986797, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -370,37 +338,3 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 7867635850141109786}
---- !u!114 &1266951462026534294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5674361822496333277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowDebugText: 0
-  m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
-  m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
-  m_DefaultBlend:
-    m_Style: 1
-    m_Time: 2
-    m_CustomCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  m_CustomBlends: {fileID: 0}
-  m_CameraCutEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_CameraActivatedEvent:
-    m_PersistentCalls:
-      m_Calls: []

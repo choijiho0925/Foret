@@ -27,12 +27,14 @@ public class SaveSpawnPoint : MonoBehaviour, IInteractable
 
     public void ShowInteractUI()
     {
+        uiManager.dialogueController.SetTarget(this.gameObject, saveTextData.npcName);
         uiManager.interactableController.ShowInteractable(this.gameObject.layer);
     }
 
     public void InteractAction()
     {
         uiManager.interactableController.HideInteractable();
+        uiManager.dialogueController.IsScene(saveTextData.isScene);
         InitInteraction();
     }
     
@@ -60,21 +62,16 @@ public class SaveSpawnPoint : MonoBehaviour, IInteractable
         }
         
         string line = savePointQueue.Dequeue();
-        uiManager.dialogueController.DisplayLine(line);//디알로그 출력
-        
-        if (uiManager.dialogueController.IsTyping)
-        {
-            uiManager.dialogueController.CompleteCurrentLineInstantly();// 글자 다 안 나왔으면 바로 표시
-        }
-        
-        
-        
+        uiManager.dialogueController.SetDialogue(line);//디알로그 출력
+        uiManager.dialogueController.ShowDialoguePanel();
+        uiManager.dialogueController.CompleteCurrentLineInstantly();// 글자 다 안 나왔으면 바로 표시
     }
     
     private void EndDialogue() //나중에 ESC키 같은 걸로 중간에 대사를 끊을 수 있을지도?
     {
         isStart = true;
         GameManager.Instance.SetRespawnPoint(this.transform.position);
+        uiManager.dialogueController.ClearTarget(this.gameObject);
         uiManager.dialogueController.HideDialoguePanel();
         uiManager.interactableController.ShowInteractable(this.gameObject.layer);
         player.OnEndInteraction();

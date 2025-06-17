@@ -62,8 +62,6 @@ public class ForestGuardian : BossBase
     // 물리 기반 이동
     private Rigidbody2D rb;
 
-    private Animator animator;
-
     private FGAnimationHandler fgAnimationHandler;
 
     private void Awake()
@@ -121,6 +119,9 @@ public class ForestGuardian : BossBase
     {
         // 죽었으면 데미지 그만
         if (dead) return;
+
+        // 무적일 때 데미지 그만
+        if (isImmune) return;
 
         Health -= damage;
         fgAnimationHandler.Damage();
@@ -281,10 +282,7 @@ public class ForestGuardian : BossBase
     // 상태 전이 시도
     public bool TryChangeState(IState newState)
     {
-        if (isStateLocked)
-        {
-            return false;
-        }
+        if (isStateLocked || dead) return false;
         StateMachine.ChangeState(newState);
         return true;
     }

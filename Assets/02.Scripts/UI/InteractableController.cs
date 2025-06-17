@@ -25,6 +25,10 @@ public class InteractableController : MonoBehaviour
         {
             interactText.text = "돌을 만져보기";
         }
+        else if(layer == LayerMask.NameToLayer("QuestItem"))
+        {
+            interactText.text = "줍기";
+        }
         else
         {
             interactText.text = "대화하기";

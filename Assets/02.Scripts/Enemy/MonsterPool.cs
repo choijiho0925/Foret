@@ -5,6 +5,9 @@ using UnityEngine;
 public enum MonsterType
 {
     None,
+    Mushroom,
+    Rat,
+    NightBorne,
     Bat,
     FlyingForestMonster,
     Necromancer,

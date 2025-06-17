@@ -21,6 +21,7 @@ public class PlayerStat : MonoBehaviour, IDamagable
     private int bonusThrowDamage;
     
     private PlayerCtrl playerCtrl;
+    private PlayerSFX playerSFX;
     private PlayerMovement playerMovement;
     private Animator animator;
     private UIManager uiManager;
@@ -41,6 +42,7 @@ public class PlayerStat : MonoBehaviour, IDamagable
     {
         animator = GetComponentInChildren<Animator>();
         playerCtrl = GetComponent<PlayerCtrl>();
+        playerSFX = GetComponentInChildren<PlayerSFX>();
         playerMovement = GetComponent<PlayerMovement>();
         uiManager = UIManager.Instance;
         currentHeart = CurrentMaxHeart;
@@ -50,7 +52,8 @@ public class PlayerStat : MonoBehaviour, IDamagable
     public void TakeDamage(int damage)
     {
         if (isInvincible || damage < 0 || isDead) return;
-
+        
+        playerSFX.PlayHitClip();
         currentHeart -= damage;
         StartCoroutine(Damaged());
         for (int i = 0; i < damage; i++)

@@ -152,10 +152,10 @@ TextureImporter:
       name: Mushroom-Die_0
       rect:
         serializedVersion: 2
-        x: 25
+        x: 0
         y: 0
-        width: 30
-        height: 32
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,10 +173,10 @@ TextureImporter:
       name: Mushroom-Die_1
       rect:
         serializedVersion: 2
-        x: 107
+        x: 80
         y: 0
-        width: 30
-        height: 34
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,10 +194,10 @@ TextureImporter:
       name: Mushroom-Die_2
       rect:
         serializedVersion: 2
-        x: 193
+        x: 160
         y: 0
-        width: 28
-        height: 37
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,10 +215,10 @@ TextureImporter:
       name: Mushroom-Die_3
       rect:
         serializedVersion: 2
-        x: 282
+        x: 240
         y: 0
-        width: 29
-        height: 32
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,10 +236,10 @@ TextureImporter:
       name: Mushroom-Die_4
       rect:
         serializedVersion: 2
-        x: 351
+        x: 320
         y: 0
-        width: 30
-        height: 34
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,10 +257,10 @@ TextureImporter:
       name: Mushroom-Die_5
       rect:
         serializedVersion: 2
-        x: 427
+        x: 400
         y: 0
-        width: 30
-        height: 30
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,10 +278,10 @@ TextureImporter:
       name: Mushroom-Die_6
       rect:
         serializedVersion: 2
-        x: 500
+        x: 480
         y: 0
-        width: 28
-        height: 27
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -299,10 +299,10 @@ TextureImporter:
       name: Mushroom-Die_7
       rect:
         serializedVersion: 2
-        x: 570
+        x: 560
         y: 0
-        width: 36
-        height: 15
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -320,10 +320,10 @@ TextureImporter:
       name: Mushroom-Die_8
       rect:
         serializedVersion: 2
-        x: 648
+        x: 640
         y: 0
-        width: 36
-        height: 13
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -341,10 +341,10 @@ TextureImporter:
       name: Mushroom-Die_9
       rect:
         serializedVersion: 2
-        x: 727
+        x: 720
         y: 0
-        width: 34
-        height: 16
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -362,10 +362,10 @@ TextureImporter:
       name: Mushroom-Die_10
       rect:
         serializedVersion: 2
-        x: 806
+        x: 800
         y: 0
-        width: 34
-        height: 16
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -383,10 +383,10 @@ TextureImporter:
       name: Mushroom-Die_11
       rect:
         serializedVersion: 2
-        x: 886
+        x: 880
         y: 0
-        width: 34
-        height: 16
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -404,10 +404,10 @@ TextureImporter:
       name: Mushroom-Die_12
       rect:
         serializedVersion: 2
-        x: 966
+        x: 960
         y: 0
-        width: 34
-        height: 16
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -425,10 +425,10 @@ TextureImporter:
       name: Mushroom-Die_13
       rect:
         serializedVersion: 2
-        x: 1046
+        x: 1040
         y: 0
-        width: 34
-        height: 16
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -446,10 +446,10 @@ TextureImporter:
       name: Mushroom-Die_14
       rect:
         serializedVersion: 2
-        x: 1126
+        x: 1120
         y: 0
-        width: 34
-        height: 16
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

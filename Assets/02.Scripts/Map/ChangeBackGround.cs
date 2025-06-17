@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +10,15 @@ public class ChangeBackGround : MonoBehaviour
     [SerializeField] GameObject firstBackGroundObj;
     [SerializeField] GameObject secondBackGroundObj;
     [SerializeField] GameObject fadeOut;
+    [SerializeField] private NpcController npcController;
 
     private float fadeDuration = 3f; // 페이드 아웃/인 시간
+    private GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = GameManager.Instance;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -18,6 +26,10 @@ public class ChangeBackGround : MonoBehaviour
         {
             StartCoroutine(ChangeBackgroundCoroutine());
         }
+
+        gameManager.NextIndex();
+        npcController.GoNextPos();
+        npcController.CanInteract();
     }
 
     private IEnumerator ChangeBackgroundCoroutine()

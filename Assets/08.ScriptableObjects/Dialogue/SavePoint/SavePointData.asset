@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timing: 0
   type: 2
-  npcName: "\uC138\uC774\uBE0C \uD3EC\uC778\uD2B8"
+  npcName: "\uD654\uD1B3\uBD88"
   dialogues:
   - "\uC800\uC7A5\uB418\uC5C8\uC2B5\uB2C8\uB2E4"
   isScene: 0
