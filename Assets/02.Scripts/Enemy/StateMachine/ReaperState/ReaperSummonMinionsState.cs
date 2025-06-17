@@ -13,7 +13,7 @@ public class ReaperSummonMinionsState : IState
     public void Enter()
     {
         // SummonMinions 상태 진입
-        boss.BossAnimationHandler.SummonMinions();
+        boss.BossAnimationHandler.Pattern2();
         boss.StartCoroutine(SummonMinionsState());
     }
 

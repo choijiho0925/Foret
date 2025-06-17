@@ -23,10 +23,7 @@ public class ReaperDamageState : IState
 
     public void Update()
     {
-        if (!boss.IsInvincible)
-        {
-            boss.StateMachine.ChangeState(new ReaperIdleState(boss));
-        }
+        
     }
 
     private IEnumerator Invincible()
@@ -34,5 +31,7 @@ public class ReaperDamageState : IState
         boss.IsInvincible = true;
         yield return new WaitForSeconds(0.5f);
         boss.IsInvincible = false;
+
+        boss.StateMachine.ChangeState(new ReaperIdleState(boss));
     }
 }

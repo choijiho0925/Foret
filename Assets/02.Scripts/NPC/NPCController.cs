@@ -24,7 +24,7 @@ public class NpcController : MonoBehaviour
         director = GetComponent<PlayableDirector>();
         gameManager = GameManager.Instance;
         mainNpcAnimator.enabled = false;
-        posNum = 0;
+        posNum = gameManager.mainNpcPosNum;
         GoNextPos();
         bossRoomCollider.gameObject.SetActive(false);
         canInteract = true;
@@ -76,6 +76,7 @@ public class NpcController : MonoBehaviour
             posNum = npcPosData.pos.Count - 1;
         }
         mainNpc.transform.position = npcPosData.pos[posNum];
+        gameManager.NextPosNum();
         posNum++;
     }
     

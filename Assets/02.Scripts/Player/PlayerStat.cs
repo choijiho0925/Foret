@@ -1,4 +1,5 @@
 using _02.Scripts.Player;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -47,6 +48,11 @@ public class PlayerStat : MonoBehaviour, IDamagable
         uiManager = UIManager.Instance;
         currentHeart = CurrentMaxHeart;
         currentEnergy = CurrentMaxEnergy;
+    }
+
+    private void Start()
+    {
+        Respawn();
     }
 
     public void TakeDamage(int damage)
@@ -109,11 +115,16 @@ public class PlayerStat : MonoBehaviour, IDamagable
             StartCoroutine(RecoverEffect());
         }
     }
+
+    public void Respawn()
+    {
+        transform.position = GameManager.Instance.respawnPoint;
+    }
     
     public void DamageAndRespawn(int damage)
     {   //데미지 처리 및 리스폰까지
         TakeDamage(damage);
-        transform.position = GameManager.Instance.respawnPoint;
+        Respawn();
     }
     public void Die()   
     {
