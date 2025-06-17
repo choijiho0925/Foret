@@ -20,5 +20,6 @@ public class AbilityController : MonoBehaviour
     {
         characterImage.fillAmount = currentAmount - amount;
         currentAmount -= amount;
+        if(currentAmount > fullAmount) currentAmount = fullAmount;
     }
 }
