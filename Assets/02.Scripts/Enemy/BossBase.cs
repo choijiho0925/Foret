@@ -51,6 +51,8 @@ public class BossBase : MonsterBase
 
     public override void Die()
     {
-        bossCollider.enabled = false;
+        // npc 레이어로 변경
+        gameObject.layer = LayerMask.NameToLayer("Interactable");
+        bossCollider.isTrigger = true;
     }
 }

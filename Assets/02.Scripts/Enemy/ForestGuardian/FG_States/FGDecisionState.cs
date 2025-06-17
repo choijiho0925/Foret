@@ -25,6 +25,7 @@ public class FGDecisionState : IState
         {
             // 사망
             boss.StateMachine.ChangeState(new FGNpcState(boss));
+            return;
         }
 
         if (distance < boss.BackdownRange)
