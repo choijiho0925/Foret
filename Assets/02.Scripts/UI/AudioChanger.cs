@@ -13,7 +13,7 @@ public class AudioChanger : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            AudioManager.Instance.PlayBGM()
+            //AudioManager.Instance.PlayBGM();
         }
     }
 }

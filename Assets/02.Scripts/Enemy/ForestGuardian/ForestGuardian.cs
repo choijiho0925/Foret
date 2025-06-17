@@ -57,6 +57,10 @@ public class ForestGuardian : BossBase
     public float ChargeDuration => chargeDuration;
     public float ChargeSpeedMultiplier => chargeSpeedMultiplier;
 
+    public bool Dead => dead;
+
+
+
     public SpriteRenderer Sprite => fgAnimationHandler.Sprite;
 
     // 물리 기반 이동
@@ -69,6 +73,16 @@ public class ForestGuardian : BossBase
         base.Awake();
         rb = GetComponent<Rigidbody2D>();
         fgAnimationHandler = GetComponent<FGAnimationHandler>();
+    }
+
+    private void OnEnable()
+    {
+        EventBus.Subscribe<GameOverEvent>(GameOverHandler);
+    }
+
+    private void OnDisable()
+    {
+        EventBus.Unsubscribe<GameOverEvent>(GameOverHandler);
     }
 
     protected override void Start()
@@ -132,9 +146,16 @@ public class ForestGuardian : BossBase
 
         if (Health <= 0 && !dead)
         {
+            allowLookAtPlayer = false;
             dead = true;
             PlayDeathAnimation(); // 사망 애니메이션 재생만
             rb.velocity = Vector2.zero; // 움직임 멈춤
+
+            // 다음 스테이지 갈 수 있게함
+            GameManager.Instance.CanGoNextStage = true;
+
+            // 몇 초 뒤 npc State 전환
+            UnlockAfterDelay(30f);
         }
 
         else
@@ -197,13 +218,6 @@ public class ForestGuardian : BossBase
 
         rb.MovePosition(rb.position + moveDelta);
     }
-
-    //// 초기 위치로 돌아가는 이동
-    //public void ReturnToInitialPosition()
-    //{
-    //    Vector2 direction = (InitialPosition - transform.position).normalized;
-    //    transform.position += (Vector3)(direction * MoveSpeed * Time.deltaTime);
-    //}
 
     // 회피
     public bool TryBackdownMove(float direction, float moveDistance)
@@ -383,6 +397,12 @@ public class ForestGuardian : BossBase
     public void ResetAllAnimation()
     {
         fgAnimationHandler.ResetAllAnimation();
+    }
+
+    // 플레이어 부활 때 재출력 돼야 하는 데이터
+    private void GameOverHandler(GameOverEvent evnt)
+    {
+        Initialize();
     }
 
 }

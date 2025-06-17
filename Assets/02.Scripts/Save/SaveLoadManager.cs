@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.IO;
 
@@ -5,7 +6,6 @@ public class SaveLoadManager : Singleton<SaveLoadManager>
 {
     public const string saveFileName = "savegame.json";
     private string saveFilePath;
-    public string SaveFilePath => saveFilePath;
 
     protected override void Awake()
     {
@@ -43,6 +43,8 @@ public class SaveLoadManager : Singleton<SaveLoadManager>
 
     public void DeleteSave()
     {
+        saveFilePath = Path.Combine(Application.persistentDataPath, saveFileName);
+        
         if (File.Exists(saveFilePath))
         {
             File.Delete(saveFilePath);

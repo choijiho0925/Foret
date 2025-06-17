@@ -12,14 +12,14 @@ public class AbilityController : MonoBehaviour
 
     private void Start()
     {
-        currentAmount = fullAmount;
+        UpdateGauge(GameManager.Instance.GameData.playerEnergy / 100f);
         UIManager.Instance.RegisterAbilityController(this);
     }
 
-    public void UseGauge(float amount)
+    public void UpdateGauge(float amount)
     {
-        characterImage.fillAmount = currentAmount - amount;
-        currentAmount -= amount;
-        if(currentAmount > fullAmount) currentAmount = fullAmount;
+        characterImage.fillAmount = amount;
+        currentAmount = amount;
+        currentAmount = Mathf.Clamp(currentAmount, 0, fullAmount);
     }
 }
