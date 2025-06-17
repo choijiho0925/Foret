@@ -98,7 +98,6 @@ public class DialogueController : MonoBehaviour
         }
         else
         {
-            Debug.Log(fullCurrentLine);
             dialogueText.text = fullCurrentLine;
         }
         IsTyping = false;
@@ -117,7 +116,7 @@ public class DialogueController : MonoBehaviour
 
         if (isScene)
         {
-            ShowSpeechBubble();
+            Invoke("ShowSpeechBubble",1f);
         }
         else
         {
@@ -146,7 +145,6 @@ public class DialogueController : MonoBehaviour
         else
         {
             dialogueText.text = "";
-            yield return new WaitForSeconds(2.0f);
         }
         foreach (char c in line)
         {
