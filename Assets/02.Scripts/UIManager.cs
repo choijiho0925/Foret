@@ -73,10 +73,10 @@ public class UIManager : Singleton<UIManager>
     {
         heartController.RecoverHeart();
     }
-
+    
     public void UpdateGauge(float amount)
     {
-        abilityController.UseGauge(amount);
+        abilityController.UpdateGauge(amount);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

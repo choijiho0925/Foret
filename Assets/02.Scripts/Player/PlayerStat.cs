@@ -21,6 +21,7 @@ public class PlayerStat : MonoBehaviour, IDamagable
     private int bonusAttackDamage;
     private int bonusThrowDamage;
     
+    private GameManager gameManager;
     private PlayerCtrl playerCtrl;
     private PlayerSFX playerSFX;
     private PlayerMovement playerMovement;
@@ -45,14 +46,21 @@ public class PlayerStat : MonoBehaviour, IDamagable
         playerCtrl = GetComponent<PlayerCtrl>();
         playerSFX = GetComponentInChildren<PlayerSFX>();
         playerMovement = GetComponent<PlayerMovement>();
+        gameManager = GameManager.Instance;
+        gameManager.player = this;
         uiManager = UIManager.Instance;
-        currentHeart = CurrentMaxHeart;
-        currentEnergy = CurrentMaxEnergy;
-    }
 
-    private void Start()
+        currentHeart = gameManager.GameData.playerHeart;
+        currentEnergy = gameManager.GameData.playerEnergy;
+        transform.position = gameManager.GameData.respawnPoint;
+    }
+    
+
+    //게임 시작 시 체력, 에너지 값 설정
+    public void Init(int heart, int energy)
     {
-        Respawn();
+        currentHeart = heart;
+        currentEnergy = energy;
     }
 
     public void TakeDamage(int damage)
@@ -91,7 +99,7 @@ public class PlayerStat : MonoBehaviour, IDamagable
         if (energy > currentEnergy || energy < 0 || isDead) return false;
         
         currentEnergy = Mathf.Max(currentEnergy - energy, 0);
-        uiManager.UpdateGauge(((float)energy/CurrentMaxEnergy));
+        uiManager.UpdateGauge(((float)currentEnergy/CurrentMaxEnergy));
         return true;
     }
 
@@ -100,7 +108,7 @@ public class PlayerStat : MonoBehaviour, IDamagable
         if (energy < 0 || isDead) return false;
         
         currentEnergy = Mathf.Min(currentEnergy + energy, CurrentMaxEnergy);
-        uiManager.UpdateGauge((-(float)energy/CurrentMaxEnergy));
+        uiManager.UpdateGauge(((float)currentEnergy/CurrentMaxEnergy));
         return true;
     }
 
@@ -116,15 +124,11 @@ public class PlayerStat : MonoBehaviour, IDamagable
         }
     }
 
-    public void Respawn()
-    {
-        transform.position = GameManager.Instance.respawnPoint;
-    }
     
     public void DamageAndRespawn(int damage)
     {   //데미지 처리 및 리스폰까지
         TakeDamage(damage);
-        Respawn();
+        transform.position = gameManager.respawnPoint;
     }
     public void Die()   
     {
