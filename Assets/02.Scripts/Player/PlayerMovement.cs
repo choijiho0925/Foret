@@ -115,8 +115,11 @@ namespace _02.Scripts.Player
                 //플레이어 대쉬
 				if (dash && canDash && !isWallSliding)
 				{
-					rb.AddForce(new Vector2(playerStat.CurrentDashForce * transform.localScale.x, 0f));
-					StartCoroutine(DashCooldown());
+                    if (playerStat.UseEnergy(10))
+                    {
+                        rb.AddForce(new Vector2(playerStat.CurrentDashForce * transform.localScale.x, 0f));
+                        StartCoroutine(DashCooldown());
+                    }
 				}
                 
 				if (isDashing)
@@ -204,9 +207,12 @@ namespace _02.Scripts.Player
 						// 벽 슬라이딩 중 대쉬
 						else if (dash && canDash)
 						{
-							isWallSliding = false;
-							animator.SetBool(animIDWallSliding, false);
-							StartCoroutine(DashCooldown());
+                            if (playerStat.UseEnergy(10))
+                            {
+                                isWallSliding = false;
+                                animator.SetBool(animIDWallSliding, false);
+                                StartCoroutine(DashCooldown());
+                            }
 						}
 					}
 				}
@@ -253,12 +259,14 @@ namespace _02.Scripts.Player
 			animator.SetBool(animIDDashing, true);
 			isDashing = true;
 			canDash = false;
+            playerStat.isInvincible = true; //대쉬 중 무적
 			
 			// 이팩트 생성 코루틴 시작
 			//dashEffect.SetActive(true);				//일반 대쉬 효과
 			StartCoroutine(SpawnAfterimages());	//잔상 효과
 			
 			yield return new WaitForSeconds(0.1f);	//실제 대쉬가 지속되는 시간
+            playerStat.isInvincible = false;
 			isDashing = false;
 			animator.SetBool(animIDDashing, false);
 			yield return new WaitForSeconds(0.5f);
