@@ -17,6 +17,7 @@ public class AudioManager : Singleton<AudioManager>
     public AudioSource bgmSource;   // MainBGM의 Audio Source 참조
 
     private Coroutine fadeCoroutine;
+    private AudioClip beforeBGMClip;
 
     private Dictionary<string, string> bgmByScene = new Dictionary<string, string>()
     {
@@ -107,11 +108,28 @@ public class AudioManager : Singleton<AudioManager>
         audioMixer.SetFloat("SFX", Mathf.Log10(sliderValue) * 20);
     }
 
-    public void PlayBGM(AudioClip newClip, float fadeDuration = 1f)
+    public void PlayBGM(AudioClip newClip, float fadeDuration = 1f, bool rememberPrevious = true)
     {
+        if (rememberPrevious && bgmSource != null && bgmSource.clip != null)
+        {
+            beforeBGMClip = bgmSource.clip;
+        }
+
         if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
 
         fadeCoroutine = StartCoroutine(FadeBGM(newClip, fadeDuration));
+    }
+
+    public void RestoreBeforeBGM(float fadeDuration = 1f)
+    {
+        if (beforeBGMClip != null)
+        {
+            PlayBGM(beforeBGMClip, fadeDuration, rememberPrevious: false);
+        }
+        else
+        {
+            Debug.LogWarning("복구할 원래 BGM이 없습니다.");
+        }
     }
 
     private IEnumerator FadeBGM(AudioClip newClip, float duration)
