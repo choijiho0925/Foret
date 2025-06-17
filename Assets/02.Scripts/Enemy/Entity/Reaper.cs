@@ -75,6 +75,8 @@ public class Reaper : BossBase
         // 공격 도중이라면 리턴
         if (currentPattern != null) return;
 
+        LookDirection();
+
         // 기본 공격
         currentPattern = StartCoroutine(NormalAttack(slashNormal));
     }
@@ -84,10 +86,10 @@ public class Reaper : BossBase
         AnimationHandler.Attack();
         StartCoroutine(ShowAttackEffect(effect));
 
-        Collider2D hit = Physics2D.OverlapCircle(slashNormal.transform.position, AttackRange, playerLayer);
+        //Collider2D hit = Physics2D.OverlapCircle(slashNormal.transform.position, AttackRange, playerLayer);
 
-        if (hit != null)
-            hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
+        //if (hit != null)
+        //    hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
 
         yield return new WaitForSeconds(3f);
 
@@ -120,23 +122,23 @@ public class Reaper : BossBase
 
             SpriteRenderer.flipX = !isLeft;
 
-            FlipSprite(slashNormal.transform);
-            FlipSprite(slashWide.transform);
+            Flip(slashNormal.transform);
+            Flip(slashWide.transform);
         }
     }
 
-    private void FlipSprite(Transform sprite)
+    private void Flip(Transform pos)
     {
         // 위치 x를 반전시킴
-        Vector3 localPos = sprite.localPosition;
+        Vector3 localPos = pos.localPosition;
         localPos.x *= -1;
-        sprite.localPosition = localPos;
+        pos.localPosition = localPos;
 
         // Sprite가 있다면 flipX도 반전
-        var sr = sprite.GetComponent<SpriteRenderer>();
-        if (sr != null)
+        var sprite = pos.GetComponent<SpriteRenderer>();
+        if (sprite != null)
         {
-            sr.flipX = !sr.flipX;
+            sprite.flipX = !sprite.flipX;
         }
     }
     #endregion
@@ -170,6 +172,7 @@ public class Reaper : BossBase
 
     public IEnumerator SummonMinions()
     {
+        yield return new WaitForSeconds(0.2f);
         var sprite = mainSprite.GetComponent<SpriteRenderer>();
 
         // 무적 처리
@@ -211,6 +214,7 @@ public class Reaper : BossBase
         yield return new WaitForSeconds(0.4f);
 
         // 긴 공격 실행
+        bossAnimationHandler.Attack2();
         LongAttack(slashWide);
         yield return new WaitForSeconds(2f);
     }
@@ -231,20 +235,20 @@ public class Reaper : BossBase
     {
         StartCoroutine(ShowAttackEffect(effect));
 
-        Vector2 attackPos = (Vector2)slashWide.transform.position + (Vector2)(transform.up * 0.5f);
-        Vector2 size = new Vector2(15f, 2.5f); // 캡슐 범위
-        float angle = 0f; // 수평 방향
+        //Vector2 attackPos = (Vector2)slashWide.transform.position + (Vector2)(transform.up * 0.5f);
+        //Vector2 size = new Vector2(15f, 2.5f); // 캡슐 범위
+        //float angle = 0f; // 수평 방향
 
-        Collider2D hit = Physics2D.OverlapCapsule(
-            attackPos,
-            size,
-            CapsuleDirection2D.Horizontal,
-            angle,
-            playerLayer
-        );
+        //Collider2D hit = Physics2D.OverlapCapsule(
+        //    attackPos,
+        //    size,
+        //    CapsuleDirection2D.Horizontal,
+        //    angle,
+        //    playerLayer
+        //);
 
-        if (hit != null)
-            hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
+        //if (hit != null)
+        //    hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
     }
     #endregion
 }
