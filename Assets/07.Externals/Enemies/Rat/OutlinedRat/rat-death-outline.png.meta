@@ -152,10 +152,10 @@ TextureImporter:
       name: rat-death-outline_0
       rect:
         serializedVersion: 2
-        x: 5
+        x: 0
         y: 0
-        width: 23
-        height: 15
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,10 +173,10 @@ TextureImporter:
       name: rat-death-outline_1
       rect:
         serializedVersion: 2
-        x: 33
+        x: 32
         y: 0
-        width: 27
-        height: 11
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,10 +194,10 @@ TextureImporter:
       name: rat-death-outline_2
       rect:
         serializedVersion: 2
-        x: 67
+        x: 64
         y: 0
-        width: 25
-        height: 10
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,10 +215,10 @@ TextureImporter:
       name: rat-death-outline_3
       rect:
         serializedVersion: 2
-        x: 100
+        x: 96
         y: 0
-        width: 24
-        height: 10
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,10 +236,10 @@ TextureImporter:
       name: rat-death-outline_4
       rect:
         serializedVersion: 2
-        x: 133
+        x: 128
         y: 0
-        width: 23
-        height: 7
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,10 +257,10 @@ TextureImporter:
       name: rat-death-outline_5
       rect:
         serializedVersion: 2
-        x: 165
+        x: 160
         y: 0
-        width: 23
-        height: 6
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

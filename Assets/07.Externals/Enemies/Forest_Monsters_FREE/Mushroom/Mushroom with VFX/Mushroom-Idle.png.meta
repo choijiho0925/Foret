@@ -152,10 +152,10 @@ TextureImporter:
       name: Mushroom-Idle_0
       rect:
         serializedVersion: 2
-        x: 25
+        x: 0
         y: 0
-        width: 30
-        height: 33
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,10 +173,10 @@ TextureImporter:
       name: Mushroom-Idle_1
       rect:
         serializedVersion: 2
-        x: 105
+        x: 80
         y: 0
-        width: 30
-        height: 32
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,10 +194,10 @@ TextureImporter:
       name: Mushroom-Idle_2
       rect:
         serializedVersion: 2
-        x: 185
+        x: 160
         y: 0
-        width: 30
-        height: 31
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,10 +215,10 @@ TextureImporter:
       name: Mushroom-Idle_3
       rect:
         serializedVersion: 2
-        x: 265
+        x: 240
         y: 0
-        width: 30
-        height: 30
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,10 +236,10 @@ TextureImporter:
       name: Mushroom-Idle_4
       rect:
         serializedVersion: 2
-        x: 345
+        x: 320
         y: 0
-        width: 30
-        height: 30
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,10 +257,10 @@ TextureImporter:
       name: Mushroom-Idle_5
       rect:
         serializedVersion: 2
-        x: 425
+        x: 400
         y: 0
-        width: 30
-        height: 31
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,10 +278,10 @@ TextureImporter:
       name: Mushroom-Idle_6
       rect:
         serializedVersion: 2
-        x: 505
+        x: 480
         y: 0
-        width: 30
-        height: 32
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
