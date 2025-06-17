@@ -86,10 +86,10 @@ public class Reaper : BossBase
         AnimationHandler.Attack();
         StartCoroutine(ShowAttackEffect(effect));
 
-        //Collider2D hit = Physics2D.OverlapCircle(slashNormal.transform.position, AttackRange, playerLayer);
+        Collider2D hit = Physics2D.OverlapCircle(slashNormal.transform.position, AttackRange, playerLayer);
 
-        //if (hit != null)
-        //    hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
+        if (hit != null)
+            hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
 
         yield return new WaitForSeconds(3f);
 
@@ -235,20 +235,20 @@ public class Reaper : BossBase
     {
         StartCoroutine(ShowAttackEffect(effect));
 
-        //Vector2 attackPos = (Vector2)slashWide.transform.position + (Vector2)(transform.up * 0.5f);
-        //Vector2 size = new Vector2(15f, 2.5f); // 캡슐 범위
-        //float angle = 0f; // 수평 방향
+        Vector2 attackPos = (Vector2)slashWide.transform.position + (Vector2)(transform.up * 0.5f);
+        Vector2 size = new Vector2(15f, 2.5f); // 캡슐 범위
+        float angle = 0f; // 수평 방향
 
-        //Collider2D hit = Physics2D.OverlapCapsule(
-        //    attackPos,
-        //    size,
-        //    CapsuleDirection2D.Horizontal,
-        //    angle,
-        //    playerLayer
-        //);
+        Collider2D hit = Physics2D.OverlapCapsule(
+            attackPos,
+            size,
+            CapsuleDirection2D.Horizontal,
+            angle,
+            playerLayer
+        );
 
-        //if (hit != null)
-        //    hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
+        if (hit != null)
+            hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
     }
     #endregion
 }

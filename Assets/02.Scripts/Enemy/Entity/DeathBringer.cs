@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class DeathBringer : BossBase
@@ -6,6 +7,7 @@ public class DeathBringer : BossBase
     [Header("마왕(1페이즈)")]
     [SerializeField] private int attackCount = 0;
     [SerializeField] private GameObject dropAttackPrefab;
+    [SerializeField] private Transform[] dropAttackSpawnPoints;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private Transform attack1Pos;
     [SerializeField] private Transform attack2Pos;
@@ -74,16 +76,16 @@ public class DeathBringer : BossBase
     {
         AnimationHandler.Attack();
 
-        //Vector2 size = new Vector2(6f, 5.5f); // 캡슐 범위
-        //float angle = 0f; // 수평 방향
+        Vector2 size = new Vector2(6f, 5.5f); // 캡슐 범위
+        float angle = 0f; // 수평 방향
 
-        //Collider2D hit = Physics2D.OverlapCapsule(
-        //    attack1Pos.position,
-        //    size,
-        //    CapsuleDirection2D.Horizontal,
-        //    angle,
-        //    playerLayer
-        //);
+        Collider2D hit = Physics2D.OverlapCapsule(
+            attack1Pos.position,
+            size,
+            CapsuleDirection2D.Horizontal,
+            angle,
+            playerLayer
+        );
 
         yield return new WaitForSeconds(3f);
 
@@ -147,28 +149,41 @@ public class DeathBringer : BossBase
     {
         yield return new WaitForSeconds(0.2f);
 
-        //Vector2 size = new Vector2(8f, 5.5f); // 캡슐 범위
-        //float angle = 0f; // 수평 방향
+        Vector2 size = new Vector2(8f, 5.5f); // 캡슐 범위
+        float angle = 0f; // 수평 방향
 
-        //Collider2D hit = Physics2D.OverlapCapsule(
-        //    attack2Pos.position,
-        //    size,
-        //    CapsuleDirection2D.Horizontal,
-        //    angle,
-        //    playerLayer
-        //);
+        Collider2D hit = Physics2D.OverlapCapsule(
+            attack2Pos.position,
+            size,
+            CapsuleDirection2D.Horizontal,
+            angle,
+            playerLayer
+        );
+
         yield return new WaitForSeconds(0.2f);
 
         StartCoroutine(DropAttack());
-        yield return new WaitForSeconds(1f);
     }
 
-    public IEnumerator DropAttack()
+    public IEnumerator DropAttack()     // 플레이어 위치 위에서 한번 떨어지는 공격
     {
         Vector3 spawnPos = Player.transform.position + new Vector3(0f, 10.9f, 0f);
         Instantiate(dropAttackPrefab, spawnPos, Quaternion.identity);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
+    }
+
+    public IEnumerator DropAttacks()    // 여러 곳에서 떨어지는 공격
+    {
+        // 위치들을 무작위로 섞고 상위 4개 선택
+        Transform[] random = dropAttackSpawnPoints.OrderBy(x => Random.value).ToArray();
+
+        for (int i = 0; i < 4 && i < random.Length; i++)
+        {
+            Instantiate(dropAttackPrefab, random[i].position, Quaternion.identity);
+        }
+
+        yield return new WaitForSeconds(3f);
     }
     #endregion
 

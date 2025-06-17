@@ -282,16 +282,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 300
   health: 300
-  moveSpeed: 8
+  moveSpeed: 15
   detectionRange: 30
   attackPower: 1
-  attackRange: 3
+  attackRange: 5
   isInvincible: 0
   isGround: 0
   type: 0
-  patternDelay: 2
+  patternDelay: 3
   attackCount: 0
-  dropAttackPrepab: {fileID: 2513504536076048573, guid: 824e1c479698e0d4b988327f526f1e5f, type: 3}
+  dropAttackPrefab: {fileID: 2513504536076048573, guid: 824e1c479698e0d4b988327f526f1e5f, type: 3}
+  dropAttackSpawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64

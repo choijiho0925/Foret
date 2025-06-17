@@ -28,7 +28,7 @@ public class DBDropAttackState : IState
 
     private IEnumerator DropAttackState()
     {
-        yield return boss.SweepAndDrop();
+        yield return boss.DropAttacks();
 
         // 상태 종료 후 다음 상태로 전환
         boss.StateMachine.ChangeState(new DBIdleState(boss));

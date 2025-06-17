@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class DropAttackHandler : MonoBehaviour
 {
-    private static readonly int IsStart = Animator.StringToHash("IsStart");
-    private static readonly int IsEnd = Animator.StringToHash("IsEnd");
+    private static readonly int isStart = Animator.StringToHash("IsStart");
+    private static readonly int isEnd = Animator.StringToHash("IsEnd");
 
     [SerializeField] private int attackPower = 1;
-    [SerializeField] private float delayBeforeAttack = 0.6f;
+    [SerializeField] private float attackDelay = 1.2f;
     [SerializeField] private float destroyDelay = 2f;
     [SerializeField] private Transform attackPos;
     [SerializeField] private LayerMask playerLayer;
@@ -26,21 +26,24 @@ public class DropAttackHandler : MonoBehaviour
 
     private IEnumerator DropAttackSequence()
     {
-        animator.SetTrigger(IsStart);
+        animator.SetTrigger(isStart);
 
-        yield return new WaitForSeconds(delayBeforeAttack);
+        yield return new WaitForSeconds(attackDelay);
 
-        // 실제 타격
-        Vector2 size = new Vector2(8f, 5.5f); // 캡슐 범위
-        float angle = 0f; // 수평 방향
+        //Vector2 size = new Vector2(8f, 5.5f); // 캡슐 범위
+        //float angle = 0f; // 수평 방향
 
-        Collider2D hit = Physics2D.OverlapCapsule(
-            attackPos.position,
-            size,
-            CapsuleDirection2D.Horizontal,
-            angle,
-            playerLayer
-        );
+        //Collider2D hit = Physics2D.OverlapCapsule(
+        //    attackPos.position,
+        //    size,
+        //    CapsuleDirection2D.Horizontal,
+        //    angle,
+        //    playerLayer
+        //);
+
+        yield return new WaitForSeconds(attackDelay);
+
+        animator.SetTrigger(isEnd);
 
         Destroy(gameObject, destroyDelay);
     }
