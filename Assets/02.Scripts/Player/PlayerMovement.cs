@@ -16,19 +16,19 @@ namespace _02.Scripts.Player
 
 		private const float GroundRadius = .2f;		// 땅 체크 범위
 		private const float WallRadius = 0.2f;		//벽 체크 범위
-		public bool isGrounded;            // 땅에 붙어있는지 여부
+		private bool isGrounded;            // 땅에 붙어있는지 여부
 		private Rigidbody2D rb;
 		private bool isFacingRight = true;  // 바라보는 방향
 		private Vector3 velocity = Vector3.zero;
 		private float limitFallSpeed = 15f; // 떨어지는 최대 스피드
 
-        private bool canJump = true;
+        private bool canJump = true;    //점프 가능 여부
 		private bool canDoubleJump; //더블 점프 가능 여부
-		private bool canDash = true;
-		public bool isDashing; 
-		public bool isWall; 
-		private bool isWallSliding; 
-		private bool oldWallSlidding;
+		private bool canDash = true;    //대쉬 가능 여부
+		private bool isDashing;         //대쉬중
+		private bool isWall;            //벽에 붙음
+		private bool isWallSliding;     //벽 슬라이딩 중
+		private bool oldWallSliding;   
 
 		public bool canMove = true;
 
@@ -41,9 +41,8 @@ namespace _02.Scripts.Player
         [SerializeField] private GameObject jumpEffect;
 		
 		[Header("대쉬 효과")]
-		[SerializeField] private GameObject afterimagePrefab; // 1단계에서 만든 잔상 프리팹
+		[SerializeField] private GameObject afterimagePrefab; // 잔상 프리팹
 		[SerializeField] private float afterimageSpawnRate = 0.05f; // 잔상 생성 간격 (초)
-		[SerializeField] private GameObject dashEffect;
 		
 		[Header("벽 점프 설정")]
 		[SerializeField] private float wallJumpControlLockTime = 0.5f; // 벽 점프 후 조작이 잠기는 시간
@@ -166,7 +165,7 @@ namespace _02.Scripts.Player
 					if (!isWallSliding)
 					{
 						isWallSliding = true;
-						oldWallSlidding = true; // oldWallSlidding을 여기서 true로 설정하여 중복 진입 방지
+						oldWallSliding = true; // oldWallSlidding을 여기서 true로 설정하여 중복 진입 방지
 						canDoubleJump = true; // 벽에 붙으면 더블 점프 기회 획득
 						animator.SetBool(animIDJumping, false); // 점프 애니메이션 종료
 						animator.SetBool(animIDWallSliding, true); // 벽 슬라이딩 애니메이션 시작
@@ -219,9 +218,9 @@ namespace _02.Scripts.Player
 				}
 
 				//  isWallSliding이 false로 바뀌는 모든 경우에 대비한 최종 안전장치
-				if (!isWallSliding && oldWallSlidding)
+				if (!isWallSliding && oldWallSliding)
 				{
-					oldWallSlidding = false; // 상태 플래그 초기화
+					oldWallSliding = false; // 상태 플래그 초기화
 					//canMove = true; // 이동 가능 상태로 복구
 				}
 			}
@@ -260,7 +259,6 @@ namespace _02.Scripts.Player
 			StartCoroutine(SpawnAfterimages());	//잔상 효과
 			
 			yield return new WaitForSeconds(0.1f);	//실제 대쉬가 지속되는 시간
-			dashEffect.SetActive(false);
 			isDashing = false;
 			animator.SetBool(animIDDashing, false);
 			yield return new WaitForSeconds(0.5f);
@@ -308,7 +306,7 @@ namespace _02.Scripts.Player
 			canDoubleJump = true;
 			isWallSliding = false;
 			animator.SetBool(animIDWallSliding, false);
-			oldWallSlidding = false;
+			oldWallSliding = false;
 			wallCheck.localPosition = new Vector3(Mathf.Abs(wallCheck.localPosition.x), wallCheck.localPosition.y, 0);
 		}
 
