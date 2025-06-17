@@ -30,8 +30,6 @@ public class AudioManager : Singleton<AudioManager>
         SetInitializeSlider();
 
         SceneManager.sceneLoaded += OnSceneLoaded;
-
-        OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
 
     private void OnDestroy()
@@ -79,13 +77,17 @@ public class AudioManager : Singleton<AudioManager>
 
     private void SetInitializeSlider()
     {
-        audioMixer.GetFloat("Master", out float masterVolume);
-        audioMixer.GetFloat("BGM", out float bgmVolume);
-        audioMixer.GetFloat("SFX", out float sfxVolume);
+        if (audioMixer == null) return;
 
-        masterSlider.value = Mathf.Pow(10, masterVolume / 20);
-        bgmSlider.value = Mathf.Pow(10, bgmVolume / 20);
-        sfxSlider.value = Mathf.Pow(10, sfxVolume / 20);
+        if (masterSlider != null && audioMixer.GetFloat("Master", out float masterVolume))
+            masterSlider.value = Mathf.Pow(10, masterVolume / 20);
+
+        if (bgmSlider != null && audioMixer.GetFloat("BGM", out float bgmVolume))
+            bgmSlider.value = Mathf.Pow(10, bgmVolume / 20);
+
+        if (sfxSlider != null && audioMixer.GetFloat("SFX", out float sfxVolume))
+            sfxSlider.value = Mathf.Pow(10, sfxVolume / 20);
+
     }
 
     public void SetMasterVolume(float sliderValue)
