@@ -11,6 +11,7 @@ namespace _02.Scripts.Player
     public class PlayerAttack : MonoBehaviour
     {
         private PlayerStat playerStat;
+        private PlayerSFX playerSFX;
         private Rigidbody2D rb;
         private Animator animator;
         public bool canAttack = true;
@@ -43,6 +44,7 @@ namespace _02.Scripts.Player
         private void Awake()
         {
             playerStat = GetComponent<PlayerStat>();
+            playerSFX = GetComponentInChildren<PlayerSFX>();
             rb = GetComponent<Rigidbody2D>();
             animator = GetComponentInChildren<Animator>();
         }
@@ -86,6 +88,8 @@ namespace _02.Scripts.Player
             if (!canAttack) return;
 
             if (!playerStat.UseEnergy(throwAttackEnergyCost)) return;
+            
+            playerSFX.PlayThrowAttackClip();
             
             canAttack = false;
             
@@ -133,6 +137,15 @@ namespace _02.Scripts.Player
         {
             //범위 내 모든 적 콜라이더를 자져옴
             Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(attackPos, attackRadius, enemyLayer);
+
+            if (collidersEnemies.Length > 0)
+            {
+                playerSFX.PlayAttackHitClip();
+            }
+            else
+            {
+                playerSFX.PlayAttackMissClip();
+            }
     
             for (int i = 0; i < collidersEnemies.Length; i++)
             {

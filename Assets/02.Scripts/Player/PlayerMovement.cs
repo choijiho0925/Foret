@@ -22,6 +22,7 @@ namespace _02.Scripts.Player
 		private Vector3 velocity = Vector3.zero;
 		private float limitFallSpeed = 15f; // 떨어지는 최대 스피드
 
+        private bool canJump = true;
 		public bool canDoubleJump; //더블 점프 가능 여부
 		private bool canDash = true;
 		public bool isDashing; 
@@ -80,11 +81,12 @@ namespace _02.Scripts.Player
 			// 착지한 순간에만 처리
 			if (!wasGrounded && isGrounded)
 			{
+                Debug.Log("땅 착지");
 				animator.SetBool(animIDGrounded, true);
-				animator.SetBool(animIDJumping, false); // 착지 시 점프 상태 해제
+                // 착지 시 점프 상태 해제
+				animator.SetBool(animIDJumping, false);
 				animator.SetBool(animIDDoubleJumping, false);
-				if (!isWall && !isDashing) 
-					//particleJumpDown.Play();
+                canJump = true;
 				canDoubleJump = true;
 			}
 			// 땅에서 떨어진 순간에만 처리
@@ -102,7 +104,6 @@ namespace _02.Scripts.Player
 				{
 					isDashing = false;
 					isWall = true;
-					//isFacingRight = true;
 				}
 			}
 		}
@@ -126,7 +127,7 @@ namespace _02.Scripts.Player
 				//플레이어가 땅에 붙어있거나 공중 제어 가능 상태일때만 움직일 수 있게
 				else if (isGrounded || canAirControl)
 				{
-					if (rb.velocity.y < -limitFallSpeed)
+					if (rb.velocity.y < -limitFallSpeed)    //떨어지는 속도 제한
 						rb.velocity = new Vector2(rb.velocity.x, -limitFallSpeed);
 					Vector3 targetVelocity = new Vector2(move * 10f, rb.velocity.y);
 					rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, movementSmoothing);
@@ -140,25 +141,21 @@ namespace _02.Scripts.Player
 						Flip();
 					}
 				}
-
 				// 플레이어 점프
-				if (isGrounded && jump)
+				if (jump && canJump)
 				{
 					animator.SetBool(animIDJumping, true);
-					//animator.SetBool("JumpUp", true);
-					isGrounded = false;
+                    canJump = false;
+					rb.velocity = new Vector2(rb.velocity.x, 0);
 					rb.AddForce(new Vector2(0f, playerStat.CurrentJumpForce));
 					canDoubleJump = true;
                     StartCoroutine(ShowJumpEffect());
-                    //particleJumpDown.Play();
-                    //particleJumpUp.Play();
                 }
-				else if (!isGrounded && jump && canDoubleJump && !isWallSliding)
+				else if (jump && canDoubleJump && !isWallSliding)
 				{
-					canDoubleJump = false;
-					rb.velocity = new Vector2(rb.velocity.x, 0);
-					rb.AddForce(new Vector2(0f, playerStat.CurrentJumpForce / 1.2f));
 					animator.SetBool(animIDDoubleJumping, true);
+					canDoubleJump = false;
+					rb.AddForce(new Vector2(0f, playerStat.CurrentJumpForce / 1.2f));
 				}
 
 				else if (isWall && !isGrounded)
@@ -181,7 +178,6 @@ namespace _02.Scripts.Player
 						{
 							isWallSliding = false; // 즉시 상태 해제
 							animator.SetBool(animIDWallSliding, false);
-							// WaitToEndSliding 코루틴 대신 직접 상태를 변경하여 반응성을 높입니다.
 						}
 						else // 가만히 있거나 벽 방향으로 키를 입력하면
 						{
@@ -229,7 +225,7 @@ namespace _02.Scripts.Player
 			}
 		}
 
-        public void Stop()
+        public void Stop()  //플레이어 대화, 사망 시 움직임을 멈추는 메서드
         {
             rb.velocity = Vector2.zero;
         }
