@@ -369,7 +369,6 @@ MonoBehaviour:
   groundCheck: {fileID: 4636075413137717740}
   wallCheck: {fileID: 5641323020010889433}
   isGrounded: 0
-  canDoubleJump: 1
   isDashing: 0
   isWall: 0
   canMove: 1
