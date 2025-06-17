@@ -18,8 +18,6 @@ public class MonsterSpawner : MonoBehaviour
     public List<SpawnPoint> FFMSpawnPoints;
     public List<SpawnPoint> BatSpawnPoints;
     public List<SpawnPoint> NacromancerSpawnPoints;
-    public SpawnPoint ForestGuardianSpwanPoint;
-    public SpawnPoint ReaperSpawnPoint;
     
     private Dictionary<MonsterType, List<MonsterBase>> monsters = new Dictionary<MonsterType, List<MonsterBase>>();
 
@@ -66,12 +64,6 @@ public class MonsterSpawner : MonoBehaviour
         {
             Spawn(spawnPoint);
         }
-        
-        //보스 몬스터는 예외 처리 필요!
-        if(!GameManager.Instance.CanGoNextStage)
-            Spawn(ForestGuardianSpwanPoint);
-        
-        Spawn(ReaperSpawnPoint);
     }
 
     private void Spawn(SpawnPoint spawnPoint)
