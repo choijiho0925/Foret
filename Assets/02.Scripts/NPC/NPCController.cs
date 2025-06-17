@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,32 +15,27 @@ public class NpcController : MonoBehaviour
     [SerializeField] private NpcPosData npcPosData;
     [SerializeField] private Animator mainNpcAnimator;
     [SerializeField] private Collider2D bossRoomCollider;
+    [SerializeField] private CinemachineVirtualCamera bossRoomCamera;
     
     private PlayableDirector director;
     private GameManager gameManager;
-    private int posNum;
 
     private void Start()
     {
         director = GetComponent<PlayableDirector>();
         gameManager = GameManager.Instance;
         mainNpcAnimator.enabled = false;
-        posNum = gameManager.mainNpcPosNum;
-        GoNextPos();
         bossRoomCollider.gameObject.SetActive(false);
         canInteract = true;
+        mainNpc.transform.position = npcPosData.pos[gameManager.mainNpcPosNum];
     }
 
     public void SetTimeline(DialogueData data)
     {
-        if (npcTimeline.Count < 4)
-        {
-            director.playableAsset = npcTimeline[0];
-        }
         switch (data.type)
         {
             case ActionType.Move :
-                director.playableAsset = npcTimeline[0];
+                director.playableAsset = npcTimeline[3];
                 break;
             case ActionType.Attack :
                 director.playableAsset = npcTimeline[1];
@@ -48,7 +44,14 @@ public class NpcController : MonoBehaviour
                 director.playableAsset = npcTimeline[2];
                 break;
             case ActionType.Change :
-                director.playableAsset = npcTimeline[3];
+                if (data.npcName == "밥")
+                {
+                    director.playableAsset = npcTimeline[0];
+                }
+                else
+                {
+                    director.playableAsset = npcTimeline[5];
+                }
                 break;
         }
     }
@@ -71,13 +74,12 @@ public class NpcController : MonoBehaviour
 
     public void GoNextPos()//npc위치 변경
     {
-        if (posNum >= npcPosData.pos.Count)
-        {
-            posNum = npcPosData.pos.Count - 1;
-        }
-        mainNpc.transform.position = npcPosData.pos[posNum];
         gameManager.NextPosNum();
-        posNum++;
+        if (gameManager.mainNpcPosNum >= npcPosData.pos.Count)
+        {
+            return;
+        }
+        mainNpc.transform.position = npcPosData.pos[gameManager.mainNpcPosNum];
     }
     
     public void PlusIndex()
@@ -86,6 +88,7 @@ public class NpcController : MonoBehaviour
     }
    public void StartBossRoom()
    {
+       bossRoomCamera.Priority = 20;
        bossRoomCollider.gameObject.SetActive(true);
        GameManager.Instance.SetRespawnPoint(transform.position);
    }

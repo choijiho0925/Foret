@@ -8,6 +8,7 @@ public class RuneStone : MonoBehaviour, IInteractable
     public GameObject interactGameObject; // 상호작용 오브젝트
 
     [SerializeField] private DialogueData explainData;
+    [SerializeField] private NpcController npcController;
     
     private bool canGoNextStage = true; // 다음 스테이지로 넘어갈 수 있는지 여부
     private bool isPlayerInZone; // 플레이어가 영역에 있는지 여부
@@ -75,6 +76,8 @@ public class RuneStone : MonoBehaviour, IInteractable
         OpenNextStage();
         uiManager.dialogueController.ClearTarget(this.gameObject);
         uiManager.dialogueController.HideDialoguePanel();
+        GameManager.Instance.NextIndex();
+        npcController.GoNextPos();
         player.OnEndInteraction();
     }
 

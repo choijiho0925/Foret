@@ -23,6 +23,7 @@ public class GameManager : Singleton<GameManager>
         LoadData();
         
     }
+
     public void SetRespawnPoint(Vector3 point)
     {
         respawnPoint = point;

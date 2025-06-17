@@ -26,10 +26,6 @@ public class ChangeBackGround : MonoBehaviour
         {
             StartCoroutine(ChangeBackgroundCoroutine());
         }
-
-        gameManager.NextIndex();
-        npcController.GoNextPos();
-        npcController.CanInteract();
     }
 
     private IEnumerator ChangeBackgroundCoroutine()
