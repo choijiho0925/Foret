@@ -12,6 +12,9 @@ public class MonsterSpawner : MonoBehaviour
         public MonsterType type;
     }
 
+    public List<SpawnPoint> MushroomSpawnPoints;
+    public List<SpawnPoint> RatSpawnPoints;
+    public List<SpawnPoint> NightBorneSpawnPoints;
     public List<SpawnPoint> FFMSpawnPoints;
     public List<SpawnPoint> BatSpawnPoints;
     public List<SpawnPoint> NacromancerSpawnPoints;
@@ -39,11 +42,22 @@ public class MonsterSpawner : MonoBehaviour
 
     private void SpawnMonsters()     //모든 몬스터 스폰
     {
+        foreach (SpawnPoint spawnPoint in MushroomSpawnPoints)
+        {
+            Spawn(spawnPoint);
+        }
+        foreach (SpawnPoint spawnPoint in RatSpawnPoints)
+        {
+            Spawn(spawnPoint);
+        }
+        foreach (SpawnPoint spawnPoint in NightBorneSpawnPoints)
+        {
+            Spawn(spawnPoint);
+        }
         foreach (SpawnPoint spawnPoint in FFMSpawnPoints)
         {
             Spawn(spawnPoint);
         }
-
         foreach (SpawnPoint spawnPoint in BatSpawnPoints)
         {
            Spawn(spawnPoint);

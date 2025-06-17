@@ -13,12 +13,12 @@ public static class EventBus
         Type eventType = typeof(TEvent);
         if(eventDict.TryGetValue(eventType, out Delegate existingHandler))
         {
-    //이미 해당 타입의 핸들러가 존재하면, 델리게이트에 추가
+            //이미 해당 타입의 핸들러가 존재하면, 델리게이트에 추가
             eventDict[eventType] = Delegate.Combine(existingHandler, handler);
         }
         else
         {
-    //새로운 타입의 핸들러라면, 딕셔너리에 새로 추가
+            //새로운 타입의 핸들러라면, 딕셔너리에 새로 추가
             eventDict[eventType] = handler;
         }
     }
@@ -53,7 +53,7 @@ public static class EventBus
         }
         else
         {
-            Debug.LogWarning($"[EventBus] No subscribers for event {eventType.Name}");
+            //Debug.LogWarning($"[EventBus] No subscribers for event {eventType.Name}");
         }
     }
 
