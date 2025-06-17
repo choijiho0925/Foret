@@ -2,17 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundDeadState : MonoBehaviour
+public class GroundDeadState : IState
 {
-    // Start is called before the first frame update
-    void Start()
+    private MonsterBase monster;
+    private bool isCoroutineStarted = false;
+
+    public GroundDeadState(MonsterBase monster)
     {
-        
+        this.monster = monster;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Enter()
     {
-        
+        monster.AnimationHandler.Dead();
+
+        if (monster is GroundMonster groundMonster)
+        {
+            groundMonster.enabled = false; 
+            Rigidbody2D rb = groundMonster.GetComponent<Rigidbody2D>();
+            if (rb != null)
+                rb.velocity = Vector2.zero;
+        }
+
+        monster.StartCoroutine(DestroyAfterDelay());
+    }
+
+    public void Exit() { }
+
+    public void Update()
+    {
+    }
+
+    private IEnumerator DestroyAfterDelay()
+    {
+        // 애니메이션 재생 시간만큼 대기
+        yield return new WaitForSeconds(1.5f);
+
+        // 직접 파괴
+        Object.Destroy(monster.gameObject);
     }
 }

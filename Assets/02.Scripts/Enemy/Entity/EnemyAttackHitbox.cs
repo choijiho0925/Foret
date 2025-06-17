@@ -25,6 +25,7 @@ public class EnemyAttackHitbox : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
+            Debug.Log("플레이어 찾음");
             IDamagable damagable = collision.GetComponent<IDamagable>();
 
             if(damagable != null)
