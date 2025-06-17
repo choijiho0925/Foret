@@ -4,34 +4,34 @@ using UnityEngine;
 public class GroundMonster : MonsterBase
 {
     [Header("이동")]
-    public float patrolDistance = 5f;
-    public LayerMask mapLayer;
-    public Transform groundCheck;
-    public Transform wallCheck;
-    public float attackCooldown = 1.5f;
+    public float patrolDistance = 5f;             // 좌우 이동 범위
+    public LayerMask mapLayer;                    // 지형 레이어
+    public Transform groundCheck;                 // 바닥 확인용
+    public Transform wallCheck;                   // 벽 확인용
+    public float attackCooldown = 1.5f;           // 공격 쿨타임
 
     private Rigidbody2D rb;
-    private bool isMovingRight = false;
-    private float startX;
+    private bool isMovingRight = false;           // 이동 방향 플래그
+    private float startX;                         // 시작 지점 X좌표
     private float attackTimer = 0f;
-    private float flipCooldown = 0f;
+    private float flipCooldown = 0f;              // 방향 전환 쿨타임
 
     protected override void Awake()
     {
         base.Awake();
         rb = GetComponent<Rigidbody2D>();
 
-        // 플레이어와의 충돌 무시
+        // 플레이어와 충돌 무시
         GameObject player = GameObject.FindWithTag("Player");
 
         if (player != null)
         {
-            Collider2D monsterCollider = GetComponent<Collider2D>();
-            Collider2D playerCollider = player.GetComponent<Collider2D>();
+            Collider2D monsterCol = GetComponent<Collider2D>();
+            Collider2D playerCol = player.GetComponent<Collider2D>();
 
-            if (monsterCollider != null && playerCollider != null)
+            if (monsterCol != null && playerCol != null)
             {
-                Physics2D.IgnoreCollision(monsterCollider, playerCollider);
+                Physics2D.IgnoreCollision(monsterCol, playerCol);
             }
         }
     }
@@ -41,6 +41,7 @@ public class GroundMonster : MonsterBase
         base.Start();
         startX = transform.position.x;
 
+        // 기본 상태를 Patrol로 전환
         if (StateMachine.CurrentState is GroundIdleState)
         {
             StateMachine.ChangeState(new GroundPatrolState(this));
@@ -51,60 +52,81 @@ public class GroundMonster : MonsterBase
     {
         base.Update();
 
+        // 체력이 0 이하면 죽은 상태로 전환
         if (Health <= 0 && !(StateMachine.CurrentState is GroundDeadState))
         {
             StateMachine.ChangeState(new GroundDeadState(this));
         }
     }
 
+    private void FixedUpdate()
+    {
+        // Patrol 상태일 때만 움직임
+        if (StateMachine.CurrentState is GroundPatrolState)
+        {
+            Move();
+        }
+    }
+
     public override void Move()
     {
         float dir = isMovingRight ? 1f : -1f;
-        Debug.Log($"Move called. dir: {dir}, flipCooldown: {flipCooldown}");
+        Vector2 moveDir = new Vector2(dir, 0f);
 
-        rb.velocity = new Vector2(dir * MoveSpeed, rb.velocity.y);
-        Debug.Log($"Velocity set to {rb.velocity}");
+        // 지면 확인용 레이캐스트 (경사면)
+        RaycastHit2D groundHit = Physics2D.Raycast(groundCheck.position, Vector2.down, 0.6f, mapLayer);
 
-        AnimationHandler.Move(true);
+        if (groundHit)
+        {
+            Vector2 normal = groundHit.normal;
+            float slopeAngle = Vector2.Angle(normal, Vector2.up);
 
+            // 경사면 위일 경우 이동 방향을 기울기에 맞게 보정
+            if (slopeAngle > 0f && slopeAngle <= 45f)
+            {
+                Vector2 slopeDir = new Vector2(normal.y, -normal.x); // 경사면 따라 이동
+                moveDir = slopeDir * dir;
+            }
+        }
+
+        rb.velocity = new Vector2(moveDir.x * MoveSpeed, rb.velocity.y);
+
+        // 방향 전환 조건 확인
         flipCooldown -= Time.deltaTime;
-        flipCooldown = Mathf.Max(flipCooldown, 0f);  // 음수 방지
+        flipCooldown = Mathf.Max(flipCooldown, 0f);
 
-        bool isGroundAhead = Physics2D.Raycast(groundCheck.position, Vector2.down, 1f, mapLayer);
-        bool isWallAhead = Physics2D.Raycast(wallCheck.position, Vector2.right * dir, 1f, mapLayer);
+        bool isGroundAhead = Physics2D.Raycast(groundCheck.position, Vector2.down, 0.6f, mapLayer);
+        bool isWallAhead = Physics2D.Raycast(wallCheck.position, Vector2.right * dir, 0.6f, mapLayer);
 
-        Debug.DrawRay(groundCheck.position, Vector2.down * 0.3f, Color.red);
-        Debug.DrawRay(wallCheck.position, Vector2.right * dir * 0.3f, Color.green);
-
-        Debug.Log($"Ground: {isGroundAhead}, Wall: {isWallAhead}");
-
-        if (flipCooldown <= 0f &&
-            (!isGroundAhead || isWallAhead ||
+        bool outOfRange =
             (isMovingRight && transform.position.x >= startX + patrolDistance) ||
-            (!isMovingRight && transform.position.x <= startX - patrolDistance)))
+            (!isMovingRight && transform.position.x <= startX - patrolDistance);
+
+        if (flipCooldown <= 0f && (!isGroundAhead || isWallAhead || outOfRange))
         {
             Flip();
             flipCooldown = 0.5f;
-            Debug.Log("Flip triggered and cooldown reset.");
         }
+
+        Debug.DrawRay(groundCheck.position, Vector2.down * 0.6f, Color.red);
+        Debug.DrawRay(wallCheck.position, Vector2.right * dir * 0.6f, Color.green);
     }
 
     public void Flip()
     {
         isMovingRight = !isMovingRight;
+
+        // 방향 반전: 로컬 스케일만 반전 (자식 오브젝트 포함 전체 반영)
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
-
-        Vector2 v = rb.velocity;
-        v.x *= -1;
-        rb.velocity = v;
     }
 
     public void LookDirection()
     {
         bool shouldFaceLeft = Player.transform.position.x < transform.position.x;
 
+        // 플레이어가 왼쪽에 있는데 현재 오른쪽 보는 중이면 Flip
         if (shouldFaceLeft != !isMovingRight)
         {
             Flip();
