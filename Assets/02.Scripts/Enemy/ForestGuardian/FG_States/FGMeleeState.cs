@@ -8,6 +8,7 @@ using UnityEngine;
 public class FGMeleeState : IState
 {
     private ForestGuardian boss;
+    private Coroutine meleeRoutine;
 
     public FGMeleeState(ForestGuardian boss)
     {
@@ -17,10 +18,17 @@ public class FGMeleeState : IState
     public void Enter()
     {
         boss.ResetAllAnimation();
-        boss.StartCoroutine(MeleeAttack());
+        meleeRoutine = boss.StartCoroutine(MeleeAttack());
     }
 
-    public void Exit() { }
+    public void Exit() 
+    {
+        if (meleeRoutine != null)
+        {
+            boss.StopCoroutine(meleeRoutine); // 안전하게 중단
+            meleeRoutine = null;
+        }
+    }
 
     public void Update() { }
 
@@ -29,6 +37,13 @@ public class FGMeleeState : IState
         while (true)
         {
             float distance = boss.GetPlayerDistance();
+
+            // 플레이어가 죽었으면 공격 멈춤
+            if (GameManager.Instance.player.isDead)
+            {
+                boss.StateMachine.ChangeState(new FGIdleState(boss));
+                yield break;
+            }
 
             // 너무 가까워서 회피 상태로 전환
             if (distance < boss.BackdownRange)

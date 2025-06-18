@@ -16,6 +16,14 @@ public class EnemyAttackHitbox : MonoBehaviour
         hitboxCollider.enabled = false;     
     }
 
+    public void FlipOffsetX(bool isLookAtLeft)
+    {
+        var box = GetComponent<BoxCollider2D>();
+        var offset = box.offset;
+        offset.x = isLookAtLeft ? -Mathf.Abs(offset.x) : Mathf.Abs(offset.x);
+        box.offset = offset;
+    }
+
     public void SetHitboxActive(bool isActive)
     {
         hitboxCollider.enabled = isActive;
