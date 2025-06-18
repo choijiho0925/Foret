@@ -1,85 +1,65 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FGAnimationEvent : MonoBehaviour
 {
     private ForestGuardian fg;
-    [SerializeField] private EnemyAttackHitbox attackHitbox;
 
-    private BoxCollider2D box;
+    [SerializeField] private EnemyAttackHitbox normalHitbox;
+    [SerializeField] private EnemyAttackHitbox rotatedHitbox;
 
-    private Vector2 initialSize;
-    private Vector2 initialOffset;
-
-    private bool isRotated90 = false;
+    private EnemyAttackHitbox currentHitbox;
 
     private void Awake()
     {
         fg = GetComponentInParent<ForestGuardian>();
-        box = attackHitbox.GetComponent<BoxCollider2D>();
-        initialSize = box.size;
-        initialOffset = box.offset;
+    }
+
+    private IEnumerator Start()
+    {
+        // Warm-up: 히트박스를 한 번 활성화/비활성화하여 Collider 캐싱 유도
+        normalHitbox.SetHitboxActive(true);
+        rotatedHitbox.SetHitboxActive(true);
+        yield return null;
+        normalHitbox.SetHitboxActive(false);
+        rotatedHitbox.SetHitboxActive(false);
     }
 
     // 히트 박스 방향 전환
     private void FlipAttackHitboxByFacing()
     {
-        if (box == null || fg == null) return;
+        if (fg == null) return;
 
-        // 왼쪽을 보면 true
         bool isLookAtLeft = fg.Sprite.flipX;
-
-        // 텔레포트 등에서 Transform 회전 각도 확인
         float zRotation = fg.Sprite.transform.localEulerAngles.z;
 
-        // 90도 or -90도일 때는 방향 반전 처리
-        if (Mathf.Approximately(zRotation, 90f) || Mathf.Approximately(zRotation, 270f))
-        {
-            // 텔레포트 상태에서 -90도 효과
-            if(!isRotated90)
-            {
-                // size와 offset 교체
-                box.size = new Vector2(initialSize.y, initialSize.x);
-                box.offset = new Vector2(initialOffset.y, initialOffset.x);
+        bool isRotated = Mathf.Approximately(zRotation, 90f) || Mathf.Approximately(zRotation, 270f);
+        currentHitbox = isRotated ? rotatedHitbox : normalHitbox;
 
-                isRotated90 = true;
-            }
-
-            // 좌우 + 상하 반전
-            box.offset = new Vector2(
-                isLookAtLeft ? -Mathf.Abs(box.offset.x) : Mathf.Abs(box.offset.x),
-                -Mathf.Abs(box.offset.y));
-        }
-        else
-        {
-            // 텔레포트 아닌 일반 상태로 원복
-            if (isRotated90)
-            {
-                box.size = initialSize;
-                box.offset = initialOffset;
-                isRotated90 = false;
-            }
-
-            // 좌우 반전만 처리
-            box.offset = new Vector2(
-                isLookAtLeft ? -Mathf.Abs(initialOffset.x) : Mathf.Abs(initialOffset.x),
-                initialOffset.y);
-        }
+        // 좌우 방향만 반전 (Collider offset 기준)
+        currentHitbox.FlipOffsetX(isLookAtLeft);
     }
 
     // 히트박스 활성화
     public void EnableAttackHitbox()
     {
+        fg.SetAllowLookAtPlayer(false);
         fg.FGSFX.PlayAttackClip();
         FlipAttackHitboxByFacing();
-        attackHitbox.SetHitboxActive(true);
+
+        // 다른 히트박스는 비활성화
+        normalHitbox.SetHitboxActive(false);
+        rotatedHitbox.SetHitboxActive(false);
+        currentHitbox.SetHitboxActive(true);
     }
 
     // 히트박스 비활성화
     public void DisableAttackHitbox()
     {
-        attackHitbox.SetHitboxActive(false);
+        if (currentHitbox != null)
+            currentHitbox.SetHitboxActive(false);
+
+        fg.SetAllowLookAtPlayer(true);
     }
 
     // 차지 애니메이션 시작 이벤트 호출
@@ -88,6 +68,7 @@ public class FGAnimationEvent : MonoBehaviour
         if (fg != null)
         {
             fg.OnChargeStart();
+            fg.SetAllowLookAtPlayer(false);
         }
     }
 
@@ -97,6 +78,7 @@ public class FGAnimationEvent : MonoBehaviour
         if (fg != null)
         {
             fg.OnChargeAndAttackEnd();
+            fg.SetAllowLookAtPlayer(true);
         }
     }
 
@@ -116,6 +98,7 @@ public class FGAnimationEvent : MonoBehaviour
 
         if (fg != null)
         {
+            fg.SetAllowLookAtPlayer(false);
             fg.OnTeleportAttackStart();
         }
     }
@@ -123,8 +106,9 @@ public class FGAnimationEvent : MonoBehaviour
     // 텔레포트 애니메이션 종료 이벤트 호출
     public void OnTeleportAttackEndEvent()
     {
-        if(fg != null)
+        if (fg != null)
         {
+            fg.SetAllowLookAtPlayer(true);
             fg.OnTeleportAttackEnd();
         }
     }

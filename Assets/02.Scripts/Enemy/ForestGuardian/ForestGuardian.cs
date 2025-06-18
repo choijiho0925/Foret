@@ -20,9 +20,9 @@ public class ForestGuardian : BossBase
     [SerializeField] private float chargeSpeedMultiplier = 50f;  // 돌진 속도 배수
 
     [Header("회피 설정")]
-    private bool isBackdown = false;        // 회피 중인지 체크
-    private float backdownCooldown = 0.5f;  // 회피 재진입 대기 시간
-    private float backdownTimer = 0f;
+    [SerializeField] private bool isBackdown = false;        // 회피 중인지 체크
+    [SerializeField] private float backdownCooldown = 0.5f;  // 회피 재진입 대기 시간
+    [SerializeField] private float backdownTimer = 0f;
 
     [Header("npc화 이후 & 오디오")]
     [SerializeField] private NpcController npcController;
@@ -119,6 +119,7 @@ public class ForestGuardian : BossBase
     {
         // 사망 후 상태 업데이트 중단
         if (dead) return;
+
         // FSM 업데이트
         StateMachine.Update();
 
@@ -177,11 +178,21 @@ public class ForestGuardian : BossBase
 
             // 다음 스테이지 갈 수 있게함
             GameManager.Instance.CanGoNextStage = true;
-            
-            EventBus.Raise(new BossClearEvent());
 
             // npc State 전환
-            StartCoroutine(UnlockAfterDelay(1f));
+            // 보스 피통 지우기
+            EventBus.Raise(new BossClearEvent());
+
+            // 페이드 아웃 시작
+            FadeController.Instance.FadeOut(() =>
+            {
+                // 페이드 완료 후 상태 전환
+                UnlockState();
+                StateMachine.ChangeState(new FGNpcState(this));
+
+                // 페이드 인
+                FadeController.Instance.FadeIn();
+            });
         }
 
         else
@@ -204,27 +215,10 @@ public class ForestGuardian : BossBase
     // 일정 시간 후에 상태 전환 시도
     private IEnumerator UnlockAfterDelay(float delay)
     {
+
         yield return new WaitForSeconds(delay);
-
-        if (!dead)
-        {
-            UnlockState();
-            TryChangeState(new FGDecisionState(this));
-        }
-
-        else
-        {
-            // 페이드 아웃 시작
-            FadeController.Instance.FadeOut(() =>
-            {
-                // 페이드 완료 후 상태 전환
-                UnlockState();
-                StateMachine.ChangeState(new FGNpcState(this));
-
-                // 페이드 인
-                FadeController.Instance.FadeIn();
-            });
-        }
+        UnlockState();
+        TryChangeState(new FGDecisionState(this));
 
     }
 

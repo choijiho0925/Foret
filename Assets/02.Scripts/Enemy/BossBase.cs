@@ -72,7 +72,7 @@ public class BossBase : MonsterBase
     {
         base.TakeDamage(damage);
         
-        uiManager.UpdateBossHealthBar((float)Health / MaxHealth);
+        //uiManager.UpdateBossHealthBar((float)Health / MaxHealth);
     }
 
 

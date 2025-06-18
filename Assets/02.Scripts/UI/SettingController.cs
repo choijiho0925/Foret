@@ -7,7 +7,10 @@ public class SettingController : MonoBehaviour
 {
     public Button settingButton;
     public Button backButton;
+    public Button controlButton;
+    public Button controlBackButton;
     public GameObject settingPanel;
+    public GameObject controlPanel;
     public Slider totalSlider;
     public Slider bgmSlider;
     public Slider sfxSlider;
@@ -17,17 +20,14 @@ public class SettingController : MonoBehaviour
     {
         settingButton.onClick.AddListener(OnSettings);
         backButton.onClick.AddListener(OffSettings);
+        controlButton.onClick.AddListener(OnControl);
+        controlBackButton.onClick.AddListener(OffControl);
         UIManager.Instance.RegisterSettingController(this);
         AudioManager.Instance.RegisterTotalVolumeSlider(totalSlider);
         AudioManager.Instance.RegisterBGMSlider(bgmSlider);
         AudioManager.Instance.RegisterSFXSlider(sfxSlider);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    
 
     private void OnSettings()
     {
@@ -37,5 +37,17 @@ public class SettingController : MonoBehaviour
     private void OffSettings()
     {
         settingPanel.SetActive(false);
+    }
+
+    private void OnControl()
+    {
+        controlPanel.SetActive(true);
+        settingPanel.SetActive(false); 
+    }
+
+    private void OffControl()
+    {
+        controlPanel.SetActive(false);
+        settingPanel.SetActive(true);
     }
 }

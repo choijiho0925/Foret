@@ -4,6 +4,7 @@ using UnityEngine;
 public class DBUpState : IState
 {
     private DeathBringer boss;
+    private bool isOneTime = true;
 
     public DBUpState(DeathBringer boss)
     {
@@ -12,8 +13,6 @@ public class DBUpState : IState
 
     public void Enter()
     {
-        Debug.Log("보스 위로 이동 상태");
-        boss.BossAnimationHandler.BossUp();
         boss.StartCoroutine(BossUpState());
         GameManager.Instance.isFirstPhaseEnd = true;
     }
@@ -25,11 +24,18 @@ public class DBUpState : IState
 
     public void Update()
     {
-        //boss.ReaperCameraMove.CameraMove();
+        if(boss.Health <= 0 && isOneTime)
+        {
+            boss.ReaperCameraMove.CameraMove();
+            isOneTime = false;
+        }
     }
 
     private IEnumerator BossUpState()
     {
+        // 보스 2페이즈 위로 이동
+        boss.BossAnimationHandler.BossUp();
+
         yield return new WaitForSeconds(5f);
         boss.RemoveGameobject();
     }

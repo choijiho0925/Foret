@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 10, y: -10}
+  m_AnchoredPosition: {x: 12, y: -10}
   m_SizeDelta: {x: 350, y: 150}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4546287695463050772
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -402,8 +402,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 32ddb1c06c71fdc4a85e38a2cfacf9ef, type: 2}
-  m_sharedMaterial: {fileID: 571949571118940522, guid: 32ddb1c06c71fdc4a85e38a2cfacf9ef, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1860f77002b6953489a60a88b62e7b31, type: 2}
+  m_sharedMaterial: {fileID: 1067581492089401271, guid: 1860f77002b6953489a60a88b62e7b31, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -434,7 +434,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -612,15 +612,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 32ddb1c06c71fdc4a85e38a2cfacf9ef, type: 2}
-  m_sharedMaterial: {fileID: 571949571118940522, guid: 32ddb1c06c71fdc4a85e38a2cfacf9ef, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1860f77002b6953489a60a88b62e7b31, type: 2}
+  m_sharedMaterial: {fileID: 1067581492089401271, guid: 1860f77002b6953489a60a88b62e7b31, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

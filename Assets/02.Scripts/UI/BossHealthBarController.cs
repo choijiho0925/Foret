@@ -39,6 +39,7 @@ public class BossHealthBarController : MonoBehaviour
     private void BossStartHandler(BossStartEvent evnt)
     {
         bossNameText.text = evnt.bossName;
+        healthBar.value = 1.0f;
         healthBarUI.gameObject.SetActive(true);
     }
 
