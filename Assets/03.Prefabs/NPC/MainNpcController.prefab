@@ -1,0 +1,176 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1721886267140955560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8030058151247193291}
+  - component: {fileID: 6015271266737650818}
+  - component: {fileID: 2730492139257505705}
+  - component: {fileID: 4739992935653655584}
+  m_Layer: 0
+  m_Name: MainNpcController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8030058151247193291
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721886267140955560}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &6015271266737650818
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721886267140955560}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 666025230159874478, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -1415073646323511835, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -5510727153117802824, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 594707709469390643, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 3671448290002872037, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 1042221260067065533, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 666025230159874478, guid: b01ac0307eb10f847900748c16f2d015, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 7538212337555785884, guid: b01ac0307eb10f847900748c16f2d015, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -8304793780499414626, guid: b01ac0307eb10f847900748c16f2d015, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 8062119146136904429, guid: b01ac0307eb10f847900748c16f2d015, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -5747025486613344949, guid: b01ac0307eb10f847900748c16f2d015, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 666025230159874478, guid: c01344978787e3948b822ab42d0cdf95, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 6496345233014511309, guid: b478a29bee3443a4cb5f6c2d82c5988b, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -2330223241801574141, guid: b478a29bee3443a4cb5f6c2d82c5988b, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -6534005353958440, guid: b478a29bee3443a4cb5f6c2d82c5988b, type: 2}
+    value: {fileID: 4739992935653655584}
+  - key: {fileID: -387349999116822153, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
+    value: {fileID: 4739992935653655584}
+  - key: {fileID: -3469443902375458720, guid: c01344978787e3948b822ab42d0cdf95, type: 2}
+    value: {fileID: 4739992935653655584}
+  - key: {fileID: -6152596854948097020, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -8496166587342870771, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -8448482357377278310, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
+    value: {fileID: 0}
+  m_ExposedReferences:
+    m_References: []
+--- !u!114 &2730492139257505705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721886267140955560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4602fc16461ca74c861a09286ed09d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canInteract: 0
+  mainNpc: {fileID: 0}
+  npcTimeline:
+  - {fileID: 11400000, guid: b478a29bee3443a4cb5f6c2d82c5988b, type: 2}
+  - {fileID: 11400000, guid: b01ac0307eb10f847900748c16f2d015, type: 2}
+  - {fileID: 11400000, guid: c01344978787e3948b822ab42d0cdf95, type: 2}
+  - {fileID: 11400000, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
+  npcPosData: {fileID: 11400000, guid: d27fee44405f09e41b21bc4f69a02796, type: 2}
+  mainNpcAnimator: {fileID: 0}
+  bossRoomCollider: {fileID: 0}
+  bossRoomCamera: {fileID: 0}
+--- !u!114 &4739992935653655584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721886267140955560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 073340cfbd0affb43a0bfa4fe2d62a4d, type: 2}
+    - {fileID: 11400000, guid: 41b128f2d15c8cd4bae27eec25ccc07c, type: 2}
+    - {fileID: 11400000, guid: 9eb5bd28aaf41c949b5796dbac1d8947, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2730492139257505705}
+          m_TargetAssemblyTypeName: NpcController, Assembly-CSharp
+          m_MethodName: StartBossRoom
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2730492139257505705}
+          m_TargetAssemblyTypeName: NpcController, Assembly-CSharp
+          m_MethodName: GoNextPos
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2730492139257505705}
+          m_TargetAssemblyTypeName: NpcController, Assembly-CSharp
+          m_MethodName: PlusIndex
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2

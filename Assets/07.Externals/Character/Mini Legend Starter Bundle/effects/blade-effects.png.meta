@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -173,7 +173,301 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: blade-effects_0
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 148
+        width: 33
+        height: 44
+      alignment: 9
+      pivot: {x: 0.23, y: 0.3}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bd1e7ffcd1b6f942a68c08cbab8f94b
+      internalID: 620222183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blade-effects_3
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 167
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e20252acc0ee5f248826d0393c2565ce
+      internalID: -1341853551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blade-effects_4
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 148
+        width: 33
+        height: 44
+      alignment: 9
+      pivot: {x: 0.23, y: 0.3}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da981e8683f2ac04faa375f849976809
+      internalID: 1909484798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blade-effects_6
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 148
+        width: 33
+        height: 44
+      alignment: 9
+      pivot: {x: 0.23, y: 0.3}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d65e43fb0fe92f74fa2bd9985b98208d
+      internalID: -452250697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blade-effects_10
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 112
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 769249ec932d9244389ad2568c25bbd3
+      internalID: -536592883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blade-effects_11
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 112
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b25ba781c1e941459b609b4a443b460
+      internalID: -593459494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blade-effects_12
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 112
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5fba648a1809f44089134a6b2e56b17
+      internalID: 1014791398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blade-effects_13
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 51
+        width: 35
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e690120bb866fc145b267774bc60d0da
+      internalID: -970880489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blade-effects_14
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 51
+        width: 35
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65c9570735b653747b9acbbc75951f21
+      internalID: 314745169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blade-effects_15
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 51
+        width: 35
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c034893e3e226d47be007c32ee82ad2
+      internalID: -37456152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blade-effects_17
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 14
+        width: 33
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af2ba7d480a9eda45a8e646a891c7d23
+      internalID: 1808618995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blade-effects_19
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 11
+        width: 33
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 790275c6106b3714caebb50e443c1536
+      internalID: -112168846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blade-effects_20
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 8
+        width: 33
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5e5081c301aee8448ddf370536f364b
+      internalID: 2067130638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blade-effects_1
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 112
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b590cf598f4f8374883489bdd0b74af1
+      internalID: 747373042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -184,7 +478,28 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      blade-effects_0: 620222183
+      blade-effects_1: 747373042
+      blade-effects_10: -536592883
+      blade-effects_11: -593459494
+      blade-effects_12: 1014791398
+      blade-effects_13: -970880489
+      blade-effects_14: 314745169
+      blade-effects_15: -37456152
+      blade-effects_16: 911548644
+      blade-effects_17: 1808618995
+      blade-effects_18: -454657654
+      blade-effects_19: -112168846
+      blade-effects_2: -345443871
+      blade-effects_20: 2067130638
+      blade-effects_3: -1341853551
+      blade-effects_4: 1909484798
+      blade-effects_5: 874212136
+      blade-effects_6: -452250697
+      blade-effects_7: 39784694
+      blade-effects_8: 1306233226
+      blade-effects_9: 561933802
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

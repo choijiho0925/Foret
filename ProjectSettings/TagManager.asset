@@ -11,6 +11,17 @@ TagManager:
   - 
   - Water
   - UI
+  - Player
+  - Ground
+  - Wall
+  - Top
+  - Enemy
+  - DeadZone
+  - Interactable
+  - Projectile
+  - IgnoreProjectile
+  - EnemyProjectile
+  - Platform
   - 
   - 
   - 
@@ -19,24 +30,13 @@ TagManager:
   - 
   - 
   - 
+  - QuestItem
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - RuneStone
+  - ChangeBackGroundZone
+  - NoJump
+  - SavePoint
   m_SortingLayers:
   - name: Default
     uniqueID: 0
