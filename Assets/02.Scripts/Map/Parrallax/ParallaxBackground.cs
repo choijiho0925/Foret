@@ -14,8 +14,6 @@ public class ParallaxBackground : MonoBehaviour
 	[SerializeField][Range(0.01f, 1.0f)]
 	private	float parallaxSpeed;			// layerMoveSpeed에 곱해서 사용하는 배경 스크롤 이동 속도
 
-    private float slowspeed = 0.99f;
-
 	private void Awake()
 	{
 		// 게임을 시작할 때 카메라의 위치 저장 (이동 거리 계산용)
@@ -40,8 +38,31 @@ public class ParallaxBackground : MonoBehaviour
 		CalculateMoveSpeedByLayer(backgrounds, backgroundCount);
 	}
 
-	private void CalculateMoveSpeedByLayer(GameObject[] backgrounds, int count)
+	private void LateUpdate()
 	{
+		// 카메라가 이동한 거리 = 카메라의 현재 위치 - 시작 위치
+		distance = cameraTransform.position.x - cameraStartPosition.x;
+		// 배경의 x 위치를 현재 카메라의 x 위치로 설정
+        if (cameraTransform.position.x < 0)
+        {
+            transform.position = new Vector3(0, cameraTransform.position.y, 0);
+        }
+        else
+        {
+            transform.position = new Vector3(cameraTransform.position.x, cameraTransform.position.y, 0);
+        }
+
+		// 레이어별로 현재 배경이 출력되는 offset 설정
+		for ( int i = 0; i < materials.Length; ++ i )
+		{
+			float speed = layerMoveSpeed[i] * parallaxSpeed;
+			materials[i].SetTextureOffset("_MainTex", new Vector2(distance, 0) * speed);
+		}
+	}
+
+
+    private void CalculateMoveSpeedByLayer(GameObject[] backgrounds, int count)
+    {
         float closeDistance = float.MaxValue;
         float farDistance = float.MinValue;
 
@@ -65,26 +86,4 @@ public class ParallaxBackground : MonoBehaviour
             layerMoveSpeed[i] = Mathf.Lerp(0.1f, 1f, t);  // 최소 속도 0.1 ~ 최대 속도 1
         }
     }
-
-	private void LateUpdate()
-	{
-		// 카메라가 이동한 거리 = 카메라의 현재 위치 - 시작 위치
-		distance = cameraTransform.position.x - cameraStartPosition.x;
-		// 배경의 x 위치를 현재 카메라의 x 위치로 설정
-        if (cameraTransform.position.x < 0)
-        {
-            transform.position = new Vector3(0, cameraTransform.position.y, 0);
-        }
-        else
-        {
-            transform.position = new Vector3(cameraTransform.position.x, cameraTransform.position.y, 0);
-        }
-
-		// 레이어별로 현재 배경이 출력되는 offset 설정
-		for ( int i = 0; i < materials.Length; ++ i )
-		{
-			float speed = layerMoveSpeed[i] * parallaxSpeed;
-			materials[i].SetTextureOffset("_MainTex", new Vector2(distance, 0) * speed);
-		}
-	}
 }
