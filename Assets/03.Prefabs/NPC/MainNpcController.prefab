@@ -83,6 +83,12 @@ PlayableDirector:
     value: {fileID: 4739992935653655584}
   - key: {fileID: -3469443902375458720, guid: c01344978787e3948b822ab42d0cdf95, type: 2}
     value: {fileID: 4739992935653655584}
+  - key: {fileID: -6152596854948097020, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -8496166587342870771, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -8448482357377278310, guid: 5d49bfd9a9dd3e34eb6bf89dea19075e, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &2730492139257505705
@@ -97,6 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4602fc16461ca74c861a09286ed09d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteract: 0
   mainNpc: {fileID: 0}
   npcTimeline:
   - {fileID: 11400000, guid: b478a29bee3443a4cb5f6c2d82c5988b, type: 2}
@@ -106,7 +113,7 @@ MonoBehaviour:
   npcPosData: {fileID: 11400000, guid: d27fee44405f09e41b21bc4f69a02796, type: 2}
   mainNpcAnimator: {fileID: 0}
   bossRoomCollider: {fileID: 0}
-  posnum: 0
+  bossRoomCamera: {fileID: 0}
 --- !u!114 &4739992935653655584
 MonoBehaviour:
   m_ObjectHideFlags: 0
