@@ -256,6 +256,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Ending",
+            "id": "486d1f42-7133-4f89-b88d-e3dae013ee87",
+            "actions": [
+                {
+                    "name": "Skip",
+                    "type": "Button",
+                    "id": "531f72e9-51d2-46e6-9124-c8be097d9cd6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9569ccd4-cb92-411f-9faa-f18a8a434a5f",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
