@@ -279,7 +279,7 @@ MonoBehaviour:
   attackEffectUp: {fileID: 2224181312964902054}
   attackEffectDown: {fileID: 3103868198940040258}
   attackHitEffect: {fileID: 2949269542921859525, guid: 97582d8a89440eb49b4609bd9df0dea8, type: 3}
-  energyRestorePerAttack: 10
+  energyRestorePerAttack: 5
   throwPositionOffsetX: 1.2
   throwPositionOffsetY: 0.7
   throwAttackEnergyCost: 15
@@ -482,6 +482,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 792551db-47c2-4d06-9bda-3552a71f50da
     m_ActionName: Player/Revive[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 531f72e9-51d2-46e6-9124-c8be097d9cd6
+    m_ActionName: Ending/Skip[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
