@@ -22,7 +22,7 @@ public class BossStageCamera : MonoBehaviour
 
     private void Update()
     {
-        if (reaperCamera.transform.position.y >= -61 && GameManager.Instance.isFirstPhaseEnd)
+        if (reaperCamera.transform.position.y >= -80 && GameManager.Instance.isFirstPhaseEnd)
         {
             if (isOneTime)
             {
