@@ -6,6 +6,7 @@ public class DeathBringer : BossBase
 {
     [Header("마왕(1페이즈)")]
     [SerializeField] private int attackCount = 0;
+    [SerializeField] private float attackDelay = 3f;
     [SerializeField] private GameObject dropAttackPrefab;
     [SerializeField] private Transform[] dropAttackSpawnPoints;
     [SerializeField] private LayerMask playerLayer;
@@ -76,6 +77,8 @@ public class DeathBringer : BossBase
     {
         AnimationHandler.Attack();
 
+        yield return new WaitForSeconds(0.2f);
+
         Vector2 size = new Vector2(6f, 5.5f); // 캡슐 범위
         float angle = 0f; // 수평 방향
 
@@ -87,7 +90,10 @@ public class DeathBringer : BossBase
             playerLayer
         );
 
-        yield return new WaitForSeconds(3f);
+        if (hit != null)
+            hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
+
+        yield return new WaitForSeconds(attackDelay);
 
         currentPattern = null;
         attackCount++;
@@ -160,6 +166,9 @@ public class DeathBringer : BossBase
             playerLayer
         );
 
+        if (hit != null)
+            hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
+
         yield return new WaitForSeconds(0.2f);
 
         StartCoroutine(DropAttack());
@@ -167,10 +176,10 @@ public class DeathBringer : BossBase
 
     public IEnumerator DropAttack()     // 플레이어 위치 위에서 한번 떨어지는 공격
     {
-        Vector3 spawnPos = Player.transform.position + new Vector3(0f, 10.9f, 0f);
+        Vector3 spawnPos = new Vector3(Player.transform.position.x, -122.1f, 0f);
         Instantiate(dropAttackPrefab, spawnPos, Quaternion.identity);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(attackDelay);
     }
 
     public IEnumerator DropAttacks()    // 여러 곳에서 떨어지는 공격
@@ -183,9 +192,15 @@ public class DeathBringer : BossBase
             Instantiate(dropAttackPrefab, random[i].position, Quaternion.identity);
         }
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(attackDelay);
     }
     #endregion
+
+    // 보스 2페이즈로 이동 후 제거를 위한 함수 (임시)
+    public void RemoveGameobject()
+    {
+        Destroy(gameObject);
+    }
 
     private void OnDrawGizmos() // 보스 공격 범위 (추후 삭제)
     {

@@ -15,10 +15,13 @@ public class BossBase : MonsterBase
     protected Collider2D bossCollider;
     protected Collider2D playerCollider;
 
+    protected Rigidbody2D _rigidbody;
 
     protected override void Awake()
     {
         base.Awake();
+
+        _rigidbody = GetComponent<Rigidbody2D>();
 
         GameObject player = GameObject.FindWithTag("Player");
 
@@ -52,5 +55,8 @@ public class BossBase : MonsterBase
     public override void Die()
     {
         bossCollider.enabled = false;
+
+        if (_rigidbody != null)
+            _rigidbody.bodyType = RigidbodyType2D.Kinematic;
     }
 }

@@ -26,7 +26,7 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
 
     #region 프로퍼티
     public int Health { get => health; set => health = value; }
-    public float MoveSpeed => moveSpeed;
+    public float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
     public float DetectionRange => detectionRange;
     public int AttackPower => attackPower;
     public float AttackRange => attackRange;
