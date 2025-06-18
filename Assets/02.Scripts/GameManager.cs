@@ -19,12 +19,21 @@ public class GameManager : Singleton<GameManager>
     [field: SerializeField] public int mainNpcIndex { get; private set; }
     [field: SerializeField] public int mainNpcPosNum { get; private set; }
 
+
     protected override void Awake()
     {
         base.Awake();
         LoadData();
     }
+    private void OnEnable()
+    {
+        EventBus.Subscribe<GameStartEvent>(OnGameStart);
+    }
 
+    private void OnDisable()
+    {
+        EventBus.UnSubscribe<GameStartEvent>(OnGameStart);
+    }
     public void SetRespawnPoint(Vector3 point)
     {
         respawnPoint = point;
@@ -78,16 +87,6 @@ public class GameManager : Singleton<GameManager>
     private void OnApplicationQuit()
     {   
         SaveData();
-    }
-
-    private void OnEnable()
-    {
-        EventBus.Subscribe<GameStartEvent>(OnGameStart);
-    }
-
-    private void OnDisable()
-    {
-        EventBus.UnSubscribe<GameStartEvent>(OnGameStart);
     }
 
     private void OnGameStart(GameStartEvent e)
