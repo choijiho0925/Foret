@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class IntroController : MonoBehaviour
 {
@@ -62,7 +63,7 @@ public class IntroController : MonoBehaviour
         }
         else
         {
-            // 씬 전환
+            SceneManager.LoadScene("MainScene");
         }
     }
 }

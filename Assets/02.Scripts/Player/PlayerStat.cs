@@ -124,7 +124,6 @@ public class PlayerStat : MonoBehaviour, IDamagable
         }
     }
 
-    
     public void DamageAndRespawn(int damage)
     {   //데미지 처리 및 리스폰까지
         TakeDamage(damage);
