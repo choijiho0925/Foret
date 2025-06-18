@@ -154,13 +154,14 @@ public class Reaper : BossBase
         {
             IsDead = true;
             StateMachine.ChangeState(new ReaperDeadState(this));
-            return;
+        } 
+        else
+        {
+            if (!IsAttack)
+                bossAnimationHandler.Damage();
+
+            StateMachine.ChangeState(new ReaperDamageState(this));
         }
-
-        if (!IsAttack)
-            bossAnimationHandler.Damage();
-
-        StateMachine.ChangeState(new ReaperDamageState(this));
     }
     #endregion
 

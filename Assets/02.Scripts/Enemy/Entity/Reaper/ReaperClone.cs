@@ -37,6 +37,21 @@ public class ReaperClone : MonsterBase
         agent.SetDestination(targetPos);
     }
 
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+
+        if (Health <= 0)
+        {
+            Health = 0;
+            StateMachine.ChangeState(new AirDeadState(this));
+        }
+        else
+        {
+            StateMachine.ChangeState(new AirDamageState(this));
+        }
+    }
+
     public override void Attack()
     {
         // 공격 도중이라면 리턴

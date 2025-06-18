@@ -84,7 +84,7 @@ public class DeathBringer : BossBase
         IsAttack = true;
         AnimationHandler.Attack();
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
 
         Vector2 size = new Vector2(6f, 5.5f); // 캡슐 범위
         float angle = 0f; // 수평 방향
@@ -100,7 +100,7 @@ public class DeathBringer : BossBase
         if (hit != null)
             hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.7f);
 
         IsAttack = false;
 
@@ -122,11 +122,13 @@ public class DeathBringer : BossBase
             IsDead = true;
             StateMachine.ChangeState(new DBDeadState(this));
         }
+        else
+        {
+            if (!IsAttack)
+                bossAnimationHandler.Damage();
 
-        if (!IsAttack)
-            bossAnimationHandler.Damage();
-
-        StateMachine.ChangeState(new DBDamageState(this));
+            StateMachine.ChangeState(new DBDamageState(this));
+        }
     }
     #endregion
 
@@ -168,7 +170,7 @@ public class DeathBringer : BossBase
     {
         IsAttack = true;
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
 
         Vector2 size = new Vector2(8f, 5.5f); // 캡슐 범위
         float angle = 0f; // 수평 방향
@@ -184,7 +186,7 @@ public class DeathBringer : BossBase
         if (hit != null)
             hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.7f);
 
         IsAttack = false;
 
