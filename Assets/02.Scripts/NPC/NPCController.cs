@@ -34,6 +34,10 @@ public class NpcController : MonoBehaviour
         }
         bossRoomCollider.gameObject.SetActive(false);
         canInteract = true;
+        if (!mainNpc.activeSelf)
+        {
+            mainNpc.SetActive(true);   
+        }
         mainNpc.transform.position = npcPosData.pos[gameManager.mainNpcPosNum];
     }
 
@@ -103,5 +107,10 @@ public class NpcController : MonoBehaviour
    public void CanInteract()
    {
        canInteract = true;
+   }
+
+   public void DestroyMainNpc()
+   {
+       mainNpc.SetActive(false);
    }
 }
