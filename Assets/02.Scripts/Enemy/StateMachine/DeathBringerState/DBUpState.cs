@@ -4,6 +4,7 @@ using UnityEngine;
 public class DBUpState : IState
 {
     private DeathBringer boss;
+    private bool isOneTime = true;
 
     public DBUpState(DeathBringer boss)
     {
@@ -23,7 +24,11 @@ public class DBUpState : IState
 
     public void Update()
     {
-        boss.ReaperCameraMove.CameraMove();
+        if(boss.Health <= 0 && isOneTime)
+        {
+            boss.ReaperCameraMove.CameraMove();
+            isOneTime = false;
+        }
     }
 
     private IEnumerator BossUpState()
