@@ -69,6 +69,7 @@ public class NpcController : MonoBehaviour
 
     public void PlayTimeline()
     {
+        UIManager.Instance.dialogueController.HideSpeechBubble();
         director.stopped += OnTimelineFinished;
         if (mainNpcAnimator.enabled == false)
         {
@@ -102,15 +103,11 @@ public class NpcController : MonoBehaviour
        bossRoomCamera.Priority = 20;
        bossRoomCollider.gameObject.SetActive(true);
        GameManager.Instance.SetRespawnPoint(transform.position);
+       mainNpc.SetActive(false);
    }
 
    public void CanInteract()
    {
        canInteract = true;
-   }
-
-   public void DestroyMainNpc()
-   {
-       mainNpc.SetActive(false);
    }
 }
