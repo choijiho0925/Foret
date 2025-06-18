@@ -14,6 +14,7 @@ public class FGIdleState : IState
     public void Enter()
     {
         // boss.Health = boss.MaxHealth;
+        boss.hasPlayedFirstBGM = false;
         boss.ResetAllAnimation();
     }
 
