@@ -242,7 +242,7 @@ MonoBehaviour:
   attackRange: 10
   isInvincible: 0
   isGround: 0
-  type: 1
+  type: 4
   monsterProjectilePrefab: {fileID: 3815138734285726434, guid: f00c4cbfa6b76fa4c9b167c3d0983d77, type: 3}
   projectilePos: {fileID: 1354145411369922403}
   attackCooltime: 1.5

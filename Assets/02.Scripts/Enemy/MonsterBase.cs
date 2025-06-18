@@ -128,7 +128,7 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
     private IEnumerator DieRoutine()
     {
         yield return new WaitForSeconds(1.0f);
-        PoolManager.Instance.MonsterPool.Return(type, this);
         OnDeath?.Invoke();
+        PoolManager.Instance.MonsterPool.Return(type, this);
     }
 }

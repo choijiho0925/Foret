@@ -87,13 +87,17 @@ public class MonsterSpawner : MonoBehaviour
 
     private void GameOverHandler(GameOverEvent evnt)
     {
-        //게임 오버(플레이어 사망)시 모든 몬스터 비활성화
+        //게임 오버 시 모든 몬스터 비활성화
         foreach (MonsterType type in monsters.Keys)
         {
-            foreach (MonsterBase monster in monsters[type])
+            List<MonsterBase> monsterList = monsters[type];
+
+            foreach (MonsterBase monster in monsterList)
             {
                 PoolManager.Instance.MonsterPool.Return(type, monster);
             }
+
+            monsterList.Clear();
         }
     }
 
