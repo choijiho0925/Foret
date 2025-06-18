@@ -96,7 +96,7 @@ public class ForestGuardian : BossBase
 
     private void OnDisable()
     {
-        EventBus.Unsubscribe<GameOverEvent>(GameOverHandler);
+        EventBus.UnSubscribe<GameOverEvent>(GameOverHandler);
     }
 
     protected override void Start()

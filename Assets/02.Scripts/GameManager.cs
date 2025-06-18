@@ -80,7 +80,7 @@ public class GameManager : Singleton<GameManager>
 
     private void OnDisable()
     {
-        EventBus.Unsubscribe<GameStartEvent>(OnGameStart);
+        EventBus.UnSubscribe<GameStartEvent>(OnGameStart);
     }
 
     private void OnGameStart(GameStartEvent e)
