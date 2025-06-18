@@ -18,6 +18,16 @@ public class ChangeBackGround : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance;
+        if (gameManager.CanGoNextStage)
+        {
+            secondBackGroundObj.SetActive(true);
+            firstBackGroundObj.SetActive(false);
+        }
+        else
+        {
+            secondBackGroundObj.SetActive(false);
+            firstBackGroundObj.SetActive(true);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

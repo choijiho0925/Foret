@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class ReaperCameraMove : MonoBehaviour
 {
+    [SerializeField] private Camera _mainCamera;
+    [SerializeField] private CinemachineBrain _brain;
     [SerializeField] private CinemachineVirtualCamera _camera;
     [SerializeField] private CinemachineConfiner2D _confiner;
     [SerializeField] private PolygonCollider2D _collider;
-    private int currentPriority = 5;
+    [SerializeField] private BossStageCamera _bossStageCamera;
     private int activePriority = 50;
 
     public void CameraMove()
@@ -17,23 +19,32 @@ public class ReaperCameraMove : MonoBehaviour
         {
             CameraOn();
         }
-        else if (_camera.transform.position.y >= -40 && GameManager.Instance.isFirstPhaseEnd)
-        {
-            CameraOff();
-            GameManager.Instance.isFirstPhaseEnd = false;
-        }
     }
 
     private void CameraOn()
     {
+        var oldUpdateMethod = _brain.m_UpdateMethod;
+        var oldBlendUpdateMethod = _brain.m_BlendUpdateMethod;
+        var oldShowDebugText = _brain.m_ShowDebugText;
+        var oldIgnoreTimeScale = _brain.m_IgnoreTimeScale;
+
+        DestroyImmediate(_brain);
+
+        var newBrain = _mainCamera.gameObject.AddComponent<CinemachineBrain>();
+
+        newBrain.m_UpdateMethod = oldUpdateMethod;
+        newBrain.m_BlendUpdateMethod = oldBlendUpdateMethod;
+        newBrain.m_ShowDebugText = oldShowDebugText;
+        newBrain.m_IgnoreTimeScale = oldIgnoreTimeScale;
+
+        var defalutBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.Cut, 0f);
+        newBrain.m_DefaultBlend = defalutBlend;
+
         _camera.Priority = activePriority;
         _confiner.m_BoundingShape2D = _collider;
         _confiner.InvalidateCache();
-    }
 
-    private void CameraOff()
-    {
-        _camera.Priority = currentPriority;
+        _brain = _mainCamera.GetComponent<CinemachineBrain>();
+        _bossStageCamera._brain = newBrain;
     }
-
 }
