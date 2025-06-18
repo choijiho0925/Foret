@@ -85,7 +85,10 @@ public class GameManager : Singleton<GameManager>
 
     //게임 종료 시 자동으로 저장
     private void OnApplicationQuit()
-    {   
+    {
+        //게임 씬이 아닐 경우 저장할 필요 X
+        if (player == null) return;
+        
         SaveData();
     }
 

@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -61,6 +62,10 @@ public class UIManager : Singleton<UIManager>
 
         if (!hasStarted && Input.anyKeyDown)
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
             hasStarted = true;
             EventBus.Raise(new GameStartEvent());
         }
