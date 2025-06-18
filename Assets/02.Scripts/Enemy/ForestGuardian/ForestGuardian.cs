@@ -117,7 +117,6 @@ public class ForestGuardian : BossBase
 
     private void Update()
     {
-        Debug.Log(StateMachine.CurrentState);
         // 사망 후 상태 업데이트 중단
         if (dead) return;
 
@@ -181,7 +180,19 @@ public class ForestGuardian : BossBase
             GameManager.Instance.CanGoNextStage = true;
 
             // npc State 전환
-            StartCoroutine(UnlockAfterDelay(1f));
+            // 보스 피통 지우기
+            EventBus.Raise(new BossClearEvent());
+
+            // 페이드 아웃 시작
+            FadeController.Instance.FadeOut(() =>
+            {
+                // 페이드 완료 후 상태 전환
+                UnlockState();
+                StateMachine.ChangeState(new FGNpcState(this));
+
+                // 페이드 인
+                FadeController.Instance.FadeIn();
+            });
         }
 
         else
@@ -204,31 +215,10 @@ public class ForestGuardian : BossBase
     // 일정 시간 후에 상태 전환 시도
     private IEnumerator UnlockAfterDelay(float delay)
     {
-        if (!dead)
-        {
-            yield return new WaitForSeconds(delay);
-            UnlockState();
-            TryChangeState(new FGDecisionState(this));
-        }
 
-        else
-        {
-            // 보스 피통 지우기
-            EventBus.Raise(new BossClearEvent());
-
-            yield return new WaitForSeconds(delay);
-
-            // 페이드 아웃 시작
-            FadeController.Instance.FadeOut(() =>
-            {
-                // 페이드 완료 후 상태 전환
-                UnlockState();
-                StateMachine.ChangeState(new FGNpcState(this));
-
-                // 페이드 인
-                FadeController.Instance.FadeIn();
-            });
-        }
+        yield return new WaitForSeconds(delay);
+        UnlockState();
+        TryChangeState(new FGDecisionState(this));
 
     }
 
