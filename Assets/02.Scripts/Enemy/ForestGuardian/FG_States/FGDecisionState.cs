@@ -21,9 +21,10 @@ public class FGDecisionState : IState
         float distance = boss.GetPlayerDistance();
         float returnDistance = Vector3.Distance(boss.transform.position, boss.InitialPosition);
 
-        // 플레이어 사망 시 아무것도 안함
+        // 플레이어 사망 시 Idle로
         if(GameManager.Instance.player.isDead)
         {
+            boss.StateMachine.ChangeState(new FGIdleState(boss));
             return;
         }
 
@@ -65,7 +66,7 @@ public class FGDecisionState : IState
         }
         else
         {
-            if (returnDistance > boss.DetectionRange)
+            if (distance > boss.DetectionRange)
             {
                 // 복귀
                 boss.StateMachine.ChangeState(new FGReturnState(boss));

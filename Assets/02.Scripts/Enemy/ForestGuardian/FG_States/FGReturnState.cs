@@ -16,7 +16,16 @@ public class FGReturnState : IState
 
     public void Enter()
     {
-        boss.ResetAllAnimation();  
+        boss.ResetAllAnimation();
+
+        float playerDistance = boss.GetPlayerDistance();
+        float returnDistance = Vector3.Distance(boss.transform.position, boss.InitialPosition);
+        
+        // 제자리로 이동
+        boss.transform.position = boss.InitialPosition;
+
+        // 제자리에 도착했으면 다음 상태로 전이
+        boss.StateMachine.ChangeState(new FGIdleState(boss));
     }
 
     public void Exit()
@@ -26,27 +35,5 @@ public class FGReturnState : IState
 
     public void Update()
     {
-        float playerDistance = boss.GetPlayerDistance();
-        float returnDistance = Vector3.Distance(boss.transform.position, boss.InitialPosition);
-
-        // 플레이어가 가까우면 공격 상태로 전이
-        if (playerDistance < boss.BackdownRange)
-        {
-            boss.StateMachine.ChangeState(new FGMeleeState(boss));
-            return;
-        }
-
-        // 아직 제자리에 도착하지 않았으면 이동
-        if (returnDistance > boss.DetectionRange)
-        {
-            // 제자리로 이동
-            boss.transform.position = boss.InitialPosition;
-        }
-
-        else
-        {
-            // 제자리에 도착했으면 다음 상태로 전이
-            boss.StateMachine.ChangeState(new FGDecisionState(boss));
-        }
     }
 }
