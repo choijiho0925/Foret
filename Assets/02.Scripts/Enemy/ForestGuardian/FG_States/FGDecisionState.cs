@@ -21,10 +21,17 @@ public class FGDecisionState : IState
         float distance = boss.GetPlayerDistance();
         float returnDistance = Vector3.Distance(boss.transform.position, boss.InitialPosition);
 
+        // 플레이어 사망 시 아무것도 안함
+        if(GameManager.Instance.player.isDead)
+        {
+            return;
+        }
+
         if(boss.Dead)
         {
             // 사망
             boss.StateMachine.ChangeState(new FGNpcState(boss));
+            return;
         }
 
         if (distance < boss.BackdownRange)

@@ -56,9 +56,4 @@ public static class EventBus
             //Debug.LogWarning($"[EventBus] No subscribers for event {eventType.Name}");
         }
     }
-
-    internal static void Unsubscribe<T>(Action<T> showResultPopup)
-    {
-        throw new NotImplementedException();
-    }
 }

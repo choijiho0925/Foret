@@ -16,7 +16,10 @@ public class DialogueNPC : MonoBehaviour, IInteractable
     private void Start()
     {
         player = FindObjectOfType<PlayerInteract>();
-        virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
+        if (dialogueData.Count > 1)
+        {
+            virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();  
+        }
         uiManager = UIManager.Instance;
         gameManager = GameManager.Instance;
         isDialogueStart = true; 
@@ -25,38 +28,43 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 
     public void ShowInteractUI()
     {
+        int index = (dialogueData.Count == 1) ? 0 : gameManager.mainNpcIndex;
         if (!npcController.canInteract)
         {
             player.OnEndInteraction();
             return;
         }
-        uiManager.dialogueController.SetTarget(this.gameObject, dialogueData[gameManager.mainNpcIndex].npcName);
+
+        uiManager.dialogueController.SetTarget(this.gameObject, dialogueData[index].npcName);
         uiManager.interactableController.ShowInteractable(this.gameObject.layer);
     }
 
     public void InteractAction()
     {
+        int index = (dialogueData.Count == 1) ? 0 : gameManager.mainNpcIndex;
         if (!npcController.canInteract)
         {
             player.OnEndInteraction();
             return;
         }
 
-        if (dialogueData[gameManager.mainNpcIndex].isScene)
+        if (dialogueData[index].isScene)
         {
             virtualCamera.Priority = 15;
         }
+        
         uiManager.interactableController.HideInteractable();
         CheckAction();
     }
 
     private void CheckAction()
     {
-        uiManager.dialogueController.IsScene(dialogueData[gameManager.mainNpcIndex].isScene);
-        if (dialogueData[gameManager.mainNpcIndex].timing != ActionTiming.None)
+        int index = (dialogueData.Count == 1) ? 0 : gameManager.mainNpcIndex;
+        uiManager.dialogueController.IsScene(dialogueData[index].isScene);
+        if (dialogueData[index].timing != ActionTiming.None)
         {
-            npcController.SetTimeline(dialogueData[gameManager.mainNpcIndex]);
-            if (dialogueData[gameManager.mainNpcIndex].timing == ActionTiming.Before)
+            npcController.SetTimeline(dialogueData[index]);
+            if (dialogueData[index].timing == ActionTiming.Before)
             {
                 npcController.action = InitDialogue;
                 npcController.PlayTimeline();
@@ -84,9 +92,10 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 
     private void StartDialogue()
     {
-        if (gameManager.mainNpcIndex >= dialogueData.Count) return;
+        int index = (dialogueData.Count == 1) ? 0 : gameManager.mainNpcIndex;
+        if (index >= dialogueData.Count) return;
         dialogueQueue.Clear();
-        foreach (string dialogue in dialogueData[gameManager.mainNpcIndex].dialogues)
+        foreach (string dialogue in dialogueData[index].dialogues)
         {
             dialogueQueue.Enqueue(dialogue);
         }
@@ -94,6 +103,7 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 
     private void ShowNextLine()
     {
+        int index = (dialogueData.Count == 1) ? 0 : gameManager.mainNpcIndex;
         if (uiManager.dialogueController.IsTyping)
         {
             uiManager.dialogueController.CompleteCurrentLineInstantly();// 글자 다 안 나왔으면 바로 표시
@@ -102,11 +112,11 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 
         if (dialogueQueue.Count == 0)
         {
-            if (dialogueData[gameManager.mainNpcIndex].type == ActionType.Attack)
+            if (dialogueData[index].type == ActionType.Attack)
             {
                 npcController.canInteract = false;
             }
-            if (dialogueData[gameManager.mainNpcIndex].isScene)
+            if (dialogueData[index].isScene)
             {
                 EndSpeechBubble();
             }
@@ -123,9 +133,10 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 
     private void EndDialogue()//나중에 ESC키 같은 걸로 중간에 대사를 끊을 수 있을지도?
     {
+        int index = (dialogueData.Count == 1) ? 0 : gameManager.mainNpcIndex;
         uiManager.dialogueController.HideDialoguePanel();
         uiManager.dialogueController.ClearTarget(this.gameObject);
-        if (dialogueData[gameManager.mainNpcIndex].timing == ActionTiming.After)
+        if (dialogueData[index].timing == ActionTiming.After)
         {
             npcController.action = AfterTimeline;
             npcController.PlayTimeline();
@@ -138,9 +149,10 @@ public class DialogueNPC : MonoBehaviour, IInteractable
     
     private void EndSpeechBubble()
     {
+        int index = (dialogueData.Count == 1) ? 0 : gameManager.mainNpcIndex;
         uiManager.dialogueController.HideSpeechBubble();
         uiManager.dialogueController.ClearTarget(this.gameObject);
-        if (dialogueData[gameManager.mainNpcIndex].timing == ActionTiming.After)
+        if (dialogueData[index].timing == ActionTiming.After)
         {
             npcController.action = AfterTimeline;
             npcController.PlayTimeline();
@@ -153,12 +165,16 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 
     private void AfterTimeline()
     {
+        int index = (dialogueData.Count == 1) ? 0 : gameManager.mainNpcIndex;
         isDialogueStart = true;
-        if (dialogueData[gameManager.mainNpcIndex].type == ActionType.Heal)
+        if (dialogueData[index].type == ActionType.Heal)
         {
             uiManager.interactableController.ShowInteractable(this.gameObject.layer);
         }
         player.OnEndInteraction();
-        virtualCamera.Priority = 3;
+        if (dialogueData[index].timing != ActionTiming.None)
+        {
+            virtualCamera.Priority = 3;
+        }
     }
 }

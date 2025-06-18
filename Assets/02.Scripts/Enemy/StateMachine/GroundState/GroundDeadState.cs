@@ -24,7 +24,7 @@ public class GroundDeadState : IState
                 rb.velocity = Vector2.zero;
         }
 
-        monster.StartCoroutine(DestroyAfterDelay());
+        //monster.StartCoroutine(DestroyAfterDelay());
     }
 
     public void Exit() { }

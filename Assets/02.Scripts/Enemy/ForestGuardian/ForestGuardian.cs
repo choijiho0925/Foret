@@ -24,8 +24,16 @@ public class ForestGuardian : BossBase
     private float backdownCooldown = 0.5f;  // 회피 재진입 대기 시간
     private float backdownTimer = 0f;
 
+    [Header("npc화 이후 & 오디오")]
+    [SerializeField] private NpcController npcController;
+    [SerializeField] private GameObject runStone;
+    [SerializeField] private AudioChanger audioChanger;
+
     // 사망(패배) 확인 변수
     private bool dead = false;
+
+    // 보스 진입 BGM 재생
+    public bool hasPlayedFirstBGM = false;
 
     // 상태 전환 잠금 변수
     private bool isStateLocked = false;
@@ -59,6 +67,14 @@ public class ForestGuardian : BossBase
 
     public bool Dead => dead;
 
+    public NpcController NpcController => npcController;
+
+    public GameObject RunStone => runStone;
+
+    public AudioChanger AudioChanger => audioChanger;
+
+    public FGSFX FGSFX => fgSFX;
+
 
 
     public SpriteRenderer Sprite => fgAnimationHandler.Sprite;
@@ -68,11 +84,14 @@ public class ForestGuardian : BossBase
 
     private FGAnimationHandler fgAnimationHandler;
 
+    private FGSFX fgSFX;
+
     private void Awake()
     {
         base.Awake();
         rb = GetComponent<Rigidbody2D>();
         fgAnimationHandler = GetComponent<FGAnimationHandler>();
+        fgSFX = GetComponentInChildren<FGSFX>();
     }
 
     private void OnEnable()
@@ -82,7 +101,7 @@ public class ForestGuardian : BossBase
 
     private void OnDisable()
     {
-        EventBus.Unsubscribe<GameOverEvent>(GameOverHandler);
+        EventBus.UnSubscribe<GameOverEvent>(GameOverHandler);
     }
 
     protected override void Start()
@@ -98,6 +117,8 @@ public class ForestGuardian : BossBase
 
     private void Update()
     {
+        // 사망 후 상태 업데이트 중단
+        if (dead) return;
         // FSM 업데이트
         StateMachine.Update();
 
@@ -146,6 +167,8 @@ public class ForestGuardian : BossBase
 
         if (Health <= 0 && !dead)
         {
+            rb.gravityScale = 0f;
+            base.Die();
             allowLookAtPlayer = false;
             dead = true;
             PlayDeathAnimation(); // 사망 애니메이션 재생만
@@ -154,8 +177,8 @@ public class ForestGuardian : BossBase
             // 다음 스테이지 갈 수 있게함
             GameManager.Instance.CanGoNextStage = true;
 
-            // 몇 초 뒤 npc State 전환
-            UnlockAfterDelay(30f);
+            // npc State 전환
+            StartCoroutine(UnlockAfterDelay(1f));
         }
 
         else
@@ -179,8 +202,27 @@ public class ForestGuardian : BossBase
     private IEnumerator UnlockAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        UnlockState();
-        TryChangeState(new FGDecisionState(this));
+
+        if (!dead)
+        {
+            UnlockState();
+            TryChangeState(new FGDecisionState(this));
+        }
+
+        else
+        {
+            // 페이드 아웃 시작
+            FadeController.Instance.FadeOut(() =>
+            {
+                // 페이드 완료 후 상태 전환
+                UnlockState();
+                StateMachine.ChangeState(new FGNpcState(this));
+
+                // 페이드 인
+                FadeController.Instance.FadeIn();
+            });
+        }
+
     }
 
     // 플레이어를 바라보게 함

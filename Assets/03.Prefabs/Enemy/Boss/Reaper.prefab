@@ -203,6 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d91bcb48952d0f349bfd01ba9196c273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
   health: 200
   moveSpeed: 12
   detectionRange: 20
@@ -210,6 +211,7 @@ MonoBehaviour:
   attackRange: 3.5
   isInvincible: 0
   isGround: 0
+  type: 8
   patternDelay: 5
   attackCount: 0
   teleportDistance: 3

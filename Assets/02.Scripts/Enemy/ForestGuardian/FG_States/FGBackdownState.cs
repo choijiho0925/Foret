@@ -7,8 +7,8 @@ using UnityEngine;
 public class FGBackdownState : IState
 {
     private ForestGuardian boss;
-    private float backdownTotalDistance = 25f;    // 총 이동 거리
-    private float backdownSpeedMultiplier = 3f; // 속도 배수
+    private float backdownTotalDistance = 5f;    // 총 이동 거리
+    private float backdownSpeedMultiplier = 2f; // 속도 배수
     private Coroutine backdownCoroutine;
 
     public FGBackdownState(ForestGuardian boss)
@@ -18,6 +18,12 @@ public class FGBackdownState : IState
 
     public void Enter() 
     {
+        if(!boss.hasPlayedFirstBGM)
+        {
+            boss.AudioChanger.PlayFirstBossBGM();
+            boss.hasPlayedFirstBGM = true;
+        }
+        boss.FGSFX.PlayBackdownClip();
         boss.SetAllowLookAtPlayer(false);
         boss.ResetAllAnimation();
         boss.PlayRunAnimation();

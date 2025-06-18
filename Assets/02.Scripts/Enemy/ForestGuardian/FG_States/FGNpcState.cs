@@ -5,33 +5,30 @@ using UnityEngine;
 public class FGNpcState : IState
 {
     private ForestGuardian boss;
-    private Vector3 npcPosition;
-    private bool hasMoved = false;
 
     public FGNpcState(ForestGuardian boss)
     {
         this.boss = boss;
-
-        // 최초 위치로 이동
-        this.npcPosition = boss.InitialPosition;
     }
 
     public void Enter()
     {
+        // BGM 다시 변경
+        AudioManager.Instance.RestoreBeforeBGM();
+
+        // 대화 가능 및 돌 생성
+        boss.NpcController.CanInteract();
+        boss.RunStone.SetActive(true);
+
         // 방향 고정
         boss.SetAllowLookAtPlayer(false); 
 
         // Idle 애니메이션으로 복귀
         boss.ResetAllAnimation();
 
-        // npc 레이어로 변경
-        boss.gameObject.layer = LayerMask.NameToLayer("Interactable");
+        // 제자리로 복귀
+        boss.transform.position = boss.InitialPosition;
 
-        if(!hasMoved)
-        {
-            boss.transform.position = boss.InitialPosition;
-            hasMoved = true;
-        }
     }
 
     public void Exit() { }

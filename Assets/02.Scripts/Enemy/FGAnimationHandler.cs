@@ -22,7 +22,6 @@ public class FGAnimationHandler : MonsterAnimationHandler
         sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
-    // ForestGuardian 전용 애니메이션 메서드 추가
     public void PlayRun(bool isRun)
     {
         animator.SetBool(isRunning, isRun);

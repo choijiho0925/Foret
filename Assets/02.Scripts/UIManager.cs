@@ -14,12 +14,14 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private DialogueController dialogueControllerPF;
     [SerializeField] private InteractableController interactableControllerPF;
     [SerializeField] private AbilityController abilityControllerPF;
+    [SerializeField] private BossHealthBarController bossHealthBarControllerPF;
 
     public HeartController heartController;
     public SettingController settingController;
     public DialogueController dialogueController;
     public InteractableController interactableController;
     public AbilityController abilityController;
+    public BossHealthBarController bossHealthBarController;
 
     public TextMeshProUGUI gameStartText;
     private bool hasStarted = false;
@@ -73,7 +75,7 @@ public class UIManager : Singleton<UIManager>
     {
         heartController.RecoverHeart();
     }
-    
+
     public void UpdateGauge(float amount)
     {
         abilityController.UpdateGauge(amount);
@@ -101,4 +103,5 @@ public class UIManager : Singleton<UIManager>
     public void RegisterDialogueController(DialogueController dc) => dialogueController = dc;
     public void RegisterInteractableController(InteractableController ic) => interactableController = ic;
     public void RegisterAbilityController(AbilityController ac) => abilityController = ac;
+    public void RegisterBossHealthBar(BossHealthBarController bc) => bossHealthBarController = bc;
 }

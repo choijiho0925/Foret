@@ -71,6 +71,7 @@ public class FGAnimationEvent : MonoBehaviour
     // 히트박스 활성화
     public void EnableAttackHitbox()
     {
+        fg.FGSFX.PlayAttackClip();
         FlipAttackHitboxByFacing();
         attackHitbox.SetHitboxActive(true);
     }
@@ -111,7 +112,9 @@ public class FGAnimationEvent : MonoBehaviour
     // 텔레포트 애니메이션 시작 이벤트 호출
     public void OnTeleportAttackStartEvent()
     {
-        if(fg != null)
+        fg.FGSFX.PlayTeleportClip();
+
+        if (fg != null)
         {
             fg.OnTeleportAttackStart();
         }
