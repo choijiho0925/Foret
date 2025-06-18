@@ -29,7 +29,7 @@ namespace _02.Scripts.Player
         public GameObject attackEffectUp;
         public GameObject attackEffectDown;
         public GameObject attackHitEffect;
-        public int energyRestorePerAttack = 10; //공격 적중 당 에너지 회복량
+        public int energyRestorePerAttack = 5; //공격 적중 당 에너지 회복량
 
         [Header("원거리 공격 설정")] 
         public float throwPositionOffsetX = 0.5f;
