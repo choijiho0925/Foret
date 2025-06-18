@@ -30,6 +30,7 @@ public class BossStageCamera : MonoBehaviour
             }
             GameManager.Instance.isFirstPhaseEnd = false;
             reaperCamera.Priority = 5;
+            backGround.SetActive(true);
             StartCoroutine(CheckTime());
         }
     }

@@ -12,6 +12,7 @@ public class DeathBringer : BossBase
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private Transform attack1Pos;
     [SerializeField] private Transform attack2Pos;
+    [SerializeField] private GameObject bg;
 
     private bool isLeft = true;
 
@@ -229,6 +230,11 @@ public class DeathBringer : BossBase
     public void RemoveGameobject()
     {
         Destroy(gameObject);
+    }
+
+    public void BGOff()
+    {
+        bg.SetActive(false);
     }
 
     private void OnDrawGizmos() // 보스 공격 범위 (추후 삭제)

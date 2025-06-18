@@ -19,7 +19,7 @@ public class DBPhaseMoveState : IState
 
     public void Exit()
     {
-        
+        boss.BGOff();
     }
 
     public void Update()
@@ -36,6 +36,6 @@ public class DBPhaseMoveState : IState
         yield return new WaitForSeconds(5f);
 
         // 상태 전환
-        boss.StateMachine.ChangeState(new DBUpState(boss));
+        boss.StateMachine.ChangeState(new DBUpState(boss));        
     }
 }
