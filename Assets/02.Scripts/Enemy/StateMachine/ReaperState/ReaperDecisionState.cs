@@ -12,7 +12,7 @@ public class ReaperDecisionState : IState
     public void Enter()
     {
         // Decision 상태 진입
-        int randomIndex = 2;
+        int randomIndex = Random.Range(0,3);
 
         switch (randomIndex)
         {
