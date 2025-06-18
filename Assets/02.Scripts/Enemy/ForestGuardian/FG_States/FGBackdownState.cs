@@ -18,6 +18,11 @@ public class FGBackdownState : IState
 
     public void Enter() 
     {
+        if(!boss.hasPlayedFirstBGM)
+        {
+            boss.AudioChanger.PlayFirstBossBGM();
+            boss.hasPlayedFirstBGM = true;
+        }
         boss.SetAllowLookAtPlayer(false);
         boss.ResetAllAnimation();
         boss.PlayRunAnimation();

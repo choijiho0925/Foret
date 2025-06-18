@@ -7,15 +7,10 @@ public class AudioChanger : MonoBehaviour
     public AudioClip newBGM;
     private bool hasPlayed = false;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void PlayFirstBossBGM()
     {
-        if (hasPlayed) return;
-
-        if (collision.CompareTag("Player"))
-        {
-            //AudioManager.Instance.PlayBGM();
-            AudioManager.Instance.PlayBGM(newBGM, 1f);
-            hasPlayed = true;
-        }
+       //AudioManager.Instance.PlayBGM();
+       AudioManager.Instance.PlayBGM(newBGM, 1f);
+       hasPlayed = true;
     }
 }
