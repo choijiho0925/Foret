@@ -24,9 +24,13 @@ public class NpcController : MonoBehaviour
     {
         director = GetComponent<PlayableDirector>();
         gameManager = GameManager.Instance;
-        if (gameManager.mainNpcIndex > 1)
+        if (gameManager.mainNpcIndex < 2)
         {
             mainNpcAnimator.enabled = false;
+        }
+        else
+        {
+            mainNpcAnimator.enabled = true;
         }
         bossRoomCollider.gameObject.SetActive(false);
         canInteract = true;
