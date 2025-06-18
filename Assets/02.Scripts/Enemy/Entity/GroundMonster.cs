@@ -130,6 +130,20 @@ public class GroundMonster : MonsterBase
         transform.localScale = scale;
     }
 
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        if (Health <= 0)
+        {
+            Health = 0;
+            StateMachine.ChangeState(new GroundDeadState(this));
+        }
+        else
+        {
+            AnimationHandler.Damage();
+        }
+    }
+
     // 공격 시작
     public void StartAttack()
     {

@@ -81,6 +81,11 @@ public class UIManager : Singleton<UIManager>
         abilityController.UpdateGauge(amount);
     }
 
+    public void UpdateBossHealthBar(float value)
+    {
+        bossHealthBarController.UpdateBossHealthBar(value);
+    }
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "MainScene")

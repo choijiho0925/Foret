@@ -49,9 +49,11 @@ MonoBehaviour:
   dialogueControllerPF: {fileID: 4564322958390833766, guid: b24c00b7344e37947b5260cc823b06a8, type: 3}
   interactableControllerPF: {fileID: 5443504488820525879, guid: 786573c9142f35d4886c82bafd1634e2, type: 3}
   abilityControllerPF: {fileID: 3382325903198520728, guid: ea8affe05a352634885e3ff49b4bb53b, type: 3}
+  bossHealthBarControllerPF: {fileID: -4335770917432925710, guid: cabeb83cfd98b524893ca580a9967921, type: 3}
   heartController: {fileID: 0}
   settingController: {fileID: 0}
   dialogueController: {fileID: 0}
   interactableController: {fileID: 0}
   abilityController: {fileID: 0}
+  bossHealthBarController: {fileID: 0}
   gameStartText: {fileID: 0}

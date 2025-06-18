@@ -25,6 +25,7 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
     private Collider2D collider;
 
     #region 프로퍼티
+    public int MaxHealth { get => maxHealth;set => maxHealth = value;}
     public int Health { get => health; set => health = value; }
     public float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
     public float DetectionRange => detectionRange;
@@ -96,26 +97,6 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
         if (isInvincible || isDead) return;
 
         health -= damage;
-
-        if (health <= 0)
-        {
-            if (isGround)
-                // 지상 몬스터 죽음 상태 전환
-                return;
-            else
-                stateMachine.ChangeState(new AirDeadState(this));
-
-            return;
-        }
-
-        // Damage 애니메이션 적용
-        animationHandler.Damage();
-
-        if (isGround)
-            // 지상 몬스터 상태 전환
-            return;
-        else
-            stateMachine.ChangeState(new AirDamageState(this));
     }
 
     public virtual void Die()
