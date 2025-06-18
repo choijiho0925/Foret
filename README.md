@@ -30,9 +30,11 @@
 
 | 디렉토리 | 설명 |
 |----------|------|
-| `Animator/EndParamBehaviour.cs` | 상태 종료 시 애니메이션 파라미터 초기화 |
-| `Enemy/BossAnimationHandler.cs` | 보스의 FSM 상태 변화에 따라 애니메이션 실행 |
-| `Effect/EffectAnimator.cs` | 이펙트 오브젝트 활성화 시 1회성 애니메이션 재생 |
+| `Enemy/StateMachine.cs` | 상태 전이와 현재 상태 관리를 위한 FSM 기반 클래스 (IState 인터페이 기반) |
+| `Enemy/MonsterStateMachine.cs` | 몬스터에 맞게 FSM을 구현 및 상태 전이 및 개체 연결 처리 |
+| `Enemy/MonsterAnimationHandler.cs` | 몬스터의 기본 애니메이션 트리거 처리 클래스 |
+| `Enemy/BossAnimationHandler.cs` | 최종 보스 연출 트리거 포함한 애니메이션 처리 클래스 |
+| `Enemy/FGAnimationHandler.cs` | 숲의 주인 보스 연출 트리거 포함한 애니메이션 처리 클래스 |
 
 ---
 
@@ -40,10 +42,12 @@
 
 | 디렉토리 | 주요 스크립트 |
 |----------|----------------|
-| `Enemy/Reaper.cs` | 최종 보스 ‘진 마왕’의 AI 및 공격 패턴 |
-| `Enemy/FGAnimationEvent.cs` | 보스 숲의 수호자 - 공격 히트박스 및 상태 이벤트 처리 |
-| `Enemy/EnemyAttackHitbox.cs` | 충돌 기반 피해 처리, IDamagable 인터페이스 연동 |
-| `Enemy/DropAttackHandler.cs` | 낙하형 광역기 패턴 처리 |
+| `Enemy/MonsterBase.cs` | 일반 몬스터 공통 로직 |
+| `Enemy/BossBase.cs` | 보스 공통 로직 |
+| `Enemy/FlyingMonster.cs` | 공중 몬스터 - AI 및 공격 패턴 |
+| `Enemy/ForestGuardian.cs` | 보스 숲의 수호자 - AI 및 공격 패턴 |
+| `Enemy/DeathBringer.cs` | 보스 ‘마왕’ - AI 및 공격 패턴 |
+| `Enemy/Reaper.cs` | 보스 ‘진 마왕’ - AI 및 공격 패턴 |
 
 ---
 
