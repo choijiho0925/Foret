@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace _02.Scripts.Player
 {
-    public class PlayerCtrl : MonoBehaviour 
+    public class PlayerCtrl : MonoBehaviour
     {
         private PlayerMovement playerMovement;
         private PlayerStat playerStat;
@@ -13,11 +13,11 @@ namespace _02.Scripts.Player
         private PlayerInteract playerInteract;
 
         public bool canControl = true;      //플레이어 이동 가능 여부
-        
+
         private Vector2 moveInput;
         private bool jump = false;
         private bool dash = false;
-        
+
         private void Awake()
         {
             playerMovement = GetComponent<PlayerMovement>();
@@ -25,7 +25,7 @@ namespace _02.Scripts.Player
             playerAttack = GetComponent<PlayerAttack>();
             playerInteract = GetComponent<PlayerInteract>();
         }
-        
+
         public void OnMove(InputAction.CallbackContext context)
         {
             if (context.phase == InputActionPhase.Performed)
@@ -34,7 +34,7 @@ namespace _02.Scripts.Player
             }
             else if (context.phase == InputActionPhase.Canceled)
             {
-               moveInput = Vector2.zero;
+                moveInput = Vector2.zero;
             }
         }
 
@@ -53,22 +53,22 @@ namespace _02.Scripts.Player
                 dash = true;
             }
         }
-        
+
         public void OnAttack(InputAction.CallbackContext context)
         {
             if (!canControl) return;
-            
+
             // 일반 공격
             if (context.phase == InputActionPhase.Started)
             {
                 // PlayerAttack 스크립트에 현재 이동 방향(moveInput)을 전달하며 공격 요청
                 playerAttack.PerformAttack(moveInput);
             }
-        }   
+        }
         public void OnThrow(InputAction.CallbackContext context)
         {
-            if(!canControl) return;
-            
+            if (!canControl) return;
+
             // 원거리 공격
             if (context.phase == InputActionPhase.Started)
             {
@@ -79,12 +79,12 @@ namespace _02.Scripts.Player
 
         public void OnRecover(InputAction.CallbackContext context)
         {
-            if(!canControl) return;
-            
+            if (!canControl) return;
+
             if (context.phase == InputActionPhase.Started)
             {
                 playerStat.Recover();
-            }    
+            }
         }
 
         public void OnRevive(InputAction.CallbackContext context)
@@ -94,7 +94,7 @@ namespace _02.Scripts.Player
                 playerStat.Revive();
             }
         }
-        
+
         //'상호작용' 상태일 때는 모든 움직임 제한
         public void EnterInteraction()
         {
@@ -113,7 +113,7 @@ namespace _02.Scripts.Player
                 dash = false;
                 return;
             }
-            
+
             playerMovement.Move(moveInput.x * playerStat.CurrentMoveSpeed * Time.fixedDeltaTime, jump, dash);
             jump = false;
             dash = false;

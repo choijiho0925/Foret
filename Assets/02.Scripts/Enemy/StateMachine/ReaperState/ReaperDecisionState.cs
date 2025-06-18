@@ -12,7 +12,6 @@ public class ReaperDecisionState : IState
     public void Enter()
     {
         // Decision 상태 진입
-
         int randomIndex = 2;
 
         switch (randomIndex)
@@ -36,6 +35,6 @@ public class ReaperDecisionState : IState
 
     public void Update()
     {
-        
+
     }
 }

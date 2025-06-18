@@ -10,15 +10,10 @@ namespace _02.Scripts.Player
 {
     public class PlayerAttack : MonoBehaviour
     {
-        private PlayerStat playerStat;
-        private PlayerSFX playerSFX;
-        private Rigidbody2D rb;
-        private Animator animator;
-        public bool canAttack = true;
-        public bool isTimeToCheck = false;
+        private static readonly int animIDAttackForward = Animator.StringToHash("IsAttack");
+        private static readonly int animIDAttackUp = Animator.StringToHash("IsAttackUp");
+        private static readonly int animIDAttackDown = Animator.StringToHash("IsAttackDown");
 
-        public GameObject cam;
-        
         [Header("일반 공격 설정")]
         public LayerMask enemyLayer;
         public float attackRadius = 0.9f;
@@ -31,15 +26,20 @@ namespace _02.Scripts.Player
         public GameObject attackHitEffect;
         public int energyRestorePerAttack = 5; //공격 적중 당 에너지 회복량
 
-        [Header("원거리 공격 설정")] 
+        [Header("원거리 공격 설정")]
         public float throwPositionOffsetX = 0.5f;
         public float throwPositionOffsetY = 0.7f;
         public int throwAttackEnergyCost;     //원거리 공격 에너지 소모량
 
-        private static readonly int animIDAttackForward = Animator.StringToHash("IsAttack");
-        private static readonly int animIDAttackUp = Animator.StringToHash("IsAttackUp");
-        private static readonly int animIDAttackDown = Animator.StringToHash("IsAttackDown");
-        
+        public bool canAttack = true;
+        public bool isTimeToCheck = false;
+
+        public GameObject cam;
+
+        private PlayerStat playerStat;
+        private PlayerSFX playerSFX;
+        private Rigidbody2D rb;
+        private Animator animator;
 
         private void Awake()
         {
@@ -54,18 +54,18 @@ namespace _02.Scripts.Player
             if (!canAttack) return; // 공격 불가능 상태면 즉시 리턴
 
             canAttack = false;
-            
+
             // 위쪽 공격 (Y값이 특정 값 이상일 때)
-            if (inputDirection.y > 0.7f) 
+            if (inputDirection.y > 0.7f)
             {
                 animator.SetTrigger(animIDAttackUp);
                 // 위쪽 공격 로직 구현 
                 DoDamage(attackPivotUp.position);
                 StartCoroutine(ShowAttackEffect(attackEffectUp));
-                
+
             }
             // 아래쪽 공격 (Y값이 특정 값 이하일 때 & 공중에 있을 때)
-            else if (inputDirection.y < -0.7f) 
+            else if (inputDirection.y < -0.7f)
             {
                 animator.SetTrigger(animIDAttackDown);
                 // 아래쪽 공격 로직 구현 
@@ -88,25 +88,25 @@ namespace _02.Scripts.Player
             if (!canAttack) return;
 
             if (!playerStat.UseEnergy(throwAttackEnergyCost)) return;
-            
+
             playerSFX.PlayThrowAttackClip();
-            
+
             canAttack = false;
-            
-            if (inputDirection.y > 0.7f) 
+
+            if (inputDirection.y > 0.7f)
             {
-                animator.SetTrigger(animIDAttackUp); 
-                
+                animator.SetTrigger(animIDAttackUp);
+
             }
-            else if (inputDirection.y < -0.7f) 
+            else if (inputDirection.y < -0.7f)
             {
-                animator.SetTrigger(animIDAttackDown); 
+                animator.SetTrigger(animIDAttackDown);
             }
             else
             {
-                animator.SetTrigger(animIDAttackForward); 
+                animator.SetTrigger(animIDAttackForward);
             }
-            
+
             //발사 위치 설정
             Vector3 throwPositionOffset = new Vector3(throwPositionOffsetX * transform.localScale.x, throwPositionOffsetY * transform.localScale.y, 0);
             Vector2 fireDirection;
@@ -121,15 +121,15 @@ namespace _02.Scripts.Player
             }
             //발사 방향 설정
             float angle = Mathf.Atan2(fireDirection.y, fireDirection.x) * Mathf.Rad2Deg;
-            
+
             Projectile projectile = PoolManager.Instance.ProjectilePool.Get
-                (ProjectileType.Player, transform.position + throwPositionOffset, Quaternion.Euler(0,0,angle));
-    
+                (ProjectileType.Player, transform.position + throwPositionOffset, Quaternion.Euler(0, 0, angle));
+
             if (projectile != null)
             {
                 projectile.Initialize(fireDirection, playerStat.CurrentThrowDamage);
             }
-            
+
             StartCoroutine(AttackCooldown());
         }
 
@@ -146,7 +146,7 @@ namespace _02.Scripts.Player
             {
                 playerSFX.PlayAttackMissClip();
             }
-    
+
             for (int i = 0; i < collidersEnemies.Length; i++)
             {
                 // 정확한 피격 위치 계산 로직 
@@ -154,7 +154,7 @@ namespace _02.Scripts.Player
                 Vector2 inputDirection = (Vector3)attackPos - (Vector3)hitPoint;
                 float angle = Mathf.Atan2(inputDirection.y, inputDirection.x) * Mathf.Rad2Deg;
                 Quaternion rotation = Quaternion.Euler(0, 0, angle);
-        
+
                 Instantiate(attackHitEffect, hitPoint, rotation);
 
                 //데미지 처리 로직 
@@ -172,12 +172,10 @@ namespace _02.Scripts.Player
             canAttack = true;
         }
 
-       
-
         IEnumerator ShowAttackEffect(GameObject effect)
         {
             effect.SetActive(true);
-            yield return new WaitForSeconds(0.2f); 
+            yield return new WaitForSeconds(0.2f);
             effect.SetActive(false);
         }
 

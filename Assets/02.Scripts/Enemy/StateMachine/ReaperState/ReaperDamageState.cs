@@ -23,7 +23,7 @@ public class ReaperDamageState : IState
 
     public void Update()
     {
-        
+
     }
 
     private IEnumerator Invincible()

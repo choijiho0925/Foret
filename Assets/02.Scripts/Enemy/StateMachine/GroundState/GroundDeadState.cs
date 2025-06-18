@@ -27,10 +27,14 @@ public class GroundDeadState : IState
         //monster.StartCoroutine(DestroyAfterDelay());
     }
 
-    public void Exit() { }
+    public void Exit()
+    {
+
+    }
 
     public void Update()
     {
+
     }
 
     private IEnumerator DestroyAfterDelay()

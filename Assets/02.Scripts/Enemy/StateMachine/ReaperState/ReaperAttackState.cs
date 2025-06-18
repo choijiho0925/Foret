@@ -29,6 +29,6 @@ public class ReaperAttackState : IState
 
     public void Update()
     {
-        
+
     }
 }

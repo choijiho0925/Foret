@@ -14,7 +14,6 @@ public class AudioManager : Singleton<AudioManager>
     public Slider sfxSlider;
 
     public AudioSource bgmSource;   // MainBGM의 Audio Source 참조
-
     private Coroutine fadeCoroutine;
     private AudioClip beforeBGMClip;
 
@@ -87,7 +86,6 @@ public class AudioManager : Singleton<AudioManager>
 
         if (sfxSlider != null && audioMixer.GetFloat("SFX", out float sfxVolume))
             sfxSlider.value = Mathf.Pow(10, sfxVolume / 20);
-
     }
 
     public void SetMasterVolume(float sliderValue)

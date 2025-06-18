@@ -3,20 +3,21 @@ using UnityEngine;
 
 public class RuneStone : MonoBehaviour, IInteractable
 {
+    [SerializeField] private DialogueData explainData;
+    [SerializeField] private NpcController npcController;
+
     public Material normalMaterial;
     public Material outLineMaterial;
     public GameObject interactGameObject; // 상호작용 오브젝트
 
-    [SerializeField] private DialogueData explainData;
-    [SerializeField] private NpcController npcController;
-    
     private bool canGoNextStage = true; // 다음 스테이지로 넘어갈 수 있는지 여부
     private bool isPlayerInZone; // 플레이어가 영역에 있는지 여부
+    private bool isFirst;
+
     private Renderer renderer;
     private UIManager uiManager;
     private Queue<string> runeStoneQueue = new Queue<string>();
     private PlayerInteract player;
-    private bool isFirst;
 
     private void Start()
     {
@@ -56,7 +57,7 @@ public class RuneStone : MonoBehaviour, IInteractable
     {
         interactGameObject.SetActive(false); // 다음 스테이지로 넘어갈 수 있도록 상호작용 오브젝트 비활성화
     }
-    
+
     private void ShowNextLine()
     {
         if (runeStoneQueue.Count == 0)

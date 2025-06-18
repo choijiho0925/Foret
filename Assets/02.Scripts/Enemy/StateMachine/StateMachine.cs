@@ -5,7 +5,6 @@ public interface IState
     public void Update();
 }
 
-
 public abstract class StateMachine
 {
     protected IState currentState;

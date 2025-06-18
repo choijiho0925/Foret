@@ -30,7 +30,7 @@ public class FGTeleportState : IState
         boss.PlayTeleportReadyAnimation();
     }
 
-    public void Exit() 
+    public void Exit()
     {
         isTeleportStarted = false;  // 상태 종료 시에도 초기화
     }

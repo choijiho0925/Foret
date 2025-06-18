@@ -8,10 +8,12 @@ public class GoUpPlatform : MonoBehaviour
 {
     [SerializeField] GameObject platform; // 플랫폼 오브젝트
     [SerializeField] Transform playerTransform; // 플레이어의 Transform
+
     private float moveTime = 10f; // 플랫폼이 위로 올라가는 시간
     private float moveDistance = 53f; // 플랫폼이 올라가는 거리
     private bool isMoving; // 플랫폼이 현재 이동 중인지 여부
     private bool canMove = true; // 플랫폼이 이동 가능한 상태인지 여부
+
     private Vector3 originalPosition; // 플랫폼의 원래 위치
     private Transform platformTransform; // 플랫폼의 Transform
 

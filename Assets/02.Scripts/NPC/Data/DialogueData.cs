@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum ActionTiming { None, Before, After }
-public enum ActionType { Move, Attack, Heal ,Change}
+public enum ActionType { Move, Attack, Heal, Change }
 
 [CreateAssetMenu(menuName = "Dialogue/DialogueData")]
 public class DialogueData : ScriptableObject

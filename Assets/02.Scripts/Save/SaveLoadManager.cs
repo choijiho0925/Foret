@@ -16,7 +16,7 @@ public class SaveLoadManager : Singleton<SaveLoadManager>
     public void SaveGame(GameData data)
     {
         // GameData 객체를 JSON 문자열로 변환
-        string json = JsonUtility.ToJson(data, true); 
+        string json = JsonUtility.ToJson(data, true);
         // 파일에 JSON 문자열 쓰기
         File.WriteAllText(saveFilePath, json);
         Debug.Log("게임 데이터 저장 완료: " + saveFilePath);
@@ -44,7 +44,7 @@ public class SaveLoadManager : Singleton<SaveLoadManager>
     public void DeleteSave()
     {
         saveFilePath = Path.Combine(Application.persistentDataPath, saveFileName);
-        
+
         if (File.Exists(saveFilePath))
         {
             File.Delete(saveFilePath);

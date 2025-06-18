@@ -46,7 +46,6 @@ public class BossStageCamera : MonoBehaviour
 
         var newBrain = _mainCamera.gameObject.AddComponent<CinemachineBrain>();
 
-
         var defalutBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.EaseInOut, 2f);
         newBrain.m_DefaultBlend = defalutBlend;
 

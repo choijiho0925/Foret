@@ -18,7 +18,7 @@ public class MonsterSpawner : MonoBehaviour
     public List<SpawnPoint> FFMSpawnPoints;
     public List<SpawnPoint> BatSpawnPoints;
     public List<SpawnPoint> NacromancerSpawnPoints;
-    
+
     private Dictionary<MonsterType, List<MonsterBase>> monsters = new Dictionary<MonsterType, List<MonsterBase>>();
 
     private void Start()
@@ -58,7 +58,7 @@ public class MonsterSpawner : MonoBehaviour
         }
         foreach (SpawnPoint spawnPoint in BatSpawnPoints)
         {
-           Spawn(spawnPoint);
+            Spawn(spawnPoint);
         }
         foreach (SpawnPoint spawnPoint in NacromancerSpawnPoints)
         {
@@ -67,11 +67,11 @@ public class MonsterSpawner : MonoBehaviour
     }
 
     private void Spawn(SpawnPoint spawnPoint)
-    {   
+    {
         //오브젝트 풀링을 통해 몬스터 가져오기
-        MonsterBase monster =  PoolManager.Instance.MonsterPool.
+        MonsterBase monster = PoolManager.Instance.MonsterPool.
             Get(spawnPoint.type, spawnPoint.spawnPoint.position, Quaternion.identity);
-        
+
         //스폰된 모든 몬스터는 monsters 딕셔너리에서 관리
         if (!monsters.ContainsKey(spawnPoint.type))
         {

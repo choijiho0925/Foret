@@ -20,7 +20,7 @@ public class FGReturnState : IState
 
         float playerDistance = boss.GetPlayerDistance();
         float returnDistance = Vector3.Distance(boss.transform.position, boss.InitialPosition);
-        
+
         // 제자리로 이동
         boss.transform.position = boss.InitialPosition;
 

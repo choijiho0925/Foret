@@ -3,15 +3,14 @@ using UnityEngine.InputSystem;
 
 public class Respawn : MonoBehaviour, IInteractable
 {
-    private Vector3 respawnPoint;
-
-    private SaveSpawnPoint saveSpawnPoint; // SaveSpawnPoint 스크립트의 인스턴스
-
     [SerializeField] private PlayerStat playerStat;
+
+    private Vector3 respawnPoint;
+    private SaveSpawnPoint saveSpawnPoint; // SaveSpawnPoint 스크립트의 인스턴스
 
     public void ShowInteractUI()
     {
-        
+
     }
 
     public void InteractAction()

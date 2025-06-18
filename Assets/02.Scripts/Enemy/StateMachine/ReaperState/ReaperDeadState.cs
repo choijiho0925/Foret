@@ -35,7 +35,7 @@ public class ReaperDeadState : IState
 
     public void Update()
     {
-        
+
     }
 
     private IEnumerator GameClearRoutine()

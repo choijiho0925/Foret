@@ -19,12 +19,11 @@ public class DialogueController : MonoBehaviour
 
     public bool IsTyping { get; private set; }
 
-    private string fullCurrentLine;
     private Coroutine typingCoroutine;
-
     private GameObject currentTarget;
-    private string npcName;
 
+    private string fullCurrentLine;
+    private string npcName;
     private bool isScene;
 
     private void Start()

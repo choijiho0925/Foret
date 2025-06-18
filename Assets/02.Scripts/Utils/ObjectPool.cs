@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ObjectPool<TEnum, TMono> : MonoBehaviour 
+public abstract class ObjectPool<TEnum, TMono> : MonoBehaviour
     where TEnum : System.Enum
     where TMono : MonoBehaviour
 {
@@ -20,7 +20,7 @@ public abstract class ObjectPool<TEnum, TMono> : MonoBehaviour
     protected virtual void Awake()
     {
         poolDictionary = new Dictionary<TEnum, Queue<TMono>>();
-        
+
         foreach (Pool pool in pools)
         {
             Queue<TMono> objectQueue = new Queue<TMono>();
@@ -33,7 +33,7 @@ public abstract class ObjectPool<TEnum, TMono> : MonoBehaviour
             poolDictionary.Add(pool.type, objectQueue);
         }
     }
-    
+
     // 외부에서 오브젝트를 요청할 때 사용하는 함수 
     public TMono Get(TEnum type, Vector3 position, Quaternion rotation)
     {
@@ -62,9 +62,8 @@ public abstract class ObjectPool<TEnum, TMono> : MonoBehaviour
     public void Return(TEnum type, TMono obj)
     {
         if (!poolDictionary.ContainsKey(type)) return;
-        
+
         obj.gameObject.SetActive(false);
         poolDictionary[type].Enqueue(obj);
     }
-
 }

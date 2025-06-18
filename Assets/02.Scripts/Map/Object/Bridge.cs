@@ -6,6 +6,7 @@ public class Bridge : MonoBehaviour
     private float delayTime = 0.3f; // 플레이어가 다리 위에 있을 때 지연 시간
     private float respawnTime = 5f; // 다리가 떨어진 후 재생성 시간
     private bool hasFallen; // 다리가 떨어졌는지 여부를 확인하는 변수
+
     private Vector3 startPosition; // 다리의 초기 위치
     private Rigidbody2D rb; // Rigidbody2D 컴포넌트
 

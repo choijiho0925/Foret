@@ -23,8 +23,8 @@ public class UIManager : Singleton<UIManager>
     public InteractableController interactableController;
     public AbilityController abilityController;
     public BossHealthBarController bossHealthBarController;
-
     public TextMeshProUGUI gameStartText;
+
     private bool hasStarted = false;
 
     private void Start()

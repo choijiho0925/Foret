@@ -68,7 +68,7 @@ public class GroundMonster : MonsterBase
 
     public override void Move()
     {
-        if(isAttacking)
+        if (isAttacking)
         {
             rb.velocity = new Vector2(0f, rb.velocity.y);
             return;
@@ -97,7 +97,7 @@ public class GroundMonster : MonsterBase
 
         // 중복호출 방지
         bool isActuallyMoving = Mathf.Abs(rb.velocity.x) > 0.05f;
-        AnimationHandler.Move(isActuallyMoving); 
+        AnimationHandler.Move(isActuallyMoving);
 
         // 방향 전환 조건 확인
         flipCooldown -= Time.deltaTime;

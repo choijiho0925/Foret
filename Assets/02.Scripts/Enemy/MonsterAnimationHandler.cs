@@ -33,5 +33,4 @@ public class MonsterAnimationHandler : MonoBehaviour
     {
         animator.SetTrigger(isDead);
     }
-
 }

@@ -13,7 +13,7 @@ public class EnemyAttackHitbox : MonoBehaviour
         monster = GetComponentInParent<MonsterBase>();
 
         // 기본 비활성화
-        hitboxCollider.enabled = false;     
+        hitboxCollider.enabled = false;
     }
 
     public void FlipOffsetX(bool isLookAtLeft)
@@ -31,11 +31,11 @@ public class EnemyAttackHitbox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             IDamagable damagable = collision.GetComponent<IDamagable>();
 
-            if(damagable != null)
+            if (damagable != null)
             {
                 damagable.TakeDamage(monster.AttackPower);
 

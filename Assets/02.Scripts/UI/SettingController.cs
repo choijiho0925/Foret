@@ -27,7 +27,6 @@ public class SettingController : MonoBehaviour
         AudioManager.Instance.RegisterBGMSlider(bgmSlider);
         AudioManager.Instance.RegisterSFXSlider(sfxSlider);
     }
-    
 
     private void OnSettings()
     {
@@ -42,7 +41,7 @@ public class SettingController : MonoBehaviour
     private void OnControl()
     {
         controlPanel.SetActive(true);
-        settingPanel.SetActive(false); 
+        settingPanel.SetActive(false);
     }
 
     private void OffControl()

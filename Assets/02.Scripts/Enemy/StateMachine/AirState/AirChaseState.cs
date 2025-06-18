@@ -13,7 +13,6 @@ public class AirChaseState : IState
     {
         // Chase 상태 진입
         monster.AnimationHandler.Move(true);
-
     }
 
     public void Exit()

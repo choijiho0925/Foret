@@ -3,8 +3,6 @@ using UnityEngine.AI;
 
 public class FlyingMonster : MonsterBase
 {
-    private NavMeshAgent agent;
-
     [Header("원거리 공격")]
     [SerializeField] private GameObject monsterProjectilePrefab;
     [SerializeField] private Transform projectilePos;
@@ -12,8 +10,8 @@ public class FlyingMonster : MonsterBase
     [SerializeField] private ProjectileType projectileType;
 
     private bool isLeft = true;
-
     private float timeSinceLastAttack = float.MaxValue;
+    private NavMeshAgent agent;
 
     protected override void Awake()
     {
@@ -43,7 +41,7 @@ public class FlyingMonster : MonsterBase
         if (timeSinceLastAttack < attackCooltime) return;
 
         LookDirection();
-        AnimationHandler.Attack(); 
+        AnimationHandler.Attack();
         timeSinceLastAttack = 0f;
     }
 
@@ -83,15 +81,15 @@ public class FlyingMonster : MonsterBase
     public void ShootProjectile()
     {
         //GameObject projectile = Instantiate(monsterProjectilePrefab, projectilePos.position, Quaternion.identity);
-        
+
         Vector3 targetPos = Player.transform.position + Vector3.up;
         Vector3 dir = (targetPos - projectilePos.position).normalized;
-        
+
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        
+
         Projectile projectile =
-            PoolManager.Instance.ProjectilePool.Get(projectileType, projectilePos.position, Quaternion.Euler(0,0,angle));
-        
+            PoolManager.Instance.ProjectilePool.Get(projectileType, projectilePos.position, Quaternion.Euler(0, 0, angle));
+
         if (dir.x < 0)
         {
             projectile.transform.localScale = new Vector3(1, -1, 1);
@@ -100,7 +98,7 @@ public class FlyingMonster : MonsterBase
         {
             projectile.transform.localScale = new Vector3(1, 1, 1);
         }
-    
+
         //projectile.GetComponent<MonsterProjectile>().Initialize(dir, AttackPower);
         projectile.Initialize(dir, AttackPower);
     }

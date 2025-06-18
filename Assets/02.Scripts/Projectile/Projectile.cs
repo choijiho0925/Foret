@@ -11,12 +11,12 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float lifeTime;
     [SerializeField] private LayerMask targetLayer;
     [SerializeField] private bool isExplode;        //폭발 이팩트 연출 여부
-    
-    private Rigidbody2D rb; 
+
+    private Rigidbody2D rb;
     private Animator animator;
     private Vector3 direction;
     private Coroutine returnCoroutine;
-    
+
     private readonly int animIDHit = Animator.StringToHash("Hit");
 
     private void Awake()
@@ -45,7 +45,7 @@ public class Projectile : MonoBehaviour
     public void Initialize(Vector3 dir, int dmg)
     {
         //총알 데미지, 방향 설정 후 발사
-        damage = dmg;   
+        damage = dmg;
         direction = dir;
         Fire();
     }
@@ -85,7 +85,6 @@ public class Projectile : MonoBehaviour
         {
             ReturnToPool();
         }
-        
     }
 
     private IEnumerator ReturnAfterDelay(float delay)
@@ -93,11 +92,12 @@ public class Projectile : MonoBehaviour
         yield return new WaitForSeconds(delay);
         ReturnToPool();
     }
+
     private void ReturnToPool()
     {
         PoolManager.Instance.ProjectilePool.Return(projectileType, this);
     }
-    
+
     private void OnSceneLoadedEvent(Scene scene, LoadSceneMode mode)
     {   //Scene 전환 시 자동으로 비활성화
         ReturnToPool();

@@ -19,7 +19,6 @@ public class GameManager : Singleton<GameManager>
     [field: SerializeField] public int mainNpcIndex { get; private set; }
     [field: SerializeField] public int mainNpcPosNum { get; private set; }
 
-
     protected override void Awake()
     {
         base.Awake();
@@ -58,7 +57,7 @@ public class GameManager : Singleton<GameManager>
         gameData.CanGoNextStage = this.CanGoNextStage;
         gameData.mainNpcIndex = this.mainNpcIndex;
         gameData.mainNpcPosNum = this.mainNpcPosNum;
-        
+
         //SaveLoadManager에게 데이터 저장을 요청
         SaveLoadManager.Instance.SaveGame(gameData);
     }
@@ -66,10 +65,10 @@ public class GameManager : Singleton<GameManager>
     {
         //데이터 불러오기 요청
         gameData = SaveLoadManager.Instance.LoadGame();
-        
+
         //데이터가 있다면, 현재 GameManager의 상태에 적용
         if (gameData != null)
-        { 
+        {
             this.respawnPoint = gameData.respawnPoint;
             this.CanGoNextStage = gameData.CanGoNextStage;
             this.mainNpcIndex = gameData.mainNpcIndex;
@@ -88,7 +87,7 @@ public class GameManager : Singleton<GameManager>
     {
         //게임 씬이 아닐 경우 저장할 필요 X
         if (player == null) return;
-        
+
         SaveData();
     }
 

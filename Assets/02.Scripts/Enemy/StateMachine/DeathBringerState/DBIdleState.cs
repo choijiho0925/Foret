@@ -11,17 +11,17 @@ public class DBIdleState : IState
 
     public void Enter()
     {
-        
+
     }
 
     public void Exit()
     {
-        
+
     }
 
     public void Update()
     {
-        if (boss.IsDead) 
+        if (boss.IsDead)
         {
             boss.StateMachine.ChangeState(new DBDeadState(boss));
             return;

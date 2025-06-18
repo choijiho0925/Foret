@@ -21,7 +21,6 @@ public class DeathBringer : BossBase
     private ReaperCameraMove cm;
 
     public BossAnimationHandler BossAnimationHandler => bossAnimationHandler;
-
     public ReaperCameraMove ReaperCameraMove => cm;
 
     protected override void Awake()
@@ -222,7 +221,7 @@ public class DeathBringer : BossBase
         IsAttack = false;
 
         yield return new WaitForSeconds(attackDelay);
-        
+
     }
     #endregion
 

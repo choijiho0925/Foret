@@ -13,5 +13,5 @@ public struct BossStartEvent
 }
 public struct BossClearEvent
 {
-    
+
 }

@@ -14,5 +14,5 @@ public enum ProjectileType
 }
 public class ProjectilePool : ObjectPool<ProjectileType, Projectile>
 {
-    
+
 }

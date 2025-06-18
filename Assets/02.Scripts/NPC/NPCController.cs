@@ -6,17 +6,16 @@ using UnityEngine.Playables;
 
 public class NpcController : MonoBehaviour
 {
-    
-    public UnityAction action;
-    public bool canInteract;
-
     [SerializeField] private GameObject mainNpc;
     [SerializeField] private List<PlayableAsset> npcTimeline;
     [SerializeField] private NpcPosData npcPosData;
     [SerializeField] private Animator mainNpcAnimator;
     [SerializeField] private Collider2D bossRoomCollider;
     [SerializeField] private CinemachineVirtualCamera bossRoomCamera;
-    
+
+    public UnityAction action;
+    public bool canInteract;
+
     private PlayableDirector director;
     private GameManager gameManager;
 
@@ -36,7 +35,7 @@ public class NpcController : MonoBehaviour
         canInteract = true;
         if (!mainNpc.activeSelf)
         {
-            mainNpc.SetActive(true);   
+            mainNpc.SetActive(true);
         }
         mainNpc.transform.position = npcPosData.pos[gameManager.mainNpcPosNum];
     }
@@ -45,16 +44,16 @@ public class NpcController : MonoBehaviour
     {
         switch (data.type)
         {
-            case ActionType.Move :
+            case ActionType.Move:
                 director.playableAsset = npcTimeline[3];
                 break;
-            case ActionType.Attack :
+            case ActionType.Attack:
                 director.playableAsset = npcTimeline[1];
                 break;
-            case ActionType.Heal :
+            case ActionType.Heal:
                 director.playableAsset = npcTimeline[2];
                 break;
-            case ActionType.Change :
+            case ActionType.Change:
                 if (data.npcName == "밥")
                 {
                     director.playableAsset = npcTimeline[0];
@@ -97,21 +96,21 @@ public class NpcController : MonoBehaviour
         }
         mainNpc.transform.position = npcPosData.pos[gameManager.mainNpcPosNum];
     }
-    
+
     public void PlusIndex()
     {
         gameManager.NextIndex();
     }
-   public void StartBossRoom()
-   {
-       bossRoomCamera.Priority = 20;
-       bossRoomCollider.gameObject.SetActive(true);
-       GameManager.Instance.SetRespawnPoint(transform.position);
-       mainNpc.SetActive(false);
-   }
+    public void StartBossRoom()
+    {
+        bossRoomCamera.Priority = 20;
+        bossRoomCollider.gameObject.SetActive(true);
+        GameManager.Instance.SetRespawnPoint(transform.position);
+        mainNpc.SetActive(false);
+    }
 
-   public void CanInteract()
-   {
-       canInteract = true;
-   }
+    public void CanInteract()
+    {
+        canInteract = true;
+    }
 }

@@ -15,7 +15,7 @@ public class FGAnimationHandler : MonsterAnimationHandler
     {
         get { return sprite; }
     }
-    
+
     protected override void Awake()
     {
         base.Awake();
@@ -63,7 +63,5 @@ public class FGAnimationHandler : MonsterAnimationHandler
         animator.ResetTrigger(chargeTrigger);
         animator.ResetTrigger(teleportAttackTrigger);
         animator.ResetTrigger(isDead);
-        
-        
     }
 }

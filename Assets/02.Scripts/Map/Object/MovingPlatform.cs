@@ -13,10 +13,10 @@ public class MovingPlatform : MonoBehaviour
     private float moveSpeed = 2f; // 플랫폼 이동속도
     private float disappearTime = 1f; // 플랫폼 사라지는 시간
     private bool movingToTarget = true; // 플랫폼이 목표 위치로 이동 중인지 여부
+
     private Vector3 startPosition; // 플랫폼 시작 위치
     private Vector3 targetPosition; // 플랫폼 목표 위치
     private Transform player; // 플레이어 트랜스폼
-
 
     private void Start()
     {
@@ -25,7 +25,7 @@ public class MovingPlatform : MonoBehaviour
 
     private void Update()
     {
-        MovePlatform(); 
+        MovePlatform();
     }
 
     private void CheckDirection() // 플랫폼 이동 방향을 결정하는 메서드

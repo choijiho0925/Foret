@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName =  "Data/PlayerData", fileName = "PlayerData")]
+[CreateAssetMenu(menuName = "Data/PlayerData", fileName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
     public int MaxHeart;       //하트

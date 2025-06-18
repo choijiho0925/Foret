@@ -11,7 +11,7 @@ public class GroundIdleState : IState
         this.monster = monster;
     }
 
-    public void Enter() 
+    public void Enter()
     {
     }
 

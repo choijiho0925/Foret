@@ -18,11 +18,11 @@ public class AirDeadState : IState
 
     public void Exit()
     {
-        
+
     }
 
     public void Update()
     {
-        
+
     }
 }

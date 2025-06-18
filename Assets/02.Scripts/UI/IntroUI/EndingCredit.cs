@@ -22,13 +22,12 @@ public class EndingCredit : MonoBehaviour
             });
     }
 
-    
     IEnumerator EndSequence()
     {
         yield return new WaitForSeconds(2f);
         OnSkip();
     }
-    
+
     public void OnSkip()
     {
         SceneManager.LoadScene("TitleScene");

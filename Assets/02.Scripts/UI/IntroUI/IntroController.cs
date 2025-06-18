@@ -21,7 +21,7 @@ public class IntroController : MonoBehaviour
     {
         introImage.color = new Color(1, 1, 1, 0);
         sceneIndex = 0;
-        DisplayLine(introTextData[sceneIndex].sprite,introTextData[sceneIndex].introText);
+        DisplayLine(introTextData[sceneIndex].sprite, introTextData[sceneIndex].introText);
     }
 
     public void DisplayLine(Sprite sprite, string line)
@@ -36,7 +36,7 @@ public class IntroController : MonoBehaviour
         introImage.DOFade(1.0f, duration);
         typingCoroutine = StartCoroutine(TypeLine(line));
     }
-    
+
     private IEnumerator TypeLine(string line)
     {
         StringBuilder sb = new StringBuilder();

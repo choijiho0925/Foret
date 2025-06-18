@@ -21,7 +21,7 @@ public class FGMeleeState : IState
         meleeRoutine = boss.StartCoroutine(MeleeAttack());
     }
 
-    public void Exit() 
+    public void Exit()
     {
         if (meleeRoutine != null)
         {

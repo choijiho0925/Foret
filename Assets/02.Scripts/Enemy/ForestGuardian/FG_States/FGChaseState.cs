@@ -14,8 +14,8 @@ public class FGChaseState : IState
         this.boss = boss;
     }
 
-    public void Enter() 
-    { 
+    public void Enter()
+    {
         boss.ResetAllAnimation();
         boss.PlayRunAnimation();
     }

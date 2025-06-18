@@ -16,15 +16,15 @@ public class FGBackdownState : IState
         this.boss = boss;
     }
 
-    public void Enter() 
+    public void Enter()
     {
-        if(!boss.hasPlayedFirstBGM)
-        { 
+        if (!boss.hasPlayedFirstBGM)
+        {
             EventBus.Raise(new BossStartEvent(boss.bossName, boss.bossBGM));
             //boss.AudioChanger.PlayFirstBossBGM();
             boss.hasPlayedFirstBGM = true;
         }
-        
+
         boss.FGSFX.PlayBackdownClip();
         boss.SetAllowLookAtPlayer(false);
         boss.ResetAllAnimation();
@@ -33,7 +33,7 @@ public class FGBackdownState : IState
         backdownCoroutine = boss.StartCoroutine(BackdownRoutine());
     }
 
-    public void Exit() 
+    public void Exit()
     {
         boss.SetAllowLookAtPlayer(true);
         boss.ResetAllAnimation();

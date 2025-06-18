@@ -7,8 +7,10 @@ public class PlayerInteract : MonoBehaviour
 {
     [Header("상호작용 가능 레이어")]
     [SerializeField] private LayerMask interactableLayer;
+
     [Header("적 레이어")]
     [SerializeField] private LayerMask enemyLayer;
+
     private PlayerCtrl playerCtrl;
     private PlayerMovement playerMovement;
     private PlayerStat playerStat;
@@ -25,7 +27,7 @@ public class PlayerInteract : MonoBehaviour
     {
         if ((interactableLayer.value & (1 << other.gameObject.layer)) != 0)
         {
-            if(other.TryGetComponent<IInteractable>(out currentInteractable))
+            if (other.TryGetComponent<IInteractable>(out currentInteractable))
             {
                 currentInteractable.ShowInteractUI();
             }
@@ -39,7 +41,7 @@ public class PlayerInteract : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         if (currentInteractable == null) return;
-    
+
         if ((interactableLayer.value & (1 << other.gameObject.layer)) != 0)
         {
             currentInteractable = null;

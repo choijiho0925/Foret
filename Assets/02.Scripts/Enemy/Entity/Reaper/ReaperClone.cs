@@ -10,7 +10,6 @@ public class ReaperClone : MonsterBase
 
     private bool isLeft = true;
     private Coroutine currentPattern;
-
     private BossAnimationHandler bossAnimationHandler;
     private NavMeshAgent agent;
 

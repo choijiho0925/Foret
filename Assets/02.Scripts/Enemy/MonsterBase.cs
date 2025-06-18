@@ -15,8 +15,8 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
     [SerializeField] private bool isGround;         // 지상 몹인지 확인
     [SerializeField] private MonsterType type;      //몬스터 종류
 
-    public UnityAction OnDeath;    
-    
+    public UnityAction OnDeath;
+
     private GameObject player;                      // 플레이어
     private MonsterStateMachine stateMachine;       // 상태머신
     private MonsterAnimationHandler animationHandler;   // 몬스터 애니메이션
@@ -25,7 +25,7 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
     private Collider2D collider;
 
     #region 프로퍼티
-    public int MaxHealth { get => maxHealth;set => maxHealth = value;}
+    public int MaxHealth { get => maxHealth; set => maxHealth = value; }
     public int Health { get => health; set => health = value; }
     public float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
     public float DetectionRange => detectionRange;
@@ -84,7 +84,7 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
     protected virtual void Update()
     {
         if (isDead) return;
-        
+
         stateMachine?.Update();
     }
 

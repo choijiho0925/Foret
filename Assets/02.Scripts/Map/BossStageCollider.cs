@@ -3,7 +3,7 @@ using UnityEngine;
 public class BossStageCollider : MonoBehaviour
 {
     [SerializeField] private NpcController npcController;
-    
+
     private GameManager gameManager;
 
     private void Start()

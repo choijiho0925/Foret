@@ -11,7 +11,7 @@ public static class EventBus
     public static void Subscribe<TEvent>(Action<TEvent> handler)
     {
         Type eventType = typeof(TEvent);
-        if(eventDict.TryGetValue(eventType, out Delegate existingHandler))
+        if (eventDict.TryGetValue(eventType, out Delegate existingHandler))
         {
             //이미 해당 타입의 핸들러가 존재하면, 델리게이트에 추가
             eventDict[eventType] = Delegate.Combine(existingHandler, handler);
@@ -28,10 +28,10 @@ public static class EventBus
     {
         Type eventType = typeof(TEvent);
 
-        if(eventDict.TryGetValue(eventType, out Delegate existingHandler))
+        if (eventDict.TryGetValue(eventType, out Delegate existingHandler))
         {
             Delegate newHandler = Delegate.Remove(existingHandler, handler);
-            if(newHandler == null)
+            if (newHandler == null)
             {   //해당 타입의 핸들러가 모두 제거되었을 경우
                 eventDict.Remove(eventType);
             }
@@ -47,7 +47,7 @@ public static class EventBus
     public static void Raise<TEvent>(TEvent eventArgs)
     {
         Type eventType = typeof(TEvent);
-        if(eventDict.TryGetValue(eventType, out Delegate existingHandler))
+        if (eventDict.TryGetValue(eventType, out Delegate existingHandler))
         {   //저장된 델리게이트를 원래의 Action<TEvent> 타입으로 캐스팅하여 호출
             (existingHandler as Action<TEvent>)?.Invoke(eventArgs);
         }

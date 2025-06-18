@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 //잔상 효과 전용 클래스
-public class AfterimageFX : MonoBehaviour   
+public class AfterimageFX : MonoBehaviour
 {
     [SerializeField] private float fadeOutTime = 0.5f; // 사라지는 데 걸리는 시간
 
@@ -18,7 +18,7 @@ public class AfterimageFX : MonoBehaviour
     {
         // 현재 색상 저장
         startColor = spriteRenderer.color;
-        
+
         // 서서히 사라지는 코루틴 시작
         StartCoroutine(FadeOut());
     }
@@ -26,7 +26,7 @@ public class AfterimageFX : MonoBehaviour
     private IEnumerator FadeOut()
     {
         float timer = 0f;
-        
+
         // fadeOutTime 동안 반복
         while (timer < fadeOutTime)
         {

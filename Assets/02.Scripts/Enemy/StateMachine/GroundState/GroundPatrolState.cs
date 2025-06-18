@@ -11,12 +11,12 @@ public class GroundPatrolState : IState
         this.monster = (GroundMonster)monster;
     }
 
-    public void Enter() 
+    public void Enter()
     {
         monster.AnimationHandler.Move(true);
     }
 
-    public void Exit() 
+    public void Exit()
     {
         monster.AnimationHandler.Move(false);
     }

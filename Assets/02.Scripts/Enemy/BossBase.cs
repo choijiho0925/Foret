@@ -32,7 +32,6 @@ public class BossBase : MonsterBase
         }
     }
 
-
     protected override void Awake()
     {
         base.Awake();
@@ -41,12 +40,12 @@ public class BossBase : MonsterBase
         uiManager = UIManager.Instance;
         _rigidbody = GetComponent<Rigidbody2D>();
 
-        if(player != null)
+        if (player != null)
         {
-             bossCollider = GetComponent<Collider2D>();
-             playerCollider = player.GetComponent<Collider2D>();
+            bossCollider = GetComponent<Collider2D>();
+            playerCollider = player.GetComponent<Collider2D>();
 
-            if(bossCollider != null && playerCollider != null)
+            if (bossCollider != null && playerCollider != null)
             {
                 Physics2D.IgnoreCollision(bossCollider, playerCollider);
             }
@@ -71,10 +70,9 @@ public class BossBase : MonsterBase
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        
+
         uiManager.UpdateBossHealthBar((float)Health / MaxHealth);
     }
-
 
     public override void Die()
     {

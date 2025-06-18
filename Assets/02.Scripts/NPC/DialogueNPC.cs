@@ -6,7 +6,9 @@ public class DialogueNPC : MonoBehaviour, IInteractable
 {
     [SerializeField] private List<DialogueData> dialogueData;//스크립터블 오브젝트
     [SerializeField] private NpcController npcController;
+
     private bool isDialogueStart;
+
     private PlayerInteract player;
     private Queue<string> dialogueQueue = new Queue<string>();//이거 프로텍티드 다른 사람한테 조금 물어보자
     private UIManager uiManager;
@@ -18,11 +20,11 @@ public class DialogueNPC : MonoBehaviour, IInteractable
         player = FindObjectOfType<PlayerInteract>();
         if (dialogueData.Count > 1)
         {
-            virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();  
+            virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
         }
         uiManager = UIManager.Instance;
         gameManager = GameManager.Instance;
-        isDialogueStart = true; 
+        isDialogueStart = true;
         //나중에 저장 만들 때 indexnum,npc위치, 상태 저장 =>각 상속받는 스크립트에서
     }
 
@@ -52,7 +54,7 @@ public class DialogueNPC : MonoBehaviour, IInteractable
         {
             virtualCamera.Priority = 15;
         }
-        
+
         uiManager.interactableController.HideInteractable();
         CheckAction();
     }
@@ -146,7 +148,7 @@ public class DialogueNPC : MonoBehaviour, IInteractable
             AfterTimeline();
         }
     }
-    
+
     private void EndSpeechBubble()
     {
         int index = (dialogueData.Count == 1) ? 0 : gameManager.mainNpcIndex;

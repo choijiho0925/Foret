@@ -14,7 +14,7 @@ public enum MonsterType
     ForestGuardian,
     Reaper,
 }
-public class MonsterPool : ObjectPool<MonsterType, MonsterBase >
+public class MonsterPool : ObjectPool<MonsterType, MonsterBase>
 {
 
 }

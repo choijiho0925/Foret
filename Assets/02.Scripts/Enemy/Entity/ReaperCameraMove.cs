@@ -11,6 +11,7 @@ public class ReaperCameraMove : MonoBehaviour
     [SerializeField] private CinemachineConfiner2D _confiner;
     [SerializeField] private PolygonCollider2D _collider;
     [SerializeField] private BossStageCamera _bossStageCamera;
+
     private bool isOneTime = true;
     private int activePriority = 50;
 

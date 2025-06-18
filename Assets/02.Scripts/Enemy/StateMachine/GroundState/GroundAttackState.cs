@@ -18,7 +18,7 @@ public class GroundAttackState : IState
         monster.AnimationHandler.Move(true);
     }
 
-    public void Exit() 
+    public void Exit()
     {
         monster.AnimationHandler.Move(false);
     }

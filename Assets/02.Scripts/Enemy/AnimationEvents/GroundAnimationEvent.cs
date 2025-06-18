@@ -20,7 +20,6 @@ public class GroundAnimationEvent : MonoBehaviour
             Debug.LogWarning("[GroundAnimationEvent] attackHitbox가 인스펙터에서 설정되지 않았습니다.");
     }
 
-    
     public void EnableHitbox()
     {
         if (attackHitbox != null)

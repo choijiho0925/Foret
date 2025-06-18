@@ -21,7 +21,6 @@ public class FGChargeAttackState : IState
         boss.PlayChargeAnimation();
     }
 
-
     public void Exit() { }
 
     public void Update() { }
@@ -32,8 +31,8 @@ public class FGChargeAttackState : IState
         //if(!isChargeStarted)
         //{
         //    isChargeStarted = true;
-            boss.ResetAllAnimation();
-            boss.StartCoroutine(ChargeAttack());
+        boss.ResetAllAnimation();
+        boss.StartCoroutine(ChargeAttack());
         //}
     }
 
@@ -46,8 +45,8 @@ public class FGChargeAttackState : IState
         float distanceOffset = 3f;
         Vector2 targetPos = (Vector2)boss.Player.transform.position - direction * distanceOffset;
 
-        float chargeSpeed = boss.MoveSpeed * boss.ChargeSpeedMultiplier * 1.5f;      
-       
+        float chargeSpeed = boss.MoveSpeed * boss.ChargeSpeedMultiplier * 1.5f;
+
         // 물리기반 이동
         Rigidbody2D rb = boss.GetComponent<Rigidbody2D>();
 

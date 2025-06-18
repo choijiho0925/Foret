@@ -30,8 +30,8 @@ public class PlayerSFX : MonoBehaviour
     {
         int rand = Random.Range(0, attackMissClip.Length);
         audioSource.PlayOneShot(attackMissClip[rand]);
-    } 
-    
+    }
+
     public void PlayAttackHitClip()
     {
         int rand = Random.Range(0, attackHitClip.Length);
@@ -43,13 +43,13 @@ public class PlayerSFX : MonoBehaviour
         int rand = Random.Range(0, throwAttackClip.Length);
         audioSource.PlayOneShot(throwAttackClip[rand]);
     }
-    
+
     public void PlayDashClip()
     {
         int rand = Random.Range(0, dashClip.Length);
         audioSource.PlayOneShot(dashClip[rand]);
-    }   
-    
+    }
+
     public void PlayHitClip()
     {
         int rand = Random.Range(0, hitClip.Length);
