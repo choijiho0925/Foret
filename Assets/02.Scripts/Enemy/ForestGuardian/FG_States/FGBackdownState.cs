@@ -23,6 +23,7 @@ public class FGBackdownState : IState
             boss.AudioChanger.PlayFirstBossBGM();
             boss.hasPlayedFirstBGM = true;
         }
+        boss.FGSFX.PlayBackdownClip();
         boss.SetAllowLookAtPlayer(false);
         boss.ResetAllAnimation();
         boss.PlayRunAnimation();

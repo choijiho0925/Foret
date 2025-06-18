@@ -73,6 +73,8 @@ public class ForestGuardian : BossBase
 
     public AudioChanger AudioChanger => audioChanger;
 
+    public FGSFX FGSFX => fgSFX;
+
 
 
     public SpriteRenderer Sprite => fgAnimationHandler.Sprite;
@@ -82,11 +84,14 @@ public class ForestGuardian : BossBase
 
     private FGAnimationHandler fgAnimationHandler;
 
+    private FGSFX fgSFX;
+
     private void Awake()
     {
         base.Awake();
         rb = GetComponent<Rigidbody2D>();
         fgAnimationHandler = GetComponent<FGAnimationHandler>();
+        fgSFX = GetComponentInChildren<FGSFX>();
     }
 
     private void OnEnable()

@@ -51,6 +51,7 @@ public class BossBase : MonsterBase
 
     public override void Die()
     {
+        Physics2D.IgnoreCollision(bossCollider, playerCollider, false);
         // npc 레이어로 변경
         gameObject.layer = LayerMask.NameToLayer("Interactable");
         bossCollider.isTrigger = true;
