@@ -34,6 +34,7 @@ public class DeathBringer : BossBase
     protected override void Start()
     {
         StateMachine.ChangeState(new DBIdleState(this));
+        EventBus.Raise(new BossStartEvent(bossName, bossBGM));
     }
 
     protected override void Update()

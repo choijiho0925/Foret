@@ -213,7 +213,10 @@ MonoBehaviour:
   isGround: 0
   type: 8
   patternDelay: 5
+  bossName: "\uB9C8\uC655(\uC9C4)"
+  bossBGM: {fileID: 8300000, guid: c38d806719f9bd44eae1adb9acfcb300, type: 3}
   attackCount: 0
+  attackDelay: 3
   teleportDistance: 3
   minionPrefab: {fileID: 9118491250020898405, guid: bfc64490f27595a47bbf3b663a46723d, type: 3}
   minionCount: 3

@@ -15,6 +15,7 @@ public class ReaperDeadState : IState
         // Dead 상태 진입
         boss.BossAnimationHandler.Dead();
         boss.Die();
+        EventBus.Raise(new BossClearEvent());
 
         // 페이드 아웃 시작
         FadeController.Instance.FadeOut(() =>

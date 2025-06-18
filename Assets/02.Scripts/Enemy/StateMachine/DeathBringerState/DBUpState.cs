@@ -15,6 +15,7 @@ public class DBUpState : IState
     {
         boss.StartCoroutine(BossUpState());
         GameManager.Instance.isFirstPhaseEnd = true;
+        EventBus.Raise(new BossClearEvent());
     }
 
     public void Exit()
