@@ -37,6 +37,7 @@ public class Reaper : BossBase
     {
         bossAnimationHandler.Appear();
         StateMachine.ChangeState(new ReaperIdleState(this));    // 시작 시 Idle 상태 전환
+        EventBus.Raise(new BossStartEvent(bossName, bossBGM));
     }
 
     protected override void Update()

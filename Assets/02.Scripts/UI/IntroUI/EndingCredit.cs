@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndingCredit : MonoBehaviour
 {
@@ -30,6 +31,6 @@ public class EndingCredit : MonoBehaviour
     
     public void OnSkip()
     {
-        Debug.Log("skip");
+        SceneManager.LoadScene("TitleScene");
     }
 }

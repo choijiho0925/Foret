@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DBUpState : IState
@@ -15,6 +16,7 @@ public class DBUpState : IState
     {
         boss.StartCoroutine(BossUpState());
         GameManager.Instance.isFirstPhaseEnd = true;
+        EventBus.Raise(new BossClearEvent());
     }
 
     public void Exit()
@@ -24,11 +26,7 @@ public class DBUpState : IState
 
     public void Update()
     {
-        if(boss.Health <= 0 && isOneTime)
-        {
-            boss.ReaperCameraMove.CameraMove();
-            isOneTime = false;
-        }
+
     }
 
     private IEnumerator BossUpState()

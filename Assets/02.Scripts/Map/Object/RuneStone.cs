@@ -74,10 +74,10 @@ public class RuneStone : MonoBehaviour, IInteractable
     {
         isFirst = false;
         OpenNextStage();
-        uiManager.dialogueController.ClearTarget(this.gameObject);
-        uiManager.dialogueController.HideDialoguePanel();
         GameManager.Instance.NextIndex();
         npcController.GoNextPos();
+        uiManager.dialogueController.ClearTarget(this.gameObject);
+        uiManager.dialogueController.HideDialoguePanel();
         player.OnEndInteraction();
     }
 

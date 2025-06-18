@@ -74,6 +74,11 @@ public class NpcController : MonoBehaviour
         {
             mainNpcAnimator.enabled = true;
         }
+
+        if (gameManager.mainNpcIndex == 5)
+        {
+            UIManager.Instance.dialogueController.gameObject.SetActive(false);
+        }
         director.Play();
     }
 
@@ -102,15 +107,11 @@ public class NpcController : MonoBehaviour
        bossRoomCamera.Priority = 20;
        bossRoomCollider.gameObject.SetActive(true);
        GameManager.Instance.SetRespawnPoint(transform.position);
+       mainNpc.SetActive(false);
    }
 
    public void CanInteract()
    {
        canInteract = true;
-   }
-
-   public void DestroyMainNpc()
-   {
-       mainNpc.SetActive(false);
    }
 }

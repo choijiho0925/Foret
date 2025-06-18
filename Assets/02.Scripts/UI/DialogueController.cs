@@ -91,7 +91,7 @@ public class DialogueController : MonoBehaviour
         {
             StopCoroutine(typingCoroutine);
         }
-        
+
         if (isScene)
         {
             speechBubbleText.text = fullCurrentLine;
@@ -116,7 +116,8 @@ public class DialogueController : MonoBehaviour
 
         if (isScene)
         {
-            Invoke("ShowSpeechBubble",1f);
+            SetSpeechBubbleSize(fullCurrentLine);
+            Invoke("ShowSpeechBubble", 1f);
         }
         else
         {
@@ -166,5 +167,15 @@ public class DialogueController : MonoBehaviour
     public void IsScene(bool b)
     {
         isScene = b;
+    }
+
+    private void SetSpeechBubbleSize(string fullLine)
+    {
+        Vector2 preferredValues = speechBubbleText.GetPreferredValues(fullLine);
+
+        float width = Mathf.Clamp(preferredValues.x, 400f, 800f);
+        float height = Mathf.Clamp(preferredValues.y, 200f, 400f);
+
+        rect.sizeDelta = new Vector2(width, height);
     }
 }
