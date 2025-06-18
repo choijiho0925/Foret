@@ -280,8 +280,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe8d7186132b4b341b43b3aa96c42ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 300
-  health: 300
+  maxHealth: 400
+  health: 400
   moveSpeed: 15
   detectionRange: 30
   attackPower: 1
@@ -307,6 +307,7 @@ MonoBehaviour:
     m_Bits: 64
   attack1Pos: {fileID: 6967845885191426211}
   attack2Pos: {fileID: 5254367521808500570}
+  bg: {fileID: 0}
 --- !u!114 &1425478287554969507
 MonoBehaviour:
   m_ObjectHideFlags: 0

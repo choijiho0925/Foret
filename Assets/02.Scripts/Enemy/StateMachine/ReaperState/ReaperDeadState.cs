@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ReaperDeadState : IState
 {
@@ -22,6 +24,7 @@ public class ReaperDeadState : IState
         {
             // 페이드 인
             FadeController.Instance.FadeIn();
+            boss.StartCoroutine(GameClearRoutine());
         });
     }
 
@@ -33,5 +36,11 @@ public class ReaperDeadState : IState
     public void Update()
     {
         
+    }
+
+    private IEnumerator GameClearRoutine()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("EndingCredit");
     }
 }

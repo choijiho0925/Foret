@@ -28,7 +28,6 @@ public class FGNpcState : IState
 
         // 제자리로 복귀
         boss.transform.position = boss.InitialPosition;
-
     }
 
     public void Exit() { }
