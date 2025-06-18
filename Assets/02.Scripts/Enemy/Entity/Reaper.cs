@@ -146,6 +146,7 @@ public class Reaper : BossBase
         if (Health <= 0)
         {
             StateMachine.ChangeState(new ReaperDeadState(this));
+            return;
         }
 
         bossAnimationHandler.Damage();

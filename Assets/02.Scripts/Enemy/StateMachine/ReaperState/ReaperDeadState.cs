@@ -13,8 +13,15 @@ public class ReaperDeadState : IState
     public void Enter()
     {
         // Dead 상태 진입
-        boss.AnimationHandler.Dead();
+        boss.BossAnimationHandler.Dead();
         boss.Die();
+
+        // 페이드 아웃 시작
+        FadeController.Instance.FadeOut(() =>
+        {
+            // 페이드 인
+            FadeController.Instance.FadeIn();
+        });
     }
 
     public void Exit()
