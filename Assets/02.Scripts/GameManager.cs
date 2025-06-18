@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
     public Vector3 respawnPoint { get; private set; } //플레이어 리스폰 지점
     public bool CanGoNextStage;         //첫번쨰 보스 클리어 여부
     public bool isSecondPhase;
+    public bool skipIntro;      // 저장 데이터가 존재할 시 인트로 스킵
     [field: SerializeField] public int mainNpcIndex { get; private set; }
     [field: SerializeField] public int mainNpcPosNum { get; private set; }
 
@@ -21,7 +22,6 @@ public class GameManager : Singleton<GameManager>
     {
         base.Awake();
         LoadData();
-        
     }
 
     public void SetRespawnPoint(Vector3 point)
@@ -64,6 +64,12 @@ public class GameManager : Singleton<GameManager>
             this.CanGoNextStage = gameData.CanGoNextStage;
             this.mainNpcIndex = gameData.mainNpcIndex;
             this.mainNpcPosNum = gameData.mainNpcPosNum;
+            skipIntro = true;
+        }
+        else
+        {
+            gameData = new GameData();
+            skipIntro = false;
         }
     }
 
@@ -86,6 +92,13 @@ public class GameManager : Singleton<GameManager>
     private void OnGameStart(GameStartEvent e)
     {
         Debug.Log("GameStart 이벤트 수신 -> MainScene을 로드합니다.");
-        SceneManager.LoadScene("MainScene");
+        if (skipIntro)
+        {
+            SceneManager.LoadScene("MainScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("IntroScene");
+        }
     }
 }

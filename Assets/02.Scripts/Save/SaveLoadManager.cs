@@ -37,7 +37,7 @@ public class SaveLoadManager : Singleton<SaveLoadManager>
         else
         {
             Debug.Log("저장된 데이터가 없습니다. 기본값으로 시작합니다.");
-            return new GameData();
+            return null;
         }
     }
 
