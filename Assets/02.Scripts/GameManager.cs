@@ -15,6 +15,7 @@ public class GameManager : Singleton<GameManager>
     public bool CanGoNextStage;         //첫번쨰 보스 클리어 여부
     public bool isSecondPhase;
     public bool skipIntro;      // 저장 데이터가 존재할 시 인트로 스킵
+    public bool isFirstPhaseEnd;
     [field: SerializeField] public int mainNpcIndex { get; private set; }
     [field: SerializeField] public int mainNpcPosNum { get; private set; }
 

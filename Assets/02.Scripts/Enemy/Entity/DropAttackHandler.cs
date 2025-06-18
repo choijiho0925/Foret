@@ -30,13 +30,12 @@ public class DropAttackHandler : MonoBehaviour
 
         yield return new WaitForSeconds(attackDelay);
 
-        Vector2 size = new Vector2(5f, 11f); // 캡슐 범위
+        Vector2 size = new Vector2(4f, 11f); // 박스 범위
         float angle = 0f; // 수평 방향
 
-        Collider2D hit = Physics2D.OverlapCapsule(
+        Collider2D hit = Physics2D.OverlapBox(
             attackPos.position,
             size,
-            CapsuleDirection2D.Horizontal,
             angle,
             playerLayer
         );

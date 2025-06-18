@@ -17,14 +17,17 @@ public class DeathBringer : BossBase
 
     private Rigidbody2D rb;
     private BossAnimationHandler bossAnimationHandler;
+    private ReaperCameraMove cm;
 
     public BossAnimationHandler BossAnimationHandler => bossAnimationHandler;
+    public ReaperCameraMove ReaperCameraMove => cm;
 
     protected override void Awake()
     {
         base.Awake();
         rb = GetComponent<Rigidbody2D>();
         bossAnimationHandler = GetComponent<BossAnimationHandler>();
+        cm = GetComponentInChildren<ReaperCameraMove>();
     }
 
     protected override void Start()
@@ -104,8 +107,7 @@ public class DeathBringer : BossBase
     #region 피격
     public override void TakeDamage(int damage)
     {
-        if (IsInvincible) return;
-        Health -= damage;
+        base.TakeDamage(damage);
 
         if (Health <= 0)
         {

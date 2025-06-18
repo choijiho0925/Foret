@@ -19,6 +19,8 @@ public class BossBase : MonsterBase
     protected Collider2D bossCollider;
     protected Collider2D playerCollider;
 
+    protected Rigidbody2D _rigidbody;
+
 
     protected override void Awake()
     {
@@ -26,6 +28,7 @@ public class BossBase : MonsterBase
 
         GameObject player = GameObject.FindWithTag("Player");
         uiManager = UIManager.Instance;
+        _rigidbody = GetComponent<Rigidbody2D>();
 
         if(player != null)
         {
@@ -68,5 +71,10 @@ public class BossBase : MonsterBase
         // npc 레이어로 변경
         gameObject.layer = LayerMask.NameToLayer("Interactable");
         bossCollider.isTrigger = true;
+
+        if (_rigidbody != null)
+        {
+            _rigidbody.bodyType = RigidbodyType2D.Kinematic;
+        }
     }
 }

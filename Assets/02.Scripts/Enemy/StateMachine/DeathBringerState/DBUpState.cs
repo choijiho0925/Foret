@@ -13,6 +13,7 @@ public class DBUpState : IState
     public void Enter()
     {
         boss.StartCoroutine(BossUpState());
+        GameManager.Instance.isFirstPhaseEnd = true;
     }
 
     public void Exit()
@@ -22,7 +23,7 @@ public class DBUpState : IState
 
     public void Update()
     {
-
+        boss.ReaperCameraMove.CameraMove();
     }
 
     private IEnumerator BossUpState()

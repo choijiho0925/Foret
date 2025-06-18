@@ -31,10 +31,8 @@ public class DBDeadState : IState
         boss.BossAnimationHandler.Dead();
         boss.Die();
 
-        Debug.Log("대기 시작");
         // 대기 (대사/연출 추가)
         yield return new WaitForSeconds(5f);
-        Debug.Log("대기 끝");
 
         // 상태 전환
         boss.StateMachine.ChangeState(new DBPhaseMoveState(boss));
