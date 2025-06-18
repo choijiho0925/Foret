@@ -69,11 +69,15 @@ public class NpcController : MonoBehaviour
 
     public void PlayTimeline()
     {
-        UIManager.Instance.dialogueController.HideSpeechBubble();
         director.stopped += OnTimelineFinished;
         if (mainNpcAnimator.enabled == false)
         {
             mainNpcAnimator.enabled = true;
+        }
+
+        if (gameManager.mainNpcIndex == 5)
+        {
+            UIManager.Instance.dialogueController.gameObject.SetActive(false);
         }
         director.Play();
     }
