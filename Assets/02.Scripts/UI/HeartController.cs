@@ -13,9 +13,14 @@ public class HeartController : MonoBehaviour
 
     void Start()
     {
-        initHeartsCount = GameManager.Instance.GameData.playerHeart;
         InitHeart();
         UIManager.Instance.RegisterHeartController(this);
+        int currentHeart = GameManager.Instance.GameData.playerHeart;
+
+        for (int i = 0; i < maxHeartsCount - currentHeart; i++)
+        {
+            RemoveHeart();
+        }
     }
 
     public void InitHeart()

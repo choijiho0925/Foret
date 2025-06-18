@@ -530,8 +530,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1876817f5c3250c45bb69de9c718257f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forestBGM: {fileID: 0}
-  darkForestBGM: {fileID: 0}
+  forestBGM: {fileID: 8300000, guid: c6b01e18a04fb684992e605a98bfa2a0, type: 3}
+  darkForestBGM: {fileID: 8300000, guid: c6b01e18a04fb684992e605a98bfa2a0, type: 3}
 --- !u!1 &1849589321
 GameObject:
   m_ObjectHideFlags: 0
