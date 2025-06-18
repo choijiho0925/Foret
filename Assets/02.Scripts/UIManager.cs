@@ -96,6 +96,7 @@ public class UIManager : Singleton<UIManager>
         Instantiate(abilityControllerPF);
         Instantiate(interactableControllerPF);
         Instantiate(settingControllerPF);
+        Instantiate(bossHealthBarControllerPF);
     }
 
     public void RegisterHeartController(HeartController hc) => heartController = hc;

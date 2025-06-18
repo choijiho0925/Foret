@@ -1,6 +1,7 @@
 using _02.Scripts.Player;
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerStat : MonoBehaviour, IDamagable
@@ -27,6 +28,7 @@ public class PlayerStat : MonoBehaviour, IDamagable
     private PlayerMovement playerMovement;
     private Animator animator;
     private UIManager uiManager;
+    private Coroutine energyGenRoutine;
     
     private static readonly int animIDHit = Animator.StringToHash("IsHit");
     private static readonly int animIDDie = Animator.StringToHash("IsDie");
@@ -53,6 +55,8 @@ public class PlayerStat : MonoBehaviour, IDamagable
         currentHeart = gameManager.GameData.playerHeart;
         currentEnergy = gameManager.GameData.playerEnergy;
         transform.position = gameManager.GameData.respawnPoint;
+        //에너지 기본 재생 루틴
+        energyGenRoutine = StartCoroutine(EnergyGenRoutine());
     }
     
 
@@ -149,6 +153,8 @@ public class PlayerStat : MonoBehaviour, IDamagable
         Heal(CurrentMaxHeart);
         transform.position = GameManager.Instance.respawnPoint;
         
+        energyGenRoutine = StartCoroutine(EnergyGenRoutine());
+        
         EventBus.Raise(new PlayerReviveEvent());
     }
     private IEnumerator Damaged()   //피격 후 무적 코루틴
@@ -165,5 +171,14 @@ public class PlayerStat : MonoBehaviour, IDamagable
         recoverEffect.SetActive(true);
         yield return new WaitForSeconds(0.7f);
         recoverEffect.SetActive(false);
+    }
+
+    private IEnumerator EnergyGenRoutine()
+    {
+        while (!isDead)
+        {
+            yield return new WaitForSeconds(1.0f);
+            RestoreEnergy(2);
+        }
     }
 }

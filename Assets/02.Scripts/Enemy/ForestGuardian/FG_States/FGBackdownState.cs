@@ -19,10 +19,12 @@ public class FGBackdownState : IState
     public void Enter() 
     {
         if(!boss.hasPlayedFirstBGM)
-        {
-            boss.AudioChanger.PlayFirstBossBGM();
+        { 
+            EventBus.Raise(new BossStartEvent(boss.bossName, boss.bossBGM));
+            //boss.AudioChanger.PlayFirstBossBGM();
             boss.hasPlayedFirstBGM = true;
         }
+        
         boss.FGSFX.PlayBackdownClip();
         boss.SetAllowLookAtPlayer(false);
         boss.ResetAllAnimation();

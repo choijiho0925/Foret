@@ -124,6 +124,8 @@ MonoBehaviour:
   isGround: 0
   type: 7
   patternDelay: 1
+  bossName: "\uCE7C\uB4E0 \uB178\uC778"
+  bossBGM: {fileID: 8300000, guid: c38d806719f9bd44eae1adb9acfcb300, type: 3}
   backdownRange: 2.5
   meleeRange: 4
   chargeRange: 8

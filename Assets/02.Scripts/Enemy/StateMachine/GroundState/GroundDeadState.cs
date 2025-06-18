@@ -15,10 +15,10 @@ public class GroundDeadState : IState
     public void Enter()
     {
         monster.AnimationHandler.Dead();
-
+        monster.Die();
         if (monster is GroundMonster groundMonster)
         {
-            groundMonster.enabled = false; 
+            //groundMonster.enabled = false; 
             Rigidbody2D rb = groundMonster.GetComponent<Rigidbody2D>();
             if (rb != null)
                 rb.velocity = Vector2.zero;
