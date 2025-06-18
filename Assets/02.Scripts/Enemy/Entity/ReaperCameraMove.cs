@@ -11,7 +11,17 @@ public class ReaperCameraMove : MonoBehaviour
     [SerializeField] private CinemachineConfiner2D _confiner;
     [SerializeField] private PolygonCollider2D _collider;
     [SerializeField] private BossStageCamera _bossStageCamera;
+    private bool isOneTime = true;
     private int activePriority = 50;
+
+    private void Update()
+    {
+        if (isOneTime && GameManager.Instance.isFirstPhaseEnd)
+        {
+            CameraMove();
+            isOneTime = false;
+        }
+    }
 
     public void CameraMove()
     {
@@ -23,6 +33,10 @@ public class ReaperCameraMove : MonoBehaviour
 
     private void CameraOn()
     {
+        _camera.Priority = activePriority;
+        _confiner.m_BoundingShape2D = _collider;
+        _confiner.InvalidateCache();
+
         var oldUpdateMethod = _brain.m_UpdateMethod;
         var oldBlendUpdateMethod = _brain.m_BlendUpdateMethod;
         var oldShowDebugText = _brain.m_ShowDebugText;
@@ -39,10 +53,6 @@ public class ReaperCameraMove : MonoBehaviour
 
         var defalutBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.Cut, 0f);
         newBrain.m_DefaultBlend = defalutBlend;
-
-        _camera.Priority = activePriority;
-        _confiner.m_BoundingShape2D = _collider;
-        _confiner.InvalidateCache();
 
         _brain = _mainCamera.GetComponent<CinemachineBrain>();
         _bossStageCamera._brain = newBrain;

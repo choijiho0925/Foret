@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DBUpState : IState
@@ -25,11 +26,7 @@ public class DBUpState : IState
 
     public void Update()
     {
-        if(boss.Health <= 0 && isOneTime)
-        {
-            boss.ReaperCameraMove.CameraMove();
-            isOneTime = false;
-        }
+
     }
 
     private IEnumerator BossUpState()
