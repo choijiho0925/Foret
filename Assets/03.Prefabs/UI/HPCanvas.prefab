@@ -178,4 +178,4 @@ MonoBehaviour:
   heartPrefab: {fileID: 3496372137200908203, guid: 05eb11bf68504c343a4019ed88a66777, type: 3}
   heartContainer: {fileID: 4996333275811318205}
   initHeartsCount: 5
-  maxHeartsCount: 0
+  maxHeartsCount: 5

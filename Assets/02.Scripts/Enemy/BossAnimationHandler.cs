@@ -7,6 +7,8 @@ public class BossAnimationHandler : MonsterAnimationHandler
     private static readonly int isPattern2 = Animator.StringToHash("IsPattern2");
     private static readonly int isTeleport = Animator.StringToHash("IsTeleport");
     private static readonly int isAppear = Animator.StringToHash("IsAppear");
+    private static readonly int isPhaseMove = Animator.StringToHash("IsPhaseMove");
+    private static readonly int isUp = Animator.StringToHash("IsUp");
 
     public void Attack2()
     {
@@ -31,5 +33,15 @@ public class BossAnimationHandler : MonsterAnimationHandler
     public void Appear()
     {
         animator.SetTrigger(isAppear);
+    }
+
+    public void PhaseMove()
+    {
+        animator.SetTrigger(isPhaseMove);
+    }
+
+    public void BossUp()
+    {
+        animator.SetTrigger(isUp);
     }
 }

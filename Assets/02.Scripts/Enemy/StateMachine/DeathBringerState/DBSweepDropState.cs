@@ -12,7 +12,6 @@ public class DBSweepDropState : IState
 
     public void Enter()
     {
-        boss.BossAnimationHandler.Attack2();
         boss.StartCoroutine(SweepAndDropState());
     }
 
@@ -28,6 +27,7 @@ public class DBSweepDropState : IState
 
     private IEnumerator SweepAndDropState()
     {
+        boss.BossAnimationHandler.Attack2();
         yield return boss.SweepAndDrop();
 
         // 상태 종료 후 다음 상태로 전환

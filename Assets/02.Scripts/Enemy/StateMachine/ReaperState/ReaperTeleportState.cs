@@ -30,7 +30,7 @@ public class ReaperTeleportState : IState
     {
         yield return boss.TeleportAttack();
 
-        // 상태 종료 후 다음 상태로 전환
+        // 텔포 공격 종료 후 Idle 상태로 전환
         boss.StateMachine.ChangeState(new ReaperIdleState(boss));
     }
 }

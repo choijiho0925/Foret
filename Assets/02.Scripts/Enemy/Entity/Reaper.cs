@@ -5,16 +5,17 @@ using UnityEngine.AI;
 public class Reaper : BossBase
 {
     [Header("마왕(진) 설정")]
-    [SerializeField] private int attackCount = 0;
-    [SerializeField] private float teleportDistance = 3f;
-    [SerializeField] private GameObject minionPrefab;
-    [SerializeField] private int minionCount = 3;
-    [SerializeField] private GameObject clonePrefab;
-    [SerializeField] private int cloneCount = 2;
-    [SerializeField] private LayerMask playerLayer;
-    [SerializeField] private GameObject mainSprite;
-    [SerializeField] private GameObject slashNormal;
-    [SerializeField] private GameObject slashWide;
+    [SerializeField] private int attackCount = 0;           // 패턴 실행을 위한 공격 횟수
+    [SerializeField] private float attackDelay = 3f;        // 다음 공격까지 딜레이
+    [SerializeField] private float teleportDistance = 3f;   // 순간 이동 시 플레이어와의 거리
+    [SerializeField] private GameObject minionPrefab;       // 소환할 몬스터 프리팹
+    [SerializeField] private int minionCount = 3;           // 몬스터 갯수
+    [SerializeField] private GameObject clonePrefab;        // 소환할 분신 프리팹
+    [SerializeField] private int cloneCount = 2;            // 분신 갯수
+    [SerializeField] private LayerMask playerLayer;         // 공격을 위한 레이어
+    [SerializeField] private GameObject mainSprite;         // 순간 이동 시 사라지게 할 스프라이트
+    [SerializeField] private GameObject slashNormal;        // 기본 공격 오브젝트
+    [SerializeField] private GameObject slashWide;          // 긴 공격 오브젝트
 
     private bool isLeft = true;
 
@@ -34,7 +35,7 @@ public class Reaper : BossBase
 
     protected override void Start()
     {
-        StateMachine.ChangeState(new ReaperIdleState(this));
+        StateMachine.ChangeState(new ReaperIdleState(this));    // 시작 시 Idle 상태 전환
     }
 
     protected override void Update()
@@ -50,6 +51,7 @@ public class Reaper : BossBase
         }
     }
 
+    #region 이동
     public override void Move()
     {
         LookDirection();
@@ -61,13 +63,7 @@ public class Reaper : BossBase
 
         agent.SetDestination(targetPos);
     }
-
-    IEnumerator ShowAttackEffect(GameObject effect)
-    {
-        effect.SetActive(true);
-        yield return new WaitForSeconds(0.4f);
-        effect.SetActive(false);
-    }
+    #endregion
 
     #region 기본 공격
     public override void Attack()
@@ -86,29 +82,27 @@ public class Reaper : BossBase
         AnimationHandler.Attack();
         StartCoroutine(ShowAttackEffect(effect));
 
+        yield return new WaitForSeconds(0.1f);
+
         Collider2D hit = Physics2D.OverlapCircle(slashNormal.transform.position, AttackRange, playerLayer);
 
         if (hit != null)
             hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(attackDelay);
 
         currentPattern = null;
         attackCount++;
         StateMachine.ChangeState(new ReaperIdleState(this));
     }
-    #endregion
 
-    private void OnDrawGizmos() // 보스 공격 범위 (추후 삭제)
+    IEnumerator ShowAttackEffect(GameObject effect)
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(slashNormal.transform.position, AttackRange);
-
-        Vector2 attackPos = (Vector2)slashWide.transform.position + (Vector2)(transform.up * 0.75f);
-        Vector2 size = new Vector2(15f, 2.5f);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(attackPos, size);
+        effect.SetActive(true);
+        yield return new WaitForSeconds(0.4f);
+        effect.SetActive(false);
     }
+    #endregion
 
     #region 방향 전환
     public void LookDirection()
@@ -143,6 +137,7 @@ public class Reaper : BossBase
     }
     #endregion
 
+    #region 피격
     public override void TakeDamage(int damage)
     {
         if (IsInvincible) return;
@@ -156,6 +151,7 @@ public class Reaper : BossBase
         bossAnimationHandler.Damage();
         StateMachine.ChangeState(new ReaperDamageState(this));
     }
+    #endregion
 
     #region 패턴
     public IEnumerator SummonClones()
@@ -199,24 +195,26 @@ public class Reaper : BossBase
         // 플레이어 등쪽으로 순간이동
         StartCoroutine(Teleport());
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
     }
 
     public IEnumerator Teleport()
     {
+        // 순간이동 애니메이션 실행
         bossAnimationHandler.Teleport();
         yield return new WaitForSeconds(0.4f);
 
+        // 스프라이트 비활성화 및 대기
         mainSprite.SetActive(false);
         yield return new WaitForSeconds(2f);
 
+        // 플레이어 뒤에서 출현
         Appear();
         yield return new WaitForSeconds(0.4f);
 
         // 긴 공격 실행
         bossAnimationHandler.Attack2();
-        LongAttack(slashWide);
-        yield return new WaitForSeconds(2f);
+        StartCoroutine(LongAttack(slashWide));
     }
 
     private void Appear()
@@ -231,7 +229,7 @@ public class Reaper : BossBase
         bossAnimationHandler.Appear();
     } 
 
-    private void LongAttack(GameObject effect)
+    private IEnumerator LongAttack(GameObject effect)
     {
         StartCoroutine(ShowAttackEffect(effect));
 
@@ -249,6 +247,19 @@ public class Reaper : BossBase
 
         if (hit != null)
             hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
+
+        yield return new WaitForSeconds(attackDelay);
     }
     #endregion
+
+    private void OnDrawGizmos() // 보스 공격 범위 (추후 삭제)
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(slashNormal.transform.position, AttackRange);
+
+        Vector2 attackPos = (Vector2)slashWide.transform.position + (Vector2)(transform.up * 0.75f);
+        Vector2 size = new Vector2(15f, 2.5f);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(attackPos, size);
+    }
 }
