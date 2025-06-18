@@ -7,7 +7,7 @@ public class SceneBGM : MonoBehaviour
 {
     public AudioClip forestBGM;
     public AudioClip darkForestBGM;
-    
+
     private AudioSource audioSource;
     private GameManager gameManager;
 
@@ -28,7 +28,7 @@ public class SceneBGM : MonoBehaviour
         {
             Debug.LogWarning("[SceneBGM] AudioSource 또는 AudioManager를 찾을 수 없습니다.");
         }
-        
+
         PlayBGM();
     }
 
@@ -44,12 +44,12 @@ public class SceneBGM : MonoBehaviour
 
     private void PlayBGM()
     {
-        if (!gameManager.CanGoNextStage)       
+        if (!gameManager.CanGoNextStage)
         {
             // 1 스테이지
             audioSource.clip = forestBGM;
         }
-        else                                    
+        else
         {
             // 2 스테이지
             audioSource.clip = darkForestBGM;
