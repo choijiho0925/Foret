@@ -35,11 +35,15 @@ public class SceneBGM : MonoBehaviour
     private void OnEnable()
     {
         EventBus.Subscribe<PlayerReviveEvent>(PlayerReviveHandler);
+        EventBus.Subscribe<BossClearEvent>(BossClearHandler);
+        EventBus.Subscribe<BossStartEvent>(BossStartHandler);
     }
 
     private void OnDisable()
     {
         EventBus.UnSubscribe<PlayerReviveEvent>(PlayerReviveHandler);
+        EventBus.UnSubscribe<BossClearEvent>(BossClearHandler);
+        EventBus.UnSubscribe<BossStartEvent>(BossStartHandler);
     }
 
     private void PlayBGM()
@@ -60,5 +64,15 @@ public class SceneBGM : MonoBehaviour
     private void PlayerReviveHandler(PlayerReviveEvent evet)
     {
         PlayBGM();
+    }
+
+    private void BossStartHandler(BossStartEvent evnt)
+    {
+        AudioManager.Instance.PlayBGM(evnt.bossBGM);
+    }
+
+    private void BossClearHandler(BossClearEvent evnt)
+    {
+        AudioManager.Instance.RestoreBeforeBGM();
     }
 }
