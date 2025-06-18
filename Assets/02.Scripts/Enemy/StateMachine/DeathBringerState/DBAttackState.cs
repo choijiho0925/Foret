@@ -11,6 +11,11 @@ public class DBAttackState : IState
 
     public void Enter()
     {
+        if (boss.IsDead)
+        {
+            boss.StateMachine.ChangeState(new DBDeadState(boss));
+            return;
+        }
         boss.Attack();
     }
 

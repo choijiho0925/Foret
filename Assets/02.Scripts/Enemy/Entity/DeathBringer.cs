@@ -20,6 +20,7 @@ public class DeathBringer : BossBase
     private ReaperCameraMove cm;
 
     public BossAnimationHandler BossAnimationHandler => bossAnimationHandler;
+
     public ReaperCameraMove ReaperCameraMove => cm;
 
     protected override void Awake()
@@ -37,6 +38,8 @@ public class DeathBringer : BossBase
 
     protected override void Update()
     {
+        if (IsDead) return;
+
         base.Update();
 
         // 기본 공격을 patternDelay만큼 한 이후 패턴 실행
@@ -78,9 +81,10 @@ public class DeathBringer : BossBase
 
     public IEnumerator NormalAttack()
     {
+        IsAttack = true;
         AnimationHandler.Attack();
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
 
         Vector2 size = new Vector2(6f, 5.5f); // 캡슐 범위
         float angle = 0f; // 수평 방향
@@ -95,6 +99,10 @@ public class DeathBringer : BossBase
 
         if (hit != null)
             hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
+
+        yield return new WaitForSeconds(0.5f);
+
+        IsAttack = false;
 
         yield return new WaitForSeconds(attackDelay);
 
@@ -111,10 +119,13 @@ public class DeathBringer : BossBase
 
         if (Health <= 0)
         {
+            IsDead = true;
             StateMachine.ChangeState(new DBDeadState(this));
         }
 
-        bossAnimationHandler.Damage();
+        if (!IsAttack)
+            bossAnimationHandler.Damage();
+
         StateMachine.ChangeState(new DBDamageState(this));
     }
     #endregion
@@ -155,7 +166,9 @@ public class DeathBringer : BossBase
     #region 패턴
     public IEnumerator SweepAndDrop()
     {
-        yield return new WaitForSeconds(0.2f);
+        IsAttack = true;
+
+        yield return new WaitForSeconds(0.5f);
 
         Vector2 size = new Vector2(8f, 5.5f); // 캡슐 범위
         float angle = 0f; // 수평 방향
@@ -171,7 +184,9 @@ public class DeathBringer : BossBase
         if (hit != null)
             hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
+
+        IsAttack = false;
 
         StartCoroutine(DropAttack());
     }
@@ -186,6 +201,10 @@ public class DeathBringer : BossBase
 
     public IEnumerator DropAttacks()    // 여러 곳에서 떨어지는 공격
     {
+        IsAttack = true;
+
+        yield return new WaitForSeconds(0.5f);
+
         // 위치들을 무작위로 섞고 상위 4개 선택
         Transform[] random = dropAttackSpawnPoints.OrderBy(x => Random.value).ToArray();
 
@@ -194,7 +213,12 @@ public class DeathBringer : BossBase
             Instantiate(dropAttackPrefab, random[i].position, Quaternion.identity);
         }
 
+        yield return new WaitForSeconds(0.5f);
+
+        IsAttack = false;
+
         yield return new WaitForSeconds(attackDelay);
+        
     }
     #endregion
 

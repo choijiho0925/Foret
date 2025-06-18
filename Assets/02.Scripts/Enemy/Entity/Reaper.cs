@@ -40,6 +40,8 @@ public class Reaper : BossBase
 
     protected override void Update()
     {
+        if (IsDead) return;
+
         base.Update();
 
         // 기본 공격을 patternDelay만큼 한 이후 패턴 실행
@@ -79,15 +81,21 @@ public class Reaper : BossBase
 
     public IEnumerator NormalAttack(GameObject effect)
     {
+        IsAttack = true;
+
         AnimationHandler.Attack();
         StartCoroutine(ShowAttackEffect(effect));
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.3f);
 
         Collider2D hit = Physics2D.OverlapCircle(slashNormal.transform.position, AttackRange, playerLayer);
 
         if (hit != null)
             hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
+
+        yield return new WaitForSeconds(0.7f);
+
+        IsAttack = false;
 
         yield return new WaitForSeconds(attackDelay);
 
@@ -141,16 +149,17 @@ public class Reaper : BossBase
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        if (IsInvincible) return;
-        Health -= damage;
 
         if (Health <= 0)
         {
+            IsDead = true;
             StateMachine.ChangeState(new ReaperDeadState(this));
             return;
         }
 
-        bossAnimationHandler.Damage();
+        if (!IsAttack)
+            bossAnimationHandler.Damage();
+
         StateMachine.ChangeState(new ReaperDamageState(this));
     }
     #endregion
@@ -158,6 +167,8 @@ public class Reaper : BossBase
     #region 패턴
     public IEnumerator SummonClones()
     {
+        IsAttack = true;
+
         yield return new WaitForSeconds(0.2f);
         for (int i = 0; i < cloneCount; i++)
         {
@@ -166,10 +177,13 @@ public class Reaper : BossBase
         }
 
         yield return new WaitForSeconds(1f);
+        IsAttack = false;
     }
 
     public IEnumerator SummonMinions()
     {
+        IsAttack = true;
+
         yield return new WaitForSeconds(0.2f);
         var sprite = mainSprite.GetComponent<SpriteRenderer>();
 
@@ -186,6 +200,7 @@ public class Reaper : BossBase
 
         // 일정 시간 대기
         yield return new WaitForSeconds(10f);
+        IsAttack = false;
 
         // 무적 해제
         IsInvincible = false;
@@ -194,6 +209,8 @@ public class Reaper : BossBase
 
     public IEnumerator TeleportAttack()
     {
+        IsAttack = true;
+
         // 플레이어 등쪽으로 순간이동
         StartCoroutine(Teleport());
 
@@ -250,6 +267,7 @@ public class Reaper : BossBase
         if (hit != null)
             hit.GetComponent<IDamagable>()?.TakeDamage(AttackPower);
 
+        IsAttack = false;
         yield return new WaitForSeconds(attackDelay);
     }
     #endregion

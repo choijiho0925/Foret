@@ -21,6 +21,12 @@ public class ReaperIdleState : IState
 
     public void Update()
     {
+        if (boss.IsDead)
+        {
+            boss.StateMachine.ChangeState(new ReaperDeadState(boss));
+            return;
+        }
+
         float distance = Vector3.Distance(boss.transform.position, boss.Player.transform.position);
 
         if (distance >= boss.DetectionRange) return;

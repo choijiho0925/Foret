@@ -37,7 +37,7 @@ public abstract class MonsterBase : MonoBehaviour, IDamagable
     public MonsterStateMachine StateMachine => stateMachine;
     public MonsterAnimationHandler AnimationHandler => animationHandler;
     public SpriteRenderer SpriteRenderer => spriteRenderer;
-    public bool IsDead => isDead;
+    public bool IsDead { get => isDead; set => isDead = value; }
 
     #endregion
 

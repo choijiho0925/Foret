@@ -28,7 +28,7 @@ public class DBDamageState : IState
     private IEnumerator Invincible()
     {
         boss.IsInvincible = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         boss.IsInvincible = false;
 
         boss.StateMachine.ChangeState(new DBIdleState(boss));

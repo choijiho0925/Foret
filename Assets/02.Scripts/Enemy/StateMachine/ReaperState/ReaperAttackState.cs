@@ -12,6 +12,12 @@ public class ReaperAttackState : IState
 
     public void Enter()
     {
+        if (boss.IsDead)
+        {
+            boss.StateMachine.ChangeState(new ReaperDeadState(boss));
+            return;
+        }
+
         // Attack 상태 진입
         boss.Attack();
     }

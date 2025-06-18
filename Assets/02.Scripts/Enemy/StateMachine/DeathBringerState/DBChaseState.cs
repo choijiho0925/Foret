@@ -21,6 +21,12 @@ public class DBChaseState : IState
 
     public void Update()
     {
+        if (boss.IsDead)
+        {
+            boss.StateMachine.ChangeState(new DBDeadState(boss));
+            return;
+        }
+
         // 플레이어와의 거리 계산
         float distance = Vector3.Distance(boss.transform.position, boss.Player.transform.position);
 

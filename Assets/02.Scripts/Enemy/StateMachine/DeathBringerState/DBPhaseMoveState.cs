@@ -13,6 +13,7 @@ public class DBPhaseMoveState : IState
 
     public void Enter()
     {
+        Debug.Log("2페이즈 이동 상태");
         boss.StartCoroutine(PhaseMoveState());
     }
 

@@ -12,6 +12,8 @@ public class DBDeadState : IState
 
     public void Enter()
     {
+        Debug.Log("죽음 상태");
+        boss.BossAnimationHandler.Dead();
         boss.StartCoroutine(DeadState());
     }
 
@@ -28,7 +30,6 @@ public class DBDeadState : IState
     private IEnumerator DeadState()
     {
         // 보스 1페이즈 종료
-        boss.BossAnimationHandler.Dead();
         boss.Die();
 
         // 대기 (대사/연출 추가)

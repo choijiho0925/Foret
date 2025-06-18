@@ -13,6 +13,7 @@ public class BossBase : MonsterBase
     private bool playerInRange = false;
     private UIManager uiManager;
 
+    private bool isAttack = false;
     protected bool isPatterning = false;    // 현재 패턴 실행 중인지
     protected Coroutine currentPattern;     // 실행 중인 패턴 코루틴 참조
 
@@ -20,6 +21,16 @@ public class BossBase : MonsterBase
     protected Collider2D playerCollider;
 
     protected Rigidbody2D _rigidbody;
+
+    public bool IsAttack
+    {
+        get => isAttack;
+        set
+        {
+            if (isAttack == value) return; // 값이 바뀌었을 때만 설정
+            isAttack = value;
+        }
+    }
 
 
     protected override void Awake()
