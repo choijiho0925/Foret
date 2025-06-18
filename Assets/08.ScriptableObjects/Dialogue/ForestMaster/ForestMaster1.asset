@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64ca8693bdd847e684f9331144a9ecd8, type: 3}
   m_Name: ForestMaster1
   m_EditorClassIdentifier: 
-  timing: 2
-  type: 3
+  timing: 0
+  type: 2
   npcName: "\uC232\uC758 \uC8FC\uC778"
   dialogues:
   - "\uACE0\uB9D9\uB124\\n\uC774\uC81C\uC57C \uB208\uC774 \uB9D1\uC544\uC84C\uC5B4"

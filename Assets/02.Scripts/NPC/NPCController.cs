@@ -53,7 +53,7 @@ public class NpcController : MonoBehaviour
                 }
                 else
                 {
-                    director.playableAsset = npcTimeline[5];
+                    director.playableAsset = npcTimeline[4];
                 }
                 break;
         }

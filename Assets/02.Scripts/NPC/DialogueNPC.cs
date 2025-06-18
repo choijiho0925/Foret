@@ -172,6 +172,9 @@ public class DialogueNPC : MonoBehaviour, IInteractable
             uiManager.interactableController.ShowInteractable(this.gameObject.layer);
         }
         player.OnEndInteraction();
-        virtualCamera.Priority = 3;
+        if (dialogueData[index].timing != ActionTiming.None)
+        {
+            virtualCamera.Priority = 3;
+        }
     }
 }
