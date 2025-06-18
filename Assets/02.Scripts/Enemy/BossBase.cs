@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class BossBase : MonsterBase
 
     // 플레이어가 범위 안에 들어왔는지
     private bool playerInRange = false;
+    private UIManager uiManager;
 
     protected bool isPatterning = false;    // 현재 패턴 실행 중인지
     protected Coroutine currentPattern;     // 실행 중인 패턴 코루틴 참조
@@ -23,6 +25,7 @@ public class BossBase : MonsterBase
         base.Awake();
 
         GameObject player = GameObject.FindWithTag("Player");
+        uiManager = UIManager.Instance;
 
         if(player != null)
         {
@@ -50,6 +53,14 @@ public class BossBase : MonsterBase
     {
 
     }
+
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        
+        uiManager.UpdateBossHealthBar((float)Health / MaxHealth);
+    }
+
 
     public override void Die()
     {

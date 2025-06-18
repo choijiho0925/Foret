@@ -157,8 +157,9 @@ public class ForestGuardian : BossBase
 
         // 무적일 때 데미지 그만
         if (isImmune) return;
-
-        Health -= damage;
+        
+        base.TakeDamage(damage);
+  
         fgAnimationHandler.Damage();
 
         // 무적 시작
@@ -176,6 +177,8 @@ public class ForestGuardian : BossBase
 
             // 다음 스테이지 갈 수 있게함
             GameManager.Instance.CanGoNextStage = true;
+            
+            EventBus.Raise(new BossClearEvent());
 
             // npc State 전환
             StartCoroutine(UnlockAfterDelay(1f));

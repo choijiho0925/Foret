@@ -47,6 +47,21 @@ public class FlyingMonster : MonsterBase
         timeSinceLastAttack = 0f;
     }
 
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+
+        if (Health <= 0)
+        {
+            Health = 0;
+            StateMachine.ChangeState(new AirDeadState(this));
+        }
+        else
+        {
+            StateMachine.ChangeState(new AirDamageState(this));
+        }
+    }
+
     public void LookDirection()
     {
         // 플레이어 위치에 맞게 보는 방향 및 투사체 발사 위치 수정

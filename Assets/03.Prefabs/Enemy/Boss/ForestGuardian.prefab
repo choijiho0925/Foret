@@ -114,11 +114,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a61572b67f7b7584eb01dd8a44b97458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
-  health: 20
+  maxHealth: 200
+  health: 200
   moveSpeed: 30
   detectionRange: 30
-  attackPower: 30
+  attackPower: 1
   attackRange: 5
   isInvincible: 0
   isGround: 0

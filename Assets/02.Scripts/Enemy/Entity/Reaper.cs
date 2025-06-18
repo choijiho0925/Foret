@@ -140,6 +140,7 @@ public class Reaper : BossBase
     #region 피격
     public override void TakeDamage(int damage)
     {
+        base.TakeDamage(damage);
         if (IsInvincible) return;
         Health -= damage;
 
