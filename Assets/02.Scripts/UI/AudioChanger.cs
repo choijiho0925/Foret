@@ -9,8 +9,18 @@ public class AudioChanger : MonoBehaviour
 
     public void PlayFirstBossBGM()
     {
-       //AudioManager.Instance.PlayBGM();
-       AudioManager.Instance.PlayBGM(newBGM, 1f);
-       hasPlayed = true;
+        AudioManager.Instance.PlayBGM(newBGM, 1f, rememberPrevious: true);
+        hasPlayed = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (hasPlayed) return;
+
+        if (collision.CompareTag("Player"))
+        {
+            AudioManager.Instance.PlayBGM(newBGM, 1f);
+            hasPlayed = true;
+        }
     }
 }
